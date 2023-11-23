@@ -1508,11 +1508,10 @@ const ProfilePage = (args) => {
                                               className=""
                                               onClick={() =>
                                                 router.push({
-                                                  pathname:
-                                                    "/product-details/view",
-                                                  query: {
-                                                    product_id: data.id,
-                                                  },
+                                                  pathname: `/product-details/${data.product_slug}`,
+                                                  // query: {
+                                                  //   product_id: data.id,
+                                                  // },
                                                 })
                                               }
                                             >
@@ -1656,7 +1655,10 @@ const ProfilePage = (args) => {
                                     <div className="card d-flex flex-coloum bg-light shadow  px-0 justify-content-between product-list border-0 w-100 h-100">
                                       <div className="p-2">
                                         <div className="overflow-hidden rounded-4 mb-2">
-                                          <Link href={{ pathname: `/product-details/view`, query: { item_id: data.id } }} >
+                                          <Link href={{ 
+                                          pathname: `/services/${data.item_slug}`, 
+                                          // query: { item_id: data.id } 
+                                          }} >
                                             <img
                                               src={
                                                 data?.item_image_medium
@@ -1669,7 +1671,10 @@ const ProfilePage = (args) => {
                                             />
                                           </Link>
                                         </div>
-                                        <Link href={{ pathname: `/product-details/view`, query: { item_id: data.id } }} >
+                                        <Link href={{
+                                          pathname: `/services/${data.item_slug}`, 
+                                        // query: { item_id: data.id }
+                                         }} >
                                           <h6
                                             className="card-title text-color fs-16 text-capitalize  fw-bolder cursor-pointer"
                                           >
@@ -1746,8 +1751,8 @@ const ProfilePage = (args) => {
                                   title={value?.name}
                                   onClick={() =>
                                     router.push({
-                                      pathname: "/shop/left_sidebar",
-                                      query: { brand_id: value.id, searchList: 'product' },
+                                      pathname:`/brand/product/${value.slug}`,
+                                      // query: { brand_id: value.id, searchList: 'product' },
                                     })
                                   }
                                 >

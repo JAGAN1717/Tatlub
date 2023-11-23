@@ -1416,13 +1416,13 @@ const Banner = ({ category, banners, brand, mainCategories,result1,product1,popp
                           onClick={() => {
                             if(item?.id == 14){
                               router.push({
-                                pathname: "/page/Hiring/Select-Category",
-                                query:{'id':14},
+                                pathname: `/page/Hiring/category/${item?.category_slug}`,
+                                // query:{'id':14},
                               });
                             }else if(item?.id == 21 || item?.id == 36533 || item?.id == 12 ){
                               router.push({
-                                pathname: "/page/Hiring/Job-list",
-                                query:{'id':item?.id},
+                                pathname: `/page/Hiring/${item?.category_slug}`,
+                                // query:{'id':item?.id},
                               });
                             }else{
                               router.push({

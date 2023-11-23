@@ -848,7 +848,7 @@ function Addproduct() {
                   <div className="mb-2 d-flex justify-content-center position-relative multi_imgP2 rounded-3" >
                     <img
                       src={priview}
-                      className="image_no_product rounded-3 "
+                      className="image_no_product rounded-3"
                       alt="noImage"
                       onError={(e) => e.currentTarget.src = '/assets/images/tatlub-img/No.jpg'}
                     ></img>

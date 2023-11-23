@@ -511,7 +511,9 @@ const MasterFooter = ({
                             className={context.state == 'en' ? 'fa fa-angle-left pe-2':'fa fa-angle-right pe-2'}
                             aria-hidden="true"
                           ></i>
-                          <Link href={{pathname:"/page/Hiring/Select-Category",query:{'id':14}}}>
+                          <Link href={{pathname:"/page/Hiring/category"
+                              //  ,query:{'id':14}
+                          }}>
                             <a className="foot-cat">{t("We're Hiring")} </a>
                           </Link>
                         </li>

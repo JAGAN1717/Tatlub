@@ -24,7 +24,7 @@ export default function cat_type({ Category, setcategoryId, categoryId, wantedjo
                   <li className="cursor-pointer foot-cat text-truncate w-100" key={index}>
                     {/* <div class="form-check ms-2"  onClick={()=>setcategoryId(data?.id)}> */}
                     <div class="form-check ms-2"  >
-                      <input class="form-check-input" onChange={() => setcategoryId(data?.id)} disabled={wantedjobs} checked={categoryId == data.id ? true : false} type="checkbox" value="" id={`flexCheckCat${index}`} />
+                      <input class="form-check-input" onChange={() => setcategoryId(data?.category_slug)} disabled={wantedjobs} checked={categoryId == data.category_slug ? true : false} type="checkbox" value="" id={`flexCheckCat${index}`} />
                       <label class="form-check-label text-capitalize" for={`flexCheckCat${index}`}>
                         {data?.category_name}
                       </label>

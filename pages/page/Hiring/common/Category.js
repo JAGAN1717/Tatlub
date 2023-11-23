@@ -138,7 +138,7 @@ const Category = () => {
   const fetchJobcategory = () => {
     setLoading(true)
     
-    getFilterbyCategory(id).then(res => {
+    getFilterbyCategory(id ?? 14 ).then(res => {
       setCategory(res)
       setLoading(false)
     }).catch(err => {
@@ -320,7 +320,9 @@ const Category = () => {
                   {
                     Category?.data?.map((data, index) => (
                       <div className='col-lg-3 mb-3 px-2 col-sm-6 col-md-4 ' key={index}>
-                        <Link href={{ pathname: '/page/Hiring/Job-list',  query: { 'id': data?.id } }}  >
+                        <Link href={{ pathname: `/page/Hiring/${data?.category_slug}`,  
+                        // query: { 'id': data?.id }
+                         }}  >
                         {/* <Link href={`/page/Hiring/Job-list/?id=${data?.id }`} as={'/page/Hiring/Job-list/'}> */}
                           <div className="card_vedio_section1 text-center" onClick={()=>setmainId(data?.id)}>
                             <div className="img_gallery_company_icon cursor-pointer cursor-pointer ">

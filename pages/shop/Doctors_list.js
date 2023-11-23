@@ -3,7 +3,7 @@ import CommonLayout from "../../components/shop/common-layout";
 import { Row, Container, Col, Button } from "reactstrap";
 import Link from "next/link";
 // import { useQuery } from 'react-query'
-import { getItemByLazyload } from "../../components/core/shop_requests";
+import { getIDByLazyload } from "../../components/core/shop_requests";
 import { useRouter } from "next/router";
 import Rating from "@mui/material/Rating";
 import Stack from "@mui/material/Stack";
@@ -46,7 +46,7 @@ export default function Doctors_list() {
 
   // const { isLoading,data,error, isError, } = useQuery(
   //   ['doctor'],
-  //   () => getItemByLazyload(17,0)
+  //   () => getIDByLazyload(17,0)
   // )
 
   const openSetting = () => {
@@ -66,7 +66,7 @@ export default function Doctors_list() {
   const fetchDoctersInfo = () => {
     setLoading(true)
     const id = filter ?? 17
-    getItemByLazyload(id, 0).then(res => {
+    getIDByLazyload(id, 0).then(res => {
       // setDoctersData((e)=>[...e,...res.data])
       setDoctersData(res.data)
       SetLazyLen(res?.count)
@@ -80,7 +80,7 @@ export default function Doctors_list() {
   const fetchDoctersFilter = () => {
     setIsLoading(true)
     const id = filter ?? 17
-    getItemByLazyload(id, 0).then(res => {
+    getIDByLazyload(id, 0).then(res => {
       // setDoctersData((e)=>[...e,...res.data])
       setDoctersData(res.data)
       SetLazyLen(res?.count)
@@ -93,7 +93,7 @@ export default function Doctors_list() {
 
   const itemsListLazyLoad = async () => {
     const length = doctorsData?.length;
-    const response = await getItemByLazyload(17, length)
+    const response = await getIDByLazyload(17, length)
     setDoctersData((e) => [...e, ...response.data])
   }
 
@@ -202,7 +202,9 @@ export default function Doctors_list() {
                                           alt=""
                                           className="doc-img cursor-pointer"
                                           onError={(e) => (e.currentTarget.src = "/assets/images/tatlub-img/No.jpg")}
-                                          onClick={() => router.push({ pathname: '/shop/Doctors_details', query: { 'clinicId': value?.id } })}
+                                          onClick={() => router.push({ pathname: `/medical/${value?.item_slug}`,
+                                          //  query: { 'clinicId': value?.id } 
+                                          })}
                                         />
                                       </Col>
                                       <Col md="8 mt-md-0 mt-3">
@@ -210,7 +212,9 @@ export default function Doctors_list() {
                                           <div className="fs-vp-pg d-flex flex-column ">
                                             <div className="mb-auto">
                                               <div className="d-flex align-items-center mb-3">
-                                                <Link href={{ pathname: '/shop/Doctors_details', query: { 'clinicId': value?.id } }}>
+                                                <Link href={{ pathname: `/medical/${value?.item_slug}`,
+                                                //  query: { 'clinicId': value?.id }
+                                                  }}>
                                                   <h4 className="fw-600 mb-0 text-capitalize foot-cat cursor-pointer vendor-profile-title pe-1">
                                                     {t(value?.item_title)}
                                                   </h4>
@@ -330,7 +334,9 @@ export default function Doctors_list() {
                                                 }
                                               </div>
                                               <div className="d-flex ">
-                                                <Link href={{ pathname: '/shop/Doctors_details', query: { 'clinicId': value?.id } }}>
+                                                <Link href={{ pathname: `/medical/${value?.item_slug}`, 
+                                                // query: { 'clinicId': value?.id }
+                                                 }}>
                                                   <button
                                                     type="button"
                                                     className="btn btn-lead1 mx-sm-2"

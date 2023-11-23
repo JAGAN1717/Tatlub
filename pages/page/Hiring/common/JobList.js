@@ -314,14 +314,19 @@ export default function JobList({ Loading, Jobdata, wantedjobs, setWantedJobs, s
                           <div>
                             <div className='row align-items-center mb-3'>
                               <div className='col-md-3 mb-2'>
-                                <Link href={{ pathname: '/page/Hiring/Job-Details', query: { 'id': data?.id } }} >
+                                <Link href={{ pathname: `/page/Hiring/details/${data?.item_slug}`,
+                                  //  query: { 'id': data?.id } 
+                                  }} >
                                   <img src={data?.item_image_medium} onClick={() => { setmainId(data?.id) }} onError={(e) => (e.currentTarget.src = "/assets/images/tatlub-img/No.jpg")} className='company-img cursor-pointer' />
                                 </Link>
                               </div>
                               <div className='col-md-9'>
                                 <div className='d-sm-flex justify-content-between'>
                                   <div className=''>
-                                    <Link href={{ pathname: '/page/Hiring/Job-Details', query: { 'id': data?.id } }}  >
+                                    <Link href={{
+                                       pathname: `/page/Hiring/details/${data?.item_slug}`,
+                                        // query: { 'id': data?.id }
+                                         }}  >
                                       <h4 className='fw-bold complete_2 cursor-pointer foot-cat text-capitalize mb-2' onClick={() => setmainId(data?.id)}>{data?.item_title}</h4>
                                     </Link>
                                     <p className='text-capitalize'>{data?.user?.name}</p>

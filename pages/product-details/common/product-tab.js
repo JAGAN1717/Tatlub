@@ -83,7 +83,8 @@ const ProductTab = ({ desc, seller, addToCart, Listings }) => {
                     </NavItem>
                 }
                 {
-                  seller?.products?.length > 0 &&
+                  // seller?.products?.length > 0 &&
+                  desc?.sellerProducts?.length > 0 &&
                   <NavItem className="nav nav-tabs" title="Products" id="myTab" role="tablist">
                     <NavLink
                       className={activeTab === "4" ? "active" : ""}
@@ -352,14 +353,14 @@ const ProductTab = ({ desc, seller, addToCart, Listings }) => {
                 </TabPane> */}
                 <TabPane tabId="4">
                   <div className="">
-                    {/* {seller?.products?.length > 0 && (
+                    {/* {desc?.sellerProducts?.length > 0 && (
                               <h5 className="fw-bolder">
                                 {t("Popular Products")}
                               </h5>
                      )} */}
                     <Row>
-                      {seller?.products &&
-                        seller?.products
+                      {desc?.sellerProducts &&
+                        desc?.sellerProducts
                           ?.slice(0, productLen)
                           .map((data, index) => {
                             return (
@@ -424,7 +425,7 @@ const ProductTab = ({ desc, seller, addToCart, Listings }) => {
                             );
                           })}
 
-                      {!seller?.products?.length > 0 && (
+                      {!desc?.sellerProducts?.length > 0 && (
                         <div className="d-flex justify-content-center align-items-center h-100">
                           <div className="text-center">
                             <img src="/assets/images/tatlub-img/not_Found.png" className="w-size" />
@@ -434,7 +435,7 @@ const ProductTab = ({ desc, seller, addToCart, Listings }) => {
                       )}
                     </Row>
                     {
-                      productLen == seller?.products?.length ?
+                      productLen == desc?.sellerProducts?.length ?
                         <div className="text-center">
                           <Button
                             className="btn btn_loadmore my-3"
@@ -444,11 +445,11 @@ const ProductTab = ({ desc, seller, addToCart, Listings }) => {
                           </Button>
                         </div>
                         :
-                        seller?.products?.length > 7 && (
+                        desc?.sellerProducts?.length > 7 && (
                           <div className="text-center">
                             <Button
                               className="btn btn_loadmore my-3"
-                              onClick={() => setProductlen(seller?.products?.length)}
+                              onClick={() => setProductlen(desc?.sellerProducts?.length)}
                             >
                               {t("Load More")}
                             </Button>

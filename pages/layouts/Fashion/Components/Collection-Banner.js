@@ -179,7 +179,9 @@ const CollectionBanner = ({
                               <p className="pb-xl-3 text-capitalize complete_2  pb-2">
                                 {valueObject[key + "_subtitle"]}
                               </p>
-                              <Link href={{pathname:`${valueObject[key + "_button_url"]}`,query:{"id": valueObject[key + "_title"] == 'Jobs' ? 14 : ''}}}>
+                              <Link href={{pathname:`${valueObject[key + "_button_url"]}`,
+                              // query:{"id": valueObject[key + "_title"] == 'Jobs' ? 14 : ''}
+                              }}>
                               <a className="btn_abou text-capitalize">
                                 <i
                                   className="fa fa-angle-right pe-2"

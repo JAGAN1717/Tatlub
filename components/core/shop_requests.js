@@ -129,7 +129,13 @@ export function getItemByLazyload(id,limit){
    // return axios.get(GET_ITEMS_BY_CATEGORY_LIST+'?limit='+limit+'&id='+id) 
    return axios.get(GET_ITEMS_BY_CATEGORY_LIST+'?limit='+limit+'&slug='+id)
    .then(response =>  response.data )
+} 
+
+export function getIDByLazyload(id,limit){
+   return axios.get(GET_ITEMS_BY_CATEGORY_LIST+'?limit='+limit+'&id='+id) 
+   .then(response =>  response.data )
 }
+
 
 export function getAllItemByLazyload(limit){
    return axios.get(All_PRODUCT+'?limit='+limit)
