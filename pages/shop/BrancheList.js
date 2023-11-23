@@ -102,10 +102,10 @@ function createData(id, email, phone_number, address, state, city,country, Edit,
     let id = JSON.parse(sessionStorage.getItem('data'))?.id ?? JSON.parse(localStorage.getItem('data'))?.id
     const responce = await getbranch(id);
     if(responce?.data?.length == 0){
-      router.push('/shop/Business')
+      router.push('/business')
     } 
     if(responce.status == 400){
-      router.push('/shop/Business')
+      router.push('/business')
     }
     setBranches(responce.data);
     setIsLoading(false)

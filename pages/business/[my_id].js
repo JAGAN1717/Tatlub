@@ -95,7 +95,6 @@ const Markers = ({ lat, lng, onMarkerDrag }) => {
   )
 }
 
-
 // const MyMapComponent = withScriptjs(withGoogleMap((props) => {
 //   console.log(props)
 //   // const [ lat, setLat ] = useState(props.position.lat ?? 13.0461007)
@@ -140,7 +139,6 @@ const Markers = ({ lat, lng, onMarkerDrag }) => {
 //     </>
 //   )
 // }))
-
 
 function Listing() {
   const handleDelete = async (id) => {

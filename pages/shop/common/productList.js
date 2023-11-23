@@ -1862,7 +1862,7 @@ const ProductList = ({
                                         >
                                           <i class="fa fa-phone  me-1 mb-0 pb-0" aria-hidden="true"></i>
                                           {" "}
-                                          {data?.user?.phone}{" "}
+                                          {data?.user?.phone ?? 'Contact Supplier'}{" "}
                                         </a>
                                       </button>
                                       }

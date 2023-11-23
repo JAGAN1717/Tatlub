@@ -551,7 +551,7 @@ const MasterFooter = ({
                             className={context.state == 'en' ? 'fa fa-angle-left pe-2':'fa fa-angle-right pe-2'}
                             aria-hidden="true"
                           ></i>
-                          <Link href="/shop/Business">
+                          <Link href="/business">
                             <a className="foot-cat" href="#">{t("Business Badge")}</a>
                           </Link>
                         </li>

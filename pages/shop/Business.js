@@ -78,13 +78,13 @@ import Seo from '../../seo/seo'
         <div className="mb-3 d-flex align-items-center justify-content-end">
         {
             product?.length > 0 ?
-            <Link href='/shop/addproduct'>
+            <Link href='/products'>
             <a>
             <button className="btn btn_filter1 px-sm-4 px-2 fs-15 me-2">{t('Product List')}</button>
             </a>
             </Link> 
             :
-            <Link href='/shop/addnewproduct'>
+            <Link href='/products/form'>
             <a>
             <button className="btn btn_filter1 px-sm-4 px-2 fs-15 me-2">{t('Add Product')}</button>
             </a>
@@ -105,7 +105,8 @@ import Seo from '../../seo/seo'
           </div>
 
           <div className="text-sm-center"> 
-            <Link href='/shop/Listing'>
+            {/* <Link href='/shop/Listing'> */}
+            <Link href='/business/form'>
             <a>
             <button className="btn fs-15 btn_filter1 px-sm-4 px-2 mb-sm-0 mb-3">{t('Create New Business')}</button>
             </a>
@@ -134,9 +135,17 @@ import Seo from '../../seo/seo'
                       <h5 className="text-muted fs-6 mt-3 text-capitalize">{data?.item_location_str ?? data?.item_address}</h5>
                       </div>
                       <div className="d-sm-flex align-items-end">
-                        <button type="button" className="btn btn-bus fs-13" onClick={()=>router.push({pathname:'/product-details/view',query:{ item_id:data.id}})}>{t('Ratings')}</button>
-                        <button type="button" className="btn btn-bus mx-sm-3 fs-13 text-truncate" onClick={()=>router.push({pathname:'/shop/Listing',query:{ my_id:data.id},})}>{t('Edit Listing')}</button>
-                        <button type="button" className="btn btn-bus fs-13" onClick={()=>router.push({pathname:'/product-details/view',query:{ item_id:data.id}})}>{t('Manage')}</button>
+                        <button type="button" className="btn btn-bus fs-13" onClick={()=>router.push({
+                          pathname: `/services/${data.item_slug}`,
+                          // query:{ item_id:data.id}
+                          })}>{t('Ratings')}</button>
+                        <button type="button" className="btn btn-bus mx-sm-3 fs-13 text-truncate" onClick={()=>router.push(
+                          {pathname:`/business/form/${data.item_slug}`,
+                          // query:{ my_id:data.item_slug}
+                          })}>{t('Edit Listing')}</button>
+                        <button type="button" className="btn btn-bus fs-13" onClick={()=>router.push({pathname: `/services/${data.item_slug}`,
+                        // query:{ item_id:data.id}
+                        })}>{t('Manage')}</button>
                       </div>
                       </div>
                     </div>

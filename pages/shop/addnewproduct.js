@@ -7,7 +7,7 @@ import * as Yup from "yup";
 import { AddBranchesData } from "../../components/core/seller_request";
 import { SaveProduct, getPRoductDetail, UpdateProduct } from '../../components/core/product_request'
 import { getBrand } from '../../components/core/fashion_request'
-import { DeleteItemsGallery } from '../../components/core/shop_requests'
+import { DeleteProductGallery } from '../../components/core/shop_requests'
 import Link from "next/link";
 import { Router } from "next/router";
 import { LinkOff } from "@mui/icons-material";
@@ -160,7 +160,7 @@ function Addproduct() {
 
     const id = ids && ids[0]?.id
     if (id) {
-      DeleteItemsGallery(id).then(res => {
+      DeleteProductGallery(id).then(res => {
         // console.log("res",res)
       }).catch(err => {
         console.error("err", err.message)
@@ -440,7 +440,7 @@ function Addproduct() {
               theme: "dark",
             });
             resetForm()
-            router.push('/shop/addproduct')
+            router.push('/products')
           } else {
             toast.error('Somthing Went Wrong!', {
               position: "bottom-right",
@@ -473,7 +473,7 @@ function Addproduct() {
               theme: "dark",
             });
             resetForm()
-            router.push('/shop/addproduct')
+            router.push('/products')
           } else {
             toast.error('Somthing Went Wrong!', {
               position: "bottom-right",
@@ -842,20 +842,26 @@ function Addproduct() {
                   </Dropzone> */}
                 <div className="mb-3 col-lg-5 col-md-7 col-xl-4 text-center">
                   <button className="btn bt_product_seliset mt-4 mb-3" onClick={() => document.getElementById('openFeaturedimg')?.click()} type="button">
-                    <p> {t('Select Image')} </p>
+                    <p> {t('Product Image')} </p>
                     <p><i className="fa fa-cloud-upload" aria-hidden="true"></i></p> </button>
                   <input type="file" onChange={(e) => handleImg(e)} id="openFeaturedimg" className="form-control mb-4 d-none" placeholder="" name="feature_image" />
-                  <div className="mb-2 d-flex justify-content-center" >
+                  <div className="mb-2 d-flex justify-content-center position-relative multi_imgP2 rounded-3" >
                     <img
                       src={priview}
-                      className="image_no_product rounded-3"
+                      className="image_no_product rounded-3 "
                       alt="noImage"
                       onError={(e) => e.currentTarget.src = '/assets/images/tatlub-img/No.jpg'}
                     ></img>
+
+                         <div className={ priview == '/assets/images/tatlub-img/No.jpg' ? "d-none" : "position-absolute remove_galImg cursor-pointer top-50 start-50 translate-middle"}
+                        onClick={() => { setFeatImg(), setPreview("/assets/images/tatlub-img/No.jpg") }}
+                              >
+                                <i className="fa fa-remove text-danger" ></i>
+                              </div>
                   </div>
-                  <div className="d-flex justify-content-center ">
+                  <div className="d-flex justify-content-center d-none">
                     <button type="button" className={featimg ? "btn w-100 btn-danger fw-light rounded" : 'd-none'} onClick={() => { setFeatImg(), setPreview("/assets/images/tatlub-img/No.jpg") }} >{t('Remove Image')}</button>
-                  </div>
+                  </div> 
                 </div>
 
                 <div className="mb-3 col-lg-7 col-xl-8 text-center">
@@ -905,8 +911,8 @@ function Addproduct() {
 
 
 
-              <div className="d-flex">
-                <div className="d-flex mt-3 justify-content-center align-items-cennter p-3">
+              <div className="d-flex justify-content-end">
+                <div className="d-flex mt-3 justify-content-end align-items-cennter p-3">
                   {
                     pro_id ?
                       <button type="submit" className="btn btn-theme px-5 p-2 rounded fw-light">{t('Update Product')}</button>

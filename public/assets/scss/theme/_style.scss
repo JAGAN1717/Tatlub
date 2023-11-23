@@ -22085,6 +22085,30 @@ body .form_listing .css-y8ay40-MuiTableCell-root {
       opacity: 1;
     }
   }
+} 
+
+.multi_imgP2 {
+
+  .remove_galImg {
+    // position: absolute;
+    // top: 2%;
+    // right: 2%;
+    // color: red;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    backdrop-filter: blur(2px);
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  &:hover {
+    .remove_galImg {
+      opacity: 1;
+    }
+  }
 }
 
 
@@ -22117,6 +22141,8 @@ body .form_listing .css-y8ay40-MuiTableCell-root {
 
 .image_no_product {
   width: 100%;
+  height: 230px;
+  object-fit: contain;
 }
 
 .multi_imgP img {

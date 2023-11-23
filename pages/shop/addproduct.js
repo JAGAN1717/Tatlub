@@ -124,7 +124,7 @@ const columns = [
             const responce = await getproduct(id)
             setProducts(responce.data);
             if(responce?.data?.length == 0){
-              router.push('/shop/Business')
+              router.push('/business')
             }
             setIsLoading(false)
             // console.log('jhfgj', responce.data)
@@ -220,7 +220,10 @@ const priceBodyTemplate = (product) => {
 const handleEdit = (product) => {
   // onClick={()=> router.push({pathname:'/shop/addnewproduct',query:{pro_id : product.id }})}
   return (
-  <div onClick={()=> router.push({pathname:'/shop/addnewproduct',query:{pro_id : product.id }})}>
+  <div onClick={()=> router.push({
+    pathname:`/products/form/${product?.product_slug}`
+    // ,query:{pro_id : product.id }
+    })}>
     <i className="fa fs-5 fa-edit edit_icon"></i> 
   </div>
   )
@@ -281,7 +284,10 @@ const handleAction = (product) => {
   <div role="button" className="mx-2" data-bs-toggle="modal" data-bs-target="#exampleModalCenter1" onClick={()=>setProductId(product.id)}>
   <i className="fa fs-5 fa-trash delete_icon" ></i>
   </div>
-  <div className="mx-2 pt-1" onClick={()=> router.push({pathname:'/shop/addnewproduct',query:{pro_id : product.id }})}>
+  <div className="mx-2 pt-1" onClick={()=> router.push({
+    pathname:`/products/form/${product?.product_slug}`
+    // ,query:{pro_id : product.id }
+    })}>
     <i className="fa fs-5 fa-edit edit_icon"></i> 
   </div>
     </div>
@@ -371,7 +377,7 @@ const footer =(
 {!isLoading &&   
 <div className="container my-lg-5 my-3 img_ciljhf">
     <div className="mb-3 d-flex justify-content-md-end justify-content-start align-items-center">
-       <Link href='/shop/addnewproduct'>
+       <Link href='/products/form'>
             <button type='button' className='btn btn_header fw-500 fs-15 p-3 px-4 cursor-pointer'>{t('Add New Product')}</button>
         </Link>
         {

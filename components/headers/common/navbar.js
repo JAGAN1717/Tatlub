@@ -1166,7 +1166,7 @@ const NavBar = ({ sugCat, cartl, setPoduct, setRes, setPSearch, setbands }, args
                         </a>
                       </li>
                     </Link>
-                    <Link href="/shop/Business">
+                    <Link href="/business">
                       <li>
                         {" "}
                         <a className="cursor-pointer foot-cat  dropdown-item">
@@ -1175,7 +1175,7 @@ const NavBar = ({ sugCat, cartl, setPoduct, setRes, setPSearch, setbands }, args
                             className="img-fluid"
                           />
                           
-                          <span className={router.pathname == '/shop/Business' ? 'text-color' : "" }>{t("My Bussiness")}{" "}</span>
+                          <span className={router.pathname == '/business' ? 'text-color' : "" }>{t("My Bussiness")}{" "}</span>
                         </a>
                       </li>
                     </Link>
@@ -1412,7 +1412,7 @@ const NavBar = ({ sugCat, cartl, setPoduct, setRes, setPSearch, setbands }, args
         <p className="ps-2">+974 {userData?.phone ?? "1234567890"}</p>
         <hr className="my-2 mx-2"></hr>
         <ul>
-          <Link href="/shop/Business">
+          <Link href="/business">
             <li>
               {" "}
               <a className="cursor-pointer">

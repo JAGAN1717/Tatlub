@@ -29,6 +29,7 @@ const BRANCH_SAVE_API = `${API_URL}/branches-save`
 const PRODUCT_GET = `${API_URL}/get-products`
 const All_ITEMS = `${API_URL}/all-items`
 const DELETE_ITEMS_GALLERY = `${API_URL}/items-gallery-delete`
+const DELETE_PRODUCT_GALLERY = `${API_URL}/product-gallery-delete`
 const UPDATING_HOURS = `${API_URL}/items/hours/update` 
 const SearchLocation = 'https://geocode.maps.co/search?q={manali,chennai}'
 
@@ -183,6 +184,12 @@ export function DeleteItemsGallery(id){
    return axios.get(DELETE_ITEMS_GALLERY+'/'+id)
    .then(response =>  response.data )
 }
+
+export function DeleteProductGallery(id){
+   return axios.get(DELETE_PRODUCT_GALLERY+'/'+id)
+   .then(response =>  response.data )
+}
+
 
 export function getFilterbyBrand(id){
    return axios.get(FILTER_BY_BRAND+'?slug='+id)
