@@ -125,7 +125,7 @@ const LeftSidebarPage = ({ setRecom }) => {
     e.preventDefault();
     let body = {
       "user_id":userData?.id,
-      "item_id":item_id,
+      "item_id":item_id && data?.id,
       "item_claim_full_name":userData?.name,
       "item_claim_phone":mobile,
       "otp":otp
@@ -164,7 +164,7 @@ const LeftSidebarPage = ({ setRecom }) => {
     onSubmit: async (values, { setStatus, setSubmitting, resetForm }) => {
       try {
         const body = {
-          item_id: item_id || product_id,
+          item_id: item_id && data?.id || product_id  && data?.id,
           item_lead_name: values.item_lead_name,
           item_lead_email: values.item_lead_email,
           item_lead_phone: values.item_lead_phone,
