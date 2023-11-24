@@ -59,7 +59,7 @@ const SubscriptionList = () => {
                         <div className="sub_CardList">
                             <div className="d-sm-flex justify-content-between align-items-center">
                                 <div className="text-center mb-3">
-                                    <h2>{t('SUBSCRIPTION LIST')}</h2>
+                                    <h2 className="fs-4">{t('SUBSCRIPTION LIST')}</h2>
                                 </div>
                                 <div className="mb-3 text-center">
                                     <Link href={'/plans'} >
@@ -138,7 +138,7 @@ const SubscriptionList = () => {
                 
                                                 <img className="person_img" src="https://d3iw72m71ie81c.cloudfront.net/male-11.jpg" alt="" />
                                                 <p className="person_name fs-5">{data?.plan?.plan_name}</p>
-                                                <p className="person_desg fs-13 text-color">{t("End Date")} : {data?.subscription_end_date}</p>
+                                                <p className="person_desg fs-13 text-color">{t("Expire Date")} : {data?.subscription_end_date}</p>
                                                 {/* <button className="hire_btn">Hire</button> */}
 
                                                 <div className="p-2 text-center ">

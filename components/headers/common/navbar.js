@@ -1079,7 +1079,7 @@ const NavBar = ({ sugCat, cartl, setPoduct, setRes, setPSearch, setbands }, args
                   className="mega-menu user-select-none col "
                   title="tatlub-postAd"
                 >
-                  <Link href="/shop/Listing">
+                  <Link href="/business/form">
                     <div
                       className="log_img1  text-center cursor-pointer"
                       title="tatlub-postAd"
@@ -1088,7 +1088,7 @@ const NavBar = ({ sugCat, cartl, setPoduct, setRes, setPSearch, setbands }, args
                         src="/assets/images/tatlub-img/nav-13.png"
                         className="img-fluid"
                       />
-                      <p className={router.pathname == '/shop/Listing' ? 'text-color' : "" }>{t("Post Ad")}</p>
+                      <p className={router.pathname == '/business/form' ? 'text-color' : "" }>{t("Post Ad")}</p>
                     </div>
                   </Link>
                 </li>

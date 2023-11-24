@@ -24809,3 +24809,11 @@ height: 230px !important;
       border-radius: 15px;
       object-fit: cover;  
     }
+
+    .afterSelect {
+      border: 2px solid var(--theme-deafult);
+    }
+
+    .beforeSelect {
+      border: 1px solid #dfdada;
+    }

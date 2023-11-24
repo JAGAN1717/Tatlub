@@ -136,7 +136,7 @@ const Addons = ({ addonlist, addontId, selectplans, setAddondsId, postSubscripti
                         />
                     </div>
 
-                    <div className="AddonList_co  list-group  list-group-flush px-3">
+                    <div className="AddonList_co  list-group  list-group-flush px-3 d-none">
                         {addonlist?.length > 0 ?
                             addonlist?.map((data, index) => {
                                 // const pricef = data?.subscription_addons_price?.filter(res => res?.category_id == selectedCategory?.id)
@@ -147,18 +147,48 @@ const Addons = ({ addonlist, addontId, selectplans, setAddondsId, postSubscripti
                                            {selectedCategory?.length > 0 ? <h3 className='fs-16'>{t("QAR")} {parseInt(data?.price ?? 0)}</h3> : <h3></h3> } 
                                         </div>
                                         {/* <div className="" >
-                                    <i className={`fa fa-check fs-5 fst-italic cursor-pointer ${addontId[index] == data?.id? 'text-color':'text-secondary' }`} aria-hidden="true"></i></div> */}
+                                        <i className={`fa fa-check fs-5 fst-italic cursor-pointer ${addontId[index] == data?.id? 'text-color':'text-secondary' }`} aria-hidden="true"></i></div> */}
                                         <div class="form-check" onClick={() => {
                                             // const id = addontId.find((num) => num === data?.id);
                                             // id ? setAddondsId(addontId.filter((num) => num !== id)) :
                                             // setAddondsId((pram)=>[...pram,data?.id])
                                         }}>
-                                            <input class="form-check-input  fs-20"  type="checkbox" checked={addontId.find((num) => num === data?.id)} onChange={() => handleCheckboxChange(data?.id)} value="" id={`flexCheckDefault${index}`} />
+                                            <input class="form-check-input border fs-20"  type="checkbox" checked={addontId.find((num) => num === data?.id)} onChange={() => handleCheckboxChange(data?.id)} value="" id={`flexCheckDefault${index}`} />
                                         </div>
                                     </div>
                                 )
                             }) :
-
+                            <div className="d-flex flex-column justify-content-center align-items-center ">
+                                <img
+                                    src="/assets/images/tatlub-img/not_Found.png"
+                                    //   className="no_image "
+                                    className="w-50"
+                                />
+                                <h3 className="text-center text-uppercase">{t("NO ADDONS FOUND")}</h3>
+                            </div>
+                        }
+                    </div>
+                    {/* afterSelect */}
+                    <div className="AddonList_co row align-items-center px-3 ">
+                    {addonlist?.length > 0 ?
+                            addonlist?.map((data, index) => {
+                                // const pricef = data?.subscription_addons_price?.filter(res => res?.category_id == selectedCategory?.id)
+                                return (
+                                    <div className="col-md-6 h-100 mb-3 cursor-pointer" key={index} onClick={()=>document.getElementById(`flexCheckDefault${index}`)?.click()}>
+                                    <div className={`card  p-3 h-100 ${addontId.find((num) => num === data?.id) ? 'afterSelect' : 'beforeSelect'}`}>
+                                        <div className="d-flex justify-content-between">
+                                            <div >
+                                    <h4 className={`text-capitalize complete_2 fw-600 fs-16`}>{data?.name}</h4>
+                                    {selectedCategory?.length > 0 ? <h3 className='fs-16'>{t("QAR")} {parseInt(data?.price ?? 0)}</h3> : <h3></h3> } 
+                                            </div>
+                                            <div class="form-check">
+                                            <input class="form-check-input border fs-20"  type="checkbox" checked={addontId.find((num) => num === data?.id)} onChange={() => handleCheckboxChange(data?.id)} value="" id={`flexCheckDefault${index}`} />
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                )
+                            }) :
                             <div className="d-flex flex-column justify-content-center align-items-center ">
                                 <img
                                     src="/assets/images/tatlub-img/not_Found.png"
