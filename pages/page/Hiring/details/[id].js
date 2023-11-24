@@ -33,31 +33,32 @@ export default function JobDetails({ args }) {
   const [url, setUrl] = useState();
   const [rating, setRating] = useState();
   const [reviewImg, setReviewImg] = useState();
+  const [PreviewImg, setPReviewImg] = useState();
   const [review, setReview] = useState([]);
   const [searchReview, setSearchReview] = useState("");
   const [revlen, setRevlen] = useState(5);
   const [modal, setModal] = useState(false);
-  const toggle = () =>  !userData ? document.getElementById('openLoginPopup')?.click() : userData?.id == JobData?.user_id ? '' : setModal(!modal);
-  const [openHrs,setOpenHrs] = useState()
-  const [closeHrs,setcloseHrs] = useState()
+  const toggle = () => !userData ? document.getElementById('openLoginPopup')?.click() : userData?.id == JobData?.user_id ? '' : setModal(!modal);
+  const [openHrs, setOpenHrs] = useState()
+  const [closeHrs, setcloseHrs] = useState()
 
-  
-    useEffect(()=> {
-      if(JobData?.item_hours?.length > 0){
-        let open = moment( JobData?.item_hours[0]?.item_hour_open_time, "hh:mm" );
-  
-        var formatedTime = open.format("hh:mm a");
-  
-        setOpenHrs(formatedTime)
-    
-        let close = moment(JobData?.item_hours[0]?.item_hour_close_time,"hh:mm");
-  
-        var formatedTime2 = close.format("hh:mm a");
-  
-        setcloseHrs(formatedTime2)
-      }
-  
-    },[JobData])
+
+  useEffect(() => {
+    if (JobData?.item_hours?.length > 0) {
+      let open = moment(JobData?.item_hours[0]?.item_hour_open_time, "hh:mm");
+
+      var formatedTime = open.format("hh:mm a");
+
+      setOpenHrs(formatedTime)
+
+      let close = moment(JobData?.item_hours[0]?.item_hour_close_time, "hh:mm");
+
+      var formatedTime2 = close.format("hh:mm a");
+
+      setcloseHrs(formatedTime2)
+    }
+
+  }, [JobData])
 
 
   const openSetting = () => {
@@ -73,7 +74,7 @@ export default function JobDetails({ args }) {
       document.getElementById("setting-icon1").classList.remove("open-icon");
     }
   };
-  
+
 
   useEffect(async () => {
     let searchData = [];
@@ -137,7 +138,7 @@ export default function JobDetails({ args }) {
           JSON.parse(localStorage.getItem("data"))?.id;
 
         const body = {
-          item_id: id ?? mainId(),
+          item_id: JobData?.id ?? mainId(),
           // product_id: p_id,
           user_id: user_id,
           overall_rating: rating,
@@ -239,7 +240,7 @@ export default function JobDetails({ args }) {
                           let day2 = new Date();
                           let now = moment(day2);
                           let ago = now.diff(day, "days");
-                          let fromhour = moment.utc(data?.created_at).local().startOf('seconds').fromNow() 
+                          let fromhour = moment.utc(data?.created_at).local().startOf('seconds').fromNow()
                           dayjs.extend(relativeTime);
                           dayjs.extend(utc);
                           dayjs.extend(timezone);
@@ -264,7 +265,7 @@ export default function JobDetails({ args }) {
                                       <p>
                                         {/* {fromhour != 'Invalid date' ? fromhour : ''} */}
                                         {dayjs.utc(day).tz(dayjs.tz.guess()).fromNow()}
-                                        </p>
+                                      </p>
                                     </div>
                                     <div className="d-flex alidn-items-center mb-3">
                                       <img
@@ -274,25 +275,25 @@ export default function JobDetails({ args }) {
                                       <h6>{data?.rating ?? 1}.0</h6>
                                     </div>
                                     <div >
-                                    <p className="complete">{data?.body}</p>
+                                      <p className="complete">{data?.body}</p>
                                     </div>
                                     {
-                                     data?.review_image &&
-                                    <div className="row justify-content-start">
-                                    <div className="col-12" >
-                                      <div className="multi_imgP h-100">
-                                        <img
-                                          src={data?.review_image}
-                                          className="rounded-3"
-                                          alt="noImage"
-                                          onError={(e) =>
-                                          (e.currentTarget.src =
-                                            "/assets/images/tatlub-img/No.jpg")
-                                          }
-                                        ></img>
+                                      data?.review_image &&
+                                      <div className="row justify-content-start">
+                                        <div className="col-12" >
+                                          <div className="multi_imgP h-100">
+                                            <img
+                                              src={data?.review_image}
+                                              className="rounded-3"
+                                              alt="noImage"
+                                              onError={(e) =>
+                                              (e.currentTarget.src =
+                                                "/assets/images/tatlub-img/No.jpg")
+                                              }
+                                            ></img>
+                                          </div>
+                                        </div>
                                       </div>
-                                    </div>
-                                </div>
                                     }
                                   </Col>
                                 </Row>
@@ -464,17 +465,23 @@ export default function JobDetails({ args }) {
                                   </div>
                                 )}
                               <p>{t('Add Photos')}</p>
-                              <div className="file file--upload">
-                                <label for="input-file">
-                                  <i className="fa fa-camera"></i>
-                                </label>
-                                <input
-                                  id="input-file"
-                                  type="file"
-                                  onChange={(e) =>
-                                    setReviewImg(e.target.files[0])
-                                  }
-                                />
+                              <div className=" d-flex">
+                                <div className="file file--upload">
+                                  <label for="input-file">
+                                    <i className="fa fa-camera"></i>
+                                  </label>
+                                  <input
+                                    id="input-file"
+                                    type="file"
+                                    onChange={(e) => { setReviewImg(e.target.files[0]); setPReviewImg(URL.createObjectURL(e.target.files[0])) }}
+                                  />
+                                </div>
+                                {
+                                  PreviewImg &&
+                                  <div className="">
+                                    <img src={PreviewImg} onError={(e) => e.currentTarget.src = "/assets/images/tatlub-img/No.jpg"} className=" mx-2 pre_imd " />
+                                  </div>
+                                }
                               </div>
                               <button
                                 className="btn submit_btn"
@@ -487,82 +494,82 @@ export default function JobDetails({ args }) {
                         </div>
                       </ModalBody>
                     </Modal>
-                  </div> 
+                  </div>
 
                   {JobData?.item_hours?.length > 0 && (
-                      <div className="pt-0 b2c-2  mb-xl-0">
-                        <div className="review_card p-4">
-                          <Row>
-                            <Col lg="12" className=" ">
-                              <h4 className="fw-bolder mx-3 mb-3 fs-18">{t('Timing')}</h4>
-                                {
-                                  JobData?.item_hours?.length > 0 && 
-                                  <div className="d-flex justify-content-between mx-3 ">
-                                    <div>
+                    <div className="pt-0 b2c-2  mb-xl-0">
+                      <div className="review_card p-4">
+                        <Row>
+                          <Col lg="12" className=" ">
+                            <h4 className="fw-bolder mx-3 mb-3 fs-18">{t('Timing')}</h4>
+                            {
+                              JobData?.item_hours?.length > 0 &&
+                              <div className="d-flex justify-content-between mx-3 ">
+                                <div>
+                                  <h5 className="custom_timing fs-5">
+                                    {JobData?.item_hours[0]?.item_hour_day_of_week == 1 &&
+                                      "Mon"}{" "}
+                                    {JobData?.item_hours[0]?.item_hour_day_of_week == 2 &&
+                                      "Tue"}{" "}
+                                    {JobData?.item_hours[0]?.item_hour_day_of_week == 3 &&
+                                      "Wed"}{" "}
+                                    {JobData?.item_hours[0]?.item_hour_day_of_week == 4 &&
+                                      "Thu"}{" "}
+                                    {JobData?.item_hours[0]?.item_hour_day_of_week == 5 &&
+                                      "Fri"}{" "}
+                                    {JobData?.item_hours[0]?.item_hour_day_of_week == 6 &&
+                                      "Sat"}{" "}
+                                    {JobData?.item_hours[0]?.item_hour_day_of_week == 7 &&
+                                      "Sun"} -
+                                    {JobData?.item_hours[JobData?.item_hours?.length - 1]?.item_hour_day_of_week == 1 &&
+                                      "Mod"}{" "}
+                                    {JobData?.item_hours[JobData?.item_hours?.length - 1]?.item_hour_day_of_week == 2 &&
+                                      "Tue"}{" "}
+                                    {JobData?.item_hours[JobData?.item_hours?.length - 1]?.item_hour_day_of_week == 3 &&
+                                      "Wed"}{" "}
+                                    {JobData?.item_hours[JobData?.item_hours?.length - 1]?.item_hour_day_of_week == 4 &&
+                                      "Thu"}{" "}
+                                    {JobData?.item_hours[JobData?.item_hours?.length - 1]?.item_hour_day_of_week == 5 &&
+                                      "Fri"}{" "}
+                                    {JobData?.item_hours[JobData?.item_hours?.length - 1]?.item_hour_day_of_week == 6 &&
+                                      "Sat"}{" "}
+                                    {JobData?.item_hours[JobData?.item_hours?.length - 1]?.item_hour_day_of_week == 7 &&
+                                      "Sun"}
+                                  </h5>
+                                </div>
+                                <div>
+                                  <h5 className="5">{openHrs ?? "00:00"}- {closeHrs ?? '00:00'} </h5>
+                                </div>
+                              </div>
+                            }
+
+                            {!JobData?.item_hours ||
+                              (JobData?.item_hours?.length == 0 && (
+                                <div className="d-flex justify-content-between mx-3 ">
+                                  <div>
                                     <h5 className="custom_timing fs-5">
-                                        {JobData?.item_hours[0]?.item_hour_day_of_week == 1 &&
-                                            "Mon"}{" "}
-                                          {JobData?.item_hours[0]?.item_hour_day_of_week == 2 &&
-                                            "Tue"}{" "}
-                                          {JobData?.item_hours[0]?.item_hour_day_of_week == 3 &&
-                                            "Wed"}{" "}
-                                          {JobData?.item_hours[0]?.item_hour_day_of_week == 4 &&
-                                            "Thu"}{" "}
-                                          {JobData?.item_hours[0]?.item_hour_day_of_week == 5 &&
-                                            "Fri"}{" "}
-                                          {JobData?.item_hours[0]?.item_hour_day_of_week == 6 &&
-                                            "Sat"}{" "}
-                                          {JobData?.item_hours[0]?.item_hour_day_of_week == 7 &&
-                                            "Sun"} - 
-                                           {JobData?.item_hours[JobData?.item_hours?.length-1]?.item_hour_day_of_week == 1 &&
-                                            "Mod"}{" "}
-                                          {JobData?.item_hours[JobData?.item_hours?.length-1]?.item_hour_day_of_week == 2 &&
-                                            "Tue"}{" "}
-                                          {JobData?.item_hours[JobData?.item_hours?.length-1]?.item_hour_day_of_week == 3 &&
-                                            "Wed"}{" "}
-                                          {JobData?.item_hours[JobData?.item_hours?.length-1]?.item_hour_day_of_week == 4 &&
-                                            "Thu"}{" "}
-                                          {JobData?.item_hours[JobData?.item_hours?.length-1]?.item_hour_day_of_week == 5 &&
-                                            "Fri"}{" "}
-                                          {JobData?.item_hours[JobData?.item_hours?.length-1]?.item_hour_day_of_week == 6 &&
-                                            "Sat"}{" "}
-                                          {JobData?.item_hours[JobData?.item_hours?.length-1]?.item_hour_day_of_week == 7 &&
-                                            "Sun"}
-                                      </h5>
-                                    </div>
-                                    <div>
-                                      <h5 className="5">{openHrs ?? "00:00"}- {closeHrs ?? '00:00'} </h5>
-                                    </div>
+                                      Sun - Sat
+                                    </h5>
+                                    {/* <h5 className="custom_timing">Sat - Sun</h5> */}
                                   </div>
-                                }
 
-                              {!JobData?.item_hours ||
-                                (JobData?.item_hours?.length == 0 && (
-                                  <div className="d-flex justify-content-between mx-3 ">
-                                    <div>
-                                      <h5 className="custom_timing fs-5">
-                                        Sun - Sat
-                                      </h5>
-                                      {/* <h5 className="custom_timing">Sat - Sun</h5> */}
-                                    </div>
-
-                                    <div>
-                                      <h5 className="5">00:00 - 00:00 </h5>
-                                      {/* <h5>Closed Closed</h5> */}
-                                    </div>
+                                  <div>
+                                    <h5 className="5">00:00 - 00:00 </h5>
+                                    {/* <h5>Closed Closed</h5> */}
                                   </div>
-                                ))}
-                            </Col>
-                            {/* <Col lg='12' className='mb-3'>
+                                </div>
+                              ))}
+                          </Col>
+                          {/* <Col lg='12' className='mb-3'>
                             <div className="">
                     <h5 className=" fs-18 fw-bolder mb-2">{t('Year Of Experience')}</h5>
                     <p className="">{JobData?.founded_by}</p>
                   </div>
                             </Col> */}
-                          </Row>
-                        </div>
+                        </Row>
                       </div>
-                    )}
+                    </div>
+                  )}
 
                 </div>
               </div> :
@@ -577,7 +584,7 @@ export default function JobDetails({ args }) {
       </div>
 
 
-          <div>
+      <div>
         <a href={null} onClick={() => openSetting()}>
           <div className="setting-sidebar1 d-lg-none " id="setting-icon1">
             <div>
@@ -586,181 +593,187 @@ export default function JobDetails({ args }) {
           </div>
         </a>
 
-              <div id="setting_box1" className="setting-box1 d-lg-none">
-                <div className="setting_box_body">
-                  <div onClick={() => closeSetting()}>
-                    <div className="sidebar-back text-start">
-                      <i className="fa fa-angle-left pe-2" aria-hidden="true"></i>{" "}
-                      {t("Back")}
-                    </div>
-                  </div>
-                  <div className="setting-body">
-                  {/* <CategoryType /> */}
-
-                  <div className="reviewrite_company shadow-none mt-4 mb-xl-0 mb-4">
-                    <h3 className="mb-md-4 mb-3">
-                      {t('Write a Review')}
-                    </h3>
-                    <div className="d-flex justify-content-xs-between mt-3">
-                      <div
-                        className={
-                          rating > 0 ? "star-icon-com onStart_color" : "star-icon-com"
-                        }
-                      // onClick={toggle}
-                      // role="button"
-                      >
-                        <i
-                          className="fa fa-star cursor-pointer fs-4"
-                          aria-hidden="true"
-                          onClick={() => {
-                            setRating(1);
-                            toggle()
-                          }}
-                        ></i>
-                      </div>
-                      <div
-                        className={
-                          rating > 1 ? "star-icon-com onStart_color" : "star-icon-com"
-                        }
-                      >
-                        <i
-                          className="fa fa-star cursor-pointer fs-4"
-                          aria-hidden="true"
-                          onClick={() => { setRating(2); toggle() }}
-                        ></i>
-                      </div>
-                      <div
-                        className={
-                          rating > 2 ? "star-icon-com onStart_color" : "star-icon-com"
-                        }
-                      >
-                        <i
-                          className="fa fa-star cursor-pointer fs-4"
-                          aria-hidden="true"
-                          onClick={() => { setRating(3); toggle() }}
-                        ></i>
-                      </div>
-                      <div
-                        className={
-                          rating > 3 ? "star-icon-com onStart_color" : "star-icon-com"
-                        }
-                      >
-                        <i
-                          className="fa fa-star cursor-pointer fs-4"
-                          aria-hidden="true"
-                          onClick={() => { setRating(4); toggle() }}
-                        ></i>
-                      </div>
-                      <div
-                        className={
-                          rating > 4 ? "star-icon-com onStart_color" : "star-icon-com"
-                        }
-                      >
-                        <i
-                          className="fa fa-star cursor-pointer fs-4"
-                          aria-hidden="true"
-                          role="button"
-                          onClick={() => { setRating(5); toggle() }}
-                        ></i>
-                      </div>
-                      {/* <div className="star-icon-com"><img src="/assets/images/tatlub-img/icon-8.png" /></div> */}
-                    </div>
-                    <Button
-                      onClick={toggle}
-                      id="closeRevie"
-                      className="btn btn-review mt-md-5 mt-4"
-                      disabled={userData?.id == JobData?.user_id ? true : false}
-                    >
-                      {t('Write a Review')}
-                    </Button>
-
-                    <Modal
-                      className="model_contact modal-md modal-dialog-centered"
-                      isOpen={modal}
-                      toggle={toggle}
-                      {...args}
-                    >
-                      <ModalBody>
-                        <div className="popup-review">
-                          <div className="mb-3 d-flex justify-content-between align-items-center">
-                            <img
-                              src="/assets/images/icon/logo.png"
-                              className="w-25"
-                              onError={(e) =>
-                              (e.currentTarget.src =
-                                "/assets/images/tatlub-img/no1.png")
-                              }
-                            />
-
-                          </div>
-                          <div className="">
-                            <form onSubmit={formik.handleSubmit}>
-                              <h5 className='text-capitalize'>{JobData?.user?.name}</h5>
-
-                              <p>{JobData?.user?.address}</p>
-                              <div className="d-flex justify-content-between align-items-center my-3">
-                                <p className="mb-0">{t('Over All')}</p>{" "}
-                                <div className="d-flex">
-                                  <Stack spacing={1}>
-                                    <Rating
-                                      name="size-large star_rate"
-                                      value={rating}
-                                      onChange={(e) =>
-                                        setRating(e.target.value)
-                                      }
-                                      defaultValue={1}
-                                      size="large"
-                                    />
-                                  </Stack>
-                                </div>
-                              </div>
-                              <Label>{t("Add Review")}</Label>
-                              <textarea
-                                placeholder={t("Describe Your Experience")}
-                                {...formik.getFieldProps("body")}
-                              ></textarea>
-                              {formik.touched.body &&
-                                formik.errors.body && (
-                                  <div className="fv-plugins-message-container">
-                                    <div className="fv-help-block">
-                                      <span
-                                        role="alert"
-                                        className="text-danger"
-                                      >
-                                        {formik.errors.body}
-                                      </span>
-                                    </div>
-                                  </div>
-                                )}
-                              <p>{t('Add Photos')}</p>
-                              <div className="file file--upload">
-                                <label for="input-file">
-                                  <i className="fa fa-camera"></i>
-                                </label>
-                                <input
-                                  id="input-file"
-                                  type="file"
-                                  onChange={(e) =>
-                                    setReviewImg(e.target.files[0])
-                                  }
-                                />
-                              </div>
-                              <button
-                                className="btn submit_btn"
-                                type="submit"
-                              >
-                                {t('Submit')}
-                              </button>
-                            </form>
-                          </div>
-                        </div>
-                      </ModalBody>
-                    </Modal>
-                  </div>
-                  </div>
-                </div>
+        <div id="setting_box1" className="setting-box1 d-lg-none">
+          <div className="setting_box_body">
+            <div onClick={() => closeSetting()}>
+              <div className="sidebar-back text-start">
+                <i className="fa fa-angle-left pe-2" aria-hidden="true"></i>{" "}
+                {t("Back")}
               </div>
             </div>
+            <div className="setting-body">
+              {/* <CategoryType /> */}
+
+              <div className="reviewrite_company shadow-none mt-4 mb-xl-0 mb-4">
+                <h3 className="mb-md-4 mb-3">
+                  {t('Write a Review')}
+                </h3>
+                <div className="d-flex justify-content-xs-between mt-3">
+                  <div
+                    className={
+                      rating > 0 ? "star-icon-com onStart_color" : "star-icon-com"
+                    }
+                  // onClick={toggle}
+                  // role="button"
+                  >
+                    <i
+                      className="fa fa-star cursor-pointer fs-4"
+                      aria-hidden="true"
+                      onClick={() => {
+                        setRating(1);
+                        toggle()
+                      }}
+                    ></i>
+                  </div>
+                  <div
+                    className={
+                      rating > 1 ? "star-icon-com onStart_color" : "star-icon-com"
+                    }
+                  >
+                    <i
+                      className="fa fa-star cursor-pointer fs-4"
+                      aria-hidden="true"
+                      onClick={() => { setRating(2); toggle() }}
+                    ></i>
+                  </div>
+                  <div
+                    className={
+                      rating > 2 ? "star-icon-com onStart_color" : "star-icon-com"
+                    }
+                  >
+                    <i
+                      className="fa fa-star cursor-pointer fs-4"
+                      aria-hidden="true"
+                      onClick={() => { setRating(3); toggle() }}
+                    ></i>
+                  </div>
+                  <div
+                    className={
+                      rating > 3 ? "star-icon-com onStart_color" : "star-icon-com"
+                    }
+                  >
+                    <i
+                      className="fa fa-star cursor-pointer fs-4"
+                      aria-hidden="true"
+                      onClick={() => { setRating(4); toggle() }}
+                    ></i>
+                  </div>
+                  <div
+                    className={
+                      rating > 4 ? "star-icon-com onStart_color" : "star-icon-com"
+                    }
+                  >
+                    <i
+                      className="fa fa-star cursor-pointer fs-4"
+                      aria-hidden="true"
+                      role="button"
+                      onClick={() => { setRating(5); toggle() }}
+                    ></i>
+                  </div>
+                  {/* <div className="star-icon-com"><img src="/assets/images/tatlub-img/icon-8.png" /></div> */}
+                </div>
+                <Button
+                  onClick={toggle}
+                  id="closeRevie"
+                  className="btn btn-review mt-md-5 mt-4"
+                  disabled={userData?.id == JobData?.user_id ? true : false}
+                >
+                  {t('Write a Review')}
+                </Button>
+
+                <Modal
+                  className="model_contact modal-md modal-dialog-centered"
+                  isOpen={modal}
+                  toggle={toggle}
+                  {...args}
+                >
+                  <ModalBody>
+                    <div className="popup-review">
+                      <div className="mb-3 d-flex justify-content-between align-items-center">
+                        <img
+                          src="/assets/images/icon/logo.png"
+                          className="w-25"
+                          onError={(e) =>
+                          (e.currentTarget.src =
+                            "/assets/images/tatlub-img/no1.png")
+                          }
+                        />
+
+                      </div>
+                      <div className="">
+                        <form onSubmit={formik.handleSubmit}>
+                          <h5 className='text-capitalize'>{JobData?.user?.name}</h5>
+
+                          <p>{JobData?.user?.address}</p>
+                          <div className="d-flex justify-content-between align-items-center my-3">
+                            <p className="mb-0">{t('Over All')}</p>{" "}
+                            <div className="d-flex">
+                              <Stack spacing={1}>
+                                <Rating
+                                  name="size-large star_rate"
+                                  value={rating}
+                                  onChange={(e) =>
+                                    setRating(e.target.value)
+                                  }
+                                  defaultValue={1}
+                                  size="large"
+                                />
+                              </Stack>
+                            </div>
+                          </div>
+                          <Label>{t("Add Review")}</Label>
+                          <textarea
+                            placeholder={t("Describe Your Experience")}
+                            {...formik.getFieldProps("body")}
+                          ></textarea>
+                          {formik.touched.body &&
+                            formik.errors.body && (
+                              <div className="fv-plugins-message-container">
+                                <div className="fv-help-block">
+                                  <span
+                                    role="alert"
+                                    className="text-danger"
+                                  >
+                                    {formik.errors.body}
+                                  </span>
+                                </div>
+                              </div>
+                            )}
+                          <p>{t('Add Photos')}</p>
+                          <div className=" d-flex">
+                            <div className="file file--upload">
+                              <label for="input-file">
+                                <i className="fa fa-camera"></i>
+                              </label>
+                              <input
+                                id="input-file"
+                                type="file"
+                                onChange={(e) => { setReviewImg(e.target.files[0]); setPReviewImg(URL.createObjectURL(e.target.files[0])) }}
+                              />
+                            </div>
+                            {
+                              PreviewImg &&
+                              <div className="">
+                                <img src={PreviewImg} onError={(e) => e.currentTarget.src = "/assets/images/tatlub-img/No.jpg"} className=" mx-2 pre_imd " />
+                              </div>
+                            }
+                          </div>
+                          <button
+                            className="btn submit_btn"
+                            type="submit"
+                          >
+                            {t('Submit')}
+                          </button>
+                        </form>
+                      </div>
+                    </div>
+                  </ModalBody>
+                </Modal>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
 
     </CommonLayout>

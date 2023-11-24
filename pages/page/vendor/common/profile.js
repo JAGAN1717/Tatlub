@@ -89,6 +89,7 @@ const ProfilePage = (args) => {
   const [rating, setRating] = useState();
   const [desc, setDesc] = useState();
   const [reviewImg, setReviewImg] = useState();
+  const [PreviewImg, setPReviewImg] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [reviewlevel, setReviewlevel] = useState(1);
   const [category, setCategory] = useState([]);
@@ -737,7 +738,7 @@ const ProfilePage = (args) => {
                                   className="text-capitalize"
                                   onClick={() =>
                                     router.push({
-                                      pathname:`/category/service/${data.category_slug}`,
+                                      pathname: `/category/service/${data.category_slug}`,
                                       // query: { Category: data.category_slug, searchList: 'service' },
                                     })
                                   }
@@ -746,7 +747,7 @@ const ProfilePage = (args) => {
                                 </span>
                               </li>
                             ))}
-                          {/* <li>
+                            {/* <li>
                             <a href="#">{t("More")}</a>{" "}
                           </li> */}
                           </ul>
@@ -758,67 +759,67 @@ const ProfilePage = (args) => {
                           {t("Write a")} {t("Review")}
                         </h3>
                         <div className="d-flex justify-content-xs-between mt-3">
-                            <div
-                              className={
-                                rating > 0 ? "star-icon-com onStart_color" : "star-icon-com"
-                              }
-                            >
-                              <i
-                                className="fa fa-star cursor-pointer fs-4"
-                                aria-hidden="true"
-                                onClick={() => {
-                                  setRating(1);
-                                  toggle()
-                                }}
-                              ></i>
-                            </div>
-                            <div
-                              className={
-                                rating > 1 ? "star-icon-com onStart_color" : "star-icon-com"
-                              }
-                            >
-                              <i
-                                className="fa fa-star cursor-pointer fs-4"
-                                aria-hidden="true"
-                                onClick={() => { setRating(2); toggle(); ToggleSidebar() }}
-                              ></i>
-                            </div>
-                            <div
-                              className={
-                                rating > 2 ? "star-icon-com onStart_color" : "star-icon-com"
-                              }
-                            >
-                              <i
-                                className="fa fa-star cursor-pointer fs-4"
-                                aria-hidden="true"
-                                onClick={() => { setRating(3); toggle(); ToggleSidebar() }}
-                              ></i>
-                            </div>
-                            <div
-                              className={
-                                rating > 3 ? "star-icon-com onStart_color" : "star-icon-com"
-                              }
-                            >
-                              <i
-                                className="fa fa-star cursor-pointer fs-4"
-                                aria-hidden="true"
-                                onClick={() => { setRating(4); toggle(); ToggleSidebar() }}
-                              ></i>
-                            </div>
-                            <div
-                              className={
-                                rating > 4 ? "star-icon-com onStart_color" : "star-icon-com"
-                              }
-                            >
-                              <i
-                                className="fa fa-star cursor-pointer fs-4"
-                                aria-hidden="true"
-                                onClick={() => { setRating(5); toggle(); ToggleSidebar() }}
-                              ></i>
-                            </div>
+                          <div
+                            className={
+                              rating > 0 ? "star-icon-com onStart_color" : "star-icon-com"
+                            }
+                          >
+                            <i
+                              className="fa fa-star cursor-pointer fs-4"
+                              aria-hidden="true"
+                              onClick={() => {
+                                setRating(1);
+                                toggle()
+                              }}
+                            ></i>
                           </div>
+                          <div
+                            className={
+                              rating > 1 ? "star-icon-com onStart_color" : "star-icon-com"
+                            }
+                          >
+                            <i
+                              className="fa fa-star cursor-pointer fs-4"
+                              aria-hidden="true"
+                              onClick={() => { setRating(2); toggle(); ToggleSidebar() }}
+                            ></i>
+                          </div>
+                          <div
+                            className={
+                              rating > 2 ? "star-icon-com onStart_color" : "star-icon-com"
+                            }
+                          >
+                            <i
+                              className="fa fa-star cursor-pointer fs-4"
+                              aria-hidden="true"
+                              onClick={() => { setRating(3); toggle(); ToggleSidebar() }}
+                            ></i>
+                          </div>
+                          <div
+                            className={
+                              rating > 3 ? "star-icon-com onStart_color" : "star-icon-com"
+                            }
+                          >
+                            <i
+                              className="fa fa-star cursor-pointer fs-4"
+                              aria-hidden="true"
+                              onClick={() => { setRating(4); toggle(); ToggleSidebar() }}
+                            ></i>
+                          </div>
+                          <div
+                            className={
+                              rating > 4 ? "star-icon-com onStart_color" : "star-icon-com"
+                            }
+                          >
+                            <i
+                              className="fa fa-star cursor-pointer fs-4"
+                              aria-hidden="true"
+                              onClick={() => { setRating(5); toggle(); ToggleSidebar() }}
+                            ></i>
+                          </div>
+                        </div>
                         <Button
-                          onClick={()=> {toggle(); ToggleSidebar()}}
+                          onClick={() => { toggle(); ToggleSidebar() }}
                           className="btn btn-review mt-md-5 mt-4"
                           disabled={userData?.id == id ? true : false}
                         >
@@ -1105,9 +1106,9 @@ const ProfilePage = (args) => {
                           {" "}
                           {
                             showContact ?
-                              <button 
-                              type="button"
-                              onClick={()=> setSContact(false)}
+                              <button
+                                type="button"
+                                onClick={() => setSContact(false)}
                                 className="btn send_enquery_btn me-2  mt-3 d-flex align-items-center text-center justify-content-center"
                               >
                                 <i class="fa fa-phone fs-4  me-3 mb-0 pb-0" aria-hidden="true"></i>
@@ -1123,22 +1124,22 @@ const ProfilePage = (args) => {
                               </a>
                           }
                           {
-                            !userData ? 
-                           <Button
-                             className="btn send_enquery_btn mt-3 fs-5"
-                            onClick={()=> document.getElementById('openLoginPopup')?.click()}
-                          >
-                            {t("Send Enquiry")}
-                          </Button> :
+                            !userData ?
+                              <Button
+                                className="btn send_enquery_btn mt-3 fs-5"
+                                onClick={() => document.getElementById('openLoginPopup')?.click()}
+                              >
+                                {t("Send Enquiry")}
+                              </Button> :
 
-                          <Button
-                            className="btn send_enquery_btn mt-3 fs-5"
-                            data-bs-toggle="modal"
-                            data-bs-target="#openEnquiryform"
-                            disabled={!userData ? true : userData?.id == id ? true : false}
-                          >
-                            {t("Send Enquiry")}
-                          </Button>
+                              <Button
+                                className="btn send_enquery_btn mt-3 fs-5"
+                                data-bs-toggle="modal"
+                                data-bs-target="#openEnquiryform"
+                                disabled={!userData ? true : userData?.id == id ? true : false}
+                              >
+                                {t("Send Enquiry")}
+                              </Button>
                           }
                         </div>
                       </div>
@@ -1165,8 +1166,8 @@ const ProfilePage = (args) => {
                   <Col xl="3" className="widget_company">
                     <div className="">
                       <div className="d-xl-none d-block ">
-                        
-              {/* <UncontrolledDropdown>
+
+                        {/* <UncontrolledDropdown>
                <DropdownToggle caret className="btn_dropdown"> All Categories</DropdownToggle>
                  <DropdownMenu dark>
                    <DropdownItem header className="category_company shadow-none">
@@ -1203,7 +1204,7 @@ const ProfilePage = (args) => {
                                     className="one_line fs-5 text-capitalize"
                                     onClick={() =>
                                       router.push({
-                                        pathname:`/category/service/${data.category_slug}`,
+                                        pathname: `/category/service/${data.category_slug}`,
                                         // query: { Category: data.category_slug, searchList: 'service' },
                                       })
                                     }
@@ -1357,17 +1358,23 @@ const ProfilePage = (args) => {
                                         </div>
                                       )}
                                     <p>{t("Add Photos")}</p>
-                                    <div className="file file--upload">
-                                      <label for="input-file">
-                                        <i className="fa fa-camera"></i>
-                                      </label>
-                                      <input
-                                        id="input-file"
-                                        type="file"
-                                        onChange={(e) =>
-                                          setReviewImg(e.target.files[0])
-                                        }
-                                      />
+                                    <div className=" d-flex">
+                                      <div className="file file--upload">
+                                        <label for="input-file">
+                                          <i className="fa fa-camera"></i>
+                                        </label>
+                                        <input
+                                          id="input-file"
+                                          type="file"
+                                          onChange={(e) => { setReviewImg(e.target.files[0]); setPReviewImg(URL.createObjectURL(e.target.files[0])) }}
+                                        />
+                                      </div>
+                                      {
+                                        PreviewImg &&
+                                        <div className="">
+                                          <img src={PreviewImg} onError={(e) => e.currentTarget.src = "/assets/images/tatlub-img/No.jpg"} className=" mx-2 pre_imd " />
+                                        </div>
+                                      }
                                     </div>
                                     <button
                                       className="btn submit_btn"
@@ -1655,9 +1662,9 @@ const ProfilePage = (args) => {
                                     <div className="card d-flex flex-coloum bg-light shadow  px-0 justify-content-between product-list border-0 w-100 h-100">
                                       <div className="p-2">
                                         <div className="overflow-hidden rounded-4 mb-2">
-                                          <Link href={{ 
-                                          pathname: `/services/${data.item_slug}`, 
-                                          // query: { item_id: data.id } 
+                                          <Link href={{
+                                            pathname: `/services/${data.item_slug}`,
+                                            // query: { item_id: data.id } 
                                           }} >
                                             <img
                                               src={
@@ -1672,9 +1679,9 @@ const ProfilePage = (args) => {
                                           </Link>
                                         </div>
                                         <Link href={{
-                                          pathname: `/services/${data.item_slug}`, 
-                                        // query: { item_id: data.id }
-                                         }} >
+                                          pathname: `/services/${data.item_slug}`,
+                                          // query: { item_id: data.id }
+                                        }} >
                                           <h6
                                             className="card-title text-color fs-16 text-capitalize  fw-bolder cursor-pointer"
                                           >
@@ -1751,7 +1758,7 @@ const ProfilePage = (args) => {
                                   title={value?.name}
                                   onClick={() =>
                                     router.push({
-                                      pathname:`/brand/product/${value.slug}`,
+                                      pathname: `/brand/product/${value.slug}`,
                                       // query: { brand_id: value.id, searchList: 'product' },
                                     })
                                   }

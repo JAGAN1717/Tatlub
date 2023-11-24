@@ -91,25 +91,27 @@ const Service = (
   const [isOpen, setIsopen] = useState(false);
   const [rating, setRating] = useState();
   const [reviewImg, setReviewImg] = useState();
-  const [openHrs,setOpenHrs] = useState()
-const [closeHrs,setcloseHrs] = useState()
+  const [PreviewImg, setPReviewImg] = useState();
+  const [openHrs, setOpenHrs] = useState()
+  const [closeHrs, setcloseHrs] = useState()
 
-  useEffect(()=> {
-    if(listingdata?.item_hours?.length > 0){
-      let open = moment( listingdata?.item_hours[0]?.item_hour_open_time, "hh:mm" );
+
+  useEffect(() => {
+    if (listingdata?.item_hours?.length > 0) {
+      let open = moment(listingdata?.item_hours[0]?.item_hour_open_time, "hh:mm");
 
       var formatedTime = open.format("hh:mm a");
 
       setOpenHrs(formatedTime)
-  
-      let close = moment(listingdata?.item_hours[0]?.item_hour_close_time,"hh:mm");
+
+      let close = moment(listingdata?.item_hours[0]?.item_hour_close_time, "hh:mm");
 
       var formatedTime2 = close.format("hh:mm a");
 
       setcloseHrs(formatedTime2)
     }
 
-  },[listingdata])
+  }, [listingdata])
 
   const { userData } = useContext(AuthContex);
 
@@ -117,7 +119,7 @@ const [closeHrs,setcloseHrs] = useState()
     isOpen === true ? setIsopen(false) : setIsopen(true);
   };
 
-  const toggle = () =>  !userData ? document.getElementById('openLoginPopup')?.click() : userData?.id == sellerData?.id ? '' : setModal(!modal);
+  const toggle = () => !userData ? document.getElementById('openLoginPopup')?.click() : userData?.id == sellerData?.id ? '' : setModal(!modal);
 
   const reviewSchema = yup.object().shape({
     overall_rating: yup.string(),
@@ -330,8 +332,8 @@ const [closeHrs,setcloseHrs] = useState()
               className={
                 rating > 0 ? "star-icon-com onStart_color" : "star-icon-com"
               }
-              // onClick={toggle}
-              // role="button"
+            // onClick={toggle}
+            // role="button"
             >
               <i
                 className="fa fa-star cursor-pointer fs-4"
@@ -350,7 +352,7 @@ const [closeHrs,setcloseHrs] = useState()
               <i
                 className="fa fa-star cursor-pointer fs-4"
                 aria-hidden="true"
-                onClick={() =>{ setRating(2);  toggle() }}
+                onClick={() => { setRating(2); toggle() }}
               ></i>
             </div>
             <div
@@ -361,7 +363,7 @@ const [closeHrs,setcloseHrs] = useState()
               <i
                 className="fa fa-star cursor-pointer fs-4"
                 aria-hidden="true"
-                onClick={() =>{ setRating(3);  toggle() }}
+                onClick={() => { setRating(3); toggle() }}
               ></i>
             </div>
             <div
@@ -372,7 +374,7 @@ const [closeHrs,setcloseHrs] = useState()
               <i
                 className="fa fa-star cursor-pointer fs-4"
                 aria-hidden="true"
-                onClick={() =>{ setRating(4);  toggle()}}
+                onClick={() => { setRating(4); toggle() }}
               ></i>
             </div>
             <div
@@ -383,7 +385,7 @@ const [closeHrs,setcloseHrs] = useState()
               <i
                 className="fa fa-star cursor-pointer fs-4"
                 aria-hidden="true"
-                onClick={() =>{ setRating(5);  toggle()}}
+                onClick={() => { setRating(5); toggle() }}
               ></i>
             </div>
             {/* <div className="star-icon-com"><img src="/assets/images/tatlub-img/icon-8.png" /></div> */}
@@ -457,15 +459,25 @@ const [closeHrs,setcloseHrs] = useState()
                       </div>
                     )}
                     <p>{t("Add Photos")}</p>
-                    <div className="file file--upload">
-                      <label for="input-file">
-                        <i className="fa fa-camera"></i>
-                      </label>
-                      <input
-                        id="input-file"
-                        type="file"
-                        onChange={(e) => setReviewImg(e.target.files[0])}
-                      />
+                    <div className=" d-flex">
+                      <div className=" d-flex">
+                        <div className="file file--upload">
+                          <label for="input-file">
+                            <i className="fa fa-camera"></i>
+                          </label>
+                          <input
+                            id="input-file"
+                            type="file"
+                            onChange={(e) => { setReviewImg(e.target.files[0]); setPReviewImg(URL.createObjectURL(e.target.files[0])) }}
+                          />
+                        </div>
+                        {
+                        PreviewImg && 
+                        <div className="">
+                          <img src={PreviewImg} onError={(e) => e.currentTarget.src = "/assets/images/tatlub-img/No.jpg"} className=" mx-2 pre_imd " />
+                        </div>
+                        }
+                      </div>
                     </div>
                     <button className="btn submit_btn" type="submit">
                       {t("Submit")}
@@ -476,77 +488,77 @@ const [closeHrs,setcloseHrs] = useState()
             </ModalBody>
           </Modal>
         </div>
-      )} 
+      )}
 
       {item_id && listingdata?.item_hours?.length > 0 && (
-                      <div className="pt-0 b2c-2  mb-xl-0">
-                        <div className="review_card p-4">
-                          <Row>
-                            {/* <Col lg="12" className="divider1 mb-3"> */}
-                            <Col lg="12" className=" ">
-                              <h4 className="fw-bolder mx-3 mb-3 fs-18">{t('Timing')}</h4>
-                                {
-                                  listingdata?.item_hours?.length > 0 && 
-                                  <div className="d-flex justify-content-between mx-3 ">
-                                    <div>
-                                    <h5 className="custom_timing fs-5">
-                                        {listingdata?.item_hours[0]?.item_hour_day_of_week == 1 &&
-                                            "Mon"}{" "}
-                                          {listingdata?.item_hours[0]?.item_hour_day_of_week == 2 &&
-                                            "Tue"}{" "}
-                                          {listingdata?.item_hours[0]?.item_hour_day_of_week == 3 &&
-                                            "Wed"}{" "}
-                                          {listingdata?.item_hours[0]?.item_hour_day_of_week == 4 &&
-                                            "Thu"}{" "}
-                                          {listingdata?.item_hours[0]?.item_hour_day_of_week == 5 &&
-                                            "Fri"}{" "}
-                                          {listingdata?.item_hours[0]?.item_hour_day_of_week == 6 &&
-                                            "Sat"}{" "}
-                                          {listingdata?.item_hours[0]?.item_hour_day_of_week == 7 &&
-                                            "Sun"} - 
-                                           {listingdata?.item_hours[listingdata?.item_hours?.length-1]?.item_hour_day_of_week == 1 &&
-                                            "Mod"}{" "}
-                                          {listingdata?.item_hours[listingdata?.item_hours?.length-1]?.item_hour_day_of_week == 2 &&
-                                            "Tue"}{" "}
-                                          {listingdata?.item_hours[listingdata?.item_hours?.length-1]?.item_hour_day_of_week == 3 &&
-                                            "Wed"}{" "}
-                                          {listingdata?.item_hours[listingdata?.item_hours?.length-1]?.item_hour_day_of_week == 4 &&
-                                            "Thu"}{" "}
-                                          {listingdata?.item_hours[listingdata?.item_hours?.length-1]?.item_hour_day_of_week == 5 &&
-                                            "Fri"}{" "}
-                                          {listingdata?.item_hours[listingdata?.item_hours?.length-1]?.item_hour_day_of_week == 6 &&
-                                            "Sat"}{" "}
-                                          {listingdata?.item_hours[listingdata?.item_hours?.length-1]?.item_hour_day_of_week == 7 &&
-                                            "Sun"}
-                                      </h5>
-                                    </div>
-                                    <div>
-                                      <h5 className="5">{openHrs ?? "00:00"}- {closeHrs ?? '00:00'} </h5>
-                                    </div>
-                                  </div>
-                                }
+        <div className="pt-0 b2c-2  mb-xl-0">
+          <div className="review_card p-4">
+            <Row>
+              {/* <Col lg="12" className="divider1 mb-3"> */}
+              <Col lg="12" className=" ">
+                <h4 className="fw-bolder mx-3 mb-3 fs-18">{t('Timing')}</h4>
+                {
+                  listingdata?.item_hours?.length > 0 &&
+                  <div className="d-flex justify-content-between mx-3 ">
+                    <div>
+                      <h5 className="custom_timing fs-5">
+                        {listingdata?.item_hours[0]?.item_hour_day_of_week == 1 &&
+                          "Mon"}{" "}
+                        {listingdata?.item_hours[0]?.item_hour_day_of_week == 2 &&
+                          "Tue"}{" "}
+                        {listingdata?.item_hours[0]?.item_hour_day_of_week == 3 &&
+                          "Wed"}{" "}
+                        {listingdata?.item_hours[0]?.item_hour_day_of_week == 4 &&
+                          "Thu"}{" "}
+                        {listingdata?.item_hours[0]?.item_hour_day_of_week == 5 &&
+                          "Fri"}{" "}
+                        {listingdata?.item_hours[0]?.item_hour_day_of_week == 6 &&
+                          "Sat"}{" "}
+                        {listingdata?.item_hours[0]?.item_hour_day_of_week == 7 &&
+                          "Sun"} -
+                        {listingdata?.item_hours[listingdata?.item_hours?.length - 1]?.item_hour_day_of_week == 1 &&
+                          "Mod"}{" "}
+                        {listingdata?.item_hours[listingdata?.item_hours?.length - 1]?.item_hour_day_of_week == 2 &&
+                          "Tue"}{" "}
+                        {listingdata?.item_hours[listingdata?.item_hours?.length - 1]?.item_hour_day_of_week == 3 &&
+                          "Wed"}{" "}
+                        {listingdata?.item_hours[listingdata?.item_hours?.length - 1]?.item_hour_day_of_week == 4 &&
+                          "Thu"}{" "}
+                        {listingdata?.item_hours[listingdata?.item_hours?.length - 1]?.item_hour_day_of_week == 5 &&
+                          "Fri"}{" "}
+                        {listingdata?.item_hours[listingdata?.item_hours?.length - 1]?.item_hour_day_of_week == 6 &&
+                          "Sat"}{" "}
+                        {listingdata?.item_hours[listingdata?.item_hours?.length - 1]?.item_hour_day_of_week == 7 &&
+                          "Sun"}
+                      </h5>
+                    </div>
+                    <div>
+                      <h5 className="5">{openHrs ?? "00:00"}- {closeHrs ?? '00:00'} </h5>
+                    </div>
+                  </div>
+                }
 
-                              {!listingdata?.item_hours ||
-                                (listingdata?.item_hours?.length == 0 && (
-                                  <div className="d-flex justify-content-between mx-3 ">
-                                    <div>
-                                      <h5 className="custom_timing fs-5">
-                                        Sun - Sat
-                                      </h5>
-                                      {/* <h5 className="custom_timing">Sat - Sun</h5> */}
-                                    </div>
-
-                                    <div>
-                                      <h5 className="5">00:00 - 00:00 </h5>
-                                      {/* <h5>Closed Closed</h5> */}
-                                    </div>
-                                  </div>
-                                ))}
-                            </Col>
-                          </Row>
-                        </div>
+                {!listingdata?.item_hours ||
+                  (listingdata?.item_hours?.length == 0 && (
+                    <div className="d-flex justify-content-between mx-3 ">
+                      <div>
+                        <h5 className="custom_timing fs-5">
+                          Sun - Sat
+                        </h5>
+                        {/* <h5 className="custom_timing">Sat - Sun</h5> */}
                       </div>
-                    )}
+
+                      <div>
+                        <h5 className="5">00:00 - 00:00 </h5>
+                        {/* <h5>Closed Closed</h5> */}
+                      </div>
+                    </div>
+                  ))}
+              </Col>
+            </Row>
+          </div>
+        </div>
+      )}
 
 
     </>

@@ -341,7 +341,7 @@ const HeaderOne = ({
                           className="fa fa-bars sidebar-bar pt-1 cursor-pointer"
                           aria-hidden="true" 
                           role="button"
-                          onClick={()=> router.push('/Category/categoryList')}
+                          onClick={()=> router.push('/Categories/categoryList')}
                         ></i>
                       </div>
 

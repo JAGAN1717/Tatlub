@@ -195,6 +195,7 @@ const AboutUs = (args) => {
   const [isOpen, setIsopen] = useState(false);
   const [rating, setRating] = useState();
   const [reviewImg, setReviewImg] = useState();
+  const [PreviewImg, setPReviewImg] = useState();
   const [tesimonial, setTestimonials] = useState([]);
   const [videoList, setVideoList] = useState([])
   const [isLoading, setIsLoading] = useState(true);
@@ -713,7 +714,7 @@ const AboutUs = (args) => {
                               key={index}
                             >
                               <div className="card_vedio_section">
-                                <div className="img_gallery_company_icon " onClick={()=>window.open(video?.video,'_blank')}>
+                                <div className="img_gallery_company_icon " onClick={() => window.open(video?.video, '_blank')}>
                                   {/* <img className="img_gallery_company" src={video} /> */}
                                   {/* <video className="img_gallery_company" width="400" controls>
                                           <source className="img_gallery_company"  src={video} type='video/mp4' />
@@ -994,8 +995,8 @@ const AboutUs = (args) => {
                             </div>
                             <Label>{t("Add Review")}</Label>
                             <textarea
-                             placeholder={t("Describe Your Experience")}
-                             {...formik.getFieldProps("body")}
+                              placeholder={t("Describe Your Experience")}
+                              {...formik.getFieldProps("body")}
                             ></textarea>
                             {formik.touched.body && formik.errors.body && (
                               <div className="fv-plugins-message-container">
@@ -1007,15 +1008,23 @@ const AboutUs = (args) => {
                               </div>
                             )}
                             <p>{t("Add Photos")}</p>
-                            <div className="file file--upload">
-                              <label for="input-file">
-                                <i className="fa fa-camera"></i>
-                              </label>
-                              <input
-                                id="input-file"
-                                type="file"
-                                onChange={(e) => setReviewImg(e.target.files[0])}
-                              />
+                            <div className=" d-flex">
+                              <div className="file file--upload">
+                                <label for="input-file">
+                                  <i className="fa fa-camera"></i>
+                                </label>
+                                <input
+                                  id="input-file"
+                                  type="file"
+                                  onChange={(e) => { setReviewImg(e.target.files[0]); setPReviewImg(URL.createObjectURL(e.target.files[0])) }}
+                                />
+                              </div>
+                              {
+                        PreviewImg && 
+                        <div className="">
+                          <img src={PreviewImg} onError={(e) => e.currentTarget.src = "/assets/images/tatlub-img/No.jpg"} className=" mx-2 pre_imd " />
+                        </div>
+                        }
                             </div>
                             <button className="btn submit_btn" type="submit">
                               {t("Submit")}

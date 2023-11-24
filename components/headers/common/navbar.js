@@ -1305,14 +1305,14 @@ const NavBar = ({ sugCat, cartl, setPoduct, setRes, setPSearch, setbands }, args
                       </li>
                     </Link>
 
-                    <Link href={"/page/account/Enquiry_manage"}>
+                    <Link href={"/page/Enquiry_manage"}>
                       <li>
                         <a className="cursor-pointer dropdown-item foot-cat">
                           <img
                             src="/assets/images/dropdown-icon/22.png"
                             className="img-fluid "
                           />
-                          <span className={router.pathname == '/page/account/Enquiry_manage' ? 'text-color' : "" }> {t("Enquire & Manage Quotes")}{" "}</span>
+                          <span className={router.pathname == '/page/Enquiry_manage' ? 'text-color' : "" }> {t("Enquire & Manage Quotes")}{" "}</span>
                         </a>
                       </li>
                     </Link>

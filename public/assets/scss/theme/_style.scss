@@ -19561,8 +19561,8 @@ iframe {
   .file--upload>label {
     color: hsl(204, 86%, 53%);
     border: 1px dashed #ddd;
-    width: 75px;
-    height: 75px;
+    width: 100px;
+    height: 100px;
     border-radius: 14px;
     background: #eef6fb;
   }
@@ -24801,3 +24801,11 @@ height: 230px !important;
         .p-datatable-wrapper {
           border-radius: 10px !important;
         }
+    
+
+    .pre_imd{
+      width: 100px;
+      height: 100px;
+      border-radius: 15px;
+      object-fit: cover;  
+    }

@@ -68,6 +68,7 @@ const LeftSidebarPage = ({ setRecom }) => {
   const { t } = useTranslation();
   const { item_id, product_id } = router.query;
   const { userData } = useContext(AuthContex);
+
   const [quantity, setQuantity] = useState(1);
   const {setCart} = useContext(itemscontex);
   const [mobile,setMobile] = useState(null);
@@ -1410,8 +1411,8 @@ const LeftSidebarPage = ({ setRecom }) => {
                     sellerData={data?.user}
                     listingdata={data}
                     soacials={soacial}
-                    p_id={product_id}
-                    item_id={item_id}
+                    p_id={product_id && data?.id}
+                    item_id={item_id && data?.id}
                     setdetail={setdetail}
                   />
                   {/* <!-- side-bar single product slider start --> */}
