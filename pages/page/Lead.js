@@ -24,10 +24,6 @@ import {
   DropdownItem,
 } from "reactstrap";
 import { Dayjs } from 'dayjs';
-// import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
-// import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-// import { LocalizationProvider } from '@mui/x-date-pickers';
-// import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import AuthContex from "../../components/auth/AuthContex";
 import { useContext } from "react";
 import { useRouter } from "next/router";
@@ -36,22 +32,24 @@ import { Calendar } from 'primereact/calendar';
 import moment from "moment";
 import Seo from '../../seo/seo'
 import { useTranslation } from "react-i18next";
-import Alert from '@mui/material/Alert';
-import AlertTitle from '@mui/material/AlertTitle';
-import Stack from '@mui/material/Stack';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { styled } from '@mui/material/styles';
+import Tooltip from '@mui/material/Tooltip';
+import Stack from '@mui/material/Stack';
+
 
 
 const Review = () => {
   const { userData } = useContext(AuthContex);
   const [startdate, setStartDate] = useState('');
   const [enddate, setEndDate] = useState(null);
-  const [minDate, setMinDate] = useState(null)
   const [activeTab, setActiveTab] = useState("1");
   const router = useRouter()
   const [leadlist, setLeadlist] = useState([]);
-  const [loadmore, setLoadmor] = useState(10);
+  const [leadTotal, setleadTotal] = useState()
+  const [filterleadlist, setFilterLeadlist] = useState(false);
+  const [loadmore, setLoadmor] = useState(8);
   const [isLoading, setIsLoading] = useState(true);
   const [url, setUrl] = useState();
   const [date, setDate] = useState(null);
@@ -98,7 +96,7 @@ const Review = () => {
         progress: undefined,
         theme: "dark",
       });
-    } else {
+    } else if(enddate) {
       setIsLoading(true);
       let id = userData?.id;
       let start = startdate ? moment(startdate).format('YYYY-MM-DD') : ''
@@ -107,6 +105,21 @@ const Review = () => {
         .then((res) => {
           // document.getElementById('ClosedModallaed')?.click()
           setLeadlist(res.data);
+          setFilterLeadlist(true)
+          setIsLoading(false);
+        })
+        .catch((err) => {
+          console.error("err12", err.message);
+          setIsLoading(false);
+        });
+    }else {
+      setIsLoading(true);
+      let id = userData?.id;
+      getLeadslist(id)
+        .then((res) => {
+          // document.getElementById('ClosedModallaed')?.click()
+          setLeadlist(res.data);
+          setleadTotal(res.data?.length)
           setIsLoading(false);
         })
         .catch((err) => {
@@ -119,6 +132,26 @@ const Review = () => {
   useEffect(() => {
     fetchLeadList();
   }, []);
+
+  function mydate()
+{
+  //alert("");
+document.getElementById("dt").hidden=false;
+document.getElementById("ndt").hidden=true;
+}
+function mydate1()
+{
+ d=new Date(document.getElementById("dt").value);
+dt=d.getDate();
+mn=d.getMonth();
+mn++;
+yy=d.getFullYear();
+document.getElementById("ndt").value=dt+"/"+mn+"/"+yy
+document.getElementById("ndt").hidden=false;
+document.getElementById("dt").hidden=true;
+}
+
+  
 
 
   return (
@@ -136,7 +169,7 @@ const Review = () => {
         <section className="leads mb-4 mt-3">
           <Container>
             <div className="lead">
-              <div className="review_card p-4 pb-1 mb-3">
+              <div className="review_card p-4 pb-1 mb-3 d-none">
                 <div className="d-flex justify-content-between">
                   <div className="mb-3">
                     {/* <select className="form-select w-100 form-select-lg fw-bold border-0 ps-md-3 ps-0">
@@ -148,15 +181,14 @@ const Review = () => {
                       {/* {localStorage.getItem('city')} */}
                     </span>
                   </div>
+                </div>
+                <div className="d-flex justify-content-between align-items-center">
                   <div className="">
-                    {/* <i className="fa fa-ellipsis-v fs-6" /> */}
                     <h4 className="text-muted ms-md-3">
                       <span className="fw-light ">{t("Leads")}</span>{" "}
                       <span className="fs-5">{leadlist?.length ?? 0}</span>
                     </h4>
                   </div>
-                </div>
-                <div className="d-flex justify-content-end">
                   <div className="d-flex justify-content-center p-2">
                     <div className="">
                       <div className="row mb-3">
@@ -374,82 +406,72 @@ const Review = () => {
                 </div>
               </div>
 
+              <div className="lead_card mb-3">
+                <div className="border-bottom p-2 mb-2">
+                  <h4 className="fw-bold fs-20">{t("Leads")}</h4>
+                </div>
+                <div className="d-sm-flex align-items-center justify-content-between">
+                  <div className="">
+                    <h4 className="text-secondary  fs-5">{t("Leads")} <span className="fw-bold fs-18">{leadTotal ?? 0}</span></h4>
+                  </div>
+                  <div className="d-flex p-2">
+                    <div className="d-flex align-items-center">
+                      <div className="row">
+                        <div class=" row new_date new_date col d-flex align-items-center  justify-content-between ">
+                        <label for="endDate" class="col-sm-2 col-form-label fs-16 fw-normal">{t("From")}</label>
+                          <div class="col-sm-10">
+                          <input id="startDate" name="startDate"  data-date-format="DD/MM/YYYY" className="form-control fs-16" type="date" value={startdate} onChange={(e) => {setStartDate(e.target.value); }} class="form-control" />
+                          </div>
+                        </div>
+
+                        <div class=" row new_date new_date col d-flex  align-items-center justify-content-between ">
+                          <label for="endDate" class="col-sm-2 col-form-label fs-16 fw-normal">{t("To")}</label>
+                          <div class="col-sm-10">
+                            <input id="endDate" name="endDate" className="fs-16 form-control rounded-3"  data-date-format="DD/MM/YYYY" type="date" disabled={startdate ? false : true} value={enddate} onChange={(e) => { fetchLeadList(e.target.value); setEndDate(e.target.value) }} class="form-control" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="my-4">
+                {
+                  filterleadlist &&
+                  <h4 className="fw-normal fs-5">{t("Filter Results")} : <span className="fs-18 fw-bold"> {leadlist?.length} {t("Lead Found")}</span> </h4>  
+                }
+              </div>
+
               {leadlist?.length > 0 &&
                 leadlist?.slice(0, loadmore).map((data, index) => {
                   var date = moment(data?.created_at, "YYYY-MM-DD HH:mm:ss");
                   var formatedDate = date.format("DD MMM YYYY, hh:mm a");
 
                   return (
-                    // <div key={index}>
-                    //   <div className="review_card p-4 mb-3">
-                    //     <div className="d-flex justify-content-between">
-                    //       <div className="d-sm-flex justify-content-start mb-sm-2 mt-2">
-                    //         <div className="mx-md-3 mx-0">
-                    //           <h4>{data?.name}</h4>
-                    //         </div>
-                    //         <div className=" mx-sm-5 text-muted_light ">
-                    //           <h4>{formatedDate}</h4>
-                    //         </div>
-                    //       </div>
-                    //       {/* <div className="">
-                    //         <i className="fa fa-ellipsis-v fs-5" />
-                    //       </div> */}
-                    //     </div>
-                    //     <div className="d-xl-flex justify-content-between mb-0">
-                    //       <div className="mx-md-3 mx-0 mt-2">
-                    //         <h6 className="fw-normal complete_1">
-                    //           {data?.sentence}
-                    //         </h6>
-                    //       </div>
-                    //       {data?.phone && (
-                    //         <div className="d-flex justify-content-between text-nowrap">
-                    //           <button
-                    //             type="button"
-                    //             className="btn btn-lead1 d-flex justify-content-center align-items-center "
-                    //           >
-                    //             <a
-                    //               href={"tell:" + data?.phone}
-                    //               className="text-light"
-                    //             >
-                    //               {" "}
-                    //               <i
-                    //                 className="fa fa-phone  me-2"
-                    //                 aria-hidden="true"
-                    //               ></i>{" "}
-                    //               {data?.phone}
-                    //             </a>
-                    //           </button>
-                    //         </div>
-                    //       )}
-                    //     </div>
-                    //   </div>
-                    // </div>
-                    <div className="review_card p-4 mb-3" key={index}>
-                      <div className="d-flex justify-content-between mb-3">
+                    <div className="review_card p-3 mb-3 or_lead" key={index}>
+                      <div className="d-flex justify-content-start align-items-center mb-3">
                         <div className="d-sm-flex justify-content-start mb-sm-2 mt-2">
                           <div className="mx-md-3 mx-0">
-                            <h4>{data?.name ?? 'Name Not Found'}</h4>
+                            <h4 className="fw-bold fs-18 text-capitalize">{data?.name ?? 'Name Not Found'}</h4>
                           </div>
                         </div>
-                        <div className="  text-muted_light ">
-                          <h4>{formatedDate}</h4>
+                        <div className=" mx-2 text-muted_light ">
+                          <h4 className="fs-18">{formatedDate}</h4>
                         </div>
-                        {/* <div className="d-none">
-                        <i className="fa fa-ellipsis-v fs-5" />
-                      </div> */}
                       </div>
                       <div className="d-xl-flex justify-content-between mb-0">
                         <div className="mx-md-3 mx-0 mt-2">
-                          <h6 className="fw-normal complete_1">
+                          <h6 className="fw-normal complete_1 fs-18">
                             {data?.sentence}
                           </h6>
                         </div>
-                        <div className="d-flex justify-content-between">
-                          <button type="button" className="btn btn-lead me-3 text-truncate" data-bs-toggle="modal" data-bs-target="#upgradeplans">
-                            <i className="fa fa-envelope me-2 fs-6" aria-hidden="true"></i>{" "}
+                        <div className="d-flex justify-content-xl-between">
+                          <button type="button" className="btn fs-18 btn-lead  me-3 text-truncate" data-bs-toggle="modal" data-bs-target="#upgradeplans">
+                            <i className="fa fa-envelope me-2 " aria-hidden="true"></i>{" "}
                             {t("Send Mail")}
                           </button>
-                          <button type="button" className="btn btn-lead1 " data-bs-toggle="modal" data-bs-target="#upgradeplans">
+                          <button type="button" className="btn btn-lead1  fs-18" data-bs-toggle="modal" data-bs-target="#upgradeplans">
                             {t("View Number")}
                           </button>
                         </div>
@@ -477,43 +499,8 @@ const Review = () => {
                       src="/assets/images/tatlub-img/not_Found.png"
                       className="w-size"
                     />
-                    {/* <p className="fw-600 ">Leads Not Found!</p> */}
                   </div>
                 ))}
-
-              {/* <div className="review_card p-4 mb-3">
-            <div className="d-flex justify-content-between">
-              <div className="d-sm-flex justify-content-start mb-sm-2 mt-2">
-                <div className="mx-md-3 mx-0">
-                  <h4>Sushama</h4>
-                </div>
-                <div className=" mx-sm-5 text-muted_light ">
-                  <h4>Chennai . 16 Jan 2023, 05:16 pm</h4>
-                </div>
-              </div>
-              <div className="">
-                <i className="fa fa-ellipsis-v fs-5" />
-              </div>
-            </div>
-            <div className="d-xl-flex justify-content-between mb-0">
-              <div className="mx-md-3 mx-0 mt-2">
-                <h6 className="fw-normal">
-                  Ramesh searched for Ac service. Connect with Ramesh to know
-                  more about the inquiry.
-                </h6>
-              </div>
-              <div className="d-flex justify-content-between">
-                <button type="button" className="btn btn-lead">
-                  <i className="fa fa-envelope me-2 fs-6" aria-hidden="true"></i>{" "}
-                  Send Mail
-                </button>
-                <button type="button" className="btn btn-lead1">
-                  View Number
-                </button>
-              </div>
-            </div>
-          </div> */}
-
               <div className="modal fade" id="upgradeplans" tabindex="-1" aria-labelledby="upgradeplansLabel" aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered">
                   <div className="modal-content">

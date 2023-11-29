@@ -25,7 +25,6 @@ function My_orders() {
   const [isLoading, setIsLoading] = useState(false);
   const [url, setUrl] = useState();
 
-  console.log("hgaajhgajaf",oderlist)
 
   const fetchOrderList = async () => {
     setIsLoading(true)
@@ -167,9 +166,9 @@ function My_orders() {
 
       <section className='Mange_order mb-3'>
         <Container>
-          <div className="card empty-wishlist shadow-sm p-4">
+          <div className="card empty-wishlist shadow-none p-lg-5 p-4">
             <div className="d-flex align-items-start justify-content-between mb-4">
-              <h4 className="fw-bold">{t("MY ORDERS")}</h4>
+              <h4 className="fw-bold fs-25">{t("My Orders")}</h4>
               <div className="filer-search-wicon d-none">
                 <div className="search">
                   <span className="fa fa-search"></span>
@@ -207,33 +206,37 @@ function My_orders() {
             
               {
                 oderlist?.slice(0, sliceOrder).map((data, index) => (
-                  <div className='card p-3 mb-3' key={index}>
-                    <div className='row align-items-center'>
-                      <div className='col-xl-4 col-sm-6  '>
+                  <div className='card rounded-4 p-3 mb-3' key={index}>
+                    <div className='row align-items-center showwww'>
+                      <div className='col-lg-6 col-md-9 mb-lg-0 mb-3'>
                         <div className='d-sm-flex align-items-center'>
-                          <div className=' mb-sm-auto mb-3'>
-                            <img src={data?.product?.product_image_medium} className="orde_img rounded object-fit-contain bg-white" />
+                          <div className=' mb-sm-auto mb-3 rounded-3 d-flex justify-content-center bg-secondary-subtle p-2'>
+                            <img src={data?.product?.product_image_medium} className="orde_img2 object-fit-contain" />
                           </div>
                           <div className='mx-sm-3'>
-                            <h4 className='text-capitalize complete_2 lh-base'>{data?.product?.product_name}</h4>
+                            <h4 className='text-capitalize complete_2 fs-20 fw-bold  lh-base'>{data?.product?.product_name}</h4>
+                            <h4 className='text-color fw-normal fs-20'>{t("QAR")} {data?.product?.product_price}</h4>
                           </div>
                         </div>
                       </div>
-                      <div className='col-sm-2 mb-sm-0 mb-3 d-sm-flex  justify-content-center'>
-                        <h4>{t("QAR")} {data?.product?.product_price}</h4>
-                      </div>
-                      <div className='col-xl-3 col-sm-2 mb-sm-0 mb-3  d-sm-flex justify-content-center'>
+
+                      {/* <div className='col-sm-2 mb-sm-0 mb-3 d-sm-flex  justify-content-center'>
+                      </div> */}
+                      
+                      <div className='col-lg-3 col-md-4 col-6 mb-sm-0 mb-3  d-sm-flex justify-content-lg-end align-items-center'>
                         <div className=''>
-                          <Tag value={t(getSeverity2(data))} severity={getSeverity(data)}></Tag>
+                          <Tag value={t(getSeverity2(data))} className='p-2 rounded-4' severity={getSeverity(data)}></Tag>
                         </div>
                       </div>
-                      <div className='col-xl-3 col-sm-2 mb-sm-0 mb-3 d-sm-flex justify-content-center'>
+
+                      <div className='col-lg-3 col-md-4  col-6 mb-sm-0 mb-3 d-sm-flex justify-content-lg-end align-items-center'>
                         <div className=''>
                           <Link href={{ pathname: `/orders/${data?.order_id}`, query: { id: data?.order_id,ids: data?.id} }}>
-                            <button type='button' className='btn btn-theme p-2 rounded text-truncate' >{data?.product?.order_status?.id == 6 ? t('View Details') : t('Track Order')}</button>
+                            <button type='button' className='btn btn-lead1 mt-0 text-truncate' >{data?.product?.order_status?.id == 6 ? t('View Details') : t('Track Order')}</button>
                           </Link>
                         </div>
                       </div>
+
                     </div>
                   </div>
                 ))

@@ -46,65 +46,36 @@ const SubscriptionList = () => {
                 <div className="container mb-4 mt-3">
                     {
                         Loading ?
-                        <div className="my-3">
-                            <div className="loader-wrapper2">
-                                {url === "Christmas" ? (
-                                    <div id="preloader"></div>
-                                ) : (
-                                    <div className="loader"></div>
-                                )}
-                            </div>
-                        </div> :
-                    list?.length > 0 ?
-                        <div className="sub_CardList">
-                            <div className="d-sm-flex justify-content-between align-items-center">
-                                <div className="text-center mb-3">
-                                    <h2 className="fs-4">{t('SUBSCRIPTION LIST')}</h2>
+                            <div className="my-3">
+                                <div className="loader-wrapper2 rounded-4">
+                                    {url === "Christmas" ? (
+                                        <div id="preloader"></div>
+                                    ) : (
+                                        <div className="loader"></div>
+                                    )}
                                 </div>
-                                <div className="mb-3 text-center">
-                                    <Link href={'/plans'} >
-                                        <button type="button" className="btn btn_filter1 fs-15 px-4">{t("ADD ADDONS")}</button>
-                                    </Link>
-                                </div>
-                            </div>
-                            <div className="row wrapper">
-                                {
-                                    list?.map((data, index) => (
-                                        <div className="col-lg-3 col-md-4 col-sm-6 mb-3 " key={index}>
-                                            {/* <div className="subScriptionPlan p-3 d-flex justify-content-center align-item-center h-100">
-    
-                                                <div className="w-100">
-                                                    <div className="border-bottom mb-2 text-center">
-                                                        <h2 className="fs-25 text-capitalize complete_1 text-dark">{data?.plan?.plan_name}</h2>
-                                                    </div>
-                                                    <div className="mb-3">
-                                                        <ul className="list-group  list-group-flush">
-                                                            <li className="list-group-item text-capitalize fw-bold fs-5">{t("Start Date")} : {data?.subscription_start_date}</li>
-                                                            <li className="list-group-item text-capitalize fw-bold fs-5">{t("End Date")} : {data?.subscription_end_date}</li>
-                                                            <li className="list-group-item text-capitalize fw-bold fs-5">{data?.plan?.plan_features}</li>
-                                                        </ul>
-                                                    </div>
-                                                    <div className="p-2 text-center ">
-                                                        {
-                                                            data?.subscriptions_with_addons?.length > 0 &&
-                                                            data?.subscriptions_with_addons?.map(g => (
-                                                                <h4 className='text-dark mb-0 fs-20 text-capitalize fw-bold'>{t("QAR")}{parseInt(g?.total_price ?? 0)}</h4>
-                                                            ))
-                                                        }
-                                                    </div>
-                                                </div>
-                                            </div> */}
-                                            <div className="card">
-                                                {/* <svg className="icon icon-like" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
-                                                    <path d="M24.85 10.126C26.868 5.343 31.478 2 36.84 2c7.223 0 12.425 6.18 13.08 13.544 0 0 .352 1.828-.425 5.12-1.058 4.48-3.545 8.463-6.898 11.502L24.85 48 7.402 32.165c-3.353-3.038-5.84-7.02-6.898-11.503-.777-3.29-.424-5.12-.424-5.12C.734 8.18 5.936 2 13.16 2c5.362 0 9.672 3.343 11.69 8.126z" />
-                                                </svg>
-                                                <svg className="icon icon-bookmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.481 19.481">
-                                                    <path d="M10.2.758l2.48 5.865 6.343.545c.44.038.62.587.285.876l-4.812 4.17 1.442 6.2c.1.432-.367.77-.745.542L9.74 15.668l-5.45 3.288c-.38.228-.846-.11-.746-.54l1.442-6.203-4.813-4.17c-.334-.29-.156-.838.285-.876l6.344-.545L9.28.758c.172-.408.75-.408.92 0z" />
-                                                </svg> */}
-                                                    <svg version="1.0" id="Layer_1" className="icon icon-like" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" 
-                                                        viewBox="0 0 64 64" enable-background="new 0 0 64 64" space="preserve">
-                                                    <g>
-                                                        <path fill="#231F20" d="M62.828,37.172L48.347,22.69l0.012,0.011C48.764,21.201,49,19.629,49,18c0-9.94-8.059-18-18-18
+                            </div> :
+                            list?.length > 0 ?
+                                <div className="sub_CardList">
+                                    <div className="d-sm-flex justify-content-between align-items-center">
+                                        <div className="text-center mb-3">
+                                            <h2 className="fs-4">{t('SUBSCRIPTION LIST')}</h2>
+                                        </div>
+                                        <div className="mb-3 text-center">
+                                            <Link href={'/plans'} >
+                                                <button type="button" className="btn btn_filter1 rounded-5 fs-15 px-4">{t("ADD ADDONS")}</button>
+                                            </Link>
+                                        </div>
+                                    </div>
+                                    <div className="row wrapper mb-3 d-none">
+                                        {
+                                            list?.map((data, index) => (
+                                                <div className="col-lg-3 col-md-4 col-sm-6 mb-3 " key={index}>
+                                                    <div className="card">
+                                                        <svg version="1.0" id="Layer_1" className="icon icon-like" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink"
+                                                            viewBox="0 0 64 64" enable-background="new 0 0 64 64" space="preserve">
+                                                            <g>
+                                                                <path fill="#231F20" d="M62.828,37.172L48.347,22.69l0.012,0.011C48.764,21.201,49,19.629,49,18c0-9.94-8.059-18-18-18
                                                             c-1.663,0-3.266,0.244-4.793,0.666C25.557,0.236,24.791,0,24,0H4C1.791,0,0,1.791,0,4v20c0,1.061,0.422,2.078,1.172,2.828l36,36
                                                             C37.952,63.609,38.977,64,40,64s2.048-0.391,2.828-1.172l20-20C64.391,41.267,64.391,38.733,62.828,37.172z M31,2.001
                                                             c8.837,0,16,7.163,16,16c0,1.003-0.117,2.088-0.295,3.048l-1.77-1.77l-0.024-0.025C44.949,18.855,45,18.383,45,18.001
@@ -120,61 +91,138 @@ const SubscriptionList = () => {
                                                             c0-1.104,0.897-2,2-2h18.778c-3.446,1.775-6.235,4.627-7.94,8.115C12.081,10.656,10,13.084,10,16c0,3.313,2.687,6,6,6s6-2.687,6-6
                                                             c0-1.488-0.545-2.848-1.443-3.896c1.748-3.088,4.822-5.316,8.451-5.924l32.406,32.406C61.792,38.964,62,39.466,62,40
                                                             S61.792,41.036,61.414,41.414z"/>
-                                                        <path fill="#231F20" d="M50.122,37.88c-1.17-1.17-3.073-1.171-4.243-0.001l-7.984,7.984c-1.169,1.169-1.212,3.116-0.042,4.286
+                                                                <path fill="#231F20" d="M50.122,37.88c-1.17-1.17-3.073-1.171-4.243-0.001l-7.984,7.984c-1.169,1.169-1.212,3.116-0.042,4.286
                                                             c1.168,1.17,3.108,1.134,4.278-0.036l7.992-7.99h-0.002C51.291,40.953,51.291,39.049,50.122,37.88z M48.707,40.709l-7.96,7.96
                                                             c-0.391,0.391-1.092,0.457-1.48,0.066c-0.391-0.391-0.34-1.074,0.051-1.465l7.976-7.976c0.391-0.391,1.023-0.391,1.414,0
                                                             C49.098,39.684,49.098,40.318,48.707,40.709z"/>
-                                                        <path fill="#231F20" d="M42.122,34.124c1.17-1.17,1.17-3.074,0.001-4.243c-1.17-1.17-3.073-1.171-4.243-0.001l-7.984,7.984
+                                                                <path fill="#231F20" d="M42.122,34.124c1.17-1.17,1.17-3.074,0.001-4.243c-1.17-1.17-3.073-1.171-4.243-0.001l-7.984,7.984
                                                             c-1.169,1.169-1.212,3.116-0.042,4.286c1.168,1.17,3.108,1.134,4.278-0.036l7.992-7.99H42.122z M40.708,32.71l-7.96,7.96
                                                             c-0.391,0.391-1.092,0.457-1.48,0.066c-0.391-0.391-0.34-1.074,0.051-1.465l7.976-7.976c0.391-0.391,1.023-0.391,1.414,0
                                                             C41.099,31.685,41.099,32.319,40.708,32.71z"/>
-                                                        <path fill="#231F20" d="M34.118,26.12c1.17-1.17,1.17-3.074,0.001-4.243c-1.17-1.17-3.073-1.171-4.243-0.001l-7.984,7.984
+                                                                <path fill="#231F20" d="M34.118,26.12c1.17-1.17,1.17-3.074,0.001-4.243c-1.17-1.17-3.073-1.171-4.243-0.001l-7.984,7.984
                                                             c-1.169,1.169-1.212,3.116-0.042,4.286c1.168,1.17,3.108,1.134,4.278-0.036l7.992-7.99H34.118z M32.704,24.706l-7.96,7.96
                                                             c-0.391,0.391-1.092,0.457-1.48,0.066c-0.391-0.391-0.34-1.074,0.051-1.465l7.976-7.976c0.391-0.391,1.023-0.391,1.414,0
                                                             C33.095,23.681,33.095,24.315,32.704,24.706z"/>
-                                                    </g>
-                                                    </svg>
-
-                
-                                                <img className="person_img" src="https://d3iw72m71ie81c.cloudfront.net/male-11.jpg" alt="" />
-                                                <p className="person_name fs-5">{data?.plan?.plan_name}</p>
-                                                <p className="person_desg fs-13 text-color">{t("Expire Date")} : {data?.subscription_end_date}</p>
-                                                {/* <button className="hire_btn">Hire</button> */}
-
-                                                <div className="p-2 text-center ">
-                                                        {
-                                                            data?.subscriptions_with_addons?.length > 0 &&
-                                                            data?.subscriptions_with_addons?.map(g => (
-                                                                <h4 className='text-dark mb-0  text-capitalize fw-bold'>{t("QAR")} {parseInt(g?.total_price ?? 0)}</h4>
-                                                            ))
-                                                        }
+                                                            </g>
+                                                        </svg>
+                                                        <img className="person_img" src="https://d3iw72m71ie81c.cloudfront.net/male-11.jpg" alt="" />
+                                                        <p className="person_name fs-5">{data?.plan?.plan_name}</p>
+                                                        <p className="person_desg fs-13 text-color">{t("Expire Date")} : {data?.subscription_end_date}</p>
+                                                        <div className="p-2 text-center ">
+                                                            {
+                                                                data?.subscriptions_with_addons?.length > 0 &&
+                                                                data?.subscriptions_with_addons?.map(g => (
+                                                                    <h4 className='text-dark mb-0  text-capitalize fw-bold'>{t("QAR")} {parseInt(g?.total_price ?? 0)}</h4>
+                                                                ))
+                                                            }
+                                                        </div>
                                                     </div>
+
+                                                </div>
+                                            ))
+                                        }
+                                    </div>
+
+                                    <div className="row sub_plans">
+                                        {
+                                            list?.map((data, index) => (
+                                            <div className="col-lg-3 col-md-4 mb-3" key={index}>
+                                                <div className="border sub_card  p-3 ">
+                                                    <div className="">
+                                                    <div className="mb-4 d-flex align-items-center">
+                                                    <div className="">
+                                                        <img src="/assets/images/gold2.png" alt="" className="card__sub-img"/>
+                                                    </div>
+                                                    <div className="ms-2">
+                                                    <h4 className="fs-25 mb-0 fw-bold">{data?.plan?.plan_name}</h4>
+                                                    </div>
+                                                    </div>
+                                                    <div className="d-flex align-items-center mb-3">
+                                                        <div className="d-flex align-items-center">
+                                                        <i class="fa fa-clock-o fs-5 fw-normal text-color" aria-hidden="true"></i>
+                                                        <h4 className="fw-bold fs-20 mx-2 mb-0">Start Date :</h4>
+                                                        </div>
+                                                        <div className="">
+                                                            <h4 className="fs-20 mx-2 mb-0">{data?.subscription_start_date}</h4>
+                                                        </div>
+                                                    </div>
+                                                    <div className="d-flex align-items-center mb-3">
+                                                        <div className="d-flex align-items-center">
+                                                        <i class="fa fa-clock-o fs-5  fw-normal text-color" aria-hidden="true"></i>
+                                                        <h4 className="fw-bold fs-20 mx-2 mb-0">End Date :</h4>
+                                                        </div>
+                                                        <div className="">
+                                                            <h4 className="fs-20 mx-2 mb-0">{data?.subscription_end_date}</h4>
+                                                        </div>
+                                                    </div>
+                                                    <div className="mt-4">
+                                                    {
+                                                                data?.subscriptions_with_addons?.length > 0 &&
+                                                                data?.subscriptions_with_addons?.map(g => (
+                                                                    <span className="btn btn_plan fs-18"  >{t("QAR")} {parseInt(g?.total_price ?? 0)}</span>
+                                                                ))
+                                                            }
+                                                    </div>
+
+                                                    </div>
+                                                </div>
                                             </div>
+                                            ))
+                                        }
 
+{/* 
+                                        <div className="col-lg-3 col-md-4">
+                                            <div className="border rounded-4 p-3">
+                                                <div className="mb-3 d-flex align-items-center">
+                                                <div className="">
+                                                    <img src="/assets/images/gold2.png" alt="" className="card__sub-img"/>
+                                                </div>
+                                                <div className="ms-2">
+                                                <h4 className="fs-25 mb-0 fw-bold">Yearly Premium</h4>
+                                                </div>
+                                                </div>
+                                                <div className="d-flex align-items-center mb-3">
+                                                    <div className="d-flex align-items-center">
+                                                    <i class="fa fa-clock-o fs-5 fw-normal text-color" aria-hidden="true"></i>
+                                                    <h4 className="fw-bold fs-18 mx-2 mb-0">Start Date :</h4>
+                                                    </div>
+                                                    <div className="">
+                                                        <h4 className="fs-18 mx-2">12/09/2023</h4>
+                                                    </div>
+                                                </div>
+                                                <div className="d-flex align-items-center mb-3">
+                                                    <div className="d-flex align-items-center">
+                                                    <i class="fa fa-clock-o fs-5  fw-normal text-color" aria-hidden="true"></i>
+                                                    <h4 className="fw-bold fs-18 mx-2 mb-0">End Date :</h4>
+                                                    </div>
+                                                    <div className="">
+                                                        <h4 className="fs-18 mx-2">12/10/2023</h4>
+                                                    </div>
+                                                </div>
+                                                <div className="">
+                                                    <button className="btn btn_plan" type="button" >QAR 4505</button>
+                                                </div>
+                                            </div>
+                                        </div> */}
+                                    </div>
+
+                                </div>
+                                :
+                                <div className="card empty-wishlist shadow-sm p-4">
+                                    <div className="d-flex align-items-center justify-content-between">
+                                        <h4 className="fw-bold">{("MY SUBSCRIPTION")}</h4>
+                                        <div className="filer-search-wicon d-none">
+                                            <div className="search">
+                                                <span className="fa fa-search"></span>
+                                                <input placeholder="Search In This Store" />
+                                            </div>
                                         </div>
-                                    ))
-                                }
-                            </div>
-                        </div>
-
-                        :
-                        <div className="card empty-wishlist shadow-sm p-4">
-                            <div className="d-flex align-items-center justify-content-between">
-                                <h4 className="fw-bold">{("MY SUBSCRIPTION")}</h4>
-                                <div className="filer-search-wicon d-none">
-                                    <div className="search">
-                                        <span className="fa fa-search"></span>
-                                        <input placeholder="Search In This Store" />
+                                    </div>
+                                    <div className="text-center">
+                                        <img src="/assets/images/tatlub-img/not_Found.png" className="" />
+                                        <p className="text-muted text-center">{("No Data Found")}!</p>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div className="text-center">
-                                <img src="/assets/images/tatlub-img/not_Found.png" className="" />
-                                <p className="text-muted text-center">{("No Data Found")}!</p>
-                            </div>
-
-                        </div>
                     }
                 </div>
             </section>
