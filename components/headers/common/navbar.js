@@ -43,6 +43,7 @@ import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 
 
+
 function getLocation() {
   return new Promise((resolve, reject) => {
     navigator.geolocation.getCurrentPosition(resolve, reject);
@@ -676,7 +677,7 @@ const NavBar = ({ sugCat, cartl, setPoduct, setRes, setPSearch, setbands }, args
                       completeMethod={AutoCompleteSearch}
                       onChange={(e) => setSearchKey(e.target.value)}
                     /> */}
-                      <input type="text" className={`${layoutState == 'en'? 'me-4' : '' }`} value={searchKey} onChange={(e) => {
+                      <input type="search" className={`${layoutState == 'en'? 'me-4' : '' }`} value={searchKey} onChange={(e) => {
                         setSearchKey(e.target.value);
                         setListToggle(true);
                         setptoggle1(false);
@@ -903,7 +904,7 @@ const NavBar = ({ sugCat, cartl, setPoduct, setRes, setPSearch, setbands }, args
                       completeMethod={AutoCompleteSearch}
                       onChange={(e) => setSearchKey(e.target.value)}
                     /> */}
-                      <input type="text" className={`${layoutState == 'en'? 'me-4' : '' }`} value={searchKey} onChange={(e) => {
+                      <input type="search" className={`${layoutState == 'en'? 'me-4' : '' }`} value={searchKey} onChange={(e) => {
                         setSearchKey(e.target.value);
                         setListToggle(true);
                         setptoggle1(false);

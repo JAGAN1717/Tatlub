@@ -37,6 +37,10 @@ import "react-toastify/dist/ReactToastify.css";
 import { styled } from '@mui/material/styles';
 import Tooltip from '@mui/material/Tooltip';
 import Stack from '@mui/material/Stack';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import dayjs from 'dayjs';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 
 
@@ -55,6 +59,7 @@ const Review = () => {
   const [date, setDate] = useState(null);
   const { t } = useTranslation();
 
+  console.log("jhfsjdsdld",  dayjs(startdate).format('YYYY-MM-DD'))
 
   const handleEnd = (e) => {
     // console.log("hhkgk",moment(startdate).isBefore(e.value))
@@ -68,8 +73,8 @@ const Review = () => {
     setIsLoading(true);
     let id = userData?.id;
     let body = {
-      'startDate': moment(startdate).format('YYYY-MM-DD'),
-      'endDate': moment(enddate).format('YYYY-MM-DD')
+      'startDate': dayjs(startdate).format('YYYY-MM-DD'),
+      'endDate': dayjs(enddate).format('YYYY-MM-DD')
     }
 
     getFilteredlead(id, body)
@@ -99,8 +104,8 @@ const Review = () => {
     } else if(enddate) {
       setIsLoading(true);
       let id = userData?.id;
-      let start = startdate ? moment(startdate).format('YYYY-MM-DD') : ''
-      let end = enddate ? moment(enddate).format('YYYY-MM-DD') : ''
+      let start = startdate ? dayjs(startdate).format('YYYY-MM-DD') : ''
+      let end = enddate ? dayjs(enddate).format('YYYY-MM-DD') : ''
       getLeadslist(id, start, end)
         .then((res) => {
           // document.getElementById('ClosedModallaed')?.click()
@@ -133,23 +138,7 @@ const Review = () => {
     fetchLeadList();
   }, []);
 
-  function mydate()
-{
-  //alert("");
-document.getElementById("dt").hidden=false;
-document.getElementById("ndt").hidden=true;
-}
-function mydate1()
-{
- d=new Date(document.getElementById("dt").value);
-dt=d.getDate();
-mn=d.getMonth();
-mn++;
-yy=d.getFullYear();
-document.getElementById("ndt").value=dt+"/"+mn+"/"+yy
-document.getElementById("ndt").hidden=false;
-document.getElementById("dt").hidden=true;
-}
+
 
   
 
@@ -415,21 +404,36 @@ document.getElementById("dt").hidden=true;
                     <h4 className="text-secondary  fs-5">{t("Leads")} <span className="fw-bold fs-18">{leadTotal ?? 0}</span></h4>
                   </div>
                   <div className="d-flex p-2">
-                    <div className="d-flex align-items-center">
+                    <div className="d-flex align-items-center lead_dates">
                       <div className="row">
-                        <div class=" row new_date new_date col d-flex align-items-center  justify-content-between ">
+                        <div class=" row new_date  col d-flex align-items-center  justify-content-between d-none">
                         <label for="endDate" class="col-sm-2 col-form-label fs-16 fw-normal">{t("From")}</label>
                           <div class="col-sm-10">
                           <input id="startDate" name="startDate"  data-date-format="DD/MM/YYYY" className="form-control fs-16" type="date" value={startdate} onChange={(e) => {setStartDate(e.target.value); }} class="form-control" />
                           </div>
                         </div>
 
-                        <div class=" row new_date new_date col d-flex  align-items-center justify-content-between ">
+                        <div class=" row new_date  col d-flex  align-items-center justify-content-between d-none">
                           <label for="endDate" class="col-sm-2 col-form-label fs-16 fw-normal">{t("To")}</label>
                           <div class="col-sm-10">
-                            <input id="endDate" name="endDate" className="fs-16 form-control rounded-3"  data-date-format="DD/MM/YYYY" type="date" disabled={startdate ? false : true} value={enddate} onChange={(e) => { fetchLeadList(e.target.value); setEndDate(e.target.value) }} class="form-control" />
+                            <input id="endDate" name="endDate" className="fs-16 form-control rounded-3"  placeholder="dd/mm/yyyy" data-date-format="DD/MM/YYYY" type="date" disabled={startdate ? false : true} value={enddate} onChange={(e) => { fetchLeadList(e.target.value); setEndDate(e.target.value) }} class="form-control" />
                           </div>
                         </div>
+
+                        <div class=" col d-flex  align-items-center justify-content-between">
+                        <label for="endDate" class="col-sm-2 col-form-label fs-16 fw-normal">{t("From")}</label>
+                        <LocalizationProvider dateAdapter={AdapterDayjs} dateFormats={"DD/MM/YYYY"}>
+                          <DatePicker format="DD/MM/YYYY" value={startdate} onChange={(e) => setStartDate(e)} />
+                        </LocalizationProvider>
+                        </div>
+
+                        <div class=" col d-flex  align-items-center justify-content-between">
+                        <label for="endDate" class="col-sm-2 col-form-label fs-16 fw-normal">{t("To")}</label>
+                        <LocalizationProvider  dateAdapter={AdapterDayjs}  >
+                          <DatePicker  format="DD/MM/YYYY"  disabled={startdate ? false : true} value={enddate} onChange={(e) => { fetchLeadList(e); setEndDate(e) }} />
+                        </LocalizationProvider>
+                        </div>
+
                       </div>
                     </div>
                   </div>
@@ -439,7 +443,7 @@ document.getElementById("dt").hidden=true;
               <div className="my-4">
                 {
                   filterleadlist &&
-                  <h4 className="fw-normal fs-5">{t("Filter Results")} : <span className="fs-18 fw-bold"> {leadlist?.length} {t("Lead Found")}</span> </h4>  
+                  <h4 className="fw-normal fs-5">{t("Filter Results")} : <span className="fs-18 fw-bold"> {leadlist?.length ?? 0} {t("Lead Found")}</span> </h4>  
                 }
               </div>
 

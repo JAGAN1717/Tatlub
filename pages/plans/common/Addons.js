@@ -235,7 +235,7 @@ const Addons = ({ addonlist, addontId, selectplans, setAddondsId, postSubscripti
                     <div className="d-sm-flex justify-content-between align-items-center">
                         <div className="d-flex align-items-center justify-content-sm-start justify-content-between  mb-sm-0 mb-3">
                          <h4 className="fs-18 lh-base mb-0">{selectplans?.plan_name}</h4>
-                         <h4 className="fs-25 mx-2 lh-base  mb-0 text-color fw-bold">QAR {total}</h4>
+                         <h4 className="fs-25 mx-2 lh-base  mb-0 text-color fw-bold">{t("QAR")} {total}</h4>
                         </div>
 
                         <div className="">

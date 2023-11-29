@@ -1026,7 +1026,7 @@ const Banner = ({ category, banners, brand, mainCategories,result1,product1,popp
                           </ul>
                         </div> */}
 
-                      <input type="text" value={searchKey} onChange={(e) => {
+                      <input type="search" value={searchKey} onChange={(e) => {
                         setSearchKey(e.target.value);
                         setListToggle(true);
                         setptoggle1(false)
