@@ -230,25 +230,25 @@ export default function Doctors_list() {
                                                     {/* <p> */}
                                                     {/* 3.5{" "} */}
                                                     {/* <img
-                                              className="mx-1 pb-1 company_detail_icon"
-                                              src="/assets/images/company/star-icon.png"
-                                            />{" "}
-                                            <img
-                                              className="mx-1 pb-1 company_detail_icon"
-                                              src="/assets/images/company/star-icon.png"
-                                            />
-                                            <img
-                                              className="mx-1 pb-1 company_detail_icon"
-                                              src="/assets/images/company/star-icon.png"
-                                            />
-                                            <img
-                                              className="mx-1 pb-1 company_detail_icon"
-                                              src="/assets/images/company/icon-8.png"
-                                            />
-                                            <img
-                                              className="mx-1 pb-1 company_detail_icon"
-                                              src="/assets/images/company/icon-8.png"
-                                            /> */}
+                                                        className="mx-1 pb-1 company_detail_icon"
+                                                        src="/assets/images/company/star-icon.png"
+                                                      />{" "}
+                                                      <img
+                                                        className="mx-1 pb-1 company_detail_icon"
+                                                        src="/assets/images/company/star-icon.png"
+                                                      />
+                                                      <img
+                                                        className="mx-1 pb-1 company_detail_icon"
+                                                        src="/assets/images/company/star-icon.png"
+                                                      />
+                                                      <img
+                                                        className="mx-1 pb-1 company_detail_icon"
+                                                        src="/assets/images/company/icon-8.png"
+                                                      />
+                                                      <img
+                                                        className="mx-1 pb-1 company_detail_icon"
+                                                        src="/assets/images/company/icon-8.png"
+                                                      /> */}
 
                                                     <Stack spacing={1}>
                                                       <Rating

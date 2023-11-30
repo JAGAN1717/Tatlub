@@ -1778,7 +1778,7 @@ const ProductList = ({
                                       ) : ''}
                                     </div>
                                     <small className="">
-                                      <a className="text-dark fs-6 complete_2 mb-2">
+                                      <a className="text-dark fs-6 complete_2">
                                         {data?.item_description ??
                                           data?.product_description}
                                       </a>

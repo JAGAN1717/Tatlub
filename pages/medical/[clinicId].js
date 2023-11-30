@@ -731,7 +731,7 @@ export default function DoctorDetails({ args }) {
                   </slick-list> */}
                             </Slider>
                             {
-                              DoctorDetails?.galleries?.length > 4 && <>
+                               DoctorDetails?.galleries?.length > 4 && <>
                                 <div onClick={() => gotoPrev()}><img src="/assets/images/tatlub-img/slid-3.png" className="slide-left" alt="..." /></div>
                                 <div onClick={() => gotoNext()}><img src="/assets/images/tatlub-img/slid-4.png" className="slide-right" alt="..." /></div>
                               </>
