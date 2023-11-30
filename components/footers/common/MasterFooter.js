@@ -784,7 +784,7 @@ const MasterFooter = ({
               </div>
               <div className="d-flex justify-content-end align-items-center w-100">
                 <button
-                  type="button"
+                  type="button" 
                   className="btn-close text-reset text-end"
                   data-bs-dismiss="offcanvas"
                   aria-label="Close"

@@ -455,7 +455,7 @@ const Review = () => {
                     <div className="review_card p-3 mb-3 or_lead" key={index}>
                       <div className="d-flex justify-content-start align-items-center mb-3">
                         <div className="d-sm-flex justify-content-start mb-sm-2 mt-2">
-                          <div className="mx-md-3 mx-0">
+                          <div className="me-md-3 mx-0">
                             <h4 className="fw-bold fs-18 text-capitalize">{data?.name ?? 'Name Not Found'}</h4>
                           </div>
                         </div>
@@ -464,7 +464,7 @@ const Review = () => {
                         </div>
                       </div>
                       <div className="d-xl-flex justify-content-between mb-0">
-                        <div className="mx-md-3 mx-0 mt-2">
+                        <div className="me-md-3 mx-0 mt-2">
                           <h6 className="fw-normal complete_1 fs-18">
                             {data?.sentence}
                           </h6>

@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import Seo from '../../seo/seo'
 import { useTranslation } from "react-i18next";
 import Link from "next/link";
+import moment from 'moment/moment';
 
 
 const SubscriptionList = () => {
@@ -59,11 +60,11 @@ const SubscriptionList = () => {
                                 <div className="sub_CardList">
                                     <div className="d-sm-flex justify-content-between align-items-center">
                                         <div className="text-center mb-3">
-                                            <h2 className="fs-4">{t('SUBSCRIPTION LIST')}</h2>
+                                            <h2 className="fs-4">{t('Subscription List')}</h2>
                                         </div>
                                         <div className="mb-3 text-center">
                                             <Link href={'/plans'} >
-                                                <button type="button" className="btn btn_filter1 rounded-5 fs-15 px-4">{t("ADD ADDONS")}</button>
+                                                <button type="button" className="btn btn_filter1 rounded-5 fs-15 px-4">{t("Add Addons")}</button>
                                             </Link>
                                         </div>
                                     </div>
@@ -137,22 +138,22 @@ const SubscriptionList = () => {
                                                     <h4 className="fs-25 mb-0 fw-bold">{data?.plan?.plan_name}</h4>
                                                     </div>
                                                     </div>
-                                                    <div className="d-flex align-items-center mb-3">
-                                                        <div className="d-flex align-items-center">
+                                                    <div className="d-flex align-items-center  mb-3">
+                                                        <div className="d-flex align-items-center ">
                                                         <i class="fa fa-clock-o fs-5 fw-normal text-color" aria-hidden="true"></i>
-                                                        <h4 className="fw-bold fs-20 mx-2 mb-0">Start Date :</h4>
+                                                        <h4 className="fw-bold fs-20 mx-2 mb-0">{t("Start Date")} :</h4>
                                                         </div>
                                                         <div className="">
-                                                            <h4 className="fs-20 mx-2 mb-0">{data?.subscription_start_date}</h4>
+                                                            <h4 className="fs-20 mx-2 mb-0">{moment(data?.subscription_start_date).format('DD/MM/YYYY')}</h4>
                                                         </div>
                                                     </div>
                                                     <div className="d-flex align-items-center mb-3">
                                                         <div className="d-flex align-items-center">
                                                         <i class="fa fa-clock-o fs-5  fw-normal text-color" aria-hidden="true"></i>
-                                                        <h4 className="fw-bold fs-20 mx-2 mb-0">End Date :</h4>
+                                                        <h4 className="fw-bold fs-20 mx-2 mb-0">{t("End Date")}&nbsp;&nbsp;&nbsp;:</h4>
                                                         </div>
                                                         <div className="">
-                                                            <h4 className="fs-20 mx-2 mb-0">{data?.subscription_end_date}</h4>
+                                                            <h4 className="fs-20 mx-2 mb-0">{moment(data?.subscription_end_date).format('DD/MM/YYYY')}</h4>
                                                         </div>
                                                     </div>
                                                     <div className="mt-4">

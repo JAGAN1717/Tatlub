@@ -486,7 +486,7 @@ function Manage_orders() {
         <Container>
           <div className="card empty-wishlist shadow-sm p-4">
             <div className="d-flex align-items-center justify-content-between mb-4">
-              <h4 className="fw-bold">{t("Manage Orders")}</h4>
+              <h4 className="fw-bold fs-25">{t("Manage Orders")}</h4>
               <div className="filer-search-wicon ">
                 {/* <div className="search">
                   <span className="fa fa-search"></span>

@@ -501,7 +501,6 @@ function OdreDetails({ OrderD }, args) {
                         
                                             </div>
                                           </div>
-
                                         ))
                                     }
                                         </div>
