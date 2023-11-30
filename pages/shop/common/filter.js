@@ -176,7 +176,7 @@ const FilterPage = ({
         style={sidebarView ? { left: "0px" } : {}}
       >
         <div className="sideFilter">
-        <div className="collection-filter-block shadow-sm">
+        <div className="collection-filter-block shadow-none">
           <div
             className="collection-mobile-back"
             onClick={() => closeSidebar()}
@@ -188,7 +188,7 @@ const FilterPage = ({
           </div>
           <Category setFilters={setfilter} filters={filter} filterCategory={filterCategey} />
         </div>
-        <div className="collection-filter-block shadow-sm">
+        <div className="collection-filter-block shadow-none">
           <div
             className="collection-mobile-back"
             onClick={() => closeSidebar()}

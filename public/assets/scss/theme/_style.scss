@@ -18316,8 +18316,9 @@ video#background-video {
 }
 
 .get_price {
-  border-radius: 30px !important;
-  background-color: #f2f2f2;
+  border-radius: 30px ;
+  // background-color: #f2f2f2;
+  background-color: transparent;
   padding: 4px;
 }
 
@@ -18382,6 +18383,11 @@ video#background-video {
 }
 
 .product-list .card-text img {
+  width: 20px;
+  height: 20px;
+}
+
+.p-list .card-text img {
   width: 20px;
   height: 20px;
 }
@@ -24964,4 +24970,11 @@ height: 230px !important;
     .MuiInputBase-root{
       border-radius: 26px !important;
     }
+  }
+
+  .custom_btn{
+    padding: 5px !important;
+    // width: 136px !important;
+    width: 100% !important;
+    height: 36px !important;
   }

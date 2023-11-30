@@ -460,7 +460,7 @@ const Review = () => {
                           </div>
                         </div>
                         <div className=" mx-2 text-muted_light ">
-                          <h4 className="fs-18">{formatedDate}</h4>
+                          <h4 className="fs-16 fw-normal">{formatedDate}</h4>
                         </div>
                       </div>
                       <div className="d-xl-flex justify-content-between mb-0">

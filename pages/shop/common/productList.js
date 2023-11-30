@@ -41,6 +41,8 @@ import { setmainId, mainId } from "../../../IDmain";
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import moment from "moment";
+import Rating from "@mui/material/Rating";
+import Stack from "@mui/material/Stack";
 
 const GET_PRODUCTS = gql`
   query products(
@@ -146,9 +148,9 @@ const ProductList = ({
 
 
 
-  useEffect(()=> {
+  useEffect(() => {
     setSContact(Array(items.length)?.fill(true))
-  },[items])
+  }, [items])
 
   const fectSearchList = async (listid) => {
     const roleId =
@@ -203,29 +205,29 @@ const ProductList = ({
     item_lead_phone: Yup.string().min(7, "Phone number must be at least 7 Digits").required("Enter your Mobile Number"),
     item_lead_message: Yup.string(),
   });
-   
-  useEffect(()=> {
-    if(searchList == 'product'){
+
+  useEffect(() => {
+    if (searchList == 'product') {
       setQuantity(Array(items?.length)?.fill(1))
       setLoading(Array(items?.length)?.fill(false))
     }
-  },[items])
+  }, [items])
 
-  const fetchAddToCart = async (productId, sellerId, price,qnt,index) => {
-    setLoading((pre)=> {
-      const old  = [...pre];
-       old[index] = true 
-       return old
+  const fetchAddToCart = async (productId, sellerId, price, qnt, index) => {
+    setLoading((pre) => {
+      const old = [...pre];
+      old[index] = true
+      return old
     })
     if (!userData?.id) {
       document.getElementById('openLoginPopup')?.click();
-      setLoading((pre)=> {
-        const old  = [...pre];
-         old[index] = false 
-         return old
+      setLoading((pre) => {
+        const old = [...pre];
+        old[index] = false
+        return old
       })
     }
-    
+
     let body = {
       user_id: userData?.id,
       seller_id: sellerId,
@@ -238,10 +240,10 @@ const ProductList = ({
       .then((res) => {
         if (res.status == 200) {
           setCart(res)
-          setLoading((pre)=> {
-            const old  = [...pre];
-             old[index] = false 
-             return old
+          setLoading((pre) => {
+            const old = [...pre];
+            old[index] = false
+            return old
           })
           toast.info("ADDED TO CART ", {
             position: "bottom-right",
@@ -258,10 +260,10 @@ const ProductList = ({
       })
       .catch((error) => {
         console.error("err", error.message);
-        setLoading((pre)=> {
-          const old  = [...pre];
-           old[index] = false 
-           return old
+        setLoading((pre) => {
+          const old = [...pre];
+          old[index] = false
+          return old
         })
       });
   };
@@ -615,7 +617,7 @@ const ProductList = ({
           query: { search: search, city: local },
         })
       }
-      
+
     } catch (err) {
       console.log("errr", err.message);
     }
@@ -749,7 +751,7 @@ const ProductList = ({
   //   filterContext.setSelectedColor("");
   // };
 
-  
+
   const itemsListLazyLoad = async () => {
     if (itemsLength == items?.length && itemsLength != 0 && items?.length != 0) {
       setHasMore(false);
@@ -829,11 +831,11 @@ const ProductList = ({
         >
           <div className="d-flex justify-content-between align-items-center">
             <div className="text-start mt-3 mb-2">
-              <span className="top-v">{t("Showing")} {items?.length} {t("of")} {itemsLength} {t(searchList + 's')}</span>
+              <span className="top-v fw-bold">{t("Showing")} {items?.length} {t("of")} {itemsLength} {t(searchList + 's')}</span>
             </div>
             <div className="text-end mt-3 mb-2">
               <span className="top-v">
-                {t("View By")}:
+                <span className="fw-bold">{t("View By")} :</span>
                 <img
                   src="/assets/images/tatlub-img/grid_1.png"
                   className="img-fluid ms-3 cursor-pointer"
@@ -1117,12 +1119,13 @@ const ProductList = ({
                             /> */}
                               <div className="overflow-hidden rounded-4 mb-2">
 
-                                <Link href={data?.item_title ? { pathname: `/services/${data.item_slug}`,
-                                //  query: { item_id: data.item_slug } 
-                                 } : { 
+                                <Link href={data?.item_title ? {
+                                  pathname: `/services/${data.item_slug}`,
+                                  //  query: { item_id: data.item_slug } 
+                                } : {
                                   pathname: `/product-details/${data.product_slug}`,
                                   // query: { product_id: data.id } 
-                                  }} >
+                                }} >
                                   <img
                                     src={
                                       data?.item_image_medium ??
@@ -1149,12 +1152,13 @@ const ProductList = ({
                                   />
                                 </Link>
                               </div>
-                              <Link href={data?.item_title ? { pathname: `/services/${data.item_slug}`,
-                              //  query: { item_id: data.item_slug }
-                                } : { 
-                                  pathname: `/product-details/${data.product_slug}`,
+                              <Link href={data?.item_title ? {
+                                pathname: `/services/${data.item_slug}`,
+                                //  query: { item_id: data.item_slug }
+                              } : {
+                                pathname: `/product-details/${data.product_slug}`,
                                 //  query: { product_id: data.id }
-                                  }} >
+                              }} >
                                 <h6
                                   title={data?.item_title ?? data?.product_name}
                                   className="card-title foot-cat fs-16 text-capitalize  fw-bolder cursor-pointer"
@@ -1170,7 +1174,7 @@ const ProductList = ({
                                     //     })
                                     setmainId(data.id)
                                   }
-                                 //  onClick={()=>router.push('/product-details/view?item_id='+data.id,'/product-details/view')}
+                                //  onClick={()=>router.push('/product-details/view?item_id='+data.id,'/product-details/view')}
                                 >
                                   {t(data?.item_title ?? data?.product_name)}
                                 </h6>
@@ -1211,7 +1215,7 @@ const ProductList = ({
                               }
                               <p className="card-text text-capitalize complete_2 fs-5 pt-2 ">
                                 {/* {data.item_address} */}
-                                {data?.item_location_str ? <img src="/assets/images/tatlub-img/locate.png" className=" mx-1 mb-0" />:  data?.item_address ? <img src="/assets/images/tatlub-img/locate.png" className=" mx-1 mb-0" /> : ''  }
+                                {data?.item_location_str ? <img src="/assets/images/tatlub-img/locate.png" className=" mx-1 mb-0" /> : data?.item_address ? <img src="/assets/images/tatlub-img/locate.png" className=" mx-1 mb-0" /> : ''}
                                 {data?.item_location_str ?? data?.item_address}
                               </p>
                             </div>
@@ -1220,10 +1224,10 @@ const ProductList = ({
                               {
                                 brand || searchList == 'product' ?
                                   <button
-                                   type="button"
+                                    type="button"
                                     role="button"
                                     className="btn btn_product_list w-100"
-                                    onClick={() => fetchAddToCart(data?.id, data?.user?.id ?? data?.user_id, data?.product_price,1,index)}
+                                    onClick={() => fetchAddToCart(data?.id, data?.user?.id ?? data?.user_id, data?.product_price, 1, index)}
                                     disabled={Loading[index]}
                                   >
                                     {Loading[index] ? <i class="fa fa-spinner box_1 me-2 fs-5" aria-hidden="true"></i> :
@@ -1247,7 +1251,7 @@ const ProductList = ({
                                     data-bs-toggle="modal"
                                     data-bs-target="#QuateModal"
                                   >
-                                    {t('Get Quote')}
+                                    {t('Get Best Price')}
                                   </a> : ''
                               }
                             </div>
@@ -1268,15 +1272,16 @@ const ProductList = ({
           </div>
         </Col>
       ) : (
-        <Col className="collection-content p-list body-layoyt" lg="8"
+        <Col className="collection-content p-list body-layoyt px-sm-3 px-2" lg="8"
           xl="9">
           <div className="d-flex justify-content-between align-items-center">
             <div className="text-start mt-3 mb-2">
-              <span className="top-v">{t("Showing")} {items?.length} of {itemsLength} {searchList ?? 'supplier' + 's'}</span>
+              {/* <span className="top-v">{t("Showing")} {items?.length} of {itemsLength} {searchList ?? 'supplier' + 's'}</span> */}
+              <span className="top-v fw-bold">{t("Showing")} {items?.length} {t("of")} {itemsLength} {t(searchList + 's')}</span>
             </div>
             <div className="text-end mt-3 mb-2">
-              <span className="top-v">
-                {t("View By")}:
+              <span className="top-v ">
+                <span className="fw-bold">{t("View By")} :</span>
                 <img
                   src="/assets/images/tatlub-img/grid.png"
                   className="img-fluid cursor-pointer ms-3"
@@ -1429,7 +1434,7 @@ const ProductList = ({
                                       </span>
                                     </div>
                                   </div>
-                              )}
+                                )}
                             </div>
                           </div>
                           <div className="modal-footer border-0 d-flex justify-content-center align-items-center">
@@ -1599,8 +1604,8 @@ const ProductList = ({
                         className="card border-0 p-3 card_radius mb-3 mt-2 mx-2 "
                         key={index}
                       >
-                        <Row className="align-items-center">
-                          <Col xl="8">
+                        <Row className="h-100">
+                          <Col xl="8" >
                             <div
                               className="card border-0"
                               style={{ background: "#f2f2f2" }}
@@ -1608,11 +1613,13 @@ const ProductList = ({
                               <div className="row g-0">
                                 <div className="col-md-4">
                                   <div className="overflow-hidden rounded-3">
-                                    <Link href={data?.item_title ? { pathname: `/services/${data.item_slug}`,
-                                    //  query: { item_id: data.item_slug }
-                                      } : { pathname: `/product-details/${data.product_slug}`,
+                                    <Link href={data?.item_title ? {
+                                      pathname: `/services/${data.item_slug}`,
+                                      //  query: { item_id: data.item_slug }
+                                    } : {
+                                      pathname: `/product-details/${data.product_slug}`,
                                       //  query: { product_id: data.id }
-                                        }} >
+                                    }} >
                                       <img
                                         // src="/assets/images/tatlub-img/pList-7.jpg "
                                         className={`img-fluid img_detail-grid cursor-pointer ${searchList == 'product' && 'object-fit-contain'} bg-white`}
@@ -1702,14 +1709,16 @@ const ProductList = ({
                                 </div>
                                 <div className="col-md-8 px-md-3 d-flex justify-content-between flex-column">
                                   <div className=" px-0 pt-md-0 pt-3">
-                                    <Link href={data?.item_title ? { pathname: `/services/${data.item_slug}`
-                                    //  query: { item_id: data.item_slug }
-                                      } : { pathname: `/product-details/${data.product_slug}`,
+                                    <Link href={data?.item_title ? {
+                                      pathname: `/services/${data.item_slug}`
+                                      //  query: { item_id: data.item_slug }
+                                    } : {
+                                      pathname: `/product-details/${data.product_slug}`,
                                       //  query: { product_id: data.id }
-                                        }} >
+                                    }}>
                                       <h6
                                         title={data?.item_title ?? data?.product_name}
-                                        className="card-title text-capitalize text-color fw-bolder fs-18 cursor-pointer"
+                                        className="card-title  text-capitalize text-color fw-bolder fs-18 cursor-pointer"
                                         onClick={() =>
                                           // data?.item_title
                                           //   ? router.push({
@@ -1727,7 +1736,30 @@ const ProductList = ({
                                       </h6>
                                     </Link>
 
-                                    <div className="d-flex align-items-center mt-3 mb-1">
+                                    {
+                                      data?.rating ?
+                                        <div className="d-flex align-items-center mb-2">
+                                          <Stack spacing={1}>
+                                            <Rating
+                                              name="size-large star_rate"
+                                              value={data?.rating}
+                                              readOnly={true}
+                                              defaultValue={1}
+                                              size="small"
+                                            />
+                                          </Stack>
+                                          <span className="custom_ratng_text ms-3">
+                                            {data?.rating + " " + t('Rating')}
+                                          </span>
+                                        </div> : ''
+                                    }
+
+                                    <p className="card-text text-capitalize complete_2 fs-5 pt-2 ">
+                                      {data?.item_location_str ? <img src="/assets/images/tatlub-img/locate.png" className=" mx-1 mb-0" /> : data?.item_address ? <img src="/assets/images/tatlub-img/locate.png" className=" mx-1 mb-0" /> : ''}
+                                      {data?.item_location_str ?? data?.item_address}
+                                    </p>
+
+                                    <div className="d-flex align-items-center mt-3 mb-1 d-none">
                                       <span className="fs-5 me-1">
                                         {data?.item_price || data?.product_price && "QAR :"}{" "}
                                         {data?.item_price ??
@@ -1746,19 +1778,21 @@ const ProductList = ({
                                       ) : ''}
                                     </div>
                                     <small className="">
-                                      <a className="text-dark fs-6 complete_3">
+                                      <a className="text-dark fs-6 complete_2 mb-2">
                                         {data?.item_description ??
                                           data?.product_description}
                                       </a>
                                       {/* <span><a href="" className="text-color fw-600">Read More</a></span>  */}
                                     </small>
                                   </div>
+
+
                                   {
                                     searchList == 'product' &&
                                     <div className="">
-                                       <button type="button" className="btn btn-theme w-50 rounded-3"
+                                      <button type="button" className="btn btn-theme w-50 rounded-3"
                                         title="Add To Cart"
-                                        onClick={() => fetchAddToCart(data?.id, data?.user?.id ?? data?.user_id, data?.product_price,1,index)}
+                                        onClick={() => fetchAddToCart(data?.id, data?.user?.id ?? data?.user_id, data?.product_price, 1, index)}
                                         disabled={Loading[index]}
                                       >
                                         {Loading[index] ? <i class="fa fa-spinner box_1 me-2 fs-5" aria-hidden="true"></i> :
@@ -1770,21 +1804,76 @@ const ProductList = ({
                                         {t('Add To Cart')}</button>
                                     </div>
                                   }
+
+                                  <div className="row align-items-center">
+                                    <div className="col-sm-6 d-flex align-items-center mb-lg-0 mb-2">
+                                      <span className="fs-5 me-1">
+                                        {data?.item_price || data?.product_price && "QAR :"}{" "}
+                                        {data?.item_price ??
+                                          data?.product_price}{" "}
+                                      </span>
+                                      {searchList == 'service' ? (
+                                        <button className="btn_hover get_price complete custom_btn  h-100 rounded-2 px-3 fs-15"
+                                          title="Get Best Price"
+                                          onClick={() => setItemsID(data?.id)}
+                                          data-bs-toggle="modal"
+                                          data-bs-target="#QuateModal22"
+                                        >
+                                          {/* {t('Get Latest Price')} */}
+                                          {t('Get Best Price')}
+                                        </button>
+                                      ) : ''}
+                                    </div>
+
+                                    <div className="text-end col-sm-6">
+                                      {
+                                        showContact[index] ?
+                                          <button className="btn fs-15 rounded-2 text-truncate custom_btn  btn_contactproduct_lister" title="Contact Supplier"
+                                            onClick={() => {
+                                              setSContact((pre) => {
+                                                const old = [...pre];
+                                                old[index] = false
+                                                return old
+                                              })
+                                            }}
+                                          >
+                                            <i class="fa fa-phone  me-1 mb-0 pb-0" aria-hidden="true"></i>
+                                            {" "}
+                                            {t('Show Number')}{" "}
+                                          </button>
+                                          :
+                                          <button className="btn fs-15 text-truncate rounded-2 custom_btn px-2 btn_contactproduct_lister" title={data?.user?.phone}>
+                                            <a
+                                              href={`tell:${data?.user?.phone}`}
+                                              className=""
+                                            >
+                                              <i class="fa fa-phone  me-1 mb-0 pb-0" aria-hidden="true"></i>
+                                              {" "}
+                                              {data?.user?.phone ?? 'Show Number'}{" "}
+                                            </a>
+                                          </button>
+                                      }
+                                    </div>
+                                  </div>
+
+
                                 </div>
                               </div>
                             </div>
                           </Col>
-                          <Col xl="4" className="px-2">
+                          <Col xl="4" className="px-2 h-100">
                             {
                               data?.user ?
-                                <div className="bg-gray">
+                                <div className="bg-gray mt-xl-0 mt-2 h-100" style={{ minHeight: '200px' }}>
                                   <div>
                                     <p className="fw-600 one_line text-capitalize" title={data?.user?.name}>
                                       {data?.user?.name}
                                     </p>
-                                    <p className="two_line">
-                                      <small className="text-capitalize">{data?.item_location_str ?? data?.item_address}</small>
-                                    </p>
+                                    {/* <p className="card-text text-capitalize complete_2 fs-5 pt-2 ">
+                                {data?.item_location_str ? <img src="/assets/images/tatlub-img/locate.png" className=" mx-1 mb-0" /> : <small>{data?.item_address}</small>  ? <img src="/assets/images/tatlub-img/locate.png" className=" mx-1 mb-0" /> : ''}
+                                <small>{data?.item_location_str ?? data?.item_address}</small>
+                              </p> */}
+
                                   </div>
                                   <div>
                                     <div className="d-flex justify-content-between py-2 d-none">
@@ -1817,13 +1906,14 @@ const ProductList = ({
                                           {t('Brochure')}
                                         </p>
                                       }
-                                      <Link href={{ pathname: `/services/${data.item_slug}`,
-                                      //  query: { item_id: data.item_slug },
-                                        }} >
+                                      <Link href={{
+                                        pathname: `/services/${data.item_slug}`,
+                                        //  query: { item_id: data.item_slug },
+                                      }} >
                                         <p
                                           title="Company Profile"
                                           className="text-truncate foot-cat cursor-pointer"
-                                           onClick={() =>
+                                          onClick={() =>
                                             // router.push({
                                             //   pathname: "/page/vendor/vendor-profile",
                                             //   query: { id: data?.user?.id },
@@ -1840,40 +1930,64 @@ const ProductList = ({
                                         </p>
                                       </Link>
                                     </div>
-                                    <div className="text-end">
-                                      {
-                                        showContact[index] ?
-                                      <button className="btn  btn_contactproduct_lister" title="Contact Supplier" 
-                                      onClick={()=> {setSContact((pre)=> {
-                                        const old  = [...pre];
-                                        old[index] = false 
-                                        return old
-                                      })}}
-                                      > 
-                                      <i class="fa fa-phone  me-1 mb-0 pb-0" aria-hidden="true"></i>
-                                          {" "}
-                                          {t('Show Number')}{" "}
-                                      </button>
-                                      : 
-                                      <button className="btn  btn_contactproduct_lister" title={data?.user?.phone}>
-                                        <a
-                                          href={`tell:${data?.user?.phone}`}
-                                          className=""
-                                        >
-                                          <i class="fa fa-phone  me-1 mb-0 pb-0" aria-hidden="true"></i>
-                                          {" "}
-                                          {data?.user?.phone ?? 'Contact Supplier'}{" "}
-                                        </a>
-                                      </button>
-                                      }
+                                    <div className="row align-items-center d-none">
+                                      <div className="col-sm-6 d-flex align-items-center mb-lg-0 mb-2">
+                                        <span className="fs-5 me-1">
+                                          {data?.item_price || data?.product_price && "QAR :"}{" "}
+                                          {data?.item_price ??
+                                            data?.product_price}{" "}
+                                        </span>
+                                        {searchList == 'service' ? (
+                                          <button className="btn_hover get_price complete custom_btn  h-100 rounded-2 px-3 fs-15"
+                                            title="Get Best Price"
+                                            onClick={() => setItemsID(data?.id)}
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#QuateModal22"
+                                          >
+                                            {/* {t('Get Latest Price')} */}
+                                            {t('Get Best Price')}
+                                          </button>
+                                        ) : ''}
+                                      </div>
+
+                                      <div className="text-end col-sm-6">
+                                        {
+                                          showContact[index] ?
+                                            <button className="btn fs-15 rounded-2 text-truncate custom_btn  btn_contactproduct_lister" title="Contact Supplier"
+                                              onClick={() => {
+                                                setSContact((pre) => {
+                                                  const old = [...pre];
+                                                  old[index] = false
+                                                  return old
+                                                })
+                                              }}
+                                            >
+                                              <i class="fa fa-phone  me-1 mb-0 pb-0" aria-hidden="true"></i>
+                                              {" "}
+                                              {t('Show Number')}{" "}
+                                            </button>
+                                            :
+                                            <button className="btn fs-15 text-truncate rounded-2 custom_btn px-2 btn_contactproduct_lister" title={data?.user?.phone}>
+                                              <a
+                                                href={`tell:${data?.user?.phone}`}
+                                                className=""
+                                              >
+                                                <i class="fa fa-phone  me-1 mb-0 pb-0" aria-hidden="true"></i>
+                                                {" "}
+                                                {data?.user?.phone ?? 'Show Number'}{" "}
+                                              </a>
+                                            </button>
+                                        }
+                                      </div>
                                     </div>
                                   </div>
                                 </div> : ''
                             }
                             <div className="text-end mt-2 d-none">
-                              <Link href={{pathname: `/services/${data.item_slug}`,
-                              //  query: { item_id: data.item_slug }, 
-                               }} >
+                              <Link href={{
+                                pathname: `/services/${data.item_slug}`,
+                                //  query: { item_id: data.item_slug }, 
+                              }} >
                                 <a
                                   className="text-color cursor-pointer text-capitalize"
                                   onClick={() =>
@@ -1901,12 +2015,13 @@ const ProductList = ({
                             <div className="card_radius p-3">
                               <Row>
                                 <Col xl="4" md="5">
-                                  <Link href={data?.item_title ? { pathname: `/services/${data.item_slug}` ,
-                                  // query: { item_id: data.item_slug }
-                                   } : { 
+                                  <Link href={data?.item_title ? {
+                                    pathname: `/services/${data.item_slug}`,
+                                    // query: { item_id: data.item_slug }
+                                  } : {
                                     pathname: `/product-details/${data.product_slug}`,
                                     // query: { product_id: data.id }
-                                     }} >
+                                  }} >
                                     <img
                                       src={data?.product_image_medium}
                                       alt=""
@@ -1919,11 +2034,13 @@ const ProductList = ({
                                     <div className="fs-vp-pg">
 
                                       <div className='mb-3'>
-                                        <Link href={data?.item_title ? { pathname: `/services/${data.item_slug}`, 
-                                        // query: { item_id: data.item_slug }
-                                         } : { pathname: `/product-details/${data.product_slug}`,
+                                        <Link href={data?.item_title ? {
+                                          pathname: `/services/${data.item_slug}`,
+                                          // query: { item_id: data.item_slug }
+                                        } : {
+                                          pathname: `/product-details/${data.product_slug}`,
                                           // query: { product_id: data.id } 
-                                          }} >
+                                        }} >
                                           <h5 className="card-title text-capitalize complete_2 foot-cat  fw-bolder fs-18 cursor-pointer">{data?.product_name}</h5>
                                         </Link>
                                       </div>
@@ -2007,56 +2124,56 @@ const ProductList = ({
                                             }
                                             {t("ADD TO CART")}
                                           </button> */}
-                         <div className="d-sm-flex mt-auto justify-content-start align-items-center">
-                              <div
-                                className=" bg-light px-3 rounded d-flex justify-content-between mb-2 align-items-center overflow-hidden"
-                                style={{ padding: "12px",width:'115px'}}
-                              >
-                                <button
-                                  type="button"
-                                  className="border-0 bg-transparent"
-                                  onClick={() => {
-                                    let val = quantity[index] - 1;
-                                    if (val < 1) val = 1;
-                                    setQuantity((pre) => {
-                                      const newCounters = [...pre];
-                                      newCounters[index] = val;
-                                      return newCounters;
-                                    });
-                                  }}
-                                >
-                                  -
-                                </button>
-                                <div className="px-3">{quantity[index]}</div>
-                                <button
-                                  type="button"
-                                  className="border-0 bg-transparent"
-                                  onClick={() => {
-                                    setQuantity((pre)=> {
-                                      const newCounters = [...pre];
-                                      newCounters[index] += 1;
-                                      return newCounters;
-                                    })
-                                  }}
-                                >
-                                  +
-                                </button>
-                              </div>
-                              <button
-                                type="button"
-                                className="btn px-5 btn_cart ms-sm-3 mb-2 rounded"
-                                onClick={() => fetchAddToCart(data?.id, data?.user?.id ?? data?.user_id, data?.product_price,quantity[index],index)}
-                                disabled={Loading[index]}
-                              >
-                                {Loading[index] ? <i class="fa fa-spinner box_1 me-2 fs-5" aria-hidden="true"></i> : 
-                                <i
-                                  className="fa fa-shopping-cart me-2 fs-5"
-                                  aria-hidden="true"
-                                ></i>
-                                }
-                                {t("ADD TO CART")}
-                              </button>
-                            </div>
+                                          <div className="d-sm-flex mt-auto justify-content-start align-items-center">
+                                            <div
+                                              className=" bg-light px-3 rounded d-flex justify-content-between mb-2 align-items-center overflow-hidden"
+                                              style={{ padding: "12px", width: '115px' }}
+                                            >
+                                              <button
+                                                type="button"
+                                                className="border-0 bg-transparent"
+                                                onClick={() => {
+                                                  let val = quantity[index] - 1;
+                                                  if (val < 1) val = 1;
+                                                  setQuantity((pre) => {
+                                                    const newCounters = [...pre];
+                                                    newCounters[index] = val;
+                                                    return newCounters;
+                                                  });
+                                                }}
+                                              >
+                                                -
+                                              </button>
+                                              <div className="px-3">{quantity[index]}</div>
+                                              <button
+                                                type="button"
+                                                className="border-0 bg-transparent"
+                                                onClick={() => {
+                                                  setQuantity((pre) => {
+                                                    const newCounters = [...pre];
+                                                    newCounters[index] += 1;
+                                                    return newCounters;
+                                                  })
+                                                }}
+                                              >
+                                                +
+                                              </button>
+                                            </div>
+                                            <button
+                                              type="button"
+                                              className="btn px-5 btn_cart ms-sm-3 mb-2 rounded"
+                                              onClick={() => fetchAddToCart(data?.id, data?.user?.id ?? data?.user_id, data?.product_price, quantity[index], index)}
+                                              disabled={Loading[index]}
+                                            >
+                                              {Loading[index] ? <i class="fa fa-spinner box_1 me-2 fs-5" aria-hidden="true"></i> :
+                                                <i
+                                                  className="fa fa-shopping-cart me-2 fs-5"
+                                                  aria-hidden="true"
+                                                ></i>
+                                              }
+                                              {t("ADD TO CART")}
+                                            </button>
+                                          </div>
                                           {/* </Link> */}
                                         </div>
                                       </div>

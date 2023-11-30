@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 const Breadcrubs = ({ title, parent, subTitle }) => {
   return (
-    <div className="breadcrumb-section ">
+    <div className="breadcrumb-section d-none">
       <Container>
         {/* <Row>
           <Col sm="6">

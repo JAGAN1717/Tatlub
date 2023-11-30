@@ -557,36 +557,6 @@ function Manage_orders() {
                   <p className="text-muted">{t("Order Not Found")}</p>
                 </div>
                 }
-            
-              {/* { oderlist.length > 0 &&
-              oderlist.map((data,index)=> (
-              <div className='review_card p-4 mb-3' key={index}>
-                  <div className='row justify-content-center align-items-center'>
-                    <div className='col-md-5 mb-3'>
-                     <div className='d-flex  align-items-center'>
-                      <div className='d-flex justify-content-center'>
-                      <img src={data?.product?.product_image_medium} className='ord_Img ' />
-                      </div>
-                      <div>
-                        <p className='complete_1 ms-2'>{data?.product?.product_name}</p>
-                      </div>
-                      </div>
-                    </div>
-                    <div className='col-md-3 mb-3'>
-                      <h4>{data?.product?.product_price}</h4>
-                    </div>
-                    <div className='col-md-4 mb-3'>
-                      <div className='d-flex  align-items-center mb-2'>
-                      <div className="red-dot"></div>
-                      <div className='ms-2'>Delivery Expected By Today</div>
-                      </div>
-                      <p>Seller has been processed your order</p>
-                    </div>
-                  </div>
-                </div>
-              ))
-                } */}
-
           </div>
         </Container>
       </section>

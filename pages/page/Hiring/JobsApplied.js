@@ -64,7 +64,8 @@ const SelectCategory = () => {
             headerName: "Job Title",
             width: 200,
             sortable: false,
-            editable: true
+            editable: true,
+            filter:false
         },
         {
             field: "position",
@@ -179,6 +180,11 @@ const SelectCategory = () => {
                         ) :
                             <div className='container'>
                                 {/* <div className='applied-job row justify-content-start mb-3'> */}
+                    <div className='card  rounded-4 border-0  p-4 mb-4'>
+                        <div className="d-flex align-items-center justify-content-between mb-4">
+                            <h4 className="fw-bold fs-4">{t("My Job")}</h4>
+                        </div>
+
                                 <div className='row mt-3 px-1 mb-3'>
                                     {
                                         // appliedjobs?.map((data, index) => (
@@ -249,7 +255,7 @@ const SelectCategory = () => {
 
                                             return(
                                                 <div className='col-xl-6 mb-4 ' key={index}>
-                                                    <div className='listing_card d-flex flex-column justify-content-between h-100'>
+                                                    <div className='listing_card bg-light d-flex flex-column justify-content-between h-100'>
                                                         <div>
                                                             <div className='row align-items-center mb-3'>
                                                                 <div className='col-md-3 mb-2'>
@@ -312,12 +318,13 @@ const SelectCategory = () => {
                                                             <p className='text-muted'>{t('applied')} {fromhour}</p>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> 
                                             )
                                         }
                                         )
                                     }
                                 </div>
+                        </div>
                             </div>
                     }
                     {/* {  appliedjobs?.length == 0 &&                
@@ -331,7 +338,7 @@ const SelectCategory = () => {
                         </div> } */}
                 </div> :
                 <div className='container'>
-                    <div className='card empty-wishlist shadow-sm p-4 mb-4'>
+                    <div className='card empty-wishlist  p-4 mb-4'>
                         <div className="d-flex align-items-center justify-content-between mb-4">
                             <h4 className="fw-bold fs-4">{t("Manage Job")}</h4>
                             <div className="filer-search-wicon ">
@@ -354,6 +361,7 @@ const SelectCategory = () => {
                             {/* MuiDataGrid-columnHeaderTitleContainer */}
                             <DataGrid
                                 rowHeight={70}
+                                disableColumnMenu
                                 sx={{
                                     '& .MuiDataGrid-columnHeader': {
                                         backgroundColor: "#0681ce",
@@ -372,9 +380,14 @@ const SelectCategory = () => {
                                     '& .MuiDataGrid-columnHeaderTitleContainer': {
                                         display: 'flex',
                                         justifyContent: 'center'
+                                    },
+                                    '& .MuiTablePagination-selectLabel' : {
+                                        marginBottom:'0px'
+                                    },
+                                    '& .MuiTablePagination-displayedRows': {
+                                        marginBottom:'0px'
                                     }
                                 }}
-
                                 loading={isLoading}
                                 rows={appliedjobs}
                                 columns={columns}
