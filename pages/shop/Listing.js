@@ -7,7 +7,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import {styled,TextField, Box} from "@mui/material";
+import { styled, TextField, Box } from "@mui/material";
 import { AutoComplete } from "primereact/autocomplete";
 // import Select, { SelectChangeEvent } from '@mui/material/Select';
 // import ReatAutocomplte from 'react-autocomplete'
@@ -49,6 +49,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 // import TimePicker from 'react-time-picker';
 // import 'react-time-picker/dist/TimePicker.css';
 // import 'react-clock/dist/Clock.css';
+import { GoogleMap, useJsApiLoader,LoadScript , InfoWindowF, MarkerF,Marker } from '@react-google-maps/api';
 
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL
@@ -64,14 +65,68 @@ const MenuProps = {
   },
 };
 
-function getStyles(name, personName, theme) {
-  return {
-    fontWeight:
-      personName.indexOf(name) === -1
-        ? theme.typography.fontWeightRegular
-        : theme.typography.fontWeightMedium,
-  };
+const containerStyle = {
+  width: '100%',
+  height: '500px'
+};
+
+const center = {
+  lat: -3.745,
+  lng: -38.523
+};
+
+
+function MapComponent({ lat, lng, setPosition,handleMarkerDragEnd }) {
+  const { isLoaded:mapLoaded } = useJsApiLoader({
+    id: 'google-map-script',
+    googleMapsApiKey: "AIzaSyCOYU6x7yqbUnNRtBuygEfCX9NgWakZRLw"
+  })
+
+  // const handleMarkerDragEnd = (event) => {
+  //   const lat = event.latLng.lat();
+  //   const lng = event.latLng.lng();
+  //   setPosition({
+  //     lat: lat,
+  //     lng: lng,
+  //   });
+
+  // };
+
+  const [map, setMap] = React.useState(null)
+
+  const onLoad = React.useCallback(function callback(map) {
+    const bounds = new window.google.maps.LatLngBounds({ lat: lat, lng: lng });
+    map.fitBounds(bounds);
+    setMap(map)
+  }, [])
+
+  const onUnmount = React.useCallback(function callback(map) {
+    setMap(null)
+  }, [])
+
+  return (<>
+    {
+      mapLoaded && (
+        <GoogleMap
+          mapContainerStyle={containerStyle}
+          center={{ lat: lat, lng: lng }}
+          zoom={10}
+          onLoad={onLoad}
+          onUnmount={onUnmount}
+          onClick={handleMarkerDragEnd}
+        >
+          <Marker
+            position={{ lat: lat, lng: lng }}
+            draggable={true}
+            onDragEnd={handleMarkerDragEnd}
+          ></Marker>
+        </GoogleMap>
+      )
+    }
+  </>
+  )
 }
+
 
 const Markers = ({ lat, lng, onMarkerDrag }) => {
   // const handleMarkerDrag = (event) => {
@@ -143,6 +198,7 @@ const Markers = ({ lat, lng, onMarkerDrag }) => {
 
 
 function Listing() {
+
   const handleDelete = async (id) => {
     try {
       const response = await deleteTime(id);
@@ -181,36 +237,33 @@ function Listing() {
   };
 
 
-  // function Listing() {
-  //   const handleDelete = async (id) => {
-  //     const responce = await deletetime()
-  //     setHours(response.data?.item_hours);
-  //     if(responce.status == 200){
-  //       toast("DELETED SUCCESSFULL", {
-  //         position: "bottom-right",
-  //         autoClose: 2000,
-  //         hideProgressBar: false,
-  //         closeOnClick: true,
-  //         pauseOnHover: true,
-  //         draggable: true,
-  //         progress: undefined,
-  //         theme: "dark",
-  //       });
-  //     }else {
-  //       toast.error('Somthing Went Wrong!', {
-  //         position: "bottom-right",
-  //         autoClose: 2000,
-  //         hideProgressBar: false,
-  //         closeOnClick: true,
-  //         pauseOnHover: true,
-  //         draggable: true,
-  //         progress: undefined,
-  //         theme: "dark",
-  //         }); 
-  //     }
+  // const handleDelete = async (id) => {
+  //   const responce = await deletetime()
+  //   setHours(response.data?.item_hours);
+  //   if(responce.status == 200){
+  //     toast("DELETED SUCCESSFULL", {
+  //       position: "bottom-right",
+  //       autoClose: 2000,
+  //       hideProgressBar: false,
+  //       closeOnClick: true,
+  //       pauseOnHover: true,
+  //       draggable: true,
+  //       progress: undefined,
+  //       theme: "dark",
+  //     });
+  //   }else {
+  //     toast.error('Somthing Went Wrong!', {
+  //       position: "bottom-right",
+  //       autoClose: 2000,
+  //       hideProgressBar: false,
+  //       closeOnClick: true,
+  //       pauseOnHover: true,
+  //       draggable: true,
+  //       progress: undefined,
+  //       theme: "dark",
+  //       }); 
   //   }
-
-
+  // }
 
 
   if (typeof window === "undefined") {
@@ -330,9 +383,10 @@ function Listing() {
   const [specify, setSpecify] = useState(0)
   const [TimeSlots, SetTimeSlots] = useState([])
   const [fromTime, SetfromTime] = useState('')
+  const [ErrMsg, SetErrMsg] = useState('')
   const [selectIntrovel, SetSelectIntrovel] = useState(15)
   const [Timevalue, TimeonChange] = useState('10:00');
-  
+
   const Introvels = [
     { time: '15 Minutes', val: 15 },
     { time: '30 Minutes', val: 30 },
@@ -345,30 +399,20 @@ function Listing() {
   // })
   const [Slots, Setslots] = useState([])
 
-  console.log('Timevalue', Timevalue)
-
   const handleTimeSlots = (toTime) => {
     Setslots((e) => [...e, { from_time: fromTime, to_time: toTime }])
   }
 
-
-  // console.log('djhkgdjhd',countries)
-
-
-
-
-
-
-  useEffect( async() => {
+  useEffect(async () => {
     try {
-      if(searchLocat){
+      if (searchLocat) {
         const responce = await getSearchlocate(searchLocat)
-        if(responce){
+        if (responce) {
           setPredictions(responce)
         }
       }
     } catch (error) {
-      console.log('error',error.message)
+      console.log('error', error.message)
     }
   }, [searchLocat])
 
@@ -515,32 +559,32 @@ function Listing() {
 
   const CssTextField = styled(TextField)(({ theme }) => ({
     '& label.Mui-focused': {
-        // color: theme.palette.primary.main,
-        // background: theme.palette.whiteContainer.main,
+      // color: theme.palette.primary.main,
+      // background: theme.palette.whiteContainer.main,
     },
     '& .MuiInput-underline:after': {
-        // borderBottomColor: theme.palette.primary.main,
-        // background: theme.palette.whiteContainer.main,
+      // borderBottomColor: theme.palette.primary.main,
+      // background: theme.palette.whiteContainer.main,
     },
     '& .MuiOutlinedInput-notchedOutline': {
-        // border: 'none',
-        borderRadius:'10px'
+      // border: 'none',
+      borderRadius: '10px'
     },
     '& .MuiOutlinedInput-root': {
-        padding: '5px',
-        // border: '2px solid ',
+      padding: '5px',
+      // border: '2px solid ',
+      // borderColor: theme.palette.primary.main,
+      '& fieldset': {
         // borderColor: theme.palette.primary.main,
-        '& fieldset': {
-            // borderColor: theme.palette.primary.main,
-        },
-        '&:hover fieldset': {
-            // borderColor: theme.palette.primary.main,
-        },
-        '&.Mui-focused fieldset': {
-            // borderColor: theme.palette.primary.main,
-        },
+      },
+      '&:hover fieldset': {
+        // borderColor: theme.palette.primary.main,
+      },
+      '&.Mui-focused fieldset': {
+        // borderColor: theme.palette.primary.main,
+      },
     },
-}))
+  }))
 
   const handleHours = (e) => {
     const { name, value } = e.target;
@@ -558,6 +602,18 @@ function Listing() {
   const DateOFException = (e) => {
     const { name, value } = e.target;
     setExceptValues({ ...ExceptValues, [name]: value });
+  };
+
+
+  const handleMarkerDragEnd = (event) => {
+    const lat = event.latLng.lat();
+    const lng = event.latLng.lng();
+    setPosition({
+      lat: lat,
+      lng: lng,
+    });
+    formik.setFieldValue("item_lat", lat);
+    formik.setFieldValue("item_lng", lng);
   };
 
   const handleMapClick = (event) => {
@@ -580,6 +636,7 @@ function Listing() {
   // },[position])
 
   // console.log("oooooo", ExceptionHour);
+ 
   const categoryList = async () => {
     setIsLoading(true)
     const response = await getCategory();
@@ -947,7 +1004,7 @@ function Listing() {
     formikhours.setFieldValue('close_min', moment(data?.item_hour_close_time, "HH:mm:ss").minutes())
   }
 
- 
+
 
   const formikhours = useFormik({
     initialValues,
@@ -1215,6 +1272,9 @@ function Listing() {
               theme: "dark",
             });
             router.push("/business");
+          } else if (response.status == 422) {
+            SetErrMsg(response.message)
+            document.getElementById('planUpgradePopup').click()
           } else {
             toast.error("Somthing Went Wrong!", {
               position: "bottom-right",
@@ -1356,9 +1416,9 @@ function Listing() {
             };
             reader.readAsDataURL(file2);
             // console.log("jjj", file);
-          } 
-          else {  
-            let twel = Array.from(file)?.slice(0,12)
+          }
+          else {
+            let twel = Array.from(file)?.slice(0, 12)
             setmuImg(twel);
             const file2 = file[i];
             const reader = new FileReader();
@@ -1385,7 +1445,7 @@ function Listing() {
       }
     }
 
-    if(e.target.files.length > 12) {  
+    if (e.target.files.length > 12) {
       toast.error("Maximum 12 images only accepted!", {
         position: "bottom-right",
         autoClose: 2000,
@@ -1438,35 +1498,35 @@ function Listing() {
                 <div className="row  d-none">
                   <div className="col-md-8 mb-2">
                     <div className=" p-0 search3 sfsdssd form_condition_">
-                    {/* <div className=" p-0"> */}
-                      <input className="form-control border bg-light" value={searchLocat} placeholder="Search your location" type="text" onChange={(e) => setSearchLocat(e.target.value)} /> 
-                     {
-                     searchLocat && predictions?.length > 0 &&
-                      <div className="card search-list-dd-open-home mt-2" style={{width:"515px"}}>
+                      {/* <div className=" p-0"> */}
+                      <input className="form-control border bg-light" value={searchLocat} placeholder="Search your location" type="text" onChange={(e) => setSearchLocat(e.target.value)} />
+                      {
+                        searchLocat && predictions?.length > 0 &&
+                        <div className="card search-list-dd-open-home mt-2" style={{ width: "515px" }}>
                           <div className="card-body pt-0 scroll">
-                         {
-                          predictions?.map((res,i) => (
-                            <div className="dropdown-item py-2" key={i} onClick={()=> {
-                              setPosition({
-                                lat: res?.lat,
-                                lng: res?.lon,
-                              });
-                              markerPosition["lat"] = res?.lat;
-                              markerPosition["lng"] = res?.lon;
-                              setSearchLocat()
-                            }}>
-                            <div className="d-flex align-items-center overflow-visible  ">
-                              <i className="fa fa-search me-2 text-secoundary" aria-hidden="true"></i>
-                              <div className="text-wrap">{res?.display_name}</div>
-                            </div>
+                            {
+                              predictions?.map((res, i) => (
+                                <div className="dropdown-item py-2" key={i} onClick={() => {
+                                  setPosition({
+                                    lat: res?.lat,
+                                    lng: res?.lon,
+                                  });
+                                  markerPosition["lat"] = res?.lat;
+                                  markerPosition["lng"] = res?.lon;
+                                  setSearchLocat()
+                                }}>
+                                  <div className="d-flex align-items-center overflow-visible  ">
+                                    <i className="fa fa-search me-2 text-secoundary" aria-hidden="true"></i>
+                                    <div className="text-wrap">{res?.display_name}</div>
+                                  </div>
+                                </div>
+                              ))
+                            }
                           </div>
-                          ))
-                          }
-                          </div>
-                      </div>
-                     }
+                        </div>
+                      }
 
-                     {/* <ReatAutocomplte 
+                      {/* <ReatAutocomplte 
                       getItemValue={(item) => item.display_name}
                       items={predictions}
                       renderItem={(item, isHighlighted) =>
@@ -1534,15 +1594,14 @@ function Listing() {
                     }} style={{ padding: '13px' }}>Use Current Location</button>
                   </div>
                 </div>
-                <div
-                  className=""
+                <div className="d-none"
                   style={{
                     height: "500px",
                     width: "100%",
                     borderRadius: "10px",
                   }}
                 >
-                  <GoogleMapReact
+                  {/* <GoogleMapReact
                     bootstrapURLKeys={{
                       key: "AIzaSyCOYU6x7yqbUnNRtBuygEfCX9NgWakZRLw",
                     }}
@@ -1551,30 +1610,15 @@ function Listing() {
                       lat: position.lat,
                       lng: position.lng,
                     }}
-                    // defaultCenter={markerPosition}
                     defaultZoom={8}
                     onClick={handleMapClick}
-                  // draggable
-                  // onDragEnd={handleMapClick}
-                  // draggable='true'
                   >
-                    {/* {position && ( */}
                     <Markers lat={position.lat} lng={position.lng} onMarkerDrag={handleMapClick} />
-                    {/* )} */}
-                  </GoogleMapReact>
+                  </GoogleMapReact> */} 
                 </div>
 
-                {/* <div className="" style={{ height: '500px', width: '100%', borderRadius:'10px' }}>
-                  <MyMapComponent
-                    isMarkerShown
-                    googleMapURL="AIzaSyCOYU6x7yqbUnNRtBuygEfCX9NgWakZRLw"
-                    loadingElement={<div style={{ height: `100%` }} />}
-                    containerElement={<div style={{ height: `100%` }} />}
-                    mapElement={<div style={{ height: `100%` }} />} 
-                    setPosition={setPosition}
-                    position = {position}
-                  />
-                </div> */}
+               <MapComponent lat={position.lat} lng={position.lng} setPosition={setPosition} handleMarkerDragEnd={handleMarkerDragEnd} /> 
+
               </div>
               <div className="modal-footer d-flex justify-content-end ">
                 <button
@@ -1974,7 +2018,7 @@ function Listing() {
                                 {data.country_name}
                               </option>
                             ))}
-                          </select>  
+                          </select>
 
                           <MulSelect
                             closeMenuOnSelect={true}
@@ -1996,6 +2040,7 @@ function Listing() {
                             className=" w-100"
                             classNamePrefix="select"
                             isRequired
+
                           />
 
                           {formik.touched.country_id &&
@@ -2057,7 +2102,7 @@ function Listing() {
                             getOptionValue={(option) => option.id}
                             className=" w-100"
                             classNamePrefix="select"
-                            
+
                           />
 
                           {formik.touched.state_id &&
@@ -2116,15 +2161,16 @@ function Listing() {
                             classNamePrefix="select"
                           />
 
-                          {formik.touched.city_id && formik.errors.city_id && (
-                            <div className="fv-plugins-message-container">
-                              <div className="fv-help-block">
-                                <span role="alert" className="text-danger">
-                                  {formik.errors.city_id}
-                                </span>
+                          {formik.touched.city_id &&
+                            formik.errors.city_id && (
+                              <div className="fv-plugins-message-container">
+                                <div className="fv-help-block">
+                                  <span role="alert" className="text-danger">
+                                    {formik.errors.city_id}
+                                  </span>
+                                </div>
                               </div>
-                            </div>
-                          )}
+                            )}
                         </div>
                         <div className="mb-3 col-md-3">
                           <label
@@ -2327,7 +2373,7 @@ function Listing() {
                             className="form-label"
                           >
                             {" "}
-                            {t("Founded By")}
+                            {t("Founded In")}
                           </label>
                           <input
                             type="text"
@@ -2765,7 +2811,7 @@ function Listing() {
                             className="form-select d-none"
                             aria-label="Default select example"
                             {...formik.getFieldProps("item_hour_show_hours")}
-                            onChange={(e)=> setShowhours(e.target.value == 1 ? true : false)}
+                            onChange={(e) => setShowhours(e.target.value == 1 ? true : false)}
                           >
                             <option selected>Select</option>
                             <option value="1">yes</option>
@@ -2785,7 +2831,7 @@ function Listing() {
                               )
                               setShowhours(e.value == 1 ? true : false)
                             }}
-                            value={[{ value: '1', label: 'YES' }, { value: '2', label: 'NO' }].find(e => e.value == formik.getFieldProps("item_hour_show_hours")?.value )}
+                            value={[{ value: '1', label: 'YES' }, { value: '2', label: 'NO' }].find(e => e.value == formik.getFieldProps("item_hour_show_hours")?.value)}
                             options={[{ value: '1', label: 'YES' }, { value: '2', label: 'NO' }]}
                             // getOptionLabel={(option) => `${option.city_name}`}
                             // getOptionValue={(option) => option.id}
@@ -2798,385 +2844,385 @@ function Listing() {
                         </div>
                         {
                           showHours &&
-                        <>
-                        <div className="mb-3">
-                          <h5>{t("Hours")}</h5>
-                          <p>
-                            Please make sure the opening time is earlier than
-                            the closing time. Otherwise, the opening hour won't
-                            be saved. Time range: 00:00-24:00
-                          </p>
-                        </div>
-
-                        <div className="mb-3 col-lg-2 col-md-3 col-sm-4">
-                          <label
-                            for="exampleFormControlInput1"
-                            className="form-label"
-                          >
-                            {t("Day of Week")}
-                          </label>
-                          <select
-                            id="defaultday"
-                            className="form-select"
-                            aria-label="Default select example"
-                            name="day"
-                            //  {...formik.getFieldProps('day_week')}
-                            //  onChange={(e)=>setday(e.target.value)}
-                            value={HoursValues?.day}
-                            onChange={handleHours}
-                          >
-                            <option selected value="0">
-                              Select
-                            </option>
-                            <option value="1">Mon</option>
-                            <option value="2">Tue</option>
-                            <option value="3">Wed</option>
-                            <option value="4">Thu</option>
-                            <option value="5">Fri</option>
-                            <option value="6">Sat</option>
-                            <option value="7">Sun</option>
-                          </select>
-                        </div>
-                        <div className="mb-3 col-lg-2 col-md-3 col-sm-4">
-                          <label
-                            for="exampleFormControlInput1"
-                            className="form-label"
-                          >
-                            {t("Open Hour")}
-                          </label>
-                          <select
-                            className="form-select"
-                            id="defaultopenhour"
-                            aria-label="Default select example"
-                            name="open_hours"
-                            // {...formik.getFieldProps('open_hour')}
-                            //  onChange={(e)=>setOpenHours(e.target.value)}
-                            value={HoursValues?.open_hours}
-                            onChange={handleHours}
-                          >
-                            <option selected value="0">
-                              0
-                            </option>
-                            {[...Array(24)].map((x, i) => (
-                              <option value={i + 1}>{i + 1}</option>
-                            ))}
-                          </select>
-                          {/* <TimePicker onChange={TimeonChange} className='form-control ' value={Timevalue} /> */}
-                        </div>
-                        <div className="mb-3 col-lg-2 col-md-3 col-sm-4">
-                          <label
-                            for="exampleFormControlInput1"
-                            className="form-label"
-                          >
-                            {t("Open Minute")}
-                          </label>
-                          <select
-                            className="form-select"
-                            id="defaultopenmin"
-                            aria-label="Default select example"
-                            name="open_minit"
-                            // {...formik.getFieldProps('open_min')}
-                            // onChange={(e)=>setOpenMin(e.target.value)}
-                            value={HoursValues?.open_minit}
-                            onChange={handleHours}
-                          >
-                            <option selected value="0">
-                              0
-                            </option>
-                            {[...Array(59)].map((x, i) => (
-                              <option value={i + 1}>{i + 1}</option>
-                            ))}
-                          </select>
-                        </div>
-                        <div className="mb-3 col-lg-2 col-md-3 col-sm-4">
-                          <label
-                            for="exampleFormControlInput1"
-                            id="defaultclosehour"
-                            className="form-label"
-                          >
-                            {" "}
-                            {t("Close Hour")}
-                          </label>
-                          <select
-                            className="form-select"
-                            aria-label="Default select example"
-                            name="close_hours"
-                            // {...formik.getFieldProps('close_hour')}
-                            // onChange={(e)=>setCloseHours(e.target.value)}
-                            value={HoursValues?.close_hours}
-                            onChange={handleHours}
-                          >
-                            <option selected value="0">
-                              0
-                            </option>
-                            {[...Array(24)].map((x, i) => (
-                              <option disabled={i + 1 > HoursValues?.open_hours ? false : true} value={i + 1}>{i + 1}</option>
-                            ))}
-                          </select>
-                        </div>
-                        <div className="mb-3 col-lg-2 col-md-3 col-sm-4">
-                          <label
-                            for="exampleFormControlInput1"
-                            id="defaultclosemin"
-                            className="form-label"
-                          >
-                            {" "}
-                            {t("Close Minute")}
-                          </label>
-                          <select
-                            className="form-select"
-                            aria-label="Default select example"
-                            name="close_minit"
-                            // onChange={(e)=>setCloseMin(e.target.value)}
-                            // {...formik.getFieldProps('close_min')}
-                            value={HoursValues?.close_minit}
-                            onChange={handleHours}
-                          >
-                            <option selected value="0">
-                              0
-                            </option>
-                            {[...Array(59)].map((x, i) => (
-                              <option value={i + 1}>{i + 1}</option>
-                            ))}
-                          </select>
-                        </div>
-                        <div className="mb-3 col-lg-2 col-md-3 col-sm-4 d-flex align-items-end add_hours">
-                          <button
-                            type="button"
-                            className="btn btn-theme rounded fw-light w-100"
-                            onClick={() => {
-                              for (let i = 0; i < hours.length; i++) {
-                                if (hours[i].day === HoursValues?.day) {
-                                  hours.splice(i, 1);
-                                }
-
-                                if (
-                                  hours[i]?.item_hour_day_of_week ==
-                                  HoursValues?.day
-                                ) {
-                                  setHoursid(hours[i]?.id)
-                                  hours.splice(i, 1);
-                                }
-                              }
-                              setHours((p) => [...p, HoursValues]);
-                              // setHoursValues(initialhours);
-                            }}
-                            disabled={HoursValues?.day == 0 ? true : HoursValues?.day ? false : true}
-                          >
-                            + {t("Add Hours")}
-                          </button>
-                        </div>
-
-                        <div className="d-sm-flex overflow-auto scroll-inner">
-                          {hours?.map((data, index) => (
-                            <div className="d-flex justify-content-start align-items-center mb-2" key={index}>
-                              {data.day && (
-                                <h5 className="text-success text-truncate ms-3 ">
-                                  {data?.day == 1 && "Monday"}{" "}
-                                  {data?.day == 2 && "Tuesday"}{" "}
-                                  {data?.day == 3 && "Wendesday"}{" "}
-                                  {data?.day == 4 && "Thurday"}{" "}
-                                  {data?.day == 5 && "Friday"}{" "}
-                                  {data?.day == 6 && "Saturday"}{" "}
-                                  {data?.day == 7 && "Sunday"}{" "}
-                                  {data?.open_hours}:{data?.open_minit}:00,{" "}
-                                  {data?.close_hours}:{data?.close_minit}:00
-                                </h5>
-                              )}
-
-                              {data?.item_hour_day_of_week && (
-                                <h5 className="text-success text-truncate  ms-3">
-                                  {data?.item_hour_day_of_week == 1 && "Monday"}{" "}
-                                  {data?.item_hour_day_of_week == 2 &&
-                                    "Tuesday"}{" "}
-                                  {data?.item_hour_day_of_week == 3 &&
-                                    "Wendesday"}{" "}
-                                  {data?.item_hour_day_of_week == 4 &&
-                                    "Thurday"}{" "}
-                                  {data?.item_hour_day_of_week == 5 && "Friday"}{" "}
-                                  {data?.item_hour_day_of_week == 6 &&
-                                    "Saturday"}{" "}
-                                  {data?.item_hour_day_of_week == 7 && "Sunday"}{" "}
-                                  {data?.item_hour_open_time},{" "}
-                                  {data?.item_hour_close_time}
-                                </h5>
-                              )}
-                              {
-                                !data?.day &&
-                                <h5
-                                  role="button"
-                                  data-bs-toggle="modal" data-bs-target="#hourdEdit"
-                                  onClick={() => Uptohours(data)}
-                                >
-                                  <i class="fa fa-pencil-square-o text-color ms-2" aria-hidden="true"></i>
-                                </h5>
-                              }
-                              <h5
-                                onClick={() => {
-                                  hours.splice(index, 1);
-                                  setHours(hours);
-                                  const newArray = hours.filter(
-                                    (item) => item !== data
-                                  );
-                                  setHours(newArray);
-                                  // handleDelete(data.id)
-                                }}
-                              >
-                                <i
-                                  className="fa fa-trash ms-1 text-danger cursor-pointer"
-                                  aria-hidden="true"
-                                ></i>
-                              </h5>
+                          <>
+                            <div className="mb-3">
+                              <h5>{t("Hours")}</h5>
+                              <p>
+                                Please make sure the opening time is earlier than
+                                the closing time. Otherwise, the opening hour won't
+                                be saved. Time range: 00:00-24:00
+                              </p>
                             </div>
-                          ))}
-                        </div>
-                        <div className="d-none">
-                          <div className="mb-3">
-                            <h5>{t("Exceptions")}</h5>
-                            <p>
-                              Hours for holidays and vacations. The date of
-                              exception is required, please make sure the opening
-                              time is earlier than the closing time. Otherwise,
-                              the exception opening hour won't be saved. Time
-                              range: 00:00-24:00
-                            </p>
-                          </div>
 
-                          <div className="mb-3 col-lg-2 col-md-3 col-sm-4">
-                            <label
-                              for="exampleFormControlInput1"
-                              className="form-label"
-                            >
-                              {t("Date of Exception")}
-                            </label>
-                            <input
-                              type="date"
-                              className="form-control"
-                              name="day"
-                              placeholder=""
-                              value={ExceptValues?.day}
-                              onChange={DateOFException}
-                            // {...formik.getFieldProps("day_Excep")}
-                            />
-                            {/* <Calendar 
+                            <div className="mb-3 col-lg-2 col-md-3 col-sm-4">
+                              <label
+                                for="exampleFormControlInput1"
+                                className="form-label"
+                              >
+                                {t("Day of Week")}
+                              </label>
+                              <select
+                                id="defaultday"
+                                className="form-select"
+                                aria-label="Default select example"
+                                name="day"
+                                //  {...formik.getFieldProps('day_week')}
+                                //  onChange={(e)=>setday(e.target.value)}
+                                value={HoursValues?.day}
+                                onChange={handleHours}
+                              >
+                                <option selected value="0">
+                                  Select
+                                </option>
+                                <option value="1">Mon</option>
+                                <option value="2">Tue</option>
+                                <option value="3">Wed</option>
+                                <option value="4">Thu</option>
+                                <option value="5">Fri</option>
+                                <option value="6">Sat</option>
+                                <option value="7">Sun</option>
+                              </select>
+                            </div>
+                            <div className="mb-3 col-lg-2 col-md-3 col-sm-4">
+                              <label
+                                for="exampleFormControlInput1"
+                                className="form-label"
+                              >
+                                {t("Open Hour")}
+                              </label>
+                              <select
+                                className="form-select"
+                                id="defaultopenhour"
+                                aria-label="Default select example"
+                                name="open_hours"
+                                // {...formik.getFieldProps('open_hour')}
+                                //  onChange={(e)=>setOpenHours(e.target.value)}
+                                value={HoursValues?.open_hours}
+                                onChange={handleHours}
+                              >
+                                <option selected value="0">
+                                  0
+                                </option>
+                                {[...Array(24)].map((x, i) => (
+                                  <option value={i + 1}>{i + 1}</option>
+                                ))}
+                              </select>
+                              {/* <TimePicker onChange={TimeonChange} className='form-control ' value={Timevalue} /> */}
+                            </div>
+                            <div className="mb-3 col-lg-2 col-md-3 col-sm-4">
+                              <label
+                                for="exampleFormControlInput1"
+                                className="form-label"
+                              >
+                                {t("Open Minute")}
+                              </label>
+                              <select
+                                className="form-select"
+                                id="defaultopenmin"
+                                aria-label="Default select example"
+                                name="open_minit"
+                                // {...formik.getFieldProps('open_min')}
+                                // onChange={(e)=>setOpenMin(e.target.value)}
+                                value={HoursValues?.open_minit}
+                                onChange={handleHours}
+                              >
+                                <option selected value="0">
+                                  0
+                                </option>
+                                {[...Array(59)].map((x, i) => (
+                                  <option value={i + 1}>{i + 1}</option>
+                                ))}
+                              </select>
+                            </div>
+                            <div className="mb-3 col-lg-2 col-md-3 col-sm-4">
+                              <label
+                                for="exampleFormControlInput1"
+                                id="defaultclosehour"
+                                className="form-label"
+                              >
+                                {" "}
+                                {t("Close Hour")}
+                              </label>
+                              <select
+                                className="form-select"
+                                aria-label="Default select example"
+                                name="close_hours"
+                                // {...formik.getFieldProps('close_hour')}
+                                // onChange={(e)=>setCloseHours(e.target.value)}
+                                value={HoursValues?.close_hours}
+                                onChange={handleHours}
+                              >
+                                <option selected value="0">
+                                  0
+                                </option>
+                                {[...Array(24)].map((x, i) => (
+                                  <option disabled={i + 1 > HoursValues?.open_hours ? false : true} value={i + 1}>{i + 1}</option>
+                                ))}
+                              </select>
+                            </div>
+                            <div className="mb-3 col-lg-2 col-md-3 col-sm-4">
+                              <label
+                                for="exampleFormControlInput1"
+                                id="defaultclosemin"
+                                className="form-label"
+                              >
+                                {" "}
+                                {t("Close Minute")}
+                              </label>
+                              <select
+                                className="form-select"
+                                aria-label="Default select example"
+                                name="close_minit"
+                                // onChange={(e)=>setCloseMin(e.target.value)}
+                                // {...formik.getFieldProps('close_min')}
+                                value={HoursValues?.close_minit}
+                                onChange={handleHours}
+                              >
+                                <option selected value="0">
+                                  0
+                                </option>
+                                {[...Array(59)].map((x, i) => (
+                                  <option value={i + 1}>{i + 1}</option>
+                                ))}
+                              </select>
+                            </div>
+                            <div className="mb-3 col-lg-2 col-md-3 col-sm-4 d-flex align-items-end add_hours">
+                              <button
+                                type="button"
+                                className="btn btn-theme rounded fw-light w-100"
+                                onClick={() => {
+                                  for (let i = 0; i < hours.length; i++) {
+                                    if (hours[i].day === HoursValues?.day) {
+                                      hours.splice(i, 1);
+                                    }
+
+                                    if (
+                                      hours[i]?.item_hour_day_of_week ==
+                                      HoursValues?.day
+                                    ) {
+                                      setHoursid(hours[i]?.id)
+                                      hours.splice(i, 1);
+                                    }
+                                  }
+                                  setHours((p) => [...p, HoursValues]);
+                                  // setHoursValues(initialhours);
+                                }}
+                                disabled={HoursValues?.day == 0 ? true : HoursValues?.day ? false : true}
+                              >
+                                + {t("Add Hours")}
+                              </button>
+                            </div>
+
+                            <div className="d-sm-flex overflow-auto scroll-inner">
+                              {hours?.map((data, index) => (
+                                <div className="d-flex justify-content-start align-items-center mb-2" key={index}>
+                                  {data.day && (
+                                    <h5 className="text-success text-truncate ms-3 ">
+                                      {data?.day == 1 && "Monday"}{" "}
+                                      {data?.day == 2 && "Tuesday"}{" "}
+                                      {data?.day == 3 && "Wendesday"}{" "}
+                                      {data?.day == 4 && "Thurday"}{" "}
+                                      {data?.day == 5 && "Friday"}{" "}
+                                      {data?.day == 6 && "Saturday"}{" "}
+                                      {data?.day == 7 && "Sunday"}{" "}
+                                      {data?.open_hours}:{data?.open_minit}:00,{" "}
+                                      {data?.close_hours}:{data?.close_minit}:00
+                                    </h5>
+                                  )}
+
+                                  {data?.item_hour_day_of_week && (
+                                    <h5 className="text-success text-truncate  ms-3">
+                                      {data?.item_hour_day_of_week == 1 && "Monday"}{" "}
+                                      {data?.item_hour_day_of_week == 2 &&
+                                        "Tuesday"}{" "}
+                                      {data?.item_hour_day_of_week == 3 &&
+                                        "Wendesday"}{" "}
+                                      {data?.item_hour_day_of_week == 4 &&
+                                        "Thurday"}{" "}
+                                      {data?.item_hour_day_of_week == 5 && "Friday"}{" "}
+                                      {data?.item_hour_day_of_week == 6 &&
+                                        "Saturday"}{" "}
+                                      {data?.item_hour_day_of_week == 7 && "Sunday"}{" "}
+                                      {data?.item_hour_open_time},{" "}
+                                      {data?.item_hour_close_time}
+                                    </h5>
+                                  )}
+                                  {
+                                    !data?.day &&
+                                    <h5
+                                      role="button"
+                                      data-bs-toggle="modal" data-bs-target="#hourdEdit"
+                                      onClick={() => Uptohours(data)}
+                                    >
+                                      <i class="fa fa-pencil-square-o text-color ms-2" aria-hidden="true"></i>
+                                    </h5>
+                                  }
+                                  <h5
+                                    onClick={() => {
+                                      hours.splice(index, 1);
+                                      setHours(hours);
+                                      const newArray = hours.filter(
+                                        (item) => item !== data
+                                      );
+                                      setHours(newArray);
+                                      // handleDelete(data.id)
+                                    }}
+                                  >
+                                    <i
+                                      className="fa fa-trash ms-1 text-danger cursor-pointer"
+                                      aria-hidden="true"
+                                    ></i>
+                                  </h5>
+                                </div>
+                              ))}
+                            </div>
+                            <div className="d-none">
+                              <div className="mb-3">
+                                <h5>{t("Exceptions")}</h5>
+                                <p>
+                                  Hours for holidays and vacations. The date of
+                                  exception is required, please make sure the opening
+                                  time is earlier than the closing time. Otherwise,
+                                  the exception opening hour won't be saved. Time
+                                  range: 00:00-24:00
+                                </p>
+                              </div>
+
+                              <div className="mb-3 col-lg-2 col-md-3 col-sm-4">
+                                <label
+                                  for="exampleFormControlInput1"
+                                  className="form-label"
+                                >
+                                  {t("Date of Exception")}
+                                </label>
+                                <input
+                                  type="date"
+                                  className="form-control"
+                                  name="day"
+                                  placeholder=""
+                                  value={ExceptValues?.day}
+                                  onChange={DateOFException}
+                                // {...formik.getFieldProps("day_Excep")}
+                                />
+                                {/* <Calendar 
                                 className="form-control"
                                 name="day"
                                 placeholder=""
                                 value={ExceptValues?.day}
                                 onChange={DateOFException}
                                 showIcon /> */}
-                          </div>
+                              </div>
 
-                          <div className="mb-3 col-lg-2 col-md-3 col-sm-4">
-                            <label
-                              for="exampleFormControlInput1"
-                              className="form-label"
-                            >
-                              {t("Open Hour")}
-                            </label>
-                            <select
-                              className="form-select"
-                              aria-label="Default select example"
-                              name="open_hours"
-                              // {...formik.getFieldProps("open_hour1")}
-                              value={ExceptValues?.open_hours}
-                              onChange={DateOFException}
-                            >
-                              <option selected value="0">
-                                0
-                              </option>
-                              {[...Array(24)].map((x, i) => (
-                                <option value={i + 1}>{i + 1}</option>
-                              ))}
-                            </select>
-                          </div>
+                              <div className="mb-3 col-lg-2 col-md-3 col-sm-4">
+                                <label
+                                  for="exampleFormControlInput1"
+                                  className="form-label"
+                                >
+                                  {t("Open Hour")}
+                                </label>
+                                <select
+                                  className="form-select"
+                                  aria-label="Default select example"
+                                  name="open_hours"
+                                  // {...formik.getFieldProps("open_hour1")}
+                                  value={ExceptValues?.open_hours}
+                                  onChange={DateOFException}
+                                >
+                                  <option selected value="0">
+                                    0
+                                  </option>
+                                  {[...Array(24)].map((x, i) => (
+                                    <option value={i + 1}>{i + 1}</option>
+                                  ))}
+                                </select>
+                              </div>
 
-                          <div className="mb-3 col-lg-2 col-md-3 col-sm-4">
-                            <label
-                              for="exampleFormControlInput1"
-                              className="form-label"
-                            >
-                              {t("Open Minute")}
-                            </label>
-                            <select
-                              className="form-select"
-                              aria-label="Default select example"
-                              name="open_minit"
-                              // {...formik.getFieldProps("open_min1")}
-                              value={ExceptValues?.open_minit}
-                              onChange={DateOFException}
-                            >
-                              <option selected value="0">
-                                0
-                              </option>
-                              {[...Array(59)].map((x, i) => (
-                                <option value={i + 1}>{i + 1}</option>
-                              ))}
-                            </select>
-                          </div>
+                              <div className="mb-3 col-lg-2 col-md-3 col-sm-4">
+                                <label
+                                  for="exampleFormControlInput1"
+                                  className="form-label"
+                                >
+                                  {t("Open Minute")}
+                                </label>
+                                <select
+                                  className="form-select"
+                                  aria-label="Default select example"
+                                  name="open_minit"
+                                  // {...formik.getFieldProps("open_min1")}
+                                  value={ExceptValues?.open_minit}
+                                  onChange={DateOFException}
+                                >
+                                  <option selected value="0">
+                                    0
+                                  </option>
+                                  {[...Array(59)].map((x, i) => (
+                                    <option value={i + 1}>{i + 1}</option>
+                                  ))}
+                                </select>
+                              </div>
 
-                          <div className="mb-3 col-lg-2 col-md-3 col-sm-4">
-                            <label
-                              for="exampleFormControlInput1"
-                              className="form-label"
-                            >
-                              {t("Close Hour")}
-                            </label>
-                            <select
-                              className="form-select"
-                              aria-label="Default select example"
-                              name="close_hours"
-                              // {...formik.getFieldProps("close_hour1")}
-                              value={ExceptValues?.close_hours}
-                              onChange={DateOFException}
+                              <div className="mb-3 col-lg-2 col-md-3 col-sm-4">
+                                <label
+                                  for="exampleFormControlInput1"
+                                  className="form-label"
+                                >
+                                  {t("Close Hour")}
+                                </label>
+                                <select
+                                  className="form-select"
+                                  aria-label="Default select example"
+                                  name="close_hours"
+                                  // {...formik.getFieldProps("close_hour1")}
+                                  value={ExceptValues?.close_hours}
+                                  onChange={DateOFException}
 
-                            >
-                              <option selected value="0">
-                                0
-                              </option>
-                              {[...Array(24)].map((x, i) => (
-                                <option disabled={i + 1 > ExceptValues?.open_hours ? false : true} value={i + 1}>{i + 1}</option>
-                              ))}
-                            </select>
-                          </div>
-                          <div className="mb-3 col-lg-2 col-md-3 col-sm-4">
-                            <label
-                              for="exampleFormControlInput1"
-                              className="form-label"
-                            >
-                              {t("Close Minute")}
-                            </label>
-                            <select
-                              className="form-select"
-                              aria-label="Default select example"
-                              // {...formik.getFieldProps("close_min1")}
-                              name="close_minit"
-                              value={ExceptValues?.close_minit}
-                              onChange={DateOFException}
-                            >
-                              <option selected value="0">
-                                0
-                              </option>
-                              {[...Array(59)].map((x, i) => (
-                                <option value={i + 1}>{i + 1}</option>
-                              ))}
-                            </select>
-                          </div>
-                          <div className="mb-3 col-lg-2 col-md-3 col-sm-4 d-flex align-items-end add_hours">
-                            <button
-                              type="button"
-                              className="btn btn-theme rounded fw-light w-100 text-truncate"
-                              onClick={() => {
-                                setExceptionHour((p) => [...p, ExceptValues]),
-                                  setExceptValues(initialhours);
-                              }}
-                              disabled={ExceptValues?.day ? false : true}
-                            >
-                              + {t("Add Exceptions")}
-                            </button>
-                          </div>
-                        </div>
-                        </>
+                                >
+                                  <option selected value="0">
+                                    0
+                                  </option>
+                                  {[...Array(24)].map((x, i) => (
+                                    <option disabled={i + 1 > ExceptValues?.open_hours ? false : true} value={i + 1}>{i + 1}</option>
+                                  ))}
+                                </select>
+                              </div>
+                              <div className="mb-3 col-lg-2 col-md-3 col-sm-4">
+                                <label
+                                  for="exampleFormControlInput1"
+                                  className="form-label"
+                                >
+                                  {t("Close Minute")}
+                                </label>
+                                <select
+                                  className="form-select"
+                                  aria-label="Default select example"
+                                  // {...formik.getFieldProps("close_min1")}
+                                  name="close_minit"
+                                  value={ExceptValues?.close_minit}
+                                  onChange={DateOFException}
+                                >
+                                  <option selected value="0">
+                                    0
+                                  </option>
+                                  {[...Array(59)].map((x, i) => (
+                                    <option value={i + 1}>{i + 1}</option>
+                                  ))}
+                                </select>
+                              </div>
+                              <div className="mb-3 col-lg-2 col-md-3 col-sm-4 d-flex align-items-end add_hours">
+                                <button
+                                  type="button"
+                                  className="btn btn-theme rounded fw-light w-100 text-truncate"
+                                  onClick={() => {
+                                    setExceptionHour((p) => [...p, ExceptValues]),
+                                      setExceptValues(initialhours);
+                                  }}
+                                  disabled={ExceptValues?.day ? false : true}
+                                >
+                                  + {t("Add Exceptions")}
+                                </button>
+                              </div>
+                            </div>
+                          </>
                         }
                       </div>
 
@@ -3802,6 +3848,32 @@ function Listing() {
           </div>
         </div>
       </div>
+
+      <button type="button" id="planUpgradePopup" className="d-none" data-bs-toggle="modal" data-bs-target="#upgradeplans"></button>
+      <div className="modal fade" id="upgradeplans" tabindex="-1" aria-labelledby="upgradeplansLabel" aria-hidden="true">
+        <div className="modal-dialog modal-dialog-centered">
+          <div className="modal-content">
+            <div className="modal-body p-4">
+              <div className="d-flex justify-content-end"> <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+              <div className="d-flex justify-content-center p-2">
+                <div>
+                  <div className="mb-4 d-flex justify-content-center">
+                    <img className="popup_img_logo" src="/assets/images/icon/logo.png" />
+                  </div>
+                  <div className="text-center">
+                    <p className="fs-20 fw-bold text-color">You Discovered a Premium Feature </p>
+                    <div className="d-flex justify-content-center text-center">
+                      <h4 className="fs-20  lh-base">{ErrMsg ?? 'Total listing count over for your subscription package'}</h4>
+                    </div>
+                    <button type='button ' data-bs-dismiss="modal" aria-label="Close" className="btn popup_btn_logo w-100 fw-light rounded mt-4 w-100" onClick={() => router.push('/plans')}>To Access Upgrade Now</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </CommonLayout>
   </>
   );

@@ -504,6 +504,7 @@ const Review = () => {
                     />
                   </div>
                 ))}
+                
               <div className="modal fade" id="upgradeplans" tabindex="-1" aria-labelledby="upgradeplansLabel" aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered">
                   <div className="modal-content">

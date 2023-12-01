@@ -26,6 +26,7 @@
     "@mui/x-data-grid": "^6.18.2",
     "@mui/x-date-pickers": "^6.18.2",
     "@mui/x-date-pickers-pro": "^6.18.2",
+    "@react-google-maps/api": "^2.19.2",
     "@react-oauth/google": "^0.11.0",
     "@reduxjs/toolkit": "^1.9.7",
     "@types/react-slick": "^0.23.8",
