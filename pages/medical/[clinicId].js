@@ -731,7 +731,7 @@ export default function DoctorDetails({ args }) {
                   </slick-list> */}
                             </Slider>
                             {
-                               DoctorDetails?.galleries?.length > 4 && <>
+                              DoctorDetails?.galleries?.length > 4 && <>
                                 <div onClick={() => gotoPrev()}><img src="/assets/images/tatlub-img/slid-3.png" className="slide-left" alt="..." /></div>
                                 <div onClick={() => gotoNext()}><img src="/assets/images/tatlub-img/slid-4.png" className="slide-right" alt="..." /></div>
                               </>
@@ -1232,11 +1232,11 @@ export default function DoctorDetails({ args }) {
                                     />
                                   </div>
                                   {
-                        PreviewImg && 
-                        <div className="">
-                          <img src={PreviewImg} onError={(e) => e.currentTarget.src = "/assets/images/tatlub-img/No.jpg"} className=" mx-2 pre_imd " />
-                        </div>
-                        }
+                                    PreviewImg &&
+                                    <div className="">
+                                      <img src={PreviewImg} onError={(e) => e.currentTarget.src = "/assets/images/tatlub-img/No.jpg"} className=" mx-2 pre_imd " />
+                                    </div>
+                                  }
                                 </div>
                                 <button
                                   className="btn submit_btn"

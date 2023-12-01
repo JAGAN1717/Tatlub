@@ -420,94 +420,94 @@ function OdreDetails({ OrderD }, args) {
                                     <div className='col-xl-8 h-100 mb-3'>
                                         <div className='odered_card h-100 d-flex flex-column justify-content-between'>
                                             <div>
-                                            <div className='mb-4'>
-                                                <h4 className='fs-25 fw-bold'>{t('Order Status')}</h4>
-                                            </div>
-                                            <div className='bg-light rounded-4 p-3 d-sm-flex justify-content-between align-items-center mb-4'>
-                                                <div className='mb-3'>
+                                                <div className='mb-4'>
+                                                    <h4 className='fs-25 fw-bold'>{t('Order Status')}</h4>
+                                                </div>
+                                                <div className='bg-light rounded-4 p-3 d-sm-flex justify-content-between align-items-center mb-4'>
                                                     <div className='mb-3'>
-                                                        <h4 className='text-secondary fs-18 lh-base'>{t("Order Number")}</h4>
-                                                        <h4 className='fs-18 fw-bold lh-base complete_1'>{orderData?.order_code ?? orderData?.unique_id}</h4>
+                                                        <div className='mb-3'>
+                                                            <h4 className='text-secondary fs-18 lh-base'>{t("Order Number")}</h4>
+                                                            <h4 className='fs-18 fw-bold lh-base complete_1'>{orderData?.order_code ?? orderData?.unique_id}</h4>
+                                                        </div>
+                                                        <div className=''>
+                                                            <h4 className='text-secondary fs-18 lh-base'>{t("Date")}</h4>
+                                                            <h4 className='fs-18 lh-base fw-bold'>{moment(orderData?.created_at ?? '', 'YYYY-MM-DD HH:mm:ss').format('MMMM D, YYYY')}</h4>
+                                                        </div>
                                                     </div>
-                                                    <div className=''>
-                                                        <h4 className='text-secondary fs-18 lh-base'>{t("Date")}</h4>
-                                                        <h4 className='fs-18 lh-base fw-bold'>{moment(orderData?.created_at ?? '', 'YYYY-MM-DD HH:mm:ss').format('MMMM D, YYYY')}</h4>
-                                                    </div>
-                                                </div>
-                                                <div className='mb-3'>
                                                     <div className='mb-3'>
-                                                        <h4 className='text-secondary fs-18 lh-base'>{t("Total")}</h4>
-                                                        <h4 className='fs-18 lh-base fw-bold'>{orderData?.total && t("QAR")+ ' ' + parseInt(orderData?.total) + '.00'}</h4>
+                                                        <div className='mb-3'>
+                                                            <h4 className='text-secondary fs-18 lh-base'>{t("Total")}</h4>
+                                                            <h4 className='fs-18 lh-base fw-bold'>{orderData?.total && t("QAR") + ' ' + parseInt(orderData?.total) + '.00'}</h4>
+                                                        </div>
+                                                        <div className=''>
+                                                            <h4 className='text-secondary fs-18 lh-base'>{t("Payment Method")}</h4>
+                                                            <h4 className='fs-18 lh-base fw-bold'>{t("CASH_ON_DELIVERY")}</h4>
+                                                        </div>
                                                     </div>
-                                                    <div className=''>
-                                                        <h4 className='text-secondary fs-18 lh-base'>{t("Payment Method")}</h4>
-                                                        <h4 className='fs-18 lh-base fw-bold'>{t("CASH_ON_DELIVERY")}</h4>
+                                                </div>
+
+                                                {/* start of order Status */}
+                                                <div className="mb-5 w-100 align-items-center justify-content-center step_order">
+                                                    <div className="d-none d-md-block">
+                                                        <Box sx={{ width: '100%' }}>
+                                                            <Stepper activeStep={activeIndex} orientation='horizontal' alternativeLabel sx={{ direction: 'ltr' }}>
+                                                                {Orderstatus.map((label, index) => (
+                                                                    <Step key={label} >
+                                                                        <StepLabel><span className={`fw-bold text-uppercase fs-18  ${activeIndex == index ? 'text-color' : 'text-secondary '}`}>{label?.name}</span></StepLabel>
+                                                                    </Step>
+                                                                ))}
+                                                            </Stepper>
+                                                        </Box>
+                                                    </div>
+
+                                                    <div className="d-md-none">
+                                                        <Box sx={{ width: '100%' }}>
+                                                            <Stepper activeStep={activeIndex} orientation='vertical' sx={{ direction: 'ltr' }}>
+                                                                {Orderstatus.map((label, index) => (
+                                                                    <Step key={label}>
+                                                                        <StepLabel><span className={`fw-bold text-uppercase  ${activeIndex == index ? 'text-color' : 'text-dark'}`}>{label?.name}</span></StepLabel>
+                                                                    </Step>
+                                                                ))}
+                                                            </Stepper>
+                                                        </Box>
                                                     </div>
                                                 </div>
                                             </div>
 
-                                            {/* start of order Status */}
-                                            <div className="mb-5 w-100 align-items-center justify-content-center step_order">
-                                                <div className="d-none d-md-block">
-                                                    <Box sx={{ width: '100%' }}>
-                                                        <Stepper activeStep={activeIndex}  orientation='horizontal' alternativeLabel sx={{  direction: 'ltr'}}>
-                                                            {Orderstatus.map((label, index) => (
-                                                                <Step key={label} >
-                                                                    <StepLabel><span className={`fw-bold text-uppercase fs-18  ${activeIndex == index ? 'text-color' : 'text-secondary '}`}>{label?.name}</span></StepLabel>
-                                                                </Step>
-                                                            ))}
-                                                        </Stepper>
-                                                    </Box>
-                                                </div>
+                                            {/* Product list */}
+                                            {
+                                                productList?.map((product, index) => (
+                                                    <div className='card rounded-4 p-3 mb-3' key={index}>
+                                                        <div className='row align-items-center showwww'>
+                                                            <div className=' col-md-8 mb-lg-0 mb-3'>
+                                                                <div className='d-sm-flex align-items-center'>
+                                                                    <div className=' mb-sm-auto mb-3 rounded-3 d-flex justify-content-center bg-secondary-subtle  p-2'>
+                                                                        <img src={product?.product?.product_image_medium} className="orde_img2 object-fit-contain" />
+                                                                    </div>
+                                                                    <div className='mx-sm-3'>
+                                                                        <h4 className='text-capitalize complete_2 fs-20 fw-bold  lh-base'>{product?.product?.product_name}</h4>
+                                                                        <h4 className='text-secondary  fw-normal lh-base fs-20'>{JSON.parse(product?.quantity)} {t("QTY")}</h4>
+                                                                        <h4 className='text-color fw-normal lh-base fs-20'>{t("QAR")} {product?.product?.product_price}</h4>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
 
-                                                <div className="d-md-none">
-                                                    <Box sx={{ width: '100%' }}>
-                                                        <Stepper activeStep={activeIndex} orientation='vertical' sx={{ direction: 'ltr' }}>
-                                                            {Orderstatus.map((label, index) => (
-                                                                <Step key={label}>
-                                                                    <StepLabel><span className={`fw-bold text-uppercase  ${activeIndex == index ? 'text-color' : 'text-dark'}`}>{label?.name}</span></StepLabel>
-                                                                </Step>
-                                                            ))}
-                                                        </Stepper>
-                                                    </Box>
-                                                </div>
-                                            </div>
-                                            </div>
 
-                                        {/* Product list */}
-                                        {
-                                        productList?.map((product, index) => (
-                                            <div className='card rounded-4 p-3 mb-3' key={index}>
-                                            <div className='row align-items-center showwww'>
-                                              <div className=' col-md-8 mb-lg-0 mb-3'>
-                                                <div className='d-sm-flex align-items-center'>
-                                                  <div className=' mb-sm-auto mb-3 rounded-3 d-flex justify-content-center bg-secondary-subtle  p-2'>
-                                                    <img src={product?.product?.product_image_medium} className="orde_img2 object-fit-contain" />
-                                                  </div>
-                                                  <div className='mx-sm-3'>
-                                                    <h4 className='text-capitalize complete_2 fs-20 fw-bold  lh-base'>{product?.product?.product_name}</h4>
-                                                    <h4 className='text-secondary  fw-normal lh-base fs-20'>{JSON.parse(product?.quantity)} {t("QTY")}</h4>
-                                                    <h4 className='text-color fw-normal lh-base fs-20'>{t("QAR")} {product?.product?.product_price}</h4>
-                                                  </div>
-                                                </div>
-                                              </div>
-                        
-                        
-                                              <div className=' col-md-4  col-6 mb-sm-0 mb-3 d-sm-flex justify-content-lg-end align-items-center'>
-                                                <div className=''>
-                                                    <button type='button' className='btn btn-lead1 mt-0 text-truncate' onClick={() => { setProductId(product?.product?.id); toggle() }} >{t("Write a Review")}</button>
-                                                </div>
-                                              </div>
-                        
-                                            </div>
-                                          </div>
-                                        ))
-                                    }
+                                                            <div className=' col-md-4  col-6 mb-sm-0 mb-3 d-sm-flex justify-content-lg-end align-items-center'>
+                                                                <div className=''>
+                                                                    <button type='button' className='btn btn-lead1 mt-0 text-truncate' onClick={() => { setProductId(product?.product?.id); toggle() }} >{t("Write a Review")}</button>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                ))
+                                            }
                                         </div>
                                     </div>
                                     <div className='col-xl-4  mb-3'>
                                         <div className='odered_card h-100'>
-                                           <div className='mb-3'>
+                                            <div className='mb-3'>
                                                 <h4 className='fs-25 fw-bold'>{t('Order Details')}</h4>
                                             </div>
                                             <div className='mb-3'>
@@ -534,30 +534,30 @@ function OdreDetails({ OrderD }, args) {
                                                     <h4 className='fs-18 lh-base complete_2 fw-bold'>{userData?.address}</h4>
                                                 </div>
                                             </div>
-                                            <hr/>
+                                            <hr />
                                             <div className=''>
                                                 <div className='mb-3'>
-                                                <h4 className='fs-25 fw-bold'>{t("Total Amount")}</h4>
+                                                    <h4 className='fs-25 fw-bold'>{t("Total Amount")}</h4>
                                                 </div>
                                                 <div className=''>
                                                     <div className='d-flex justify-content-between mb-3'>
-                                                    <h4 className='fs-18 text-secondary lh-base'>{t("Sub Total")} </h4>
-                                                    <h4 className='fs-18 lh-base fw-bold'>{parseInt(orderData?.subtotal ?? 0) + ".00"} {t("QAR")}</h4>
+                                                        <h4 className='fs-18 text-secondary lh-base'>{t("Sub Total")} </h4>
+                                                        <h4 className='fs-18 lh-base fw-bold'>{parseInt(orderData?.subtotal ?? 0) + ".00"} {t("QAR")}</h4>
                                                     </div>
                                                     <div className='d-flex justify-content-between mb-3'>
-                                                    <h4 className='fs-18 text-secondary lh-base'>{t("Shipping Charge")} </h4>
-                                                    <h4 className='fs-18 lh-base fw-bold'>{parseInt(orderData?.shipping_cost ?? 0) + ".00"} {t("QAR")}</h4>
+                                                        <h4 className='fs-18 text-secondary lh-base'>{t("Shipping Charge")} </h4>
+                                                        <h4 className='fs-18 lh-base fw-bold'>{parseInt(orderData?.shipping_cost ?? 0) + ".00"} {t("QAR")}</h4>
                                                     </div>
                                                     <div className='d-flex justify-content-between mb-3'>
-                                                    <h4 className='fs-18 text-secondary lh-base'>{t("Tax")} </h4>
-                                                    <h4 className='fs-18 lh-base fw-bold'>{parseInt(orderData?.tax ?? 0) + ".00"} {t("QAR")}</h4>
+                                                        <h4 className='fs-18 text-secondary lh-base'>{t("Tax")} </h4>
+                                                        <h4 className='fs-18 lh-base fw-bold'>{parseInt(orderData?.tax ?? 0) + ".00"} {t("QAR")}</h4>
                                                     </div>
                                                 </div>
-                                                <hr/>
-                                                    <div className='d-flex justify-content-between '>
+                                                <hr />
+                                                <div className='d-flex justify-content-between '>
                                                     <h4 className='fs-18 lh-base fw-bold'>{t("Total")} </h4>
                                                     <h4 className='fs-18 lh-base fw-bold'>{parseInt(orderData?.total ?? 0) + ".00"} {t("QAR")}</h4>
-                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

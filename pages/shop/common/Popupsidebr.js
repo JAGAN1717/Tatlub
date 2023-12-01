@@ -151,7 +151,7 @@ const Popupsidebar = ({ colClass, layoutList }) => {
     filterContext.setSelectedColor("");
   };
 
-  useEffect(() => {}, [
+  useEffect(() => { }, [
     selectedBrands,
     selectedColor,
     selectedSize,
@@ -344,14 +344,14 @@ const Popupsidebar = ({ colClass, layoutList }) => {
                 <Row>
                   {/* Product Box */}
                   {!data ||
-                  !data.products ||
-                  !data.products.items ||
-                  data.products.items.length === 0 ||
-                  loading ? (
+                    !data.products ||
+                    !data.products.items ||
+                    data.products.items.length === 0 ||
+                    loading ? (
                     data &&
-                    data.products &&
-                    data.products.items &&
-                    data.products.items.length === 0 ? (
+                      data.products &&
+                      data.products.items &&
+                      data.products.items.length === 0 ? (
                       <Col xs="12">
                         <div>
                           <div className="col-sm-12 empty-cart-cls text-center">

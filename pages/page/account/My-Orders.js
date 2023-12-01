@@ -59,7 +59,7 @@ function My_orders() {
   const priceBodyTemplate = (product) => {
     // if (product?.product != null) {
     // return <h4>{t("QAR")} {product?.product?.product_price}</h4>;
-      return <h4>{t("QAR")} {parseInt(product?.total)}</h4>;
+    return <h4>{t("QAR")} {parseInt(product?.total)}</h4>;
     // }
   };
 
@@ -69,23 +69,23 @@ function My_orders() {
 
   const nameBodyTemplate = (product) => {
 
-      // return <h4 className='text-capitalize'>{product.product?.product_name}</h4>;
-      return <h4 className='text-capitalize'>{product.unique_id}</h4>;
+    // return <h4 className='text-capitalize'>{product.product?.product_name}</h4>;
+    return <h4 className='text-capitalize'>{product.unique_id}</h4>;
   };
 
   const statusBodyTemplate = (product) => {
     // if (product?.product != null) {
-      return <Tag value={t(getSeverity2(product))} severity={getSeverity(product)}></Tag>;
+    return <Tag value={t(getSeverity2(product))} severity={getSeverity(product)}></Tag>;
     // }
   };
 
   const trackBodyTemplate = (product) => {
     // if (product?.product != null) {
-      return (
-        <Link href={{ pathname: `/orders/${product?.id}`, query: { id: product?.id  } }}>
-          <button type='button' className='btn btn-theme p-2 rounded' >{product.order_status?.id == 6 ? t('View Details') : t('Track Order')}</button>
-        </Link>
-      );
+    return (
+      <Link href={{ pathname: `/orders/${product?.id}`, query: { id: product?.id } }}>
+        <button type='button' className='btn btn-theme p-2 rounded' >{product.order_status?.id == 6 ? t('View Details') : t('Track Order')}</button>
+      </Link>
+    );
     // }
   };
 
@@ -203,7 +203,7 @@ function My_orders() {
                   </div>
                 }
               </div>
-            
+
               {
                 oderlist?.slice(0, sliceOrder).map((data, index) => (
                   <div className='card rounded-4 p-3 mb-3' key={index}>
@@ -222,7 +222,7 @@ function My_orders() {
 
                       {/* <div className='col-sm-2 mb-sm-0 mb-3 d-sm-flex  justify-content-center'>
                       </div> */}
-                      
+
                       <div className='col-lg-3 col-md-4 col-6 mb-sm-0 mb-3  d-sm-flex justify-content-lg-end align-items-center'>
                         <div className=''>
                           <Tag value={t(getSeverity2(data))} className='p-2 rounded-4' severity={getSeverity(data)}></Tag>
@@ -231,7 +231,7 @@ function My_orders() {
 
                       <div className='col-lg-3 col-md-4  col-6 mb-sm-0 mb-3 d-sm-flex justify-content-lg-end align-items-center'>
                         <div className=''>
-                          <Link href={{ pathname: `/orders/${data?.order_id}`, query: { id: data?.order_id,ids: data?.id} }}>
+                          <Link href={{ pathname: `/orders/${data?.order_id}`, query: { id: data?.order_id, ids: data?.id } }}>
                             <button type='button' className='btn btn-lead1 mt-0 text-truncate' >{data?.product?.order_status?.id == 6 ? t('View Details') : t('Track Order')}</button>
                           </Link>
                         </div>
@@ -250,13 +250,13 @@ function My_orders() {
               }
 
               {
-                oderlist.length == 0 && 
+                oderlist.length == 0 &&
                 <div className="text-center">
                   <img src="/assets/images/tatlub-img/not_Found.png" className="" />
                   <p className="text-muted">{("Order Not Found!")}</p>
                 </div>
               }
-              
+
             </>
             }
 

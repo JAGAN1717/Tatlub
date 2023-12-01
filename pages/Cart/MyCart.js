@@ -4,12 +4,12 @@ import Cart from './common/Cart';
 import authenticated from '../../components/auth/auth';
 import Seo from '../../seo/seo'
 
- function MyCart() {
+function MyCart() {
   return (<>
-  <CommonLayout>
-  <Seo title={`My Cart`}  />
-    <Cart />
-  </CommonLayout>
+    <CommonLayout>
+      <Seo title={`My Cart`} />
+      <Cart />
+    </CommonLayout>
   </>
   )
 }

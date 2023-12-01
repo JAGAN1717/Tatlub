@@ -916,10 +916,10 @@ const MasterParallaxBanner = ({ trending, Recommended, videoList }) => {
                       productCategory[data]?.length > 6 &&
                       <div className="">
                         <h5 className="pb-0 text-color text-capitalize cursor-pointer fs-12"
-                         onClick={() => router.push({
-                          pathname: `/category/product/${ productCategory[data][0]?.categorySlug}`,
-                          // query: { Category: productCategory[data][0]?.cat_id, searchList: 'product' }
-                           })}>
+                          onClick={() => router.push({
+                            pathname: `/category/product/${productCategory[data][0]?.categorySlug}`,
+                            // query: { Category: productCategory[data][0]?.cat_id, searchList: 'product' }
+                          })}>
                           {t("view More")}{" "}
                           <span>
                             <i className={`fa ${context?.state == 'en' ? 'fa-angle-left' : 'fa-angle-right'} fs-6 pb-0 ms-2`}></i>
@@ -935,9 +935,9 @@ const MasterParallaxBanner = ({ trending, Recommended, videoList }) => {
                           src={productCategory[data][0]?.banner_image}
                           className="new_nome"
                           onClick={() => router.push({
-                          pathname: `/category/product/${ productCategory[data][0]?.categorySlug}`, 
-                          // query: { Category: productCategory[data][0]?.cat_id, searchList: 'product' }
-                         })}
+                            pathname: `/category/product/${productCategory[data][0]?.categorySlug}`,
+                            // query: { Category: productCategory[data][0]?.cat_id, searchList: 'product' }
+                          })}
                           alt="not_found"
                           onError={(e) =>
                           (e.currentTarget.src =
@@ -1116,7 +1116,7 @@ const MasterParallaxBanner = ({ trending, Recommended, videoList }) => {
                                   key={i}
                                   onClick={() =>
                                     router.push({
-                                      pathname:`/brand/product/${value.slug}`,
+                                      pathname: `/brand/product/${value.slug}`,
                                       // query: { brand: value.slug, searchList: 'product' },
                                     })
                                   }

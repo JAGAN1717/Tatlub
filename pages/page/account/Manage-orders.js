@@ -24,21 +24,21 @@ import * as XLSX from 'xlsx';
 import Link from 'next/link';
 
 
-function Manage_orders() { 
+function Manage_orders() {
   const { userData } = useContext(Usercontex)
   const [oderlist, setOrderlist] = useState([])
   const [isLoading, setIsLoading] = useState(false);
   const [Status, setStatus] = useState([]);
   const [url, setUrl] = useState();
-  const [viewD,setViewD] = useState('')
-  const [rcdata,setRcData] = useState([])
+  const [viewD, setViewD] = useState('')
+  const [rcdata, setRcData] = useState([])
   const [expandedRows, setExpandedRows] = useState(null);
   // const toast = useRef(null);
   const [selectedStatus, setSelectedStatus] = useState(null);
   const [OrderId, setOrderId] = useState(null);
   const { t } = useTranslation();
 
-  console.log("viewDviewD",viewD)
+  console.log("viewDviewD", viewD)
 
   const handleStatusChange = (status) => {
     let body = {
@@ -70,8 +70,8 @@ function Manage_orders() {
       let data = res.data?.filter(e => e.unique_id != null)
       setOrderlist(data)
       let rcvalue = []
-       data.map(v => {
-        rcvalue.push({...v,children:v?.order_details})
+      data.map(v => {
+        rcvalue.push({ ...v, children: v?.order_details })
       })
       setRcData(rcvalue)
       setIsLoading(false)
@@ -97,7 +97,7 @@ function Manage_orders() {
   useEffect(() => {
     fetchOrderList()
     orderStatus()
-  }, []) 
+  }, [])
 
   const formatCurrency = (value) => {
     return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
@@ -144,9 +144,9 @@ function Manage_orders() {
     // </div>)
 
     return (
-      <Link href={{ pathname: `/page/account/ManageOrderInfo`, query: { id: product?.id  } }}>
-      <button type='button' className='btn btn-theme p-2 rounded' >{t('View Details')}</button>
-    </Link>
+      <Link href={{ pathname: `/page/account/ManageOrderInfo`, query: { id: product?.id } }}>
+        <button type='button' className='btn btn-theme p-2 rounded' >{t('View Details')}</button>
+      </Link>
     )
   };
 
@@ -170,7 +170,7 @@ function Manage_orders() {
 
   const columns = [
     {
-      title: "Tracking Number" ,
+      title: "Tracking Number",
       dataIndex: 'unique_id',
       key: 'unique_id',
       align: 'center',
@@ -200,11 +200,11 @@ function Manage_orders() {
         let fromhour = moment.utc(date?.created_at).local().startOf('seconds').fromNow()
         return (
           <span className="whitespace-nowrap">
-           {fromhour != 'Invalid date' ? fromhour : ''}
+            {fromhour != 'Invalid date' ? fromhour : ''}
           </span>
         );
       },
-    }, 
+    },
     {
       title: t('Status'),
       dataIndex: 'order_status',
@@ -230,11 +230,11 @@ function Manage_orders() {
       key: 'actions',
       align: "center",
       render: (data) => (
-        <button type='button' onClick={()=>setViewD(data)} className='btn btn-theme fw-normal rounded p-2 '>{t('View Details')}</button>
+        <button type='button' onClick={() => setViewD(data)} className='btn btn-theme fw-normal rounded p-2 '>{t('View Details')}</button>
       ),
     },
   ]
- 
+
   const getSeverity2 = (status) => {
     switch (status) {
       case '1':
@@ -353,19 +353,19 @@ function Manage_orders() {
         </DataTable>
       </div>
     );
-  }; 
+  };
 
   const expandedRowRender = (record) => {
     const childColumns = [
       {
-        title: "Order ID" ,
+        title: "Order ID",
         dataIndex: 'order_id',
         key: 'order_id',
         align: 'center',
         width: 150,
       },
       {
-        title: "Product Name" ,
+        title: "Product Name",
         dataIndex: 'products',
         key: 'products',
         align: 'center',
@@ -374,14 +374,14 @@ function Manage_orders() {
         ),
       },
       {
-        title: "Price" ,
+        title: "Price",
         dataIndex: 'price',
         key: 'price',
         align: 'center',
         width: 150,
       },
       {
-        title: "Quantity" ,
+        title: "Quantity",
         dataIndex: 'quantity',
         key: 'quantity',
         align: 'center',
@@ -400,8 +400,8 @@ function Manage_orders() {
         pagination={false}
       />
     );
-  }; 
-  
+  };
+
 
   const exportToExcel = () => {
     // Sample data for Sheet 1
@@ -410,7 +410,7 @@ function Manage_orders() {
       { name: 'Jane Smith', age: 30, city: 'San Francisco', date: '2023-11-20 06:10:44' },
       // Add more data as needed
     ];
-    
+
     // Sample data for Sheet 2
     const dataSheet2 = [
       { product: 'Laptop', price: 1000, quantity: 5, date: '2023-11-24 06:10:44' },
@@ -424,11 +424,11 @@ function Manage_orders() {
     // Add Sheet 1
     const sheet1 = XLSX.utils.json_to_sheet(dataSheet1);
     XLSX.utils.book_append_sheet(workbook, sheet1, 'Sheet 1');
-  
+
     // Add Sheet 2
     const sheet2 = XLSX.utils.json_to_sheet(dataSheet2);
     XLSX.utils.book_append_sheet(workbook, sheet2, 'Sheet 2');
-  
+
     // Save the workbook
     XLSX.writeFile(workbook, 'exported_data.xlsx');
 
@@ -440,7 +440,7 @@ function Manage_orders() {
     // document.body.appendChild(link);
     // link.click();
     // document.body.removeChild(link);
-  }; 
+  };
 
   const exportOrder = () => {
     // const jsonData = JSON.stringify(oderlist);
@@ -454,7 +454,7 @@ function Manage_orders() {
     // a.click();
     // document.body.removeChild(a);
     // URL.revokeObjectURL(url);
-  
+
     const workbook = XLSX.utils.book_new();
 
     const sheet = XLSX.utils.json_to_sheet(oderlist);
@@ -462,10 +462,10 @@ function Manage_orders() {
     let product = []
     oderlist?.map(data => {
       data?.order_details?.map(data2 => {
-        product.push(data2?.products,data2)
+        product.push(data2?.products, data2)
       })
     })
- 
+
     const sheet2 = XLSX.utils.json_to_sheet(product);
 
     XLSX.utils.book_append_sheet(workbook, sheet, 'Order list');
@@ -475,13 +475,12 @@ function Manage_orders() {
     XLSX.writeFile(workbook, 'exported_orders.xlsx');
 
   }
-   
+
 
 
   return (
     <CommonLayout parent="home" title="Manage Orders">
       <Seo title={`Manage Orders`} />
-
       <section className='Mange_order mb-3 '>
         <Container>
           <div className="card empty-wishlist shadow-sm p-4">
@@ -493,18 +492,18 @@ function Manage_orders() {
                   <input placeholder="Search In This Store" />
                 </div> */}
                 {
-                oderlist?.length > 0 &&
-                // <i title='Export Order' role='button' onClick={exportOrder} className="fa fa-cloud-download fs-4 text-color " aria-hidden="true"></i>
-                <button
-                type="button"
-                className="btn px-5 btn_cart ms-sm-3 fs-5 fw-normal mb-2 rounded"
-                onClick={exportOrder}
-              >
-               <i class="fa fa-cloud-download  me-2 " aria-hidden="true"></i> 
+                  oderlist?.length > 0 &&
+                  // <i title='Export Order' role='button' onClick={exportOrder} className="fa fa-cloud-download fs-4 text-color " aria-hidden="true"></i>
+                  <button
+                    type="button"
+                    className="btn px-5 btn_cart ms-sm-3 fs-5 fw-normal mb-2 rounded"
+                    onClick={exportOrder}
+                  >
+                    <i class="fa fa-cloud-download  me-2 " aria-hidden="true"></i>
 
-                {t("Export Order")}
-              </button>
-               }
+                    {t("Export Order")}
+                  </button>
+                }
               </div>
             </div>
 
@@ -532,8 +531,8 @@ function Manage_orders() {
                     <Column header={t("TOTAL")} body={TotalBodyTemplate}></Column>
                     <Column header={t("ORDER DATE")} body={CreatedOrder}></Column>
                     <Column header={t("ACTION STATUS")} body={StatusBodyTemplate}></Column>
-                  </DataTable> 
- 
+                  </DataTable>
+
                   {/* {
                     viewD ?  
                    <ManageOrderInfo orderD={viewD} /> 
@@ -551,12 +550,12 @@ function Manage_orders() {
                    />
                   } */}
                 </div> :
-                 <div className="text-center">
+                <div className="text-center">
                   {/* <img src="/assets/images/tatlub-img/Manage Orders.png"  className=""/> */}
                   <img src="/assets/images/tatlub-img/not_Found.png" className="" />
                   <p className="text-muted">{t("Order Not Found")}</p>
                 </div>
-                }
+            }
           </div>
         </Container>
       </section>

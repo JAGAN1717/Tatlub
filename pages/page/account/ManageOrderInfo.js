@@ -442,8 +442,8 @@ function ManageOrderInfo({ orderD }) {
 
                                                             <div className=' col-md-4  col-6 mb-sm-0 mb-3 d-sm-flex justify-content-lg-end align-items-center'>
                                                                 <div className='w-100'>
-                                                                   <div className="w-100" onClick={() => setOrderId(product?.id)} >
-                                                                       <select class="form-select fs-5 p-3 w-100" value={product?.order_status ?? '0'} onChange={(e) => {  handleStatusChange(e.target.value) }} aria-label="Default select example">
+                                                                    <div className="w-100" onClick={() => setOrderId(product?.id)} >
+                                                                        <select class="form-select fs-5 p-3 w-100" value={product?.order_status ?? '0'} onChange={(e) => { handleStatusChange(e.target.value) }} aria-label="Default select example">
                                                                             {
                                                                                 Status?.map((data, i) => (
                                                                                     <option className='text-capitalize' value={data?.id} key={i}>{t(data?.name)}</option>

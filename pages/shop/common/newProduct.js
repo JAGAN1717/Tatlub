@@ -34,9 +34,9 @@ const NewProduct = () => {
       <Slider className="offer-slider slide-1">
         <div>
           {!data ||
-          !data.newProducts ||
-          data.newProducts.length === 0 ||
-          loading ? (
+            !data.newProducts ||
+            data.newProducts.length === 0 ||
+            loading ? (
             "loading"
           ) : (
             <>
@@ -73,9 +73,9 @@ const NewProduct = () => {
         </div>
         <div>
           {!data ||
-          !data.newProducts ||
-          data.newProducts.length === 0 ||
-          loading ? (
+            !data.newProducts ||
+            data.newProducts.length === 0 ||
+            loading ? (
             "loading"
           ) : (
             <>

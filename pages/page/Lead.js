@@ -59,7 +59,7 @@ const Review = () => {
   const [date, setDate] = useState(null);
   const { t } = useTranslation();
 
-  console.log("jhfsjdsdld",  dayjs(startdate).format('YYYY-MM-DD'))
+  console.log("jhfsjdsdld", dayjs(startdate).format('YYYY-MM-DD'))
 
   const handleEnd = (e) => {
     // console.log("hhkgk",moment(startdate).isBefore(e.value))
@@ -101,7 +101,7 @@ const Review = () => {
         progress: undefined,
         theme: "dark",
       });
-    } else if(enddate) {
+    } else if (enddate) {
       setIsLoading(true);
       let id = userData?.id;
       let start = startdate ? dayjs(startdate).format('YYYY-MM-DD') : ''
@@ -117,7 +117,7 @@ const Review = () => {
           console.error("err12", err.message);
           setIsLoading(false);
         });
-    }else {
+    } else {
       setIsLoading(true);
       let id = userData?.id;
       getLeadslist(id)
@@ -140,7 +140,7 @@ const Review = () => {
 
 
 
-  
+
 
 
   return (
@@ -407,31 +407,31 @@ const Review = () => {
                     <div className="d-flex align-items-center lead_dates">
                       <div className="row">
                         <div class=" row new_date  col d-flex align-items-center  justify-content-between d-none">
-                        <label for="endDate" class="col-sm-2 col-form-label fs-16 fw-normal">{t("From")}</label>
+                          <label for="endDate" class="col-sm-2 col-form-label fs-16 fw-normal">{t("From")}</label>
                           <div class="col-sm-10">
-                          <input id="startDate" name="startDate"  data-date-format="DD/MM/YYYY" className="form-control fs-16" type="date" value={startdate} onChange={(e) => {setStartDate(e.target.value); }} class="form-control" />
+                            <input id="startDate" name="startDate" data-date-format="DD/MM/YYYY" className="form-control fs-16" type="date" value={startdate} onChange={(e) => { setStartDate(e.target.value); }} class="form-control" />
                           </div>
                         </div>
 
                         <div class=" row new_date  col d-flex  align-items-center justify-content-between d-none">
                           <label for="endDate" class="col-sm-2 col-form-label fs-16 fw-normal">{t("To")}</label>
                           <div class="col-sm-10">
-                            <input id="endDate" name="endDate" className="fs-16 form-control rounded-3"  placeholder="dd/mm/yyyy" data-date-format="DD/MM/YYYY" type="date" disabled={startdate ? false : true} value={enddate} onChange={(e) => { fetchLeadList(e.target.value); setEndDate(e.target.value) }} class="form-control" />
+                            <input id="endDate" name="endDate" className="fs-16 form-control rounded-3" placeholder="dd/mm/yyyy" data-date-format="DD/MM/YYYY" type="date" disabled={startdate ? false : true} value={enddate} onChange={(e) => { fetchLeadList(e.target.value); setEndDate(e.target.value) }} class="form-control" />
                           </div>
                         </div>
 
                         <div class=" col d-flex  align-items-center justify-content-between">
-                        <label for="endDate" class="col-sm-2 col-form-label fs-16 fw-normal">{t("From")}</label>
-                        <LocalizationProvider dateAdapter={AdapterDayjs} dateFormats={"DD/MM/YYYY"}>
-                          <DatePicker format="DD/MM/YYYY" value={startdate} onChange={(e) => setStartDate(e)} />
-                        </LocalizationProvider>
+                          <label for="endDate" class="col-sm-2 col-form-label fs-16 fw-normal">{t("From")}</label>
+                          <LocalizationProvider dateAdapter={AdapterDayjs} dateFormats={"DD/MM/YYYY"}>
+                            <DatePicker format="DD/MM/YYYY" value={startdate} onChange={(e) => setStartDate(e)} />
+                          </LocalizationProvider>
                         </div>
 
                         <div class=" col d-flex  align-items-center justify-content-between">
-                        <label for="endDate" class="col-sm-2 col-form-label fs-16 fw-normal">{t("To")}</label>
-                        <LocalizationProvider  dateAdapter={AdapterDayjs}  >
-                          <DatePicker  format="DD/MM/YYYY"  disabled={startdate ? false : true} value={enddate} onChange={(e) => { fetchLeadList(e); setEndDate(e) }} />
-                        </LocalizationProvider>
+                          <label for="endDate" class="col-sm-2 col-form-label fs-16 fw-normal">{t("To")}</label>
+                          <LocalizationProvider dateAdapter={AdapterDayjs}  >
+                            <DatePicker format="DD/MM/YYYY" disabled={startdate ? false : true} value={enddate} onChange={(e) => { fetchLeadList(e); setEndDate(e) }} />
+                          </LocalizationProvider>
                         </div>
                       </div>
                     </div>
@@ -442,7 +442,7 @@ const Review = () => {
               <div className="my-4">
                 {
                   filterleadlist &&
-                  <h4 className="fw-normal fs-5">{t("Filter Results")} : <span className="fs-18 fw-bold"> {leadlist?.length ?? 0} {t("Lead Found")}</span> </h4>  
+                  <h4 className="fw-normal fs-5">{t("Filter Results")} : <span className="fs-18 fw-bold"> {leadlist?.length ?? 0} {t("Lead Found")}</span> </h4>
                 }
               </div>
 

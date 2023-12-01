@@ -16,7 +16,7 @@ const Addons = ({ addonlist, addontId, selectplans, setAddondsId, postSubscripti
 
     const { t } = useTranslation();
 
-    const [total,setTotal] = useState(parseInt(selectplans?.plan_price ?? 0))
+    const [total, setTotal] = useState(parseInt(selectplans?.plan_price ?? 0))
 
     const MenuProps = {
         // PaperProps: {
@@ -36,23 +36,23 @@ const Addons = ({ addonlist, addontId, selectplans, setAddondsId, postSubscripti
 
     const handleCheckboxChange = (event) => {
         const id = addontId.find((num) => num === event)
-        const price = addonlist?.find((p)=> p?.id === event)
+        const price = addonlist?.find((p) => p?.id === event)
         //    setAddondsId((pram)=>[...pram,event])
         id ? setAddondsId(addontId.filter((num) => num !== id)) : setAddondsId((pram) => [...pram, event])
 
         setTotal(total + parseInt(price?.price ?? 0))
-        id ? setTotal(total - parseInt(price?.price ?? 0)) :  setTotal(total + parseInt(price?.price ?? 0))
+        id ? setTotal(total - parseInt(price?.price ?? 0)) : setTotal(total + parseInt(price?.price ?? 0))
     };
 
 
-    useEffect(()=> {
-        if(selectedCategory?.length == 0){
+    useEffect(() => {
+        if (selectedCategory?.length == 0) {
             setAddondsId([])
             setTotal(parseInt(selectplans?.plan_price ?? 0))
         }
-    },[selectedCategory])
+    }, [selectedCategory])
 
-    
+
 
 
 
@@ -206,7 +206,7 @@ const Addons = ({ addonlist, addontId, selectplans, setAddondsId, postSubscripti
                                 addonlist?.map((data, index) => {
                                     // const pricef = data?.subscription_addons_price?.filter(res => res?.category_id == selectedCategory?.id)
                                     return (
-                                        <div className="col-lg-4 col-sm-6 h-100 mb-3 cursor-pointer"  key={index} onClick={() => selectedCategory?.length > 0 && document.getElementById(`flexCheckDefault${index}`)?.click()}>
+                                        <div className="col-lg-4 col-sm-6 h-100 mb-3 cursor-pointer" key={index} onClick={() => selectedCategory?.length > 0 && document.getElementById(`flexCheckDefault${index}`)?.click()}>
                                             <div className={`card rounded-4 p-3  ${addontId.find((num) => num === data?.id) ? 'afterSelect' : 'beforeSelect'}`}>
                                                 <div className="d-flex justify-content-between align-items-center">
                                                     <div >
@@ -214,7 +214,7 @@ const Addons = ({ addonlist, addontId, selectplans, setAddondsId, postSubscripti
                                                         {selectedCategory?.length > 0 ? <h3 className='fs-16 lh-base fw-500 mb-0'>{t("QAR")} {parseInt(data?.price ?? 0)}</h3> : ''}
                                                     </div>
                                                     <div class="form-check mx-2 ">
-                                                        <input class="form-check-input border fs-20"  type="checkbox" disabled={!selectedCategory?.length > 0} checked={addontId.find((num) => num === data?.id)} onChange={() => {handleCheckboxChange(data?.id)}} value="" id={`flexCheckDefault${index}`} />
+                                                        <input class="form-check-input border fs-20" type="checkbox" disabled={!selectedCategory?.length > 0} checked={addontId.find((num) => num === data?.id)} onChange={() => { handleCheckboxChange(data?.id) }} value="" id={`flexCheckDefault${index}`} />
                                                     </div>
                                                 </div>
                                             </div>
@@ -235,12 +235,12 @@ const Addons = ({ addonlist, addontId, selectplans, setAddondsId, postSubscripti
 
                     <div className="d-sm-flex justify-content-between align-items-center">
                         <div className="d-flex align-items-center justify-content-sm-start justify-content-between  mb-sm-0 mb-3">
-                         <h4 className="fs-18 lh-base mb-0">{selectplans?.plan_name}</h4>
-                         <h4 className="fs-25 mx-2 lh-base  mb-0 text-color fw-bold">{t("QAR")} {total}</h4>
+                            <h4 className="fs-18 lh-base mb-0">{selectplans?.plan_name}</h4>
+                            <h4 className="fs-25 mx-2 lh-base  mb-0 text-color fw-bold">{t("QAR")} {total}</h4>
                         </div>
 
                         <div className="">
-                        <button type="button" onClick={() => postSubscription()} disabled={!selectedCategory?.length > 0 || !addontId?.length > 0} className="btn btn_filter1 rounded-4 w-100 ">{t("CONTINUE")}</button>
+                            <button type="button" onClick={() => postSubscription()} disabled={!selectedCategory?.length > 0 || !addontId?.length > 0} className="btn btn_filter1 rounded-4 w-100 ">{t("CONTINUE")}</button>
                         </div>
                     </div>
                 </div>

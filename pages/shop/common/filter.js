@@ -42,12 +42,12 @@ const FilterPage = ({
   return (
     <>
       <a href={null} onClick={() => ToggleSidebar()}>
-          <div className="setting-sidebar1 d-lg-none " id="setting-icon1">
-            <div>
-              <i className="fa fa-filter" aria-hidden="true"></i>
-            </div>
+        <div className="setting-sidebar1 d-lg-none " id="setting-icon1">
+          <div>
+            <i className="fa fa-filter" aria-hidden="true"></i>
           </div>
-        </a>
+        </div>
+      </a>
       <div className="d-lg-none d-block">
         <div className={`sidebar ${isOpen == true ? "active" : ""}`}>
           <div className="sd-header">
@@ -176,60 +176,60 @@ const FilterPage = ({
         style={sidebarView ? { left: "0px" } : {}}
       >
         <div className="sideFilter">
-        <div className="collection-filter-block shadow-none">
-          <div
-            className="collection-mobile-back"
-            onClick={() => closeSidebar()}
-          >
-            <span className="filter-back">
-              <i className="fa fa-angle-left" aria-hidden="true"></i>{" "}
-              {t("back")}
-            </span>
-          </div>
-          <Category setFilters={setfilter} filters={filter} filterCategory={filterCategey} />
-        </div>
-        <div className="collection-filter-block shadow-none">
-          <div
-            className="collection-mobile-back"
-            onClick={() => closeSidebar()}
-          >
-            <span className="filter-back">
-              <i className="fa fa-angle-left" aria-hidden="true"></i>{" "}
-              {t("back")}
-            </span>
-          </div>
-          <Brand filterbyBrand={filterBrand} filterbrandIds={filterbrandId} setbyFilter={setBrandfilters} />
-        </div>
-        <div className="collection-filter-block shadow-sm d-none">
-          <div
-            className="collection-mobile-back"
-            onClick={() => closeSidebar()}
-          >
-            <span className="filter-back">
-              <i className="fa fa-angle-left" aria-hidden="true"></i>{" "}
-              {t("back")}
-            </span>
-          </div>
-
-          <div className="collection-collapse-block  open">
-            <h3
-              className={
-                isOpen ? "collapse-block-title" : "collapse-block-title1"
-              }
-              onClick={toggleBrand}
+          <div className="collection-filter-block shadow-none">
+            <div
+              className="collection-mobile-back"
+              onClick={() => closeSidebar()}
             >
-              {t("Business Type")}
-            </h3>
-            <Collapse isOpen={isOpen}>
-              <div className="collection-collapse-block-content">
-                <div className="collection-brand-filter">
-                  <ul className="">
-                    <li className="form-check mb-3">
-                      <label className="form-check-label fw-bolder">
-                        Data Not Found
-                      </label>
-                    </li>
-                    {/* <li className="form-check mb-3">
+              <span className="filter-back">
+                <i className="fa fa-angle-left" aria-hidden="true"></i>{" "}
+                {t("back")}
+              </span>
+            </div>
+            <Category setFilters={setfilter} filters={filter} filterCategory={filterCategey} />
+          </div>
+          <div className="collection-filter-block shadow-none">
+            <div
+              className="collection-mobile-back"
+              onClick={() => closeSidebar()}
+            >
+              <span className="filter-back">
+                <i className="fa fa-angle-left" aria-hidden="true"></i>{" "}
+                {t("back")}
+              </span>
+            </div>
+            <Brand filterbyBrand={filterBrand} filterbrandIds={filterbrandId} setbyFilter={setBrandfilters} />
+          </div>
+          <div className="collection-filter-block shadow-sm d-none">
+            <div
+              className="collection-mobile-back"
+              onClick={() => closeSidebar()}
+            >
+              <span className="filter-back">
+                <i className="fa fa-angle-left" aria-hidden="true"></i>{" "}
+                {t("back")}
+              </span>
+            </div>
+
+            <div className="collection-collapse-block  open">
+              <h3
+                className={
+                  isOpen ? "collapse-block-title" : "collapse-block-title1"
+                }
+                onClick={toggleBrand}
+              >
+                {t("Business Type")}
+              </h3>
+              <Collapse isOpen={isOpen}>
+                <div className="collection-collapse-block-content">
+                  <div className="collection-brand-filter">
+                    <ul className="">
+                      <li className="form-check mb-3">
+                        <label className="form-check-label fw-bolder">
+                          Data Not Found
+                        </label>
+                      </li>
+                      {/* <li className="form-check mb-3">
                       <input
                         className="form-check-input"
                         type="checkbox"
@@ -276,15 +276,15 @@ const FilterPage = ({
                         Retailer
                       </label>
                     </li> */}
-                  </ul>
+                    </ul>
+                  </div>
                 </div>
-              </div>
-            </Collapse>
+              </Collapse>
+            </div>
           </div>
-        </div>
           <button
             type="button"
-            onClick={() => {document.getElementById("resetFIlterALL")?.click(); setfilter(''); setBrandfilters('')} }
+            onClick={() => { document.getElementById("resetFIlterALL")?.click(); setfilter(''); setBrandfilters('') }}
             className="btn btn_header w-100 py-2"
           >
             {t("Reset Fitler")}

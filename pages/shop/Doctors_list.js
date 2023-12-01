@@ -38,11 +38,11 @@ export default function Doctors_list() {
     } else {
       setSidebarView(!sidebarView)
     }
-  } 
+  }
 
-  useEffect(()=> {
+  useEffect(() => {
     setSContact(Array(doctorsData.length)?.fill(true))
-  },[doctorsData])
+  }, [doctorsData])
 
   // const { isLoading,data,error, isError, } = useQuery(
   //   ['doctor'],
@@ -202,8 +202,9 @@ export default function Doctors_list() {
                                           alt=""
                                           className="doc-img cursor-pointer"
                                           onError={(e) => (e.currentTarget.src = "/assets/images/tatlub-img/No.jpg")}
-                                          onClick={() => router.push({ pathname: `/medical/${value?.item_slug}`,
-                                          //  query: { 'clinicId': value?.id } 
+                                          onClick={() => router.push({
+                                            pathname: `/medical/${value?.item_slug}`,
+                                            //  query: { 'clinicId': value?.id } 
                                           })}
                                         />
                                       </Col>
@@ -212,9 +213,10 @@ export default function Doctors_list() {
                                           <div className="fs-vp-pg d-flex flex-column ">
                                             <div className="mb-auto">
                                               <div className="d-flex align-items-center mb-3">
-                                                <Link href={{ pathname: `/medical/${value?.item_slug}`,
-                                                //  query: { 'clinicId': value?.id }
-                                                  }}>
+                                                <Link href={{
+                                                  pathname: `/medical/${value?.item_slug}`,
+                                                  //  query: { 'clinicId': value?.id }
+                                                }}>
                                                   <h4 className="fw-600 mb-0 text-capitalize foot-cat cursor-pointer vendor-profile-title pe-1">
                                                     {t(value?.item_title)}
                                                   </h4>
@@ -307,20 +309,22 @@ export default function Doctors_list() {
                                               <div className="d-flex ">
                                                 {
                                                   showContact[index] ?
-                                                      <button
-                                                        type="button"
-                                                        onClick={()=> {setSContact((pre)=> {
-                                                          const old  = [...pre];
-                                                          old[index] = false 
+                                                    <button
+                                                      type="button"
+                                                      onClick={() => {
+                                                        setSContact((pre) => {
+                                                          const old = [...pre];
+                                                          old[index] = false
                                                           return old
-                                                        })}}
-                                                        className="btn btn-lead1  d-flex align-items-center justify-content-center"
-                                                      >
-                                                        <i class="fa fa-phone fs-4  me-2 mb-0 pb-0" aria-hidden="true"></i>
-                                                        {/* <img src="/assets/images/tatlub-img/call-2.png " className="btn-img1" /> */}
-                                                        {t('Show Number')}
-                                                      </button>
-                                                     :
+                                                        })
+                                                      }}
+                                                      className="btn btn-lead1  d-flex align-items-center justify-content-center"
+                                                    >
+                                                      <i class="fa fa-phone fs-4  me-2 mb-0 pb-0" aria-hidden="true"></i>
+                                                      {/* <img src="/assets/images/tatlub-img/call-2.png " className="btn-img1" /> */}
+                                                      {t('Show Number')}
+                                                    </button>
+                                                    :
                                                     <a href={"tel:" + value?.item_phone ?? value?.user?.phone}>
                                                       <button
                                                         type="button"
@@ -334,9 +338,10 @@ export default function Doctors_list() {
                                                 }
                                               </div>
                                               <div className="d-flex ">
-                                                <Link href={{ pathname: `/medical/${value?.item_slug}`, 
-                                                // query: { 'clinicId': value?.id }
-                                                 }}>
+                                                <Link href={{
+                                                  pathname: `/medical/${value?.item_slug}`,
+                                                  // query: { 'clinicId': value?.id }
+                                                }}>
                                                   <button
                                                     type="button"
                                                     className="btn btn-lead1 mx-sm-2"

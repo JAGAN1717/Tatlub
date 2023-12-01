@@ -1,4 +1,4 @@
-import React, { useState ,useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { useQuery } from "@apollo/client";
 import { gql } from '@apollo/client';
 import { Collapse } from 'reactstrap';
@@ -33,9 +33,10 @@ const Color = () => {
                                 <h4>Loading</h4>
                                 :
                                 data.getColors.colors.map((color, i) =>
-                                <li className={`${color} ${context.selectedColor === color? 'active' : ''}`} onClick={() => {context.setSelectedColor(color)
-                            }} key={i}></li>
-                                    
+                                    <li className={`${color} ${context.selectedColor === color ? 'active' : ''}`} onClick={() => {
+                                        context.setSelectedColor(color)
+                                    }} key={i}></li>
+
                                 )
                             }
                         </ul>

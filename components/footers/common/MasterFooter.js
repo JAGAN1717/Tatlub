@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext} from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Link from "next/link";
 import {
   Container,
@@ -59,12 +59,12 @@ const MasterFooter = ({
   const [catList3, setCatlist3] = useState(280);
   const [categories, setCategories] = useState([]);
   const [searchCategory, setSerachCategory] = useState("");
-  const [usefulllink,SetuseFulllinks] = useState([]);
+  const [usefulllink, SetuseFulllinks] = useState([]);
   const [copied, setCopied] = useState(false);
   const context = useContext(SettingContext);
   const layoutType = context.layoutFun;
 
-  console.log("layoutTypelayoutType",context?.state)
+  console.log("layoutTypelayoutType", context?.state)
 
   const [activeTab, setActiveTab] = useState("1");
   if (typeof window === "undefined") {
@@ -97,9 +97,9 @@ const MasterFooter = ({
   const shuffleArray = (array) => {
     const shuffledArray = [...array]; // Create a copy of the original array
     for (let i = shuffledArray.length - 1; i > 0; i--) {
-      if(JSON.stringify(shuffledArray[i]?.category_name)?.length < 15 ){
-      const j = Math.floor(Math.random() * (i + 1));
-      [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]]; // Swap elements
+      if (JSON.stringify(shuffledArray[i]?.category_name)?.length < 15) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]]; // Swap elements
       }
     }
     SetuseFulllinks(shuffledArray)
@@ -108,7 +108,7 @@ const MasterFooter = ({
   useEffect(() => {
     setCategories(categoryList);
     shuffleArray(categoryList)
-  },[categoryList]);
+  }, [categoryList]);
 
   useEffect(() => {
     let searchData = [];
@@ -123,9 +123,9 @@ const MasterFooter = ({
           data?.category_name
             .toLowerCase()
             .includes(searchCategory.toLowerCase())
-            // .startsWith(searchCategory.toLowerCase())
+          // .startsWith(searchCategory.toLowerCase())
         ) {
-        
+
           searchData.push(data);
         }
         // if(data?.category_name === searchCategory){
@@ -178,7 +178,7 @@ const MasterFooter = ({
 
         {/* <section className={belowSection}> */}
         <section className={window.location.pathname == '/' ? "light_blue4 pb-4" : "pb-4 bg-white"}>
-          <div className={window.location.pathname == '/' ?  "bg_fg_tp light_blue4 mb-lg-5 mb-3 pb-4" :"bg_fg_tp mb-lg-5 mb-3 pb-4"}>
+          <div className={window.location.pathname == '/' ? "bg_fg_tp light_blue4 mb-lg-5 mb-3 pb-4" : "bg_fg_tp mb-lg-5 mb-3 pb-4"}>
             <div className="container ">
               <Nav
                 tabs
@@ -290,7 +290,7 @@ const MasterFooter = ({
                         className="cursor-pointer foot-cat text-capitalize"
                         onClick={() =>
                           router.push({
-                            pathname:`/category/service/${data.category_slug}`,
+                            pathname: `/category/service/${data.category_slug}`,
                             // query: { Category: data.category_slug,searchList: 'service' },
                           })
                         }
@@ -307,7 +307,7 @@ const MasterFooter = ({
                       View More
                     </small>
                   )}
-                   {categoryList?.length == catList && (
+                  {categoryList?.length == catList && (
                     <small
                       className="text-color cursor-pointer"
                       onClick={() => setCatlist(68)}
@@ -324,7 +324,7 @@ const MasterFooter = ({
                         className="cursor-pointer foot-cat"
                         onClick={() =>
                           router.push({
-                            pathname:`/category/service/${data.category_slug}`,
+                            pathname: `/category/service/${data.category_slug}`,
                             // query: { Category: data.category_slug,searchList: 'service' },
                           })
                         }
@@ -342,7 +342,7 @@ const MasterFooter = ({
                       View More
                     </small>
                   )}
-                   {categoryList?.length == catList1 && (
+                  {categoryList?.length == catList1 && (
                     <small
                       className="text-color cursor-pointer"
                       onClick={() => setCatlist1(136)}
@@ -359,7 +359,7 @@ const MasterFooter = ({
                         className="cursor-pointer foot-cat text-capitalize"
                         onClick={() =>
                           router.push({
-                            pathname:`/category/service/${data.category_slug}`,
+                            pathname: `/category/service/${data.category_slug}`,
                             // query: { Category: data.category_slug,searchList: 'service' },
                           })
                         }
@@ -368,7 +368,7 @@ const MasterFooter = ({
                       </small>
                     );
                   })}
-                   {categoryList?.length > catList2 && (
+                  {categoryList?.length > catList2 && (
                     <small
                       className="text-color cursor-pointer"
                       onClick={() => setCatlist2(categoryList?.length)}
@@ -376,7 +376,7 @@ const MasterFooter = ({
                       View More
                     </small>
                   )}
-                   {categoryList?.length == catList2 && (
+                  {categoryList?.length == catList2 && (
                     <small
                       className="text-color cursor-pointer"
                       onClick={() => setCatlist2(212)}
@@ -394,7 +394,7 @@ const MasterFooter = ({
                         className="cursor-pointer foot-cat text-capitalize"
                         onClick={() =>
                           router.push({
-                            pathname:`/category/service/${data.category_slug}`,
+                            pathname: `/category/service/${data.category_slug}`,
                             // query: { Category: data.category_slug,searchList: 'service' },
                           })
                         }
@@ -403,7 +403,7 @@ const MasterFooter = ({
                       </small>
                     );
                   })}
-                   {categoryList?.length > catList3 && (
+                  {categoryList?.length > catList3 && (
                     <small
                       className="text-color cursor-pointer"
                       onClick={() => setCatlist3(categoryList?.length)}
@@ -411,7 +411,7 @@ const MasterFooter = ({
                       View More
                     </small>
                   )}
-                   {categoryList?.length == catList3 && (
+                  {categoryList?.length == catList3 && (
                     <small
                       className="text-color cursor-pointer"
                       onClick={() => setCatlist3(280)}
@@ -442,7 +442,7 @@ const MasterFooter = ({
                 <small className="text-color cursor-pointer" onClick={()=> document.getElementById('openallCategory')?.click()}>View More</small> */}
             </div>
           </div>
-          
+
           {/* <Container fluid={belowContainerFluid ? belowContainerFluid : ""}> */}
           <Container >
             <Row className="footer-theme partition-f">
@@ -475,9 +475,8 @@ const MasterFooter = ({
                 {/* </Collapse> */}
                 <div className="sub-title mb-3">
                   <div
-                    className={`footer-title ${
-                      isOpen && collapse == 1 ? "active" : ""
-                    } `}
+                    className={`footer-title ${isOpen && collapse == 1 ? "active" : ""
+                      } `}
                   >
                     <h3
                       onClick={() => {
@@ -499,7 +498,7 @@ const MasterFooter = ({
                       <ul className="w-50">
                         <li>
                           <i
-                            className={context.state == 'en' ? 'fa fa-angle-left pe-2':'fa fa-angle-right pe-2'}
+                            className={context.state == 'en' ? 'fa fa-angle-left pe-2' : 'fa fa-angle-right pe-2'}
                             aria-hidden="true"
                           ></i>
                           <Link href={`/page/about-us`}>
@@ -508,18 +507,19 @@ const MasterFooter = ({
                         </li>
                         <li>
                           <i
-                            className={context.state == 'en' ? 'fa fa-angle-left pe-2':'fa fa-angle-right pe-2'}
+                            className={context.state == 'en' ? 'fa fa-angle-left pe-2' : 'fa fa-angle-right pe-2'}
                             aria-hidden="true"
                           ></i>
-                          <Link href={{pathname:"/page/Hiring/category"
-                              //  ,query:{'id':14}
+                          <Link href={{
+                            pathname: "/page/Hiring/category"
+                            //  ,query:{'id':14}
                           }}>
                             <a className="foot-cat">{t("We're Hiring")} </a>
                           </Link>
                         </li>
                         <li>
                           <i
-                            className={context.state == 'en' ? 'fa fa-angle-left pe-2':'fa fa-angle-right pe-2'}
+                            className={context.state == 'en' ? 'fa fa-angle-left pe-2' : 'fa fa-angle-right pe-2'}
                             aria-hidden="true"
                           ></i>
                           {/* <Link href="/page/CustomerCare/CustomerCare-list"> /page/Hiring/Job-list?id=38166 */}
@@ -530,7 +530,7 @@ const MasterFooter = ({
 
                         <li>
                           <i
-                            className={context.state == 'en' ? 'fa fa-angle-left pe-2':'fa fa-angle-right pe-2'}
+                            className={context.state == 'en' ? 'fa fa-angle-left pe-2' : 'fa fa-angle-right pe-2'}
                             aria-hidden="true"
                           ></i>
                           <Link href={`/shop/Listing`}>
@@ -541,7 +541,7 @@ const MasterFooter = ({
                       <ul className="w-50">
                         <li>
                           <i
-                            className={context.state == 'en' ? 'fa fa-angle-left pe-2':'fa fa-angle-right pe-2'}
+                            className={context.state == 'en' ? 'fa fa-angle-left pe-2' : 'fa fa-angle-right pe-2'}
                             aria-hidden="true"
                           ></i>
                           <Link href="/page/account/feedback">
@@ -550,7 +550,7 @@ const MasterFooter = ({
                         </li>
                         <li>
                           <i
-                            className={context.state == 'en' ? 'fa fa-angle-left pe-2':'fa fa-angle-right pe-2'}
+                            className={context.state == 'en' ? 'fa fa-angle-left pe-2' : 'fa fa-angle-right pe-2'}
                             aria-hidden="true"
                           ></i>
                           <Link href="/business">
@@ -559,7 +559,7 @@ const MasterFooter = ({
                         </li>
                         <li>
                           <i
-                            className={context.state == 'en' ? 'fa fa-angle-left pe-2':'fa fa-angle-right pe-2'}
+                            className={context.state == 'en' ? 'fa fa-angle-left pe-2' : 'fa fa-angle-right pe-2'}
                             aria-hidden="true"
                           ></i>
                           <Link href="/page/account/testimonials">
@@ -568,7 +568,7 @@ const MasterFooter = ({
                         </li>
                         <li>
                           <i
-                            className={context.state == 'en' ? 'fa fa-angle-left pe-2':'fa fa-angle-right pe-2'}
+                            className={context.state == 'en' ? 'fa fa-angle-left pe-2' : 'fa fa-angle-right pe-2'}
                             aria-hidden="true"
                           ></i>
                           <Link href="/page/account/contact">
@@ -584,9 +584,8 @@ const MasterFooter = ({
               <Col xl='5' lg='4' md="6" className="mb-3">
                 <div className="sub-title">
                   <div
-                    className={`footer-title ${
-                      isOpen && collapse == 2 ? "active" : ""
-                    } `}
+                    className={`footer-title ${isOpen && collapse == 2 ? "active" : ""
+                      } `}
                   >
                     <h3
                       onClick={() => {
@@ -617,25 +616,25 @@ const MasterFooter = ({
                         </li> */}
                         {
                           usefulllink.length > 0 &&
-                          usefulllink.slice(0,4).map((data,index)=>(
-                        <li key={index}
-                        onClick={() =>
-                          router.push({
-                            pathname:`/category/service/${data.category_slug}`,
-                            // query: { Category: data.category_slug,searchList: 'service' },
-                          })
-                        }
-                        >
-                          <span  className="text-truncate">
-                          <i
-                            className={context.state == 'en' ? 'fa fa-angle-left pe-2':'fa fa-angle-right pe-2'}
-                            aria-hidden="true"
-                          ></i>
-                         
-                            <a className="cursor-pointer foot-cat">{t(data?.category_name)}</a>
-  
-                          </span>
-                        </li>
+                          usefulllink.slice(0, 4).map((data, index) => (
+                            <li key={index}
+                              onClick={() =>
+                                router.push({
+                                  pathname: `/category/service/${data.category_slug}`,
+                                  // query: { Category: data.category_slug,searchList: 'service' },
+                                })
+                              }
+                            >
+                              <span className="text-truncate">
+                                <i
+                                  className={context.state == 'en' ? 'fa fa-angle-left pe-2' : 'fa fa-angle-right pe-2'}
+                                  aria-hidden="true"
+                                ></i>
+
+                                <a className="cursor-pointer foot-cat">{t(data?.category_name)}</a>
+
+                              </span>
+                            </li>
                           ))
                         }
                       </ul>
@@ -644,23 +643,23 @@ const MasterFooter = ({
 
                         {
                           usefulllink.length > 4 &&
-                          usefulllink.slice(4,8).map((data,index)=>(
-                        <li key={index} 
-                        onClick={() =>
-                          router.push({
-                            pathname:`/category/service/${data.category_slug}`,
-                            // query: { Category: data.category_slug,searchList: 'service' },
-                          })
-                        }
-                        >
-                          <span  className="text-truncate">
-                          <i
-                            className={context.state == 'en' ? 'fa fa-angle-left pe-2':'fa fa-angle-right pe-2'}
-                            aria-hidden="true"
-                          ></i>
-                            <a className="cursor-pointer ">{t(data?.category_name)}</a>
-                          </span>
-                        </li>
+                          usefulllink.slice(4, 8).map((data, index) => (
+                            <li key={index}
+                              onClick={() =>
+                                router.push({
+                                  pathname: `/category/service/${data.category_slug}`,
+                                  // query: { Category: data.category_slug,searchList: 'service' },
+                                })
+                              }
+                            >
+                              <span className="text-truncate">
+                                <i
+                                  className={context.state == 'en' ? 'fa fa-angle-left pe-2' : 'fa fa-angle-right pe-2'}
+                                  aria-hidden="true"
+                                ></i>
+                                <a className="cursor-pointer ">{t(data?.category_name)}</a>
+                              </span>
+                            </li>
                           ))
                         }
                       </ul>
@@ -677,13 +676,13 @@ const MasterFooter = ({
                       src={`/assets/images/icon/GooglePlay.png`}
                       alt=""
                       className="img-fluid me-2 mb-2 img_pay_app cursor-pointer"
-                      onClick={()=> window.open('https://play.google.com/store/games?device=windows')}
+                      onClick={() => window.open('https://play.google.com/store/games?device=windows')}
                     />
                     <img
                       src="/assets/images/icon/appstore.png"
                       alt=""
                       className="img-fluid img_pay_app mb-2 cursor-pointer"
-                      onClick={()=> window.open('https://www.apple.com/')}
+                      onClick={() => window.open('https://www.apple.com/')}
                     />
                   </div>
                   <h3 className="fw-bolder mt-lg-5">{t("Follow us")}</h3>
@@ -712,7 +711,7 @@ const MasterFooter = ({
                     </ul>
                   </div>
                 </div>
-               {/* </Collapse> */}
+                {/* </Collapse> */}
               </Col>
             </Row>
             <div className="mt-lg-5 mt-3 mb-3">
@@ -720,14 +719,14 @@ const MasterFooter = ({
                 {t("Explore Tatlub Collection")}
               </h4>
               <p>
-                {categoryList?.slice(categoryList?.length-8, categoryList?.length).map((data, index) => {
+                {categoryList?.slice(categoryList?.length - 8, categoryList?.length).map((data, index) => {
                   return (
                     <span
                       key={index}
                       className="cursor-pointer foot-cat text-capitalize"
                       onClick={() =>
                         router.push({
-                          pathname:`/category/service/${data.category_slug}`,
+                          pathname: `/category/service/${data.category_slug}`,
                           // query: { Category: data.category_slug,searchList: 'service' },
                         })
                       }
@@ -784,7 +783,7 @@ const MasterFooter = ({
               </div>
               <div className="d-flex justify-content-end align-items-center w-100">
                 <button
-                  type="button" 
+                  type="button"
                   className="btn-close text-reset text-end"
                   data-bs-dismiss="offcanvas"
                   aria-label="Close"
@@ -802,7 +801,7 @@ const MasterFooter = ({
                         title={i.category_name}
                         onClick={() =>
                           router.push({
-                            pathname:`/category/service/${i.category_slug}`,
+                            pathname: `/category/service/${i.category_slug}`,
                             // query: { Category: i.category_slug,searchList: 'service' },
                           })
                         }
@@ -812,8 +811,8 @@ const MasterFooter = ({
                           src={i.category_image}
                           className="img-fluid img_category pe-1"
                           onError={(e) =>
-                            (e.currentTarget.src =
-                              "/assets/images/tatlub-img/no1.png")
+                          (e.currentTarget.src =
+                            "/assets/images/tatlub-img/no1.png")
                           }
                         />
                         <span className="cursor-pointer text-truncate foot-cat text-capitalize">
@@ -838,114 +837,114 @@ const MasterFooter = ({
         </div>
       </footer>
 
-              {/* share  popup*/}
+      {/* share  popup*/}
       <div
-          className="modal fade"
-          id={"delete_confirm_popup12212"}
-          aria-hidden="true"
-        >
-          <div className="modal-dialog modal-dialog-centered modal-sm">
-            <div className="modal-content">
-              <div className="modal-header border-0">
-                <h3>{t("Share With Friends")}</h3>
-                <button
-                  type="button"
-                  className="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-                {/* <div className='vendor-icon-img text-dark' data-bs-dismiss='modal'>
+        className="modal fade"
+        id={"delete_confirm_popup12212"}
+        aria-hidden="true"
+      >
+        <div className="modal-dialog modal-dialog-centered modal-sm">
+          <div className="modal-content">
+            <div className="modal-header border-0">
+              <h3>{t("Share With Friends")}</h3>
+              <button
+                type="button"
+                className="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+              {/* <div className='vendor-icon-img text-dark' data-bs-dismiss='modal'>
                     <KTSVG path='/media/icons/duotune/arrows/arr061.svg' className='svg-icon-1' />
                     <i className="fa fa-xmark"></i>
                     </div> */}
-              </div>
-              <div className="modal-body p-3 pb-4 pt-4 ">
-                <div className="d-flex justify-content-between">
-                  <div
-                    className="text-center"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
+            </div>
+            <div className="modal-body p-3 pb-4 pt-4 ">
+              <div className="d-flex justify-content-between">
+                <div
+                  className="text-center"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <FacebookShareButton
+                    url={window.location.href}
                   >
-                    <FacebookShareButton
-                       url={window.location.href}
-                    >
-                      <div
-                        className={
-                          "vendor-icon-img mx-1 cursor-pointer text-light d-flex align-items-center justify-content-center Facebook_xl"
-                        }
-                      >
-                        <i className="fa fa-facebook"></i>
-                      </div>
-                      {t("Facebook")}
-                    </FacebookShareButton>
-                  </div>
-                  <div
-                    className="text-center"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                  >
-                    <WhatsappShareButton
-                       url={window.location.href}
-                    >
-                      <div
-                        className={
-                          "vendor-icon-img mx-1 cursor-pointer text-light d-flex align-items-center justify-content-center Whatsapp_xl"
-                        }
-                        onClick={() =>
-                          window.open(
-                            "https://web.whatsapp.com/"
-                          )
-                        }
-                      >
-                        <i className="fa fa-whatsapp"></i>
-                      </div>
-                      {t("Whatsapp")}
-                    </WhatsappShareButton>
-                  </div>
-
-                  <div
-                    className="text-center position-relative"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                  >
-                    {/* {copied && <span className='position-absolute top-50 start-50 translate-middle'>Copied!</span>} */}
                     <div
                       className={
-                        "vendor-icon-img mx-1 cursor-pointer text-light d-flex align-items-center justify-content-center copy_link_xl"
+                        "vendor-icon-img mx-1 cursor-pointer text-light d-flex align-items-center justify-content-center Facebook_xl"
                       }
-                      onClick={() => {
-                        navigator.clipboard.writeText(
-                          window.location.href
-                        );
-                        setCopied(true);
-                        setTimeout(() => {
-                          setCopied(false);
-                        }, 2000);
-                        toast.info(
-                          "Link copied to clipboard!",
-                          {
-                            position: "bottom-center",
-                            autoClose: 500,
-                            icon: false,
-                            hideProgressBar: true,
-                            closeOnClick: true,
-                            pauseOnHover: true,
-                            draggable: true,
-                            progress: undefined,
-                            theme: "dark",
-                          }
-                        );
-                      }}
                     >
-                      <i className="fa fa-link"></i>
+                      <i className="fa fa-facebook"></i>
                     </div>
-                    {t("Copy Link")}
+                    {t("Facebook")}
+                  </FacebookShareButton>
+                </div>
+                <div
+                  className="text-center"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <WhatsappShareButton
+                    url={window.location.href}
+                  >
+                    <div
+                      className={
+                        "vendor-icon-img mx-1 cursor-pointer text-light d-flex align-items-center justify-content-center Whatsapp_xl"
+                      }
+                      onClick={() =>
+                        window.open(
+                          "https://web.whatsapp.com/"
+                        )
+                      }
+                    >
+                      <i className="fa fa-whatsapp"></i>
+                    </div>
+                    {t("Whatsapp")}
+                  </WhatsappShareButton>
+                </div>
+
+                <div
+                  className="text-center position-relative"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                >
+                  {/* {copied && <span className='position-absolute top-50 start-50 translate-middle'>Copied!</span>} */}
+                  <div
+                    className={
+                      "vendor-icon-img mx-1 cursor-pointer text-light d-flex align-items-center justify-content-center copy_link_xl"
+                    }
+                    onClick={() => {
+                      navigator.clipboard.writeText(
+                        window.location.href
+                      );
+                      setCopied(true);
+                      setTimeout(() => {
+                        setCopied(false);
+                      }, 2000);
+                      toast.info(
+                        "Link copied to clipboard!",
+                        {
+                          position: "bottom-center",
+                          autoClose: 500,
+                          icon: false,
+                          hideProgressBar: true,
+                          closeOnClick: true,
+                          pauseOnHover: true,
+                          draggable: true,
+                          progress: undefined,
+                          theme: "dark",
+                        }
+                      );
+                    }}
+                  >
+                    <i className="fa fa-link"></i>
                   </div>
+                  {t("Copy Link")}
                 </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
     </div>
   );
 };
