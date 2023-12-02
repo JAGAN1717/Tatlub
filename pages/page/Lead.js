@@ -46,7 +46,8 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 const Review = () => {
   const { userData } = useContext(AuthContex);
-  const [startdate, setStartDate] = useState('');
+  const NowDate = new Date()
+  const [startdate, setStartDate] = useState(dayjs(NowDate));
   const [enddate, setEndDate] = useState(null);
   const [activeTab, setActiveTab] = useState("1");
   const router = useRouter()
@@ -59,7 +60,7 @@ const Review = () => {
   const [date, setDate] = useState(null);
   const { t } = useTranslation();
 
-  console.log("jhfsjdsdld", dayjs(startdate).format('YYYY-MM-DD'))
+  // console.log("jhfsjdsdld", dayjs(startdate).format('YYYY-MM-DD'))
 
   const handleEnd = (e) => {
     // console.log("hhkgk",moment(startdate).isBefore(e.value))
