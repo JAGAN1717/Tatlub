@@ -67,6 +67,8 @@ let initialValues = {
 const ProfilePage = () => {
   const { userData, setUserData } = useContext(AuthContex);
   const [image, setImage] = useState()
+  const [Bannerimage, setBannerimage] = useState()
+  const [BannerPrev, setBannerPrev] = useState('')
   const [brocher, setbrocher] = useState()
   const [preimage, setPreimage] = useState("/assets/images/2.jpg")
   const [banners, setbannerslist] = useState("/assets/images/2.jpg")
@@ -97,8 +99,6 @@ const ProfilePage = () => {
     setSpecification({ ...specification, [name]: value })
   }
 
-
-  console.log('skjdshkdsdsd', specifivalue)
 
   const handleUptodat = (e, key) => {
     const { name, value } = e.target;
@@ -398,10 +398,10 @@ const ProfilePage = () => {
 
         //  const id = JSON.parse(sessionStorage.getItem('data')).id
         // document.getElementById('openloaderModal')?.click()
-      setOpen(true)
+        setOpen(true)
         const response = await UpdateProfileData(userId, formdata)
         // document.getElementById('closeloaderModal')?.click();
-      setOpen(false)
+        setOpen(false)
         if (response.status == 200) {
           toast.info('UPDATE SUCCESSFULL', {
             position: "bottom-right",
@@ -510,10 +510,10 @@ const ProfilePage = () => {
         console.log('sdjhgdsdj', formdata)
 
         // document.getElementById('openloaderModal')?.click()
-      setOpen(true)
+        setOpen(true)
         const response = await UpdateProfile1(userId, formdata)
         // document.getElementById('closeloaderModal')?.click();
-      setOpen(false)
+        setOpen(false)
         if (response.status == 200) {
           let jfydf = JSON.parse(localStorage.getItem('data'));
           let fjgkjdsf = {
@@ -555,7 +555,7 @@ const ProfilePage = () => {
       } catch (error) {
         console.error(error)
         // document.getElementById('closeloaderModal')?.click();
-      setOpen(false)
+        setOpen(false)
         // alert(error)
         setStatus('The details is incorrect')
         setSubmitting(false)
@@ -592,10 +592,10 @@ const ProfilePage = () => {
           formdata.append(key, value)
         })
         // document.getElementById('openloaderModal')?.click()
-      setOpen(true)
+        setOpen(true)
         const response = await UpdateProfile2(userId, formdata)
         // document.getElementById('closeloaderModal')?.click();
-      setOpen(false)
+        setOpen(false)
 
         if (response.status == 200) {
           console.log('fggfgf', response)
@@ -690,10 +690,10 @@ const ProfilePage = () => {
         //   }
         // }
         // document.getElementById('closeloaderModal')?.click();
-      setOpen(true)
+        setOpen(true)
         const response = await UpdateProfile3(userId, formdata)
         // document.getElementById('closeloaderModal')?.click();
-      setOpen(false)
+        setOpen(false)
 
 
         // const responce2 =- await UpdateSellerVidoes()
@@ -765,7 +765,7 @@ const ProfilePage = () => {
         });
       } else {
         // document.getElementById('closeloaderModal')?.click();
-      setOpen(false)
+        setOpen(false)
         toast.error('Somthing Went Wrong!', {
           position: "bottom-right",
           autoClose: 2000,
@@ -784,8 +784,8 @@ const ProfilePage = () => {
     }
   }
 
-  
-  
+
+
   const [bannerurl, setbannerurl] = useState()
   const [bannerErr, setbannerErr] = useState(false)
 
@@ -799,17 +799,19 @@ const ProfilePage = () => {
   }
 
   // console.log("ghfjgjh",isHttpValid('https://www.ddfdffdfdff.com/'))
-  
+
   const SaveBanners = async () => {
     var userId = JSON.parse(sessionStorage.getItem('data'))?.id ?? JSON.parse(localStorage.getItem('data'))?.id
     var formdata = new FormData()
     formdata.append(`user_id`, userId);
     formdata.append(`url`, bannerurl);
-    if (mulimg.length > 0) {
-      for (let i = 0; i < mulimg.length; i++) {
-        formdata.append(`image[${i}]`, mulimg[i]);
-      }
-    }
+    formdata.append(`image[${0}]`, Bannerimage);
+    // if (mulimg.length > 0) {
+    //   for (let i = 0; i < mulimg.length; i++) {
+    //     formdata.append(`image[${i}]`, mulimg[i]);
+    //   }
+    // }
+
 
     // document.getElementById('openloaderModal')?.click()
     setOpen(true)
@@ -920,6 +922,15 @@ const ProfilePage = () => {
     }
   }
 
+  const handleBanner = (e) => {
+    try {
+      setBannerimage(e.target.files[0])
+      setBannerPrev(URL.createObjectURL(e.target.files[0]))
+    } catch (err) {
+      console.error('err', err.message)
+    }
+  }
+
   const isValidFileCheck = (file) => {
     const validExtensions = ["pdf", "doc"];
     const fileExtension = file.type?.split("/")[1];
@@ -950,20 +961,20 @@ const ProfilePage = () => {
     }
   }
 
-  const handleBanner = (e) => {
-    try {
-      setbannerslist(e.target.files[0])
-      // setPreimage(URL.createObjectURL(e.target.files[0]))
-      // console.log('yyyyy',e.target.files[0])
-    } catch (err) {
-      console.error('err', err.message)
-    }
-  }
+  // const handleBanner = (e) => {
+  //   try {
+  //     setbannerslist(e.target.files[0])
+  //     // setPreimage(URL.createObjectURL(e.target.files[0]))
+  //     // console.log('yyyyy',e.target.files[0])
+  //   } catch (err) {
+  //     console.error('err', err.message)
+  //   }
+  // }
 
 
   return (
     <>
-     <Backdrop
+      <Backdrop
         sx={{ color: '#fff', height: '100vh', zIndex: (theme) => theme.zIndex.drawer + 1 }}
         open={open}
       // onClick={handleClose}
@@ -1515,11 +1526,11 @@ const ProfilePage = () => {
                               </div>
                             </div>
                           )}
-                        </div></div> 
+                        </div></div>
 
 
 
-                        <div className="col-md-6 mb-3">
+                      <div className="col-md-6 mb-3">
                         <div className=" ">
                           <label className="form-label">{t('Address')}</label>
                           <textarea
@@ -1537,7 +1548,7 @@ const ProfilePage = () => {
                           )}
                         </div></div>
 
-                        <div className="col-md-6 mb-2 ">
+                      <div className="col-md-6 mb-2 ">
                         <div className=" ">
                           <label className="form-label">{t('About')}</label>
                           <textarea className="form-control" {...formik2.getFieldProps('user_about')} />
@@ -1551,7 +1562,7 @@ const ProfilePage = () => {
                         </div></div>
 
 
-                        <div className="col-md-12 mb-3 ">
+                      <div className="col-md-12 mb-3 ">
                         <div className=" ">
                           <label className="form-label">{t('Brochure')}</label>
                           <input
@@ -1642,23 +1653,23 @@ const ProfilePage = () => {
                       <span role='alert' className='text-warning'>{t('you must be enter prefix')} : https://</span>
                     </div>
                   </div>
-                  // :
-                  //   <div className='fv-plugins-message-container'>
-                  //   <div className='fv-help-block'>
-                  //   <span role='alert' className='text-danger'>Enter Valid URL</span>
-                  //   </div>
-                  //   </div>
+                  // : 
+                  // <div className='fv-plugins-message-container'>
+                  // <div className='fv-help-block'>
+                  // <span role='alert' className='text-danger'>Enter Valid URL</span>
+                  // </div>
+                  // </div>
                 }
               </div>
               <div className="mb-3 col-md-8 ">
                 <div className="input-group">
                   <input
                     type="file"
-                    // value={mulimg}
+                    // value={Bannerimage ?? ''}
                     className="form-control "
-                    multiple="multiple"
+                    // multiple="multiple"
                     // accept="video/*"
-                    onChange={(e) => handleMulimg(e)}
+                    onChange={(e) => handleBanner(e)}
                   />
                   <button type="button" onClick={() => SaveBanners()} className="btn btn_header px-4 py-1 input-group-text">
                     {" "}
@@ -1667,6 +1678,29 @@ const ProfilePage = () => {
                 </div>
               </div>
             </div>
+
+            {
+              BannerPrev &&
+              <div className="">
+                <div className="row align-items-center">
+                  <div className="col-3">
+                    <div className="multi_imgP2">
+                      <img src={BannerPrev} onError={(e) => e.currentTarget.src = "/assets/images/tatlub-img/No.jpg"} className="rounded-3 object-fit-contain bg-light w-100" style={{ height: '120px' }} />
+                      <div
+                        className="position-absolute remove_galImg cursor-pointer top-50 start-50 translate-middle"
+                        onClick={() => {
+                          setBannerPrev('');
+                          setBannerimage('')
+                        }}
+                      >
+                        <i className="fa fa-remove text-danger"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            }
+
           </div>
 
           <div className="card profile-edit p-3 mt-3 shadow-sm">

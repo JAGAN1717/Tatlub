@@ -21376,14 +21376,12 @@ hr {
 
 .profile-edit .form-control {
   color: #2f2f2f !important;
-  font-weight: 500 !important;
-
+  font-weight: 400 !important;
 }
 
 .profile-edit .form-select {
   color: #2f2f2f !important;
-  font-weight: 500 !important;
-
+  font-weight: 400 !important;
 }
 
 .fs_review_card {
@@ -23238,6 +23236,7 @@ footer {
   min-width: 79px !important;
 }
 
+
 .haAclf {
   .uaxL4e-RbRzK {
     background: #f5f5f5;
@@ -23831,6 +23830,14 @@ body .btn_open_map {
 
 .fs-16 {
   font-size: 16px !important;
+}
+
+.fs-23{
+  font-size: 23px !important;
+}
+
+.fs-17 {
+  font-size: 17px !important;
 }
 
 .fs-15 {
@@ -24921,8 +24928,8 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .card__sub-img {
-  width: 34px;
-  height: 34px;
+  width: 30px;
+  height: 30px;
 }
 
 .btn_plan {
@@ -24944,12 +24951,14 @@ input[type="number"]::-webkit-outer-spin-button {
 
 
 .sub_plans {
-  @media (min-width:992px) {
-    .col-lg-3 {
-      flex: 0 0 auto;
-      width: 27% !important;
-    }
-  }
+
+
+  // @media (min-width:992px) {
+  //   .col-lg-3 {
+  //     flex: 0 0 auto;
+  //     width: 27% !important;
+  //   }
+  // }
 
   .sub_card {
     border-radius: 20px;

@@ -44,7 +44,8 @@ const SubscriptionList = () => {
         <CommonLayout>
             <Seo title={`My Subscription`} />
             <section>
-                <div className="container mb-4 mt-3">
+                <div className="container">
+                <div className="mb-4 mt-3">
                     {
                         Loading ?
                             <div className="my-3">
@@ -60,11 +61,11 @@ const SubscriptionList = () => {
                                 <div className="sub_CardList">
                                     <div className="d-sm-flex justify-content-between align-items-center">
                                         <div className="text-center mb-3">
-                                            <h2 className="fs-4">{t('Subscription List')}</h2>
+                                            <h2 className="fs-25 complete_1 mb-0">{t('Subscription List')}</h2>
                                         </div>
                                         <div className="mb-3 text-center">
                                             <Link href={'/plans'} >
-                                                <button type="button" className="btn btn_filter1 rounded-5 fs-15 px-4">{t("Add Addons")}</button>
+                                                <button type="button" className="btn btn_filter1 text-truncate rounded-5  fs-15 px-4 mb-0">{t("Add Addons")}</button>
                                             </Link>
                                         </div>
                                     </div>
@@ -127,40 +128,40 @@ const SubscriptionList = () => {
                                     <div className="row sub_plans">
                                         {
                                             list?.map((data, index) => (
-                                                <div className="col-lg-3 col-md-4 mb-3" key={index}>
-                                                    <div className="border sub_card  p-3 ">
+                                                <div className="col-xl-3 col-lg-4 col-md-6 mb-3" key={index}>
+                                                    <div className="border sub_card p-3">
                                                         <div className="">
-                                                            <div className="mb-4 d-flex align-items-center">
+                                                            <div className="mb-4 d-flex justify-content-center align-items-center">
                                                                 <div className="">
                                                                     <img src="/assets/images/gold2.png" alt="" className="card__sub-img" />
                                                                 </div>
                                                                 <div className="ms-2">
-                                                                    <h4 className="fs-25 mb-0 fw-bold">{data?.plan?.plan_name}</h4>
+                                                                    <h4 className="fs-23 mb-0 complete_1 fw-bold">{data?.plan?.plan_name}</h4>
                                                                 </div>
                                                             </div>
-                                                            <div className="d-flex align-items-center  mb-3">
+                                                            <div className="d-flex align-items-center justify-content-center mb-3">
                                                                 <div className="d-flex align-items-center ">
                                                                     <i class="fa fa-clock-o fs-5 fw-normal text-color" aria-hidden="true"></i>
-                                                                    <h4 className="fw-bold fs-20 mx-2 mb-0">{t("Start Date")} :</h4>
+                                                                    <h4 className="fw-bold fs-17 mx-2 mb-0">{t("Start Date")} :</h4>
                                                                 </div>
                                                                 <div className="">
-                                                                    <h4 className="fs-20 mx-2 mb-0">{moment(data?.subscription_start_date).format('DD/MM/YYYY')}</h4>
+                                                                    <h4 className="fs-17  mb-0">{moment(data?.subscription_start_date).format('DD/MM/YYYY')}</h4>
                                                                 </div>
                                                             </div>
-                                                            <div className="d-flex align-items-center mb-3">
+                                                            <div className="d-flex align-items-center justify-content-center mb-3">
                                                                 <div className="d-flex align-items-center">
                                                                     <i class="fa fa-clock-o fs-5  fw-normal text-color" aria-hidden="true"></i>
-                                                                    <h4 className="fw-bold fs-20 mx-2 mb-0">{t("End Date")}&nbsp;&nbsp;&nbsp;:</h4>
+                                                                    <h4 className="fw-bold fs-17 mx-2 mb-0">{t("End Date")}&nbsp;&nbsp;&nbsp;:</h4>
                                                                 </div>
                                                                 <div className="">
-                                                                    <h4 className="fs-20 mx-2 mb-0">{moment(data?.subscription_end_date).format('DD/MM/YYYY')}</h4>
+                                                                    <h4 className="fs-17  mb-0">{moment(data?.subscription_end_date).format('DD/MM/YYYY')}</h4>
                                                                 </div>
                                                             </div>
                                                             <div className="mt-4">
                                                                 {
                                                                     data?.subscriptions_with_addons?.length > 0 &&
                                                                     data?.subscriptions_with_addons?.map(g => (
-                                                                        <span className="btn btn_plan fs-18"  >{t("QAR")} {parseInt(g?.total_price ?? 0)}</span>
+                                                                        <span className="btn btn_plan fs-17"  >{t("QAR")} {parseInt(g?.total_price ?? 0)}</span>
                                                                     ))
                                                                 }
                                                             </div>
@@ -226,6 +227,8 @@ const SubscriptionList = () => {
                                 </div>
                     }
                 </div>
+                </div>
+
             </section>
         </CommonLayout>
     </>)
