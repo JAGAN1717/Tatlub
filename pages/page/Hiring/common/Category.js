@@ -348,8 +348,8 @@ const Category = () => {
 
     {
       Loading ?
-        <div className="my-3">
-          <div className="loader-wrapper2">
+        <div className="my-3 container">
+          <div className="loader-wrapper2 rounded-4 ">
             {url === "Christmas" ? (
               <div id="preloader"></div>
             ) : (

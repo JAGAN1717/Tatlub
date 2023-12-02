@@ -161,11 +161,11 @@ function ManageOrderInfo({ orderD }) {
     return (
         <CommonLayout>
             <div>
-                <div className='container mx-auto'>
+                <div className='container mx-auto my-4'>
                     {
                         isLoading ? (
-                            <div className="my-3">
-                                <div className="loader-wrapper2 rounded-3">
+                            <div className="my-3 container">
+                                <div className="loader-wrapper2 rounded-4">
                                     <div className="loader"></div>
                                 </div>
                             </div>

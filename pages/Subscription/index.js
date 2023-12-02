@@ -22,10 +22,10 @@ const SubscriptionList = () => {
         setLoading(true)
         let id = userData?.id
         getSubscription(id).then(res => {
-            setlist(res.data)
             if (res.data.length == 0) {
                 router.push('/plans')
             }
+            setlist(res.data)
             setLoading(false)
         }).catch(err => {
             console.log('err', err.message)

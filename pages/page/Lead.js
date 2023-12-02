@@ -147,12 +147,14 @@ const Review = () => {
     <CommonLayout parent="home" title="Lead">
       <Seo title={`Leads`} />
       {isLoading ? (
-        <div className="loader-wrapper2">
+        <div className="container">
+        <div className="loader-wrapper2 rounded-4 mt-4 mb-4">
           {url === "Christmas" ? (
             <div id="preloader"></div>
           ) : (
             <div className="loader"></div>
           )}
+        </div>
         </div>
       ) : (
         <section className="leads mb-4 mt-3">

@@ -406,7 +406,7 @@ function OdreDetails({ OrderD }, args) {
 
             <CommonLayout parent="home" title="Orders">
                 <Seo title={`Orders`} />
-                <div className='container mx-auto'>
+                <div className='container mx-auto my-4'>
                     {
                         isLoading ? (
                             <div className="my-3">

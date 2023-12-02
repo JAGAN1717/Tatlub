@@ -125,8 +125,8 @@ import { useTranslation } from "react-i18next";
     <CommonLayout>  
                 <Seo title={`Shipping`}  />
           {isLoading ? (
-          <div className="my-3">
-          <div className="loader-wrapper2">
+          <div className="my-3 container">
+          <div className="loader-wrapper2 rounded-4">
             {url === "Christmas" ? (
               <div id="preloader"></div>
             ) : (
@@ -135,7 +135,7 @@ import { useTranslation } from "react-i18next";
           </div>
           </div>
         ) : 
-    <section className='p-0 shipping'>
+    <section className='p-0 shipping mb-4 mt-4'>
         {/* <button type="button" className="d-none" id='fetchEditjfjhg' onclick={()=>EditAddressdata(getlocation)}></button> */}
         <div className='container'>
     <div className="mt-3 mb-4">

@@ -403,7 +403,7 @@ const property = () => {
 
 
 
-        <Row className="my-3">
+        <Row className="my-4">
           <Col xl="3" lg="4 d-lg-block d-none">
             <div className=" h-100 me-xl-3 ">
               <div className="recommend_theme_propery ">
@@ -787,7 +787,7 @@ const property = () => {
                       // console.log("hgsdusgdwdk",BHK)
 
                       return(
-                        <div className="recommend_theme_propery my-3" key={index}>
+                        <div className="recommend_theme_propery mb-3" key={index}>
                         <div className="profile-left">
                           <Row>
                             <Col xl="4">

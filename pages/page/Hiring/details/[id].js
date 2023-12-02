@@ -201,8 +201,8 @@ export default function JobDetails({ args }) {
       <div className='container mt-lg-5 mt-3 mb-lg-5 mb-3'>
         {
           Loading ?
-            <div className="my-3">
-              <div className="loader-wrapper2">
+            <div className="my-3 container">
+              <div className="loader-wrapper2 rounded-4">
                 {url === "Christmas" ? (
                   <div id="preloader"></div>
                 ) : (

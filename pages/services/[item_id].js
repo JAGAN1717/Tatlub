@@ -35,7 +35,7 @@ export default function index() {
 
 
   return (
-        <CommonLayout parent="Home" title="Product">
+    <CommonLayout parent="Home" title="Product">
     {/* <Seo title={`${JobData?.item_title}`} description={`${JobData?.item_description}`} /> */}
    <Suspense fallback={<Loader />}>
       <div className='mt-2 mb-3'>

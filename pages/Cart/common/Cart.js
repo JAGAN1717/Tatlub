@@ -226,8 +226,8 @@ export default function Cart() {
     return (<>
         <section className='p-0 mb-5 mt-5'>
             {isLoading ? (
-                <div className="my-3">
-                    <div className="loader-wrapper2">
+                <div className="my-3 container">
+                    <div className="loader-wrapper2 rounded-4">
                         {url === "Christmas" ? (
                             <div id="preloader"></div>
                         ) : (

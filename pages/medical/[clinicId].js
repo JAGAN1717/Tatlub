@@ -316,8 +316,8 @@ export default function DoctorDetails({ args }) {
 
       {
         Loading ?
-          <div className="my-3">
-            <div className="loader-wrapper2">
+          <div className="my-3 container">
+            <div className="loader-wrapper2 rounded-4">
               {url === "Christmas" ? (
                 <div id="preloader"></div>
               ) : (
@@ -325,7 +325,7 @@ export default function DoctorDetails({ args }) {
               )}
             </div>
           </div> : DoctorDetails ?
-            <section className="d-details mb-3">
+            <section className="d-details mb-4 mt-4">
               <Container>
                 <div className=" pt-0">
                   <Row>

@@ -526,12 +526,14 @@ const LeftSidebarPage = ({ setRecom }) => {
     <>
     <Seo title={`${data?.item_title ?? data?.product_name}`} description={`${data?.item_description ?? data?.product_description}`} />
       {isLoading ? (
-        <div className="loader-wrapper2">
+        <div className="container my-4">
+        <div className="loader-wrapper2 rounded-4">
           {url === "Christmas" ? (
             <div id="preloader"></div>
           ) : (
             <div className="loader"></div>
           )}
+        </div>
         </div>
       ) : data && (
         <section className="mt-3">

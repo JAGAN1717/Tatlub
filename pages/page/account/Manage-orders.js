@@ -483,7 +483,7 @@ function Manage_orders() {
       <Seo title={`Manage Orders`} />
       <section className='Mange_order mb-3 '>
         <Container>
-          <div className="card empty-wishlist shadow-sm p-4">
+          <div className="card empty-wishlist shadow-none p-4 mt-4">
             <div className="d-flex align-items-center justify-content-between mb-4">
               <h4 className="fw-bold fs-25">{t("Manage Orders")}</h4>
               <div className="filer-search-wicon ">

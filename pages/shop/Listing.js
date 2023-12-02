@@ -110,10 +110,11 @@ function MapComponent({ lat, lng, setPosition,handleMarkerDragEnd }) {
         <GoogleMap
           mapContainerStyle={containerStyle}
           center={{ lat: lat, lng: lng }}
-          zoom={10}
+          zoom={8}
           onLoad={onLoad}
           onUnmount={onUnmount}
           onClick={handleMarkerDragEnd}
+          options={{ draggableCursor: 'pointer' }}
         >
           <Marker
             position={{ lat: lat, lng: lng }}

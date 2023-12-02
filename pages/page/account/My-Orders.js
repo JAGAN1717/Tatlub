@@ -166,7 +166,7 @@ function My_orders() {
 
       <section className='Mange_order mb-3'>
         <Container>
-          <div className="card empty-wishlist shadow-none p-lg-5 p-4">
+          <div className="card empty-wishlist shadow-none p-lg-5 p-4 mt-3">
             <div className="d-flex align-items-start justify-content-between mb-4">
               <h4 className="fw-bold fs-25">{t("My Orders")}</h4>
               <div className="filer-search-wicon d-none">

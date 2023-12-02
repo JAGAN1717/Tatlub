@@ -3,7 +3,7 @@ import Doctors from '../shop/Doctors_list'
 
 export default function index() {
   return (
-    <div>
+    <div className=''>
         <Doctors />
     </div>
   )

@@ -165,22 +165,24 @@ const SelectCategory = () => {
             <Seo title={`Jobs`} />
 
             {applyJobs ?
-                <div >
+                <div className='mb-4 mt-4' >
                     {
                         isLoading ? (
                             <div className="my-3">
-                                <div className="loader-wrapper2">
-                                    {url === "Christmas" ? (
-                                        <div id="preloader"></div>
-                                    ) : (
-                                        <div className="loader"></div>
-                                    )}
+                                <div className="container">
+                                    <div className="loader-wrapper2 rounded-4 mt-4 mb-4">
+                                        {url === "Christmas" ? (
+                                            <div id="preloader"></div>
+                                        ) : (
+                                            <div className="loader"></div>
+                                        )}
+                                    </div>
                                 </div>
                             </div>
-                        ) :
-                            <div className='container'>
+                        ) : appliedjobs?.length > 0 ?
+                            <div className='container '>
                                 {/* <div className='applied-job row justify-content-start mb-3'> */}
-                                <div className='card  rounded-4 border-0  p-4 mb-4'>
+                                <div className='card  rounded-4 border-0  p-4 '>
                                     <div className="d-flex align-items-center justify-content-between mb-4">
                                         <h4 className="fw-bold fs-4">{t("My Job")}</h4>
                                     </div>
@@ -325,20 +327,23 @@ const SelectCategory = () => {
                                         }
                                     </div>
                                 </div>
-                            </div>
-                    }
-                    {/* {  appliedjobs?.length == 0 &&                
+                            </div> :
+                         appliedjobs?.length == 0 &&                
                            <div className='container'>
                             <div className="card empty-wishlist shadow-sm p-4 mb-3">
+                            <div className="d-flex align-items-center justify-content-between mb-4">
+                                        <h4 className="fw-bold fs-4">{t("My Job")}</h4>
+                                    </div>
                                 <div className="text-center">
                                     <img src="/assets/images/tatlub-img/not_Found.png" className="" />
                                     <h3 className="text-center">{t("DATA NOT FOUND")}</h3>
                                 </div>
                             </div>
-                        </div> } */}
+                        </div> 
+                    }
                 </div> :
                 <div className='container'>
-                    <div className='card empty-wishlist  p-4 mb-4'>
+                    <div className='card empty-wishlist  p-4 mb-4 mt-4'>
                         <div className="d-flex align-items-center justify-content-between mb-4">
                             <h4 className="fw-bold fs-4">{t("Manage Job")}</h4>
                             <div className="filer-search-wicon ">

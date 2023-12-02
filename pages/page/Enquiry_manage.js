@@ -66,15 +66,17 @@ export default function Enquiry_manage() {
                 <Seo title={`Enquiry And Manage Quotes`} />
 
       {isLoading ? (
-        <div className="loader-wrapper2">
+        <div className="container">
+        <div className="loader-wrapper2 rounded-4 mt-4 mb-4">
           {url === "Christmas" ? (
             <div id="preloader"></div>
           ) : (
             <div className="loader"></div>
           )}
         </div>
+        </div>
       ) : (
-        <section className="Mange_Enquiry mb-5">
+        <section className="Mange_Enquiry mb-5 mt-4">
           <Container>
             <div className="card empty-wishlist shadow-sm p-4">
               <div className="d-sm-flex align-items-center justify-content-between">

@@ -556,12 +556,14 @@ const ProfilePage = (args) => {
     <>
       <Seo title={`${seller?.name}`} />
       {isLoading ? (
-        <div className="loader-wrapper2">
+        <div className="container my-4">
+        <div className="loader-wrapper2 rounded-4">
           {url === "Christmas" ? (
             <div id="preloader"></div>
           ) : (
             <div className="loader"></div>
           )}
+        </div>
         </div>
       ) : (
         <div>

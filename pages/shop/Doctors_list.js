@@ -129,7 +129,7 @@ export default function Doctors_list() {
     <CommonLayout title="collection" parent="home">
       <Seo title={`Doctors`} />
 
-      <section className="doctor mb-3">
+      <section className="doctor  mt-4 mb-4">
         <Container>
           {Loading ?
             <div className="my-3">
