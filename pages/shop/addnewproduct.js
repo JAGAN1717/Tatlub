@@ -30,7 +30,7 @@ import Seo from "../../seo/seo";
 import Select from 'react-select';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
-
+import { Editor } from 'primereact/editor';
 
 const ITEM_HEIGHT = 70;
 const ITEM_PADDING_TOP = 8;
@@ -105,6 +105,7 @@ function Addproduct() {
     value: "",
   })
   const [specifivalue, setSpecifivalue] = useState([])
+  const [Editorvalue, setEditorValue] = useState();
 
   const [personName, setPersonName] = React.useState([]);
   const theme = useTheme();
@@ -360,7 +361,8 @@ function Addproduct() {
     product_status: Yup.string().required('product status required'),
     feature_image: Yup.string(),
     // image_gallery:Yup.string(),
-    product_description: Yup.string().required('product description required'),
+    // product_description: Yup.string().required('product description required'),
+    product_description: Yup.string().notRequired(),
     specifications: Yup.string().notRequired(),
     meta_title: Yup.string().notRequired(),
     meta_keyword: Yup.string().notRequired(),
@@ -385,7 +387,8 @@ function Addproduct() {
           "product_status": values.product_status,
           "feature_image": featimg,
           // "image_gallery":galImg,
-          "product_description": values.product_description,
+          // "product_description": values.product_description,
+          "product_description":Editorvalue,
           "specifications": values.specifications,
           "meta_title": values.meta_title,
           "meta_keyword": values.meta_keyword,
@@ -728,7 +731,7 @@ function Addproduct() {
                     )}
                 </div>
 
-                <div className="mb-3 col-sm-12">
+                <div className="mb-3 col-sm-12 d-none">
                   <label className="form-label">{t('Product Description')}</label>
                   <textarea type="text" className="form-control" rows='3' placeholder="" {...formik.getFieldProps('product_description')} />
                   {formik.touched.product_description &&
@@ -741,12 +744,16 @@ function Addproduct() {
                         </div>
                       </div>
                     )}
+                </div> 
+
+                <div className="mb-3 col-sm-12">
+                 <Editor value={Editorvalue} onTextChange={(e) => setEditorValue(e.htmlValue)} style={{ height: '300px' }} />
                 </div>
 
                 <div className="mb-3 col-sm-6 col-lg-6 d-none">
                   <label className="form-label">{t('Specifications')}</label>
                   <textarea type="text" className="form-control" rows='3' placeholder="" {...formik.getFieldProps('specifications')} />
-                  {formik.touched.specifications &&
+                   {formik.touched.specifications &&
                     formik.errors.specifications && (
                       <div className="fv-plugins-message-container">
                         <div className="fv-help-block">

@@ -708,7 +708,7 @@ const [showContact, setSContact] = useState(true)
 
                {
                     JobData?.features?.length > 0 && 
-                    <div className="review_card p-4 mb-4">
+                    <div className="review_card shadow-none p-4 mb-4">
                       <div className="mb-4">
                         <h4 className="fs-5 text-capitalize">{t('quick informations')}</h4>
                       </div>
@@ -746,7 +746,8 @@ const [showContact, setSContact] = useState(true)
         <div className='mb-3'>
           <h4 className="fw-bolder fs-18  mb-3">{t('Job Description')}:</h4>
 
-          <p>{JobData?.item_description}</p>
+          {/* <p>{JobData?.item_description}</p> */}
+          <div className='' dangerouslySetInnerHTML={{__html:JobData?.item_description}} ></div>
           {/* <ul>
             <li>• Conduct user research and testing to gather insights and validate design decisions</li><br />
             <li>• Continuously iterate and improve upon the design of our products</li><br />

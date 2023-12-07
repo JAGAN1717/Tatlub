@@ -421,8 +421,8 @@ export default function JobList({ Loading, Jobdata, wantedjobs, setWantedJobs, s
                           </div> */}
                             </div>
                             {/* <div className='desc mb-3'> */}
-                            <div className='desc mb-3'>
-                              <h6 className='lh-base complete_4'> {data?.item_description}</h6>
+                            <div className='desc mb-3 complete_4' dangerouslySetInnerHTML={{__html:data?.item_description}}>
+                              {/* <h6 className='lh-base complete_4'> {data?.item_description}</h6> */}
                               {/* <p className='text-truncate'><i className='fa fa-angle-right pe-1 ' />  Age within 25 years..</p>
                                    <p className='text-truncate'><i className='fa fa-angle-right pe-1 ' />  with or without experience..</p>
                                    <p className='text-truncate'><i className='fa fa-angle-right pe-1 ' />  Chennai, Tamil Nadu: Reliably commute or planning to.....</p> */}

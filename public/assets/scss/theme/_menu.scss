@@ -263,7 +263,7 @@ header {
             border-radius: 4px;
             &:before {
               content: "\f107";
-              font-family: $font-awesome;
+              // font-family: $font-awesome;
               position: absolute;
             }
           }
@@ -323,7 +323,7 @@ header {
                 border-radius: 4px;
                 &:before {
                   content: "\f105";
-                  font-family: $font-awesome;
+                  // font-family: $font-awesome;
                   position: absolute;
                 }
               }
@@ -987,7 +987,7 @@ header {
               border-radius: 4px;
               &:before {
                 content: "\f105";
-                font-family: FontAwesome;
+                // font-family: FontAwesome;
                 position: absolute;
               }
             }
@@ -1238,7 +1238,7 @@ header {
     a {
       .sub-arrow::before {
         content: "\f107";
-        font-family: $font-awesome;
+        // font-family: $font-awesome;
         position: absolute;
       }
     }
@@ -1284,7 +1284,7 @@ header {
         .sub-arrow {
           &:before {
             content: "\f105";
-            font-family: $font-awesome;
+            // font-family: $font-awesome;
             position: absolute;
           }
         }
@@ -1329,7 +1329,7 @@ header {
           .sub-arrow {
             &:before {
               content: "\f105";
-              font-family: $font-awesome !important;
+              // font-family: $font-awesome !important;
               position: absolute;
             }
           }
@@ -1361,7 +1361,7 @@ header {
         .sub-arrow {
           &:before {
             content: "\f105";
-            font-family: $font-awesome !important;
+            // font-family: $font-awesome !important;
             position: absolute;
           }
         } 
@@ -2101,7 +2101,7 @@ header {
         z-index: 9;
         i {
           font-size: 22px;
-          font-family: $font-awesome;
+          // font-family: $font-awesome;
           color: $header-font;
           &:before {
             content: "\f007";
@@ -2121,7 +2121,7 @@ header {
       .mobile-wishlist {
         right: 62%;
         i {
-          font-family: $font-awesome;
+          // font-family: $font-awesome;
           color: $header-font !important;
           &:before {
             content: "\f004";

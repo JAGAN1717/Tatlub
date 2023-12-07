@@ -191,7 +191,7 @@ export default function Doctors_list() {
                       >
                         {
                           doctorsData?.map((value, index) => (
-                            <div className="pt-0" key={index}>
+                            <div className="pt-0 px-2" key={index}>
                               <Row>
                                 <Col lg="12" className=" mb-3 mb-md-4">
                                   <div className="review_card">

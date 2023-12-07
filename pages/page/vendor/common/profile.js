@@ -920,7 +920,9 @@ const ProfilePage = (args) => {
                                     className="me-2 company_detail_icon"
                                     src="/assets/images/company/5.png"
                                   />
-                                  <h6 className="fs-18 text-dark" title={seller?.email}>{seller?.email}</h6>
+                                  <a href={`mailto:${seller?.email}`}>
+                                  <h5 className="fs-18 foot-cat" title={seller?.email}>{seller?.email}</h5>
+                                  </a>
                                 </div>
                               )}
                               {seller?.user_details?.website && (
@@ -929,7 +931,7 @@ const ProfilePage = (args) => {
                                     className="me-2 company_detail_icon"
                                     src="/assets/images/company/6.png"
                                   />
-                                  <h6 className="fs-18 cursor-pointer foot-cat" onClick={() => window.open('https://' + seller?.user_details?.website, '_blank')}>{seller?.user_details?.website}</h6 >
+                                  <h5 className="fs-18 cursor-pointer foot-cat" onClick={() => window.open('https://' + seller?.user_details?.website, '_blank')}>{seller?.user_details?.website}</h5 >
                                 </div>
                               )}
                               <div
@@ -947,9 +949,9 @@ const ProfilePage = (args) => {
                                   className="me-2 company_detail_icon"
                                   src="/assets/images/company/7.png"
                                 />
-                                <h6 className="cursor-pointer text-dark fs-18 foot-cat">
+                                <h5 className="cursor-pointer fs-18 foot-cat">
                                   {t("Get Directions")}
-                                </h6>
+                                </h5>
                               </div>
                             </div>
                           </div>
@@ -1512,7 +1514,7 @@ const ProfilePage = (args) => {
                                           xl="3 px-2 mb-3"
                                           key={index}
                                         >
-                                          <div className="card_pop-product d-flex flex-column justify-content-between" title={data?.meta_title}>
+                                          <div className="card_pop-product shadow-none card d-flex flex-column justify-content-between" title={data?.meta_title}>
                                             <div
                                               className=""
                                               onClick={() =>
@@ -1661,7 +1663,7 @@ const ProfilePage = (args) => {
                                     className="mb-4"
                                     key={index}
                                   >
-                                    <div className="card d-flex flex-coloum bg-light shadow  px-0 justify-content-between product-list border-0 w-100 h-100">
+                                    <div className="card d-flex flex-coloum bg-light shadow-none border   px-0 justify-content-between product-list  w-100 h-100">
                                       <div className="p-2">
                                         <div className="overflow-hidden rounded-4 mb-2">
                                           <Link href={{
@@ -1681,7 +1683,7 @@ const ProfilePage = (args) => {
                                           </Link>
                                         </div>
                                         <Link href={{
-                                          pathname: `/services/${data.item_slug}`,
+                                          pathname: `/services/${data.item_slug}`,  
                                           // query: { item_id: data.id }
                                         }} >
                                           <h6

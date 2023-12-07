@@ -78,7 +78,7 @@ const MasterServiceContent = ({
             }
             className="logo_exchngesuy1 me-2 cursor-pointer"
           ></img>
-          <h5 className="fw-bolder cursor-pointer  foot-cat fs-18" title={title} onClick={() =>
+          <h5 className="fw-bolder cursor-pointer foot-cat fs-18" title={title} onClick={() =>
               router.push({
                 pathname: "/page/vendor/vendor-profile",
                 query: { id: id },
@@ -91,7 +91,9 @@ const MasterServiceContent = ({
               src="/assets/images/tatlub-img/icon-5.png"
               className="icon-2"
             />
-            <h6 className="text-dark complete_1 fs-15 mb-0 ms-2" title={email} >{t(email)}</h6 >
+            <a href={`mailto:${email}`}>
+            <h5 className="foot-cat complete_1 fs-15 mb-0 ms-2" title={email} >{t(email)}</h5 >
+            </a>
           </div>
         )}
         {location && (

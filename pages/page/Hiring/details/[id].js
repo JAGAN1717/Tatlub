@@ -214,7 +214,7 @@ export default function JobDetails({ args }) {
                 <div className='col-lg-9 '>
                   <JobDetail JobData={JobData} />
 
-                  <div className="review_card mt-4 mb-3">
+                  <div className="review_card shadow-none mt-4 mb-3">
                     <div className="d-flex align-items-center justify-content-between">
                       <h4 className="mb-3 fs-5">
                         {t('Reviews')} & {t('Rating')}
@@ -329,7 +329,7 @@ export default function JobDetails({ args }) {
                 </div>
                 <div className="col-lg-3 d-lg-block d-none">
                   {/* <CategoryType /> */}
-                  <div className="reviewrite_company mb-4">
+                  <div className="reviewrite_company shadow-none mb-4">
                     <h3 className="mb-md-4 mb-3">
                       {t('Write a Review')}
                     </h3>
@@ -498,7 +498,7 @@ export default function JobDetails({ args }) {
 
                   {JobData?.item_hours?.length > 0 && (
                     <div className="pt-0 b2c-2  mb-xl-0">
-                      <div className="review_card p-4">
+                      <div className="review_card shadow-none p-4">
                         <Row>
                           <Col lg="12" className=" ">
                             <h4 className="fw-bolder mx-3 mb-3 fs-18">{t('Timing')}</h4>

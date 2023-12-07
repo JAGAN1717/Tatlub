@@ -1777,12 +1777,12 @@ const ProductList = ({
                                         </button>
                                       ) : ''}
                                     </div>
-                                    <small className="">
-                                      <a className="text-dark fs-6 complete_2">
+                                    <small className="complete_2" dangerouslySetInnerHTML={{__html: data?.item_description ?? data?.product_description }}>
+                                      {/* <a className="text-dark fs-6 complete_2">
                                         {data?.item_description ??
                                           data?.product_description}
-                                      </a>
-                                      {/* <span><a href="" className="text-color fw-600">Read More</a></span>  */}
+                                      </a> */}
+                                     {/* <span><a href="" className="text-color fw-600">Read More</a></span>  */}
                                     </small>
                                   </div>
 
@@ -2094,11 +2094,11 @@ const ProductList = ({
                                         </div>
                                       } */}
 
-                                      <small className="">
-                                        <a className="text-dark fs-6 complete_2">
+                                      <small className="complete_2" dangerouslySetInnerHTML={{__html: data?.item_description ?? data?.product_description }}>
+                                        {/* <a className="text-dark fs-6 complete_2">
                                           {data?.item_description ??
                                             data?.product_description}
-                                        </a>
+                                        </a> */}
                                         {/* <span><a href="" className="text-color fw-600">Read More</a></span>  */}
                                       </small>
 

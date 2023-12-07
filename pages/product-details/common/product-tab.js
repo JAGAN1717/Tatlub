@@ -238,13 +238,16 @@ const ProductTab = ({ desc, seller, addToCart, Listings }) => {
                     }
                   </section>
                 </TabPane>
+
                 <TabPane tabId="2">
                   <section id="desc1" className="p-0">
-                    {/* <p>{productdetail.description}</p> */}
-                    <p className="mb-0 pb-0 fs-5">
+                    {/* <p className="mb-0 pb-0 fs-5">
                       {desc?.item_description ?? desc?.product_description}
-                    </p>
-                    <p>{/* {desc?.item_features_string} */}</p>
+                    </p> */}
+
+                    <div className="" dangerouslySetInnerHTML={{__html:desc?.item_description ?? desc?.product_description}}>
+                      
+                    </div>
 
                     {!desc?.item_description && !desc?.product_description && (
                       <div className="d-flex justify-content-center align-items-center h-100">

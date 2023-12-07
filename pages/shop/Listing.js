@@ -50,6 +50,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 // import 'react-time-picker/dist/TimePicker.css';
 // import 'react-clock/dist/Clock.css';
 import { GoogleMap, useJsApiLoader,LoadScript , InfoWindowF, MarkerF,Marker } from '@react-google-maps/api';
+import { Editor } from 'primereact/editor';
 
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL
@@ -198,7 +199,9 @@ const Markers = ({ lat, lng, onMarkerDrag }) => {
 // }))
 
 
-function Listing() {
+function Listing() { 
+
+
 
   const handleDelete = async (id) => {
     try {
@@ -387,6 +390,7 @@ function Listing() {
   const [ErrMsg, SetErrMsg] = useState('')
   const [selectIntrovel, SetSelectIntrovel] = useState(15)
   const [Timevalue, TimeonChange] = useState('10:00');
+  const [Editorvalue, setEditorValue] = useState();
 
   const Introvels = [
     { time: '15 Minutes', val: 15 },
@@ -1116,7 +1120,7 @@ function Listing() {
         formdata.append("item_featured", values.item_featured ?? '');
         formdata.append("branch", values.branch ?? '');
         formdata.append("item_title", values.item_title ?? '');
-        formdata.append("item_description", values.item_description ?? '');
+        formdata.append("item_description", Editorvalue ?? '');
         formdata.append("item_address", values.item_address ?? '');
         formdata.append("item_address_hide", 1 ?? '');
         formdata.append("country_id", values.country_id ?? '');
@@ -2426,30 +2430,34 @@ function Listing() {
                             )}
                         </div>
 
-                        <div className="mb-3 col-12">
-                          <label
-                            for="exampleFormControlInput1"
-                            className="form-label"
-                          >
-                            {t("Description")}
-                          </label>
-                          <textarea
-                            className="form-control"
-                            id="exampleFormControlTextarea1"
-                            rows="5"
-                            {...formik.getFieldProps("item_description")}
-                          ></textarea>
-                          {formik.touched.item_description &&
-                            formik.errors.item_description && (
-                              <div className="fv-plugins-message-container">
-                                <div className="fv-help-block">
-                                  <span role="alert" className="text-danger">
-                                    {formik.errors.item_description}
-                                  </span>
-                                </div>
-                              </div>
-                            )}
-                        </div>
+                            <div className="mb-3 col-12 d-none">
+                              <label
+                                for="exampleFormControlInput1"
+                                className="form-label"
+                              >
+                                {t("Description")}
+                              </label>
+                              <textarea
+                                className="form-control"
+                                id="exampleFormControlTextarea1"
+                                rows="5"
+                                {...formik.getFieldProps("item_description")}
+                              ></textarea>
+                              {formik.touched.item_description &&
+                                formik.errors.item_description && (
+                                  <div className="fv-plugins-message-container">
+                                    <div className="fv-help-block">
+                                      <span role="alert" className="text-danger">
+                                        {formik.errors.item_description}
+                                      </span>
+                                    </div>
+                                  </div>
+                                )}
+                            </div> 
+
+                           <div className="mb-3 col-12">
+                           <Editor value={Editorvalue} onTextChange={(e) => setEditorValue(e.htmlValue)} style={{ height: '300px' }} />
+                           </div>
 
                         <div className="mb-3 col-12">
                           <label

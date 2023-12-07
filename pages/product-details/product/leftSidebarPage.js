@@ -736,7 +736,7 @@ const LeftSidebarPage = ({ setRecom }) => {
                   </div>
               </div>
               </div>
-              </div>
+             </div>
 
           <div
             className="modal fade"
@@ -805,7 +805,7 @@ const LeftSidebarPage = ({ setRecom }) => {
                   </div>
               </div>
               </div>
-              </div>
+             </div>
 
           <div className="collection-wrapper ">
             <Container>
@@ -969,8 +969,8 @@ const LeftSidebarPage = ({ setRecom }) => {
                                 )}</>
                                : "No Description Found"}
                             </span> 
-                            <span className="complete_3 fs-5 ">
-                              { data?.item_description ?? data?.product_description ?? "No Description Found" }
+                            <span className="complete_3 fs-5" dangerouslySetInnerHTML={{__html:data?.item_description ?? data?.product_description ?? "No Description Found"}}>
+                              {/* { data?.item_description ?? data?.product_description ?? "No Description Found" } */}
                             </span>
                           </p>
 

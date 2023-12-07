@@ -482,7 +482,9 @@ const PropertyDetail = ({ args }) => {
 
                       <div className="recommend_theme populr_service mb-4">
                         <h3 className="fw-bolder ">{t('More about')}</h3>
-                        <p>{properties?.data?.item_description ?? 'Not Found'}</p>
+                        {/* <p>{properties?.data?.item_description ?? 'Not Found'}</p> */}
+                        <div className="mb-3" dangerouslySetInnerHTML={{__html:properties?.data?.item_description ?? 'Not Found'}}>
+                        </div>
                         {
                           properties?.data?.galleries?.length > 0 &&
                           <div className="">
