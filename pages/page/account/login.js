@@ -192,7 +192,7 @@ const Login = (args) => {
     email: Yup.string().email("Please Enter Valid Email Id")
     .required("Email is required"),
     otp: Yup.string()
-    .required("OTP is required"),
+    .required("OTP is required").min(4),
     mobile : Yup.string().min(7, "Phone number must be at least 7 Digits")
   });
 
@@ -328,11 +328,20 @@ const Login = (args) => {
                           <Input
                             placeholder={t("OTP...")}
                             {...formik.getFieldProps("otp")}
-                            className="border"
+                            className={`border ${formik.touched.otp ? formik.errors.otp ? 'is-invalid' : '': ''}`}
+                            // className={`border `}
                             // onChange={(e)=>setMail(e.target.value)}
+                            maxLength={6}
+                            minLength={4}
+                            onChange={(e) =>
+                              formik.setFieldValue(
+                                "otp",
+                                e.target?.value.replace(/[^0-9]/g, "")
+                              )
+                            }
                           />
                         </InputGroup>
-                        {formik.touched.otp && formik.errors.otp && (
+                        {/* {formik.touched.otp && formik.errors.otp && (
                           <div className="fv-plugins-message-container">
                             <div className="fv-help-block">
                               <span role="alert" className="text-danger">
@@ -340,18 +349,18 @@ const Login = (args) => {
                               </span>
                             </div>
                           </div>
-                        )}
+                        )} */}  
                         </div> :
                         <div>
                         <InputGroup>
                           <Input
                             placeholder={t("Enter mail address")}
                             {...formik.getFieldProps("email")}
-                            className="border"
+                            className={`border ${formik.touched.email ? !formik.errors.email ? 'is-valid' : 'is-invalid' : ''}`}
                             // onChange={(e)=>setMail(e.target.value)}
                           />
                         </InputGroup>
-                        {formik.touched.email && formik.errors.email && (
+                        {/* {formik.touched.email && formik.errors.email && (
                           <div className="fv-plugins-message-container">
                             <div className="fv-help-block">
                               <span role="alert" className="text-danger">
@@ -359,7 +368,7 @@ const Login = (args) => {
                               </span>
                             </div>
                           </div>
-                        )}
+                        )} */}
                         </div>}
                       </div>
                       <div className="mb-3 d-none">

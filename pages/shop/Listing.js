@@ -2456,7 +2456,13 @@ function Listing() {
                             </div> 
 
                            <div className="mb-3 col-12">
-                           <Editor value={Editorvalue} onTextChange={(e) => setEditorValue(e.htmlValue)} style={{ height: '300px' }} />
+                           <label
+                                for="exampleFormControlInput1"
+                                className="form-label"
+                              >
+                                {t("Description")}
+                              </label>
+                           <Editor value={Editorvalue} onTextChange={(e) => setEditorValue(e.htmlValue)} style={{ height: '200px' }} />
                            </div>
 
                         <div className="mb-3 col-12">

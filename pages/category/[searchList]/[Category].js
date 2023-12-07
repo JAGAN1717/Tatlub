@@ -26,7 +26,7 @@ export default function index() {
     const id = Category ?? mainId()
     const response = await getFilterbyCategory(id)
     setfilterBycategory(response.data)
-}
+ }
 
 const fetchRelatedBrands = async () => {
   const id = Category ?? mainId()
@@ -69,7 +69,6 @@ const openCloseSidebar = () => {
     }
 }
 
-console.log("CategoryCategory",Category)
 
 
   return (

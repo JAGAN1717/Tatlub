@@ -40,8 +40,8 @@ import Stack from '@mui/material/Stack';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import dayjs from 'dayjs';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-// import DatePicker from "react-datepicker";
+// import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 
@@ -49,7 +49,7 @@ import "react-datepicker/dist/react-datepicker.css";
 const Review = () => {
   const { userData } = useContext(AuthContex);
   const NowDate = new Date()
-  const [startdate, setStartDate] = useState(dayjs(NowDate));
+  const [startdate, setStartDate] = useState(NowDate);
   const [enddate, setEndDate] = useState(null);
   const [activeTab, setActiveTab] = useState("1");
   const router = useRouter()
@@ -62,7 +62,6 @@ const Review = () => {
   const [date, setDate] = useState(null);
   const { t } = useTranslation();
 
-  // console.log("jhfsjdsdld", dayjs(startdate).format('YYYY-MM-DD'))
 
   const handleEnd = (e) => {
     // console.log("hhkgk",moment(startdate).isBefore(e.value))
@@ -71,7 +70,6 @@ const Review = () => {
     // }
   }
 
-  // console.log("ghfgh",moment(startdate).format('YYYY-MM-DD'))
   const filterLeads = async () => {
     setIsLoading(true);
     let id = userData?.id;
@@ -142,11 +140,12 @@ const Review = () => {
   }, []);
     
 
-  const ExampleCustomTimeInput = ({ date, value, onChange }) => (
-      <div class=" row new_date  col d-flex align-items-center  justify-content-between ">
-      <label for="endDate" class="col-sm-2 col-form-label fs-16 fw-normal">{t("From")}</label>
-      <div class="col-sm-10">
-        <input id="startDate" name="startDate" data-date-format="DD/MM/YYYY" className="form-control fs-16" type="date"  value={value} onChange={(e) => onChange(e.target.value)} class="form-control" />
+  const ExampleCustomTimeInput = ({ date, value, onClick  },ref) => (
+      // <div className=" row new_date  col d-flex align-items-center  justify-content-between ">
+      <div className="new_date">
+      {/* <label for="endDate" className="col-sm-2 col-form-label fs-16 fw-normal">{t("From")}</label> */}
+      <div className="col-md-10 ">
+        <input id="startDate" name="startDate" placeholder="DD/MM/YYYY"  data-date-format="DD/MM/YYYY" className="form-control fs-16" type="text"  readOnly={true}  value={value} onClick={onClick} />
       </div>
       </div>
   );
@@ -192,14 +191,14 @@ const Review = () => {
                   <div className="d-flex justify-content-center p-2">
                     <div className="">
                       <div className="row mb-3">
-                        <div class="form-group new_date col-sm-4 col-sm-6 mb-3">
+                        <div className="form-group new_date col-sm-4 col-sm-6 mb-3">
                           {/* <label for="startDate" className="form-label fw-bold">Start Date</label> */}
-                          <input id="startDate" name="startDate" className="fs-16" type="date" value={startdate} onChange={(e) => setStartDate(e.target.value)} class="form-control" />
+                          <input id="startDate" name="startDate" className="fs-16" type="date" value={startdate} onChange={(e) => setStartDate(e.target.value)}  />
                         </div>
-                        <div class="form-group new_date col-sm-4 col-sm-6  mb-3">
+                        <div className="form-group new_date col-sm-4 col-sm-6  mb-3">
                           {/* <label for="endDate" className="form-label fw-bold">End Date</label> */}
-                          {/* <input id="endDate" name="endDate" className="fs-16" type="date" value={enddate} onChange={(e) => { startdate <= e.target.value && setEndDate(e.target.value)  }} class="form-control" /> */}
-                          <input id="endDate" name="endDate" className="fs-16" type="date" disabled={startdate ? false : true} value={enddate} onChange={(e) => { fetchLeadList(e.target.value); setEndDate(e.target.value) }} class="form-control" />
+                          {/* <input id="endDate" name="endDate" className="fs-16" type="date" value={enddate} onChange={(e) => { startdate <= e.target.value && setEndDate(e.target.value)  }} className="form-control" /> */}
+                          <input id="endDate" name="endDate" className="fs-16" type="date" disabled={startdate ? false : true} value={enddate} onChange={(e) => { fetchLeadList(e.target.value); setEndDate(e.target.value) }}  />
                         </div>
                         <div className="new_date form-group   w-100 col-sm-4 mb-3 d-none">
                           <button type="button" className="btn btn-theme fs-16 rounded" data-bs-dismiss="modal" aria-label="Close" disabled={enddate ? false : true} onClick={() => fetchLeadList()}>{t('Filter')}</button>
@@ -312,12 +311,12 @@ const Review = () => {
                           </div>
                         </div>
 
-                        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-                          <div class="offcanvas-header">
+                        <div className="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+                          <div className="offcanvas-header">
                             <h5 id="offcanvasRightLabel">Lead Filter</h5>
-                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                            <button type="button" className="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                           </div>
-                          <div class="offcanvas-body">
+                          <div className="offcanvas-body">
                             <div className="d-flex justify-content-center align-items-center">
                               <div className="text-start">
                                 <div className="datePickerL justify-content-between align-items-center mb-2">
@@ -410,41 +409,41 @@ const Review = () => {
                 <div className="border-bottom p-2 mb-2">
                   <h4 className="fw-bold fs-20">{t("Leads")}</h4>
                 </div>
-                <div className="d-md-flex align-items-center justify-content-between">
-                  <div className="">
+                <div className="row align-items-center justify-content-between">
+                  <div className="col-lg-3 col-md-2">
                     <h4 className="text-secondary  fs-5">{t("Leads")} <span className="fw-bold fs-18">{leadTotal ?? 0}</span></h4>
                   </div>
-                  <div className="d-flex p-2">
+                  <div className="d-flex col-lg-9 col-md-10 justify-content-end p-2">
                     <div className="d-flex align-items-center lead_dates">
-                      <div className="row">
-                        <div class=" row new_date  col d-flex align-items-center  justify-content-between d-none">
-                          <label for="endDate" class="col-sm-2 col-form-label fs-16 fw-normal">{t("From")}</label>
-                          <div class="col-sm-10">
-                            <input id="startDate" name="startDate" data-date-format="DD/MM/YYYY" className="form-control fs-16" type="date" value={startdate} onChange={(e) => { setStartDate(e.target.value); }} class="form-control" />
+                      <div className="row ">
+                        <div className=" row new_date  col d-flex align-items-center  justify-content-between d-none">
+                          <label for="endDate" className="col-sm-2 col-form-label fs-16 fw-normal">{t("From")}</label>
+                          <div className="col-sm-10">
+                            <input id="startDate" name="startDate" data-date-format="DD/MM/YYYY" className="form-control fs-16" type="date" value={startdate} onChange={(e) => { setStartDate(e.target.value); }} />
                           </div>
                         </div>
 
-                        <div class=" row new_date  col d-flex  align-items-center justify-content-between d-none">
-                          <label for="endDate" class="col-sm-2 col-form-label fs-16 fw-normal">{t("To")}</label>
-                          <div class="col-sm-10">
-                            <input id="endDate" name="endDate" className="fs-16 form-control rounded-3" placeholder="dd/mm/yyyy" data-date-format="DD/MM/YYYY" type="date" disabled={startdate ? false : true} value={enddate} onChange={(e) => { fetchLeadList(e.target.value); setEndDate(e.target.value) }} class="form-control" />
+                        <div className=" row new_date  col d-flex  align-items-center justify-content-between d-none">
+                          <label for="endDate" className="col-sm-2 col-form-label fs-16 fw-normal">{t("To")}</label>
+                          <div className="col-sm-10">
+                            <input id="endDate" name="endDate" className="fs-16 form-control rounded-3" placeholder="dd/mm/yyyy" data-date-format="DD/MM/YYYY" type="date" disabled={startdate ? false : true} value={enddate} onChange={(e) => { fetchLeadList(e.target.value); setEndDate(e.target.value) }}  />
                           </div>
                         </div>
 
-                        <div class="col-sm-6  d-flex align-items-center justify-content-between mb-sm-0 mb-2">
-                          <label for="endDate" class="col-sm-2 col-form-label fs-16 fw-normal mx-2">{t("From")}</label>
-                          <LocalizationProvider dateAdapter={AdapterDayjs} dateFormats={"DD/MM/YYYY"}>
+                        <div className="col-sm-6 d-flex flex-sm-row flex-column align-items-center justify-content-between mb-sm-0 mb-2">
+                          <label for="endDate" className="col-sm-2 col-form-label fs-16 fw-normal mx-2">{t("From")}</label>
+                          {/* <LocalizationProvider dateAdapter={AdapterDayjs} dateFormats={"DD/MM/YYYY"}>
                             <DatePicker format="DD/MM/YYYY" value={startdate} onChange={(e) => setStartDate(e)} />
-                          </LocalizationProvider>
-                          {/* <DatePicker selected={startdate} onChange={(date) => setStartDate(date)} dateFormat="dd/MM/yyyy" showTimeInput customTimeInput={<ExampleCustomTimeInput />} /> */}
+                          </LocalizationProvider> */}
+                          <DatePicker selected={startdate} className="p-2 rounded-5" onChange={(date) => setStartDate(date)} dateFormat="dd/MM/yyyy" showTimeInput customInput={<ExampleCustomTimeInput />} />
                         </div>
 
-                        <div class=" col-sm-6 d-flex  align-items-center justify-content-between">
-                          <label for="endDate" class="col-sm-2 col-form-label fs-16 fw-normal mx-2">{t("To")}</label>
-                          {/* <DatePicker selected={enddate}  className="p-2 rounded-5" dateFormat="dd/MM/yyyy" placeholderText="dd/mm/yyyy" disabled={startdate ? false : true} onChange={(e) => { fetchLeadList(e); setEndDate(e) }} /> */}
-                          <LocalizationProvider dateAdapter={AdapterDayjs}  >
+                        <div className="col-sm-6 d-flex flex-sm-row flex-column  align-items-center justify-content-between">
+                          <label for="endDate" className="col-sm-2 col-form-label fs-16 fw-normal mx-2">{t("To")}</label>
+                          <DatePicker selected={enddate}  className="p-2 rounded-5" dateFormat="dd/MM/yyyy"  disabled={startdate ? false : true} onChange={(e) => { fetchLeadList(e); setEndDate(e) }} customInput={<ExampleCustomTimeInput />} />
+                          {/* <LocalizationProvider dateAdapter={AdapterDayjs}  >
                             <DatePicker format="DD/MM/YYYY" disabled={startdate ? false : true} value={enddate} onChange={(e) => { fetchLeadList(e); setEndDate(e) }} />
-                          </LocalizationProvider>
+                          </LocalizationProvider> */}
                         </div>
                       </div>
                     </div>
@@ -548,13 +547,13 @@ const Review = () => {
                       <div className="d-flex justify-content-center p-2">
                         <div className="">
                           <div className="row mb-3">
-                            <div class="form-group new_date col mb-3">
+                            <div className="form-group new_date col mb-3">
                               <label for="startDate" className="form-label fw-bold">Start Date</label>
-                              <input id="startDate" name="startDate" className="fs-16" type="date" value={startdate} onChange={(e) => setStartDate(e.target.value)} class="form-control" />
+                              <input id="startDate" name="startDate" className="fs-16" type="date" value={startdate} onChange={(e) => setStartDate(e.target.value)} />
                             </div>
-                            <div class="form-group new_date col mb-3">
+                            <div className="form-group new_date col mb-3">
                               <label for="endDate" className="form-label fw-bold">End Date</label>
-                              <input id="endDate" name="endDate" className="fs-16" type="date" value={enddate} onChange={(e) => { startdate <= e.target.value && setEndDate(e.target.value) }} class="form-control" />
+                              <input id="endDate" name="endDate" className="fs-16" type="date" value={enddate} onChange={(e) => { startdate <= e.target.value && setEndDate(e.target.value)}} />
                             </div>
                           </div>
                           <div className="new_date d-flex justify-content-center w-100">

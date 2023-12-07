@@ -106,7 +106,7 @@ function Addproduct() {
   })
   const [specifivalue, setSpecifivalue] = useState([])
   const [Editorvalue, setEditorValue] = useState();
-
+  const [Selectdesc,setSelectDesc] = useState(false);
   const [personName, setPersonName] = React.useState([]);
   const theme = useTheme();
   const handleChange2 = (event) => {
@@ -388,7 +388,7 @@ function Addproduct() {
           "feature_image": featimg,
           // "image_gallery":galImg,
           // "product_description": values.product_description,
-          "product_description":Editorvalue,
+          "product_description":Editorvalue ?? values.product_description ,
           "specifications": values.specifications,
           "meta_title": values.meta_title,
           "meta_keyword": values.meta_keyword,
@@ -747,12 +747,13 @@ function Addproduct() {
                 </div> 
 
                 <div className="mb-3 col-sm-12">
-                 <Editor value={Editorvalue} onTextChange={(e) => setEditorValue(e.htmlValue)} style={{ height: '300px' }} />
+                <label className="form-label">{t('Product Description')}</label>
+                <Editor value={Editorvalue} onTextChange={(e) => setEditorValue(e.htmlValue)} style={{ height: '200px' }} />
                 </div>
 
                 <div className="mb-3 col-sm-6 col-lg-6 d-none">
                   <label className="form-label">{t('Specifications')}</label>
-                  <textarea type="text" className="form-control" rows='3' placeholder="" {...formik.getFieldProps('specifications')} />
+                  <textarea type="text" className="form-control" rows='4' placeholder="" {...formik.getFieldProps('specifications')} />
                    {formik.touched.specifications &&
                     formik.errors.specifications && (
                       <div className="fv-plugins-message-container">
