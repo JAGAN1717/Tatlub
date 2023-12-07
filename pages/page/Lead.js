@@ -41,6 +41,8 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import dayjs from 'dayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+// import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 
 
@@ -138,10 +140,16 @@ const Review = () => {
   useEffect(() => {
     fetchLeadList();
   }, []);
+    
 
-
-
-
+  const ExampleCustomTimeInput = ({ date, value, onChange }) => (
+      <div class=" row new_date  col d-flex align-items-center  justify-content-between ">
+      <label for="endDate" class="col-sm-2 col-form-label fs-16 fw-normal">{t("From")}</label>
+      <div class="col-sm-10">
+        <input id="startDate" name="startDate" data-date-format="DD/MM/YYYY" className="form-control fs-16" type="date"  value={value} onChange={(e) => onChange(e.target.value)} class="form-control" />
+      </div>
+      </div>
+  );
 
 
   return (
@@ -291,9 +299,9 @@ const Review = () => {
                               <div className="d-flex justify-content-between align-items-center mb-3">
                                 <div className="mx-2 p-float-label">
                                   <Calendar inputId="start_date" value={startdate} onChange={(e) => setStartDate(e.value)} dateFormat="yy/mm/dd" />
-                                  <label htmlFor="start_date " className="fw-bold">Start Date</label>
+                                   <label htmlFor="start_date " className="fw-bold">Start Date</label>
                                 </div>
-                                <div className="mx-2  p-float-label">
+                                <div className="mx-2 p-float-label">
                                   <Calendar inputId="end_date" value={enddate} disabled={startdate ? false : true}
                                     onChange={(e) => handleEnd(e)} dateFormat="yy/mm/dd" />
                                   <label htmlFor="end_date " className="fw-bold">End Date</label>
@@ -402,7 +410,7 @@ const Review = () => {
                 <div className="border-bottom p-2 mb-2">
                   <h4 className="fw-bold fs-20">{t("Leads")}</h4>
                 </div>
-                <div className="d-sm-flex align-items-center justify-content-between">
+                <div className="d-md-flex align-items-center justify-content-between">
                   <div className="">
                     <h4 className="text-secondary  fs-5">{t("Leads")} <span className="fw-bold fs-18">{leadTotal ?? 0}</span></h4>
                   </div>
@@ -423,15 +431,17 @@ const Review = () => {
                           </div>
                         </div>
 
-                        <div class=" col d-flex  align-items-center justify-content-between">
-                          <label for="endDate" class="col-sm-2 col-form-label fs-16 fw-normal">{t("From")}</label>
+                        <div class="col-sm-6  d-flex align-items-center justify-content-between mb-sm-0 mb-2">
+                          <label for="endDate" class="col-sm-2 col-form-label fs-16 fw-normal mx-2">{t("From")}</label>
                           <LocalizationProvider dateAdapter={AdapterDayjs} dateFormats={"DD/MM/YYYY"}>
                             <DatePicker format="DD/MM/YYYY" value={startdate} onChange={(e) => setStartDate(e)} />
                           </LocalizationProvider>
+                          {/* <DatePicker selected={startdate} onChange={(date) => setStartDate(date)} dateFormat="dd/MM/yyyy" showTimeInput customTimeInput={<ExampleCustomTimeInput />} /> */}
                         </div>
 
-                        <div class=" col d-flex  align-items-center justify-content-between">
-                          <label for="endDate" class="col-sm-2 col-form-label fs-16 fw-normal">{t("To")}</label>
+                        <div class=" col-sm-6 d-flex  align-items-center justify-content-between">
+                          <label for="endDate" class="col-sm-2 col-form-label fs-16 fw-normal mx-2">{t("To")}</label>
+                          {/* <DatePicker selected={enddate}  className="p-2 rounded-5" dateFormat="dd/MM/yyyy" placeholderText="dd/mm/yyyy" disabled={startdate ? false : true} onChange={(e) => { fetchLeadList(e); setEndDate(e) }} /> */}
                           <LocalizationProvider dateAdapter={AdapterDayjs}  >
                             <DatePicker format="DD/MM/YYYY" disabled={startdate ? false : true} value={enddate} onChange={(e) => { fetchLeadList(e); setEndDate(e) }} />
                           </LocalizationProvider>
