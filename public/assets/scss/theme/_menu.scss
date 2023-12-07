@@ -1329,7 +1329,7 @@ header {
           .sub-arrow {
             &:before {
               content: "\f105";
-              font-family: $font-awesome;
+              font-family: $font-awesome !important;
               position: absolute;
             }
           }
@@ -1361,10 +1361,10 @@ header {
         .sub-arrow {
           &:before {
             content: "\f105";
-            font-family: $font-awesome;
+            font-family: $font-awesome !important;
             position: absolute;
           }
-        }
+        } 
       }
       > li {
         border-left: 0 !important;
@@ -1510,7 +1510,7 @@ header {
               right: 0;
               &:before {
                 content: "+";
-                font-family: inherit;
+                // font-family: inherit;
                 position: relative;
               }
               &.minus-arrow {
@@ -1542,7 +1542,7 @@ header {
                   right: 0;
                   &:before {
                     content: "+";
-                    font-family: inherit;
+                    // font-family: inherit;
                     position: relative;
                   }
                 }
@@ -1634,7 +1634,7 @@ header {
               border-radius: 4px;
               &:before {
                 content: "+";
-                font-family: inherit;
+                // font-family: inherit;
                 position: relative;
               }
             }

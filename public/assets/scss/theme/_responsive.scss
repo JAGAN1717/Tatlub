@@ -10340,7 +10340,7 @@ body {
     top: 0;
     right: -3px;
     content: "\f107";
-    font-family: $font-awesome;
+    // font-family: $font-awesome;
     color: lighten($black, 26.5%);
   }
 }
@@ -12114,7 +12114,7 @@ article div p:before {
 article div h1 {
   /* considerably reduce the size of the heading */
   color: hsl(260, 5%, 55%);
-  font-family: "Lato", sans-serif;
+  font-family: 'Roboto', Helvetica Neue, sans-serif;
   font-size: 1rem;
   text-transform: uppercase;
   letter-spacing: 0.05rem;

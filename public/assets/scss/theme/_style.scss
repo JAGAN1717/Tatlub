@@ -10950,7 +10950,7 @@ footer {
       top: 0;
       right: -3px;
       content: "\f106";
-      font-family: $font-awesome;
+      // font-family: $font-awesome;
       color: lighten($black, 26.5%);
     }
   }
@@ -24000,12 +24000,12 @@ body .btn_open_map {
 
 .fc.fc-theme-standard .fc-toolbar .fc-button .fc-icon-chevron-right:before {
   content: "\f105" !important;
-  font-family: FontAwesome !important;
+  // font-family: FontAwesome !important;
 }
 
 .fc.fc-theme-standard .fc-toolbar .fc-button .fc-icon-chevron-left:before {
   content: "\f104" !important;
-  font-family: FontAwesome !important;
+  // font-family: FontAwesome !important;
 }
 
 .fc .fc-daygrid-day-frame:hover {
@@ -24771,7 +24771,7 @@ input[type="number"]::-webkit-outer-spin-button {
     padding: 11px 54px 11px 11px;
 
     font-size: 17px;
-    font-family: monospace;
+    // font-family: monospace;
 
     border: 1px solid #c9cdd1;
     border-radius: 27px;
