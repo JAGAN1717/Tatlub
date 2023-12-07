@@ -250,7 +250,7 @@ const OrderSuccess = () => {
                       colSpan="2"
                       style={{
                         lineHeight: "49px",
-                        fontFamily: "Arial",
+                        fontFamily: "'Roboto', sans-serif",
                         fontSize: "13px",
                         color: "#000000",
                         paddingLeft: "20px",
@@ -440,7 +440,7 @@ const OrderSuccess = () => {
             text-align: center;
             margin: 30px auto;
             width: 650px;
-            font-family: "Open Sans", sans-serif;
+            font-family:"'Roboto', sans-serif";
             background-color: #e2e2e2;
             display: block;
           }

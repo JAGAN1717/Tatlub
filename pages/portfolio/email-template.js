@@ -159,7 +159,7 @@ const EmailTemplate = () => (
           text-align: center;
           margin: 20px auto;
           width: 650px;
-          font-family: "Open Sans", sans-serif;
+          font-family: "'Roboto', sans-serif";
           background-color: #e2e2e2;
           display: block;
         }
@@ -245,7 +245,7 @@ const EmailTemplate = () => (
           margin-bottom: 0;
           padding-bottom: 5px;
           font-size: 14px;
-          font-family: "Open Sans", sans-serif;
+          font-family: "'Roboto', sans-serif";
           color: #777;
           margin-top: 0;
         }

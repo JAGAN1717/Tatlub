@@ -546,7 +546,7 @@ const EmailTemplate2 = () => (
           text-align: center;
           margin: 20px auto;
           width: 650px;
-          font-family: "Open Sans", sans-serif;
+          font-family: "'Roboto', sans-serif";
           background-color: #e2e2e2;
           display: block;
         }

@@ -400,7 +400,7 @@ const OrderSuccess2 = () => (
           text-align: center;
           margin: 0 auto;
           width: 650px;
-          font-family: "Open Sans", sans-serif;
+          font-family: "'Roboto', sans-serif";
           background-color: #e2e2e2;
           display: block;
         }
