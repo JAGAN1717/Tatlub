@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, CSSProperties } from "react";
+import React, { useState,useRef, useEffect, useCallback, CSSProperties } from "react";
 import { Container, Row, Form, Input, Label, Col } from "reactstrap";
 import CommonLayout from "../../components/shop/common-layout";
 import { ToastContainer, toast } from "react-toastify";
@@ -42,6 +42,7 @@ const MenuProps = {
   },
 };
 
+
 const names = [
   'Oliver Hansen',
   'Van Henry',
@@ -54,8 +55,6 @@ const names = [
   'Virginia Andrews',
   'Kelly Snyder',
 ];
-
-
 
 
 function getStyles(name, personName, theme) {
@@ -86,6 +85,7 @@ let initialValues = {
 
 function Addproduct() {
   const [formValues, setFormValues] = useState([initialValues]);
+  const editorRef = useRef(null);
   const [tags, setTags] = useState([])
   const [featimg, setFeatImg] = useState('')
   const [galImg, setGalImg] = useState([])
@@ -120,8 +120,6 @@ function Addproduct() {
     setCategoryId(event.map((p) => p?.id))
   };
 
-
-
   const handleSpecification = (e) => {
     const { name, value } = e.target;
     setSpecification({ ...specification, [name]: value })
@@ -141,9 +139,6 @@ function Addproduct() {
   useEffect(() => {
     categoryList?.map(data => options.push({ 'value': data?.id, 'label': data?.category_name }))
   }, [categoryList])
-
-
-
 
 
   const router = useRouter();
@@ -170,18 +165,6 @@ function Addproduct() {
 
   }
 
-
-
-  // const {
-  //   getRootProps,
-  //   getInputProps,
-  //   rootRef, // Ref to the `<div>`
-  //   inputRef // Ref to the `<input>`
-  // } = useDropzone() 
-
-  // console.log('dsdsd',rootRef)
-
-
   const BrandDropDown = async () => {
     getBrand().then(res => {
       setBrands(res.data)
@@ -194,10 +177,8 @@ function Addproduct() {
     setIsLoading(true)
     const id = pro_id
     getPRoductDetail(id).then(res => {
-      // console.log('dddd',res.data);
       setFormvValue(res.data)
       Object.entries(res.data).forEach(([key, value]) => {
-        // formik.setFieldValue(key, value);
         if (value != "null") {
           initialValues[key] = value
         }
@@ -207,7 +188,6 @@ function Addproduct() {
       setPreview(res.data?.product_image_medium);
       setCategoryId(res.data?.category_id?.split(','))
       let tagslist = res.data?.tags ? res.data?.tags : ''
-      // let tatt = tagslist == null ? '' : tagslist
       setTags(tagslist.split(','));
       setIsLoading(false)
       setSpecifivalue(res.data?.product_attribute ?? [])
@@ -239,7 +219,6 @@ function Addproduct() {
     const previewImages = [];
     for (let i = 0; i < e.target.files.length; i++) {
       if (e.target.files[i]?.size > 5242880) {
-        // console.log("ppp",e.target.files[i].name)
         toast.error(` Maximum 5mb only accepted!`, {
           position: "bottom-right",
           autoClose: 2000,
@@ -264,8 +243,6 @@ function Addproduct() {
               }
             };
             reader.readAsDataURL(file2);
-            // setPreview2(e.target.files)
-            // console.log("jjj", file);
           } else {
             let twel = Array.from(file)?.slice(0, 12)
             setGalImg(twel);
@@ -309,7 +286,6 @@ function Addproduct() {
     }
   }
 
-  //  console.log('iii0',priview2)
   const handleImg = (e) => {
     if (e.target.files[0].size > 5242880) {
       toast.error("Maximum 5mb only accepted!", {
@@ -343,7 +319,6 @@ function Addproduct() {
     }
   }
 
-  //  console.log("kkk",tags)
 
   function removePropertyByIndex(obj, index) {
     const keys = Object.keys(obj);

@@ -432,7 +432,7 @@ const footer =(
                 <Column header="Image" body={imageBodyTemplate} style={{ width: '10%' }} ></Column>
                 <Column field="product_name" sortable   header="Name" style={{ width: '20%' }}></Column>
                 <Column field="product_price" sortable  header="Price" style={{ width: '20%' }} ></Column>
-                <Column field="meta_title" header="Meta" style={{ width: '20%' }}></Column>
+                {/* <Column field="meta_title" header="Meta" style={{ width: '20%' }}></Column> */}
                 <Column  header="Status" body={handleStatus} style={{ width: '20%' }}></Column>
                 <Column  header="Action" body={handleAction} style={{cursor:'pointer'}}></Column>
                 {/* <Column  header="EDIT" body={handleEdit} style={{cursor:'pointer'}} ></Column>
@@ -443,7 +443,6 @@ const footer =(
             </DataTable>
         </div> 
         </div>
-
           </div> }
 
     </CommonLayout>
