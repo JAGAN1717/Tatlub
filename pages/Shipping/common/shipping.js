@@ -50,7 +50,9 @@ export default function Shipping(
     const [countriesval, setCountriesval] = useState();
     const [stateval, setStateval] = useState([]);
     const [cityval, setCityval] = useState([]);
-
+    const [countriesval1, setCountriesval1] = useState();
+    const [stateval1, setStateval1] = useState([]);
+    const [cityval1, setCityval1] = useState([]);
 
 
     const fetchAddress = async () => {
@@ -102,6 +104,11 @@ export default function Shipping(
             // initialValues[key] = value
             formikEdit.setFieldValue(key, value);
         });
+        fetchState(data?.country_id);
+        fetchCity(data?.state_id)
+        setCountriesval1(data?.country_id);
+        setStateval1(data?.state_id)
+        setCityval1(data?.city_id)
     }
 
     const formValidation = Yup.object().shape({
@@ -145,7 +152,7 @@ export default function Shipping(
                     });
                     setLocation(body);
                     setActiveIndex(1)
-                    console.log("skhdskljdsd",response.data)
+                    console.log("skhdskljdsd", response.data)
                 } else {
                     toast.error(response?.message + '!', {
                         position: "bottom-right",
@@ -224,7 +231,6 @@ export default function Shipping(
             }
         }
     })
-
 
     return (
         <section className='p-0 mb-3'>
@@ -468,10 +474,10 @@ export default function Shipping(
 
                         </div>
                         <div className='d-flex justify-content-center '>
-                            <button type='button' disabled={selectAddress == 'add'? Object.keys(formik.errors).length > 0 : Address?.length == 0} className='btn btn_checkOut px-5 p-2 rounded' 
-                            onClick={() =>{ 
-                                 selectAddress == 'add' ? document.getElementById('cartAddressAdd')?.click() : setActiveIndex(1);
-                                 } }>{t("Continue")}</button>
+                            <button type='button' disabled={selectAddress == 'add' ? Object.keys(formik.errors).length > 0 : Address?.length == 0} className='btn btn_checkOut px-5 p-2 rounded'
+                                onClick={() => {
+                                    selectAddress == 'add' ? document.getElementById('cartAddressAdd')?.click() : setActiveIndex(1);
+                                }}>{t("Continue")}</button>
                         </div>
                     </div>
 
@@ -524,8 +530,11 @@ export default function Shipping(
                         </div>
                         <div class="modal-body">
                             <div className='shipping_address border-0 '>
-                                <div className=''>
-                                    <div className='d-flex justify-content-center align-items-center pt-3'>
+                                <div className=''> 
+                                <div className='mb-3 d-flex justify-content-center align-items-center pt-3 mb-3'>
+                                    <img src='/assets/images/icon/logo.png' className='w-25' />
+                                </div>
+                                    <div className='d-flex justify-content-center align-items-center pt-3 d-none'>
                                         <h4 className='complete_1 ms-3 mb-0 pb-0 fw-bold cursor-pointer' for="address13">{t('Edit Address')}</h4>
                                     </div>
                                     <div className='p-4 pt-2'>
@@ -584,10 +593,10 @@ export default function Shipping(
                                                                 "country_id",
                                                                 e.id
                                                             );
-                                                            setCountriesval(e.id)
+                                                            setCountriesval1(e.id)
                                                             fetchState(e.id);
                                                         }}
-                                                        value={countries?.find(e => e.id == countriesval) ?? ''}
+                                                        value={countries?.find(e => e.id == countriesval1) ?? ''}
                                                         options={countries}
                                                         getOptionLabel={(option) => `${option.country_name}`}
                                                         getOptionValue={(option) => option.id}
@@ -631,10 +640,10 @@ export default function Shipping(
                                                                 e.id
                                                             );
                                                             fetchCity(e.id);
-                                                            setStateval(e.id)
+                                                            setStateval1(e.id)
                                                         }}
                                                         // defaultValue={state?.find(e => e.id == stateval)}
-                                                        value={state?.find(e => e.id == stateval)}
+                                                        value={state?.find(e => e.id == stateval1)}
                                                         options={state}
                                                         getOptionLabel={(option) => `${option.state_name}`}
                                                         getOptionValue={(option) => option.id}
@@ -679,9 +688,9 @@ export default function Shipping(
                                                                 e.id
                                                             );
                                                             fetchState(e.id);
-                                                            setCityval(e.id)
+                                                            setCityval1(e.id)
                                                         }}
-                                                        value={city?.find(e => e.id == cityval)}
+                                                        value={city?.find(e => e.id == cityval1)}
                                                         options={city}
                                                         getOptionLabel={(option) => `${option.city_name}`}
                                                         getOptionValue={(option) => option.id}
@@ -711,7 +720,7 @@ export default function Shipping(
                                                 </div>
                                             </div>
                                             <div className='d-flex justify-content-center  align-items-center'>
-                                                <button type='submit' className='btn btn_checkOut rounded px-5'>{t('Submit')}</button>
+                                                <button type='submit' className='btn fw-normal btn_checkOut rounded px-5'>{t('Edit Address')}</button>
                                             </div>
                                         </form>
                                     </div>

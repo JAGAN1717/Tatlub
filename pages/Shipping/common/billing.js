@@ -8,6 +8,7 @@ import { useFormik } from 'formik'
 import * as Yup from "yup";
 import { ToastContainer, toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
+import Select from 'react-select';
 
 
 
@@ -17,7 +18,10 @@ export default function billing({ setActiveIndex, cartData, getlocation, placeOr
 
   const [paytype, setPaytype] = useState('')
   const { userData, setUserData } = useContext(AuthContex)
-  const [billingAddress, setBillingAddress] = useState('')
+  const [billingAddress, setBillingAddress] = useState('');
+  const [countriesval1, setCountriesval1] = useState();
+  const [stateval1, setStateval1] = useState([]);
+  const [cityval1, setCityval1] = useState([]);
   const postOrder = () => {
     placeOrder();
     setActiveIndex(2)
@@ -42,6 +46,12 @@ export default function billing({ setActiveIndex, cartData, getlocation, placeOr
       // initialValues[key] = value
       formikEdit.setFieldValue(key, value);
     });
+    console.log('datadata',data)
+    fetchState(data?.country);
+    fetchCity(data?.state)
+    setCountriesval1(data?.country);
+    setStateval1(data?.state)
+    setCityval1(data?.city)
   }
 
   const formValidation = Yup.object().shape({
@@ -308,8 +318,8 @@ export default function billing({ setActiveIndex, cartData, getlocation, placeOr
             <div className="modal-body">
               <div className='shipping_address border-0 '>
                 <div className=''>
-                  <div className='d-flex justify-content-center align-items-center pt-3'>
-                    <h4 className='complete_1 ms-3 mb-0 pb-0 fw-bold cursor-pointer' for="address13">{t("Edit Address")}</h4>
+                  <div className='d-flex justify-content-center align-items-center pt-3 mb-3'>
+                    <img src='/assets/images/icon/logo.png' className='w-25' />
                   </div>
                   <div className='p-4 pt-2'>
                     <form onSubmit={formikEdit.handleSubmit}>
@@ -340,7 +350,7 @@ export default function billing({ setActiveIndex, cartData, getlocation, placeOr
 
                         <div className='mb-3 col-md-6'>
                           <label className='form-labe'>{t('Country')} / {t('Region')}</label>
-                          <select className="form-select" {...formikEdit.getFieldProps('country_id')}
+                          <select className="form-select d-none" {...formikEdit.getFieldProps('country_id')}
                             onChange={(e) => {
                               formikEdit.setFieldValue(
                                 "country_id",
@@ -357,6 +367,27 @@ export default function billing({ setActiveIndex, cartData, getlocation, placeOr
                               </option>
                             ))}
                           </select>
+                          <Select
+                            closeMenuOnSelect={true}
+                            isSearchable={false}
+                            name="country_id"
+                            placeholder={t('Select Country')}
+                            onChange={(e) => {
+                              formikEdit.setFieldValue(
+                                "country_id",
+                                e.id
+                              );
+                              setCountriesval1(e.id)
+                              fetchState(e.id);
+                            }}
+                            value={countries?.find(e => e.id == countriesval1) ?? ''}
+                            options={countries}
+                            getOptionLabel={(option) => `${option.country_name}`}
+                            getOptionValue={(option) => option.id}
+                            className="w-100 "
+                            // classNamePrefix="select"
+                            isRequired
+                          />
                           {formikEdit.touched.country_id && formikEdit.errors.country_id && (
                             <div className='fv-plugins-message-container'>
                               <div className='fv-help-block'>
@@ -367,7 +398,7 @@ export default function billing({ setActiveIndex, cartData, getlocation, placeOr
                         </div>
                         <div className='mb-3 col-md-6'>
                           <label className='form-labe'>{t('State')}</label>
-                          <select className="form-select" {...formikEdit.getFieldProps('state_id')}
+                          <select className="form-select d-none" {...formikEdit.getFieldProps('state_id')}
                             onChange={(e) => {
                               formikEdit.setFieldValue("state_id", e.target.value);
                               fetchCity(e.target.value);
@@ -380,6 +411,29 @@ export default function billing({ setActiveIndex, cartData, getlocation, placeOr
                               </option>
                             ))}
                           </select>
+                          <Select
+                            closeMenuOnSelect={true}
+                            required={true}
+                            // isDisabled={!selectIntrovel}
+                            isSearchable={false}
+                            name="state_id"
+                            placeholder={t('Select State')}
+                            onChange={(e) => {
+                              formikEdit.setFieldValue(
+                                "state_id",
+                                e.id
+                              );
+                              fetchCity(e.id);
+                              setStateval1(e.id)
+                            }}
+                            // defaultValue={state?.find(e => e.id == stateval)}
+                            value={state?.find(e => e.id == stateval1)}
+                            options={state}
+                            getOptionLabel={(option) => `${option.state_name}`}
+                            getOptionValue={(option) => option.id}
+                            className=" w-100"
+                          // classNamePrefix="select"
+                          />
                           {formikEdit.touched.state_id && formikEdit.errors.state_id && (
                             <div className='fv-plugins-message-container'>
                               <div className='fv-help-block'>
@@ -390,7 +444,7 @@ export default function billing({ setActiveIndex, cartData, getlocation, placeOr
                         </div>
                         <div className='mb-3 col-md-6'>
                           <label className='form-labe'>{t("City")}</label>
-                          <select className="form-select" {...formikEdit.getFieldProps('city_id')}
+                          <select className="form-select d-none" {...formikEdit.getFieldProps('city_id')}
                             onChange={(e) => {
                               formikEdit.setFieldValue(
                                 "city_id",
@@ -406,6 +460,27 @@ export default function billing({ setActiveIndex, cartData, getlocation, placeOr
                               </option>
                             ))}
                           </select>
+                          <Select
+                            closeMenuOnSelect={true}
+                            required={true}
+                            isSearchable={false}
+                            name="city_id"
+                            placeholder={t('Select City')}
+                            onChange={(e) => {
+                              formikEdit.setFieldValue(
+                                "city_id",
+                                e.id
+                              );
+                              fetchState(e.id);
+                              setCityval1(e.id)
+                            }}
+                            value={city?.find(e => e.id == cityval1)}
+                            options={city}
+                            getOptionLabel={(option) => `${option.city_name}`}
+                            getOptionValue={(option) => option.id}
+                            className="w-100"
+                          // classNamePrefix="select"
+                          />
                           {formikEdit.touched.city_id && formikEdit.errors.city_id && (
                             <div className='fv-plugins-message-container'>
                               <div className='fv-help-block'>
@@ -429,7 +504,7 @@ export default function billing({ setActiveIndex, cartData, getlocation, placeOr
                         </div>
                       </div>
                       <div className='d-flex justify-content-center  align-items-center'>
-                        <button type='submit' className='btn btn_checkOut rounded px-5'>{t('Submit')}</button>
+                        <button type='submit' className='btn btn_checkOut fw-normal rounded px-5'>{t('Edit Address')}</button>
                       </div>
                     </form>
                   </div>

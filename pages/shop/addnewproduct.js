@@ -186,6 +186,7 @@ function Addproduct() {
       formik.setFieldValue("brands", res.data?.brand)
       setFeatImg(res.data?.product_image_medium);
       setPreview(res.data?.product_image_medium);
+      setEditorValue(res.data?.product_description)
       setCategoryId(res.data?.category_id?.split(','))
       let tagslist = res.data?.tags ? res.data?.tags : ''
       setTags(tagslist.split(','));
@@ -378,8 +379,8 @@ function Addproduct() {
           formdata.append(key, value)
         })
 
-        if (Object.keys(galImg).length != 0) {
-          for (let i = 0; i < Object.keys(galImg).length; i++) {
+        if (Object.keys(galImg?.slice(0, 12)).length != 0) {
+          for (let i = 0; i < Object.keys(galImg.slice(0, 12)).length; i++) {
             formdata.append(`image_gallery[${i}]`, galImg[i]);
           }
         }

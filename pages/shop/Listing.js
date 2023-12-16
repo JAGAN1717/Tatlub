@@ -51,6 +51,8 @@ import CircularProgress from '@mui/material/CircularProgress';
 // import 'react-clock/dist/Clock.css';
 import { GoogleMap, useJsApiLoader,LoadScript , InfoWindowF, MarkerF,Marker } from '@react-google-maps/api';
 import { Editor } from 'primereact/editor';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL
@@ -827,6 +829,7 @@ function Listing() {
         // });
         Object.assign(initialValues, response.data);
         formik.setFieldValue("brands", response.data.brand_id);
+        setEditorValue(response.data?.item_description)
         setCountriesval(response.data.country_id)
         fetchState(response.data.country_id);
         fetchCity(response.data.state_id);
