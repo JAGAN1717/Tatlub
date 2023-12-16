@@ -829,7 +829,7 @@ function Listing() {
         // });
         Object.assign(initialValues, response.data);
         formik.setFieldValue("brands", response.data.brand_id);
-        setEditorValue(response.data?.item_description)
+        setEditorValue(`${response.data?.item_description}`);
         setCountriesval(response.data.country_id)
         fetchState(response.data.country_id);
         fetchCity(response.data.state_id);
@@ -979,8 +979,8 @@ function Listing() {
     branch: Yup.string().notRequired(),
     item_title: Yup.string().required("Title is required"),
     item_description: Yup.string().notRequired(),
-    item_address: Yup.string(),
-    item_address_hide: Yup.string(),
+    item_address: Yup.string().notRequired(),
+    item_address_hide: Yup.string().notRequired(),
     country_id: Yup.string().required("Country is required"),
     state_id: Yup.string().required("State is required"),
     city_id: Yup.string().required("City is required"),
@@ -3712,7 +3712,7 @@ function Listing() {
                     </div>
 
                     {my_id && (
-                      <div className="row">
+                      <div className="row d-none">
                         <div className="mt-4 col-md-4">
                           <label
                             for="exampleFormControlInput1"
