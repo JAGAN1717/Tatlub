@@ -295,11 +295,10 @@ export default function billing({ setActiveIndex, cartData, getlocation, placeOr
                     <p className=''>{t('Order Total')}</p>
                     <p className='text_theme'>{t("QAR")} {cartData?.total}.00</p>
                   </div>
-                  <Link href='/Cart/MyCart'>
+                  {/* <Link href='/Cart/MyCart'> */}
                     {/* <button type='button' className='btn btn_checkOut w-100 rounded'>{t("Edit Order")}</button> */}
-                    <button type='button' disabled={paytype ? false : true} className='btn btn_checkOut w-100 rounded' onClick={() => postOrder()}> {t("Place Order")}</button>
-
-                  </Link>
+                    <button type='button' disabled={paytype ? false : true} className='btn btn_checkOut w-100 rounded' onClick={() => {postOrder()}}> {t("Place Order")}</button>
+                  {/* </Link> */}
                 </div>
 
               </div>
