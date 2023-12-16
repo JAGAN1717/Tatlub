@@ -287,7 +287,7 @@ const MasterFooter = ({
                     return (
                       <small
                         key={index}
-                        className="cursor-pointer foot-cat text-capitalize"
+                        className="cursor-pointer footer_links foot-cat text-capitalize"
                         onClick={() =>
                           router.push({
                             pathname: `/category/service/${data.category_slug}`,
@@ -304,7 +304,7 @@ const MasterFooter = ({
                       className="text-color cursor-pointer"
                       onClick={() => setCatlist(categoryList?.length)}
                     >
-                      View More
+                      {t("View More")}
                     </small>
                   )}
                   {categoryList?.length == catList && (
@@ -312,7 +312,7 @@ const MasterFooter = ({
                       className="text-color cursor-pointer"
                       onClick={() => setCatlist(68)}
                     >
-                      View Less
+                      {t("View Less")}
                     </small>
                   )}
                 </TabPane>
@@ -321,7 +321,7 @@ const MasterFooter = ({
                     return (
                       <small
                         key={index}
-                        className="cursor-pointer foot-cat"
+                        className="cursor-pointer footer_links foot-cat"
                         onClick={() =>
                           router.push({
                             pathname: `/category/service/${data.category_slug}`,
@@ -339,7 +339,7 @@ const MasterFooter = ({
                       className="text-color cursor-pointer"
                       onClick={() => setCatlist1(categoryList?.length)}
                     >
-                      View More
+                      {t("View More")}
                     </small>
                   )}
                   {categoryList?.length == catList1 && (
@@ -347,7 +347,7 @@ const MasterFooter = ({
                       className="text-color cursor-pointer"
                       onClick={() => setCatlist1(136)}
                     >
-                      View Less
+                      {t("View Less")}
                     </small>
                   )}
                 </TabPane>
@@ -356,7 +356,7 @@ const MasterFooter = ({
                     return (
                       <small
                         key={index}
-                        className="cursor-pointer foot-cat text-capitalize"
+                        className="cursor-pointer footer_links foot-cat text-capitalize"
                         onClick={() =>
                           router.push({
                             pathname: `/category/service/${data.category_slug}`,
@@ -373,7 +373,7 @@ const MasterFooter = ({
                       className="text-color cursor-pointer"
                       onClick={() => setCatlist2(categoryList?.length)}
                     >
-                      View More
+                      {t("View More")}
                     </small>
                   )}
                   {categoryList?.length == catList2 && (
@@ -381,7 +381,7 @@ const MasterFooter = ({
                       className="text-color cursor-pointer"
                       onClick={() => setCatlist2(212)}
                     >
-                      View Less
+                      {t("View Less")}
                     </small>
                   )}
                 </TabPane>
@@ -391,7 +391,7 @@ const MasterFooter = ({
                     return (
                       <small
                         key={index}
-                        className="cursor-pointer foot-cat text-capitalize"
+                        className="cursor-pointer footer_links foot-cat text-capitalize"
                         onClick={() =>
                           router.push({
                             pathname: `/category/service/${data.category_slug}`,
@@ -408,7 +408,7 @@ const MasterFooter = ({
                       className="text-color cursor-pointer"
                       onClick={() => setCatlist3(categoryList?.length)}
                     >
-                      View More
+                      {t("View More")}
                     </small>
                   )}
                   {categoryList?.length == catList3 && (
@@ -416,7 +416,7 @@ const MasterFooter = ({
                       className="text-color cursor-pointer"
                       onClick={() => setCatlist3(280)}
                     >
-                      View Less
+                      {t("View Less")}
                     </small>
                   )}
                 </TabPane>
@@ -923,7 +923,7 @@ const MasterFooter = ({
                       toast.info(
                         "Link copied to clipboard!",
                         {
-                          position: "bottom-center",
+                          position: "bottom-right",
                           autoClose: 500,
                           icon: false,
                           hideProgressBar: true,

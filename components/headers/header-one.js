@@ -46,7 +46,6 @@ const HeaderOne = ({
   const [products, setProducts] = useState([]);
 
 
-
   const fetchMyCart = async () => {
     let id = userData?.id
     getMyCart(id).then(res => {

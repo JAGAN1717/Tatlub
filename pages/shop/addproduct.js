@@ -123,9 +123,9 @@ const columns = [
             let id = JSON.parse(sessionStorage.getItem('data'))?.id ?? JSON.parse(localStorage.getItem('data'))?.id
             const responce = await getproduct(id)
             setProducts(responce.data);
-            if(responce?.data?.length == 0){
-              router.push('/business')
-            }
+            // if(responce?.data?.length == 0){
+            //   router.push('/business')
+            // }
             setIsLoading(false)
             // console.log('jhfgj', responce.data)
           } catch (error) {
@@ -315,7 +315,6 @@ const getSeverity = (product) => {
 
 
 const handleStatus = (product) => {
-  console.log('kjsgsklddgddlsd',product?.product_status)
 
   return(
     <Tag value={t(getSeverity2(`${product?.product_status}`))} severity={getSeverity(`${product?.product_status}`)}></Tag>
@@ -378,7 +377,7 @@ const footer =(
 <div className="container my-lg-5 my-3 img_ciljhf">
     <div className="mb-3 d-flex justify-content-md-end justify-content-start align-items-center">
        <Link href='/products/form'>
-            <button type='button' className='btn btn_header fw-500 fs-15 p-3 px-4 cursor-pointer'>{t('Add New Product')}</button>
+            <button type='button' className='btn btn_header fw-500 fs-15 p-3 px-4 cursor-pointer'>{t('Add Product')}</button>
         </Link>
         {
           product?.length > 0 && 
@@ -425,7 +424,7 @@ const footer =(
 <Button onClick={confirm2} icon="pi pi-times" label="Delete"></Button> */}
     <div className="primer_Table">
       <div className="rounded-3">
-            <DataTable value={product} footer={footer} frozenValue={lockedCustomers}  scrollable  scrollHeight="500px"  paginator rows={5}  tableStyle={{ minWidth: '60rem' }}  paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
+            <DataTable value={product} footer={footer} frozenValue={lockedCustomers}  scrollable  scrollHeight="500px" emptyMessage="No Products Found."   paginator rows={5}  tableStyle={{ minWidth: '60rem'}}  paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
             currentPageReportTemplate="{first} to {last} of {totalRecords}" 
           // paginatorLeft={paginatorLeft} paginatorRight={paginatorRight} 
          >

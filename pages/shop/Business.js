@@ -76,7 +76,7 @@ import Seo from '../../seo/seo'
       <section className="my_businessess mt-lg-5 mt-3 mb-lg-5 mb-3">
       <Container>
         <div className="mb-3 d-flex align-items-center justify-content-end">
-        {
+        {/* {
             product?.length > 0 ?
             <Link href='/products'>
             <a>
@@ -89,7 +89,7 @@ import Seo from '../../seo/seo'
             <button className="btn btn_filter1 px-sm-4 px-2 fs-15 me-2">{t('Add Product')}</button>
             </a>
           </Link>
-          }
+          } */}
           
            {
             branches?.length > 0 ? 

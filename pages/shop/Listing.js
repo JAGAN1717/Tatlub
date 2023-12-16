@@ -590,9 +590,18 @@ function Listing() {
       },
     },
   }))
+ 
+
+  const Week = [{ value: '1', label: 'MON',name:"day"},{ value: '2', label: 'TUE',name:"day" },{ value: '3', label: 'WED',name:"day" },{ value: '4', label: 'THU',name:"day" },{ value: '5', label: 'FRI',name:"day" },{ value: '6', label: 'SAT',name:"day" },{ value: '7', label: 'SUN',name:"day" }] 
+
+  const o_hours = [...Array(24)].map((_, i) => ({ value: i + 1, label: i + 1, name: "open_hours" }));
+  const c_hours = [...Array(24)].map((_, i) => ({ value: i + 1, label: i + 1, name: "close_hours" }));
+  const o_miniute = [...Array(60)].map((_, i) => ({ value: i , label: i , name: "open_minit" }));
+  const c_miniute = [...Array(60)].map((_, i) => ({ value: i , label: i , name: "close_minit" }));
+
 
   const handleHours = (e) => {
-    const { name, value } = e.target;
+    const { name, value } = e;
     setHoursValues({ ...HoursValues, [name]: value });
     if (name == 'day') {
       if (hours.find(d => d.item_hour_day_of_week == value)) {
@@ -603,6 +612,7 @@ function Listing() {
       }
     }
   };
+
 
   const DateOFException = (e) => {
     const { name, value } = e.target;
@@ -2045,7 +2055,6 @@ function Listing() {
                             className=" w-100"
                             classNamePrefix="select"
                             isRequired
-
                           />
 
                           {formik.touched.country_id &&
@@ -2878,7 +2887,7 @@ function Listing() {
                               </label>
                               <select
                                 id="defaultday"
-                                className="form-select"
+                                className="form-select d-none"
                                 aria-label="Default select example"
                                 name="day"
                                 //  {...formik.getFieldProps('day_week')}
@@ -2897,6 +2906,17 @@ function Listing() {
                                 <option value="6">Sat</option>
                                 <option value="7">Sun</option>
                               </select>
+                              <MulSelect
+                              closeMenuOnSelect={true}
+                              isSearchable={false}
+                              placeholder={t('Select Day')}
+                              name="day"
+                              value={Week.find(e => e?.value === HoursValues?.day)}
+                              options={Week}
+                              onChange={handleHours}
+                              className=" w-100"
+                              classNamePrefix="select"
+                              />
                             </div>
                             <div className="mb-3 col-lg-2 col-md-3 col-sm-4">
                               <label
@@ -2906,7 +2926,7 @@ function Listing() {
                                 {t("Open Hour")}
                               </label>
                               <select
-                                className="form-select"
+                                className="form-select d-none"
                                 id="defaultopenhour"
                                 aria-label="Default select example"
                                 name="open_hours"
@@ -2921,7 +2941,19 @@ function Listing() {
                                 {[...Array(24)].map((x, i) => (
                                   <option value={i + 1}>{i + 1}</option>
                                 ))}
-                              </select>
+                              </select> 
+                              <MulSelect
+                              closeMenuOnSelect={true}
+                              isSearchable={false}
+                              placeholder={t('Select Hour')}
+                              name="open_hours"
+                              value={o_hours.find(e => e?.value === HoursValues?.open_hours)}
+                              // isOptionDisabled={(event)=>  event.value >= HoursValues?.close_hours}
+                              options={o_hours}
+                              onChange={handleHours}
+                              className=" w-100"
+                              classNamePrefix="select"
+                              />
                               {/* <TimePicker onChange={TimeonChange} className='form-control ' value={Timevalue} /> */}
                             </div>
                             <div className="mb-3 col-lg-2 col-md-3 col-sm-4">
@@ -2932,7 +2964,7 @@ function Listing() {
                                 {t("Open Minute")}
                               </label>
                               <select
-                                className="form-select"
+                                className="form-select d-none"
                                 id="defaultopenmin"
                                 aria-label="Default select example"
                                 name="open_minit"
@@ -2947,7 +2979,18 @@ function Listing() {
                                 {[...Array(59)].map((x, i) => (
                                   <option value={i + 1}>{i + 1}</option>
                                 ))}
-                              </select>
+                              </select> 
+                              <MulSelect
+                              closeMenuOnSelect={true}
+                              isSearchable={false}
+                              placeholder={t('Select Minute')}
+                              name="open_minit"
+                              value={o_miniute.find(e => e?.value === HoursValues?.open_minit)}
+                              options={o_miniute}
+                              onChange={handleHours}
+                              className=" w-100"
+                              classNamePrefix="select"
+                              />
                             </div>
                             <div className="mb-3 col-lg-2 col-md-3 col-sm-4">
                               <label
@@ -2959,7 +3002,7 @@ function Listing() {
                                 {t("Close Hour")}
                               </label>
                               <select
-                                className="form-select"
+                                className="form-select d-none"
                                 aria-label="Default select example"
                                 name="close_hours"
                                 // {...formik.getFieldProps('close_hour')}
@@ -2973,7 +3016,21 @@ function Listing() {
                                 {[...Array(24)].map((x, i) => (
                                   <option disabled={i + 1 > HoursValues?.open_hours ? false : true} value={i + 1}>{i + 1}</option>
                                 ))}
-                              </select>
+                              </select> 
+
+                              <MulSelect
+                              closeMenuOnSelect={true}
+                              isSearchable={false}
+                              placeholder={t('Select Hour')}
+                              name="close_hours"
+                              value={c_hours.find(e => e?.value === HoursValues?.close_hours)}
+                              options={c_hours}
+                              isOptionDisabled={(event)=> event.value <= HoursValues?.open_hours }
+                              onChange={handleHours}
+                              className=" w-100"
+                              classNamePrefix="select"
+                              />
+
                             </div>
                             <div className="mb-3 col-lg-2 col-md-3 col-sm-4">
                               <label
@@ -2985,7 +3042,7 @@ function Listing() {
                                 {t("Close Minute")}
                               </label>
                               <select
-                                className="form-select"
+                                className="form-select d-none"
                                 aria-label="Default select example"
                                 name="close_minit"
                                 // onChange={(e)=>setCloseMin(e.target.value)}
@@ -2999,7 +3056,19 @@ function Listing() {
                                 {[...Array(59)].map((x, i) => (
                                   <option value={i + 1}>{i + 1}</option>
                                 ))}
-                              </select>
+                              </select> 
+
+                              <MulSelect
+                              closeMenuOnSelect={true}
+                              isSearchable={false}
+                              placeholder={t('Select Minute')}
+                              name="close_minit"
+                              value={c_miniute.find(e => e?.value === HoursValues?.close_minit)}
+                              options={c_miniute}
+                              onChange={handleHours}
+                              className=" w-100"
+                              classNamePrefix="select"
+                              />
                             </div>
                             <div className="mb-3 col-lg-2 col-md-3 col-sm-4 d-flex align-items-end add_hours">
                               <button

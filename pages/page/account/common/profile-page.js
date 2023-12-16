@@ -1648,7 +1648,7 @@ const ProfilePage = () => {
                 />
                 {
                   // !bannerErr ?
-                  <div className='fv-plugins-message-container'>
+                  <div className='fv-plugins-message-container d-none'>
                     <div className='fv-help-block'>
                       <span role='alert' className='text-warning'>{t('you must be enter prefix')} : https://</span>
                     </div>

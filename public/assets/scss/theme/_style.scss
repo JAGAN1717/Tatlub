@@ -22013,7 +22013,7 @@ body .form_listing .css-y8ay40-MuiTableCell-root {
   }
 
   .p-datatable .p-datatable-thead>tr>th {
-    background: #1170ab !important;
+    background: #0681ce !important;
     color: #ffff;
     padding: 1.5rem 1rem !important;
   }
@@ -24975,7 +24975,26 @@ input[type="number"]::-webkit-outer-spin-button {
     color: #f59e0b !important;
     padding: 10px !important;
     border-radius: 20px !important;
-  }
+  } 
+
+  .p-tag.p-tag-success {
+    background-color: #79eba3 !important;
+    color: #3da062 !important;
+    padding: 10px !important;
+    border-radius: 20px !important;
+   } 
+
+    .p-tag.p-tag-danger {
+    padding: 10px !important;
+    border-radius: 20px !important;
+    background-color: #feabab !important;
+    color: #bf3f3f !important;
+   } 
+    .p-tag.p-tag-Canceled {
+    padding: 10px !important;
+    border-radius: 20px !important;
+   } 
+
 
   .p-tag {
     width: 155px;
@@ -25060,4 +25079,15 @@ input[type="number"]::-webkit-outer-spin-button {
   // width: 136px !important;
   width: 100% !important;
   height: 36px !important;
+}
+
+.footer_links:hover{
+  text-decoration: underline;
+}
+
+.shipping_address {
+  input[type ='text']{
+    height: 40px;
+    border: 1px solid #cccccc;
+  }
 }

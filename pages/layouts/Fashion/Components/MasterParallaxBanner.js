@@ -1210,7 +1210,7 @@ const MasterParallaxBanner = ({ trending, Recommended, videoList }) => {
                               className="img-fluid img_proct5-home "
                             />
                             <div className="">
-                              <h4 className="cursor-pointer foot-cat text-capitalize">
+                              <h4 className="cursor-pointer foot-cat footer_links text-capitalize">
                                 {data.item_title}
                               </h4>
                             </div>

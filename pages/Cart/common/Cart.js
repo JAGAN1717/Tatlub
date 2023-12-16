@@ -239,7 +239,7 @@ export default function Cart() {
                 <div className='container'>
                     {
                         products?.length > 0 &&
-                        <div className='row'>
+                        <div className='row '>
                             <div className='col-lg-9 mb-3'>
                                 <div className='Cart_card shadow-none h-100'>
                                     <div className='mb-3'>
@@ -259,7 +259,7 @@ export default function Cart() {
                                                             <div className='d-sm-flex align-items-center'>
                                                                 <div className=' mb-sm-auto mb-3 rounded-3 d-flex justify-content-center bg-light p-2 position-relavtive'>
                                                                     <img src={product?.product_image_medium} className="orde_img2 object-fit-contain" />
-                                                                    <div className='cancel_img position-absolute' onClick={() => DeleteCart(product?.id, product)}>
+                                                                    <div className='cancel_img position-absolute top-50 translate-middle' onClick={() => DeleteCart(product?.id, product)}>
                                                                         {/* <img src='/assets/images/tatlub-img/cart/remove.png'  className="" /> */}
                                                                         <i class="fa fa-times" aria-hidden="true"></i>
                                                                         {/* <i class="fa fa-trash-o" aria-hidden="true"></i> */}
@@ -302,7 +302,7 @@ export default function Cart() {
                                 </div>
                             </div>
 
-                            <div className='col-lg-3 px-md-0'>
+                            <div className='col-lg-3 px-lg-0'>
                                 <div className='Cart_card shadow-none'>
                                     <div className=''>
                                         <h4 className='fs-20'>{t('Order Summary')}</h4>

@@ -273,12 +273,12 @@ const property = () => {
           document.getElementById("closeQuotesmodal")?.click();
           toast.info("SAVE SUCCESSFULL", {
             position: "bottom-right",
-            autoClose: 2000,
-            hideProgressBar: false,
+            autoClose: 500,
+            icon: false,
+            hideProgressBar,
             closeOnClick: true,
             pauseOnHover: true,
             draggable: true,
-            icon: false,
             progress: undefined,
             theme: "dark",
           });
@@ -1047,7 +1047,7 @@ const property = () => {
                         toast.info(
                           "Link copied to clipboard!",
                           {
-                            position: "bottom-center",
+                            position: "bottom-right",
                             autoClose: 500,
                             icon: false,
                             hideProgressBar: true,

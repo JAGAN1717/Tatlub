@@ -366,7 +366,7 @@ const SelectCategory = () => {
                             {/* MuiDataGrid-columnHeaderTitleContainer */}
                             <DataGrid
                                 rowHeight={70}
-                                disableColumnMenu
+                                disableColumnMenu 
                                 sx={{
                                     '& .MuiDataGrid-columnHeader': {
                                         backgroundColor: "#0681ce",
@@ -391,7 +391,13 @@ const SelectCategory = () => {
                                     },
                                     '& .MuiTablePagination-displayedRows': {
                                         marginBottom: '0px'
-                                    }
+                                    },
+                                    // '& .MuiDataGrid-root':{
+                                    //     borderRadius:'20px'
+                                    // },
+                                    // '& .MuiDataGrid-main':{
+                                    //     borderRadius:'20px'
+                                    // }
                                 }}
                                 loading={isLoading}
                                 rows={appliedjobs}

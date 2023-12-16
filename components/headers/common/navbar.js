@@ -156,7 +156,7 @@ const NavBar = ({ sugCat, cartl, setPoduct, setRes, setPSearch, setbands }, args
       ...categorySug?.filter((item3) => item3.item_title.toLowerCase()?.includes(key?.toLowerCase())),
       ...brandSug?.filter((item3) => item3.item_title.toLowerCase()?.includes(key?.toLowerCase())),
     )
-   
+
     // if (value.length == 1) {
     //   value.push(...product?.filter((item) => item.item_title.toLowerCase().includes(key?.toLowerCase())),
     //     { 'item_title': productkeys?.filter((item2) => item2?.toLowerCase()?.includes(key?.toLowerCase())), "type": 'Product' },
@@ -193,7 +193,7 @@ const NavBar = ({ sugCat, cartl, setPoduct, setRes, setPSearch, setbands }, args
   useEffect(() => {
     let valuData = []
     sugCat?.map(data => {
-      valuData.push({ ...data,'item_title': data?.category_name, "type": 'Category', "id": data?.id })
+      valuData.push({ ...data, 'item_title': data?.category_name, "type": 'Category', "id": data?.id })
     })
     SetcategorySug(valuData)
   }, [sugCat])
@@ -393,8 +393,8 @@ const NavBar = ({ sugCat, cartl, setPoduct, setRes, setPSearch, setbands }, args
   const fetchSearchList22 = async (e) => {
     let skey = e;
     router.push({
-      pathname:`/search/${searchList}`,
-      query: { search: skey, len: 0}
+      pathname: `/search/${searchList}`,
+      query: { search: skey, len: 0 }
     });
   }
 
@@ -411,8 +411,8 @@ const NavBar = ({ sugCat, cartl, setPoduct, setRes, setPSearch, setbands }, args
       response.data.forEach((e) => ids.push(e.id));
       if (response.data.length > 0) {
         router.push({
-          pathname:`/search/${searchList}`,
-          query: { search: skey, len: response.data.length},
+          pathname: `/search/${searchList}`,
+          query: { search: skey, len: response.data.length },
         });
         fectSearchList(ids.join());
       } else {
@@ -431,8 +431,8 @@ const NavBar = ({ sugCat, cartl, setPoduct, setRes, setPSearch, setbands }, args
     const listby = searchBy ?? searchList
     router.push({
       // pathname: "/shop/left_sidebar",
-      pathname:`/search/${listby}`,
-      query: { search: skey, len: 0},
+      pathname: `/search/${listby}`,
+      query: { search: skey, len: 0 },
       // query: { search: skey, len: 0, searchList: listby },
     });
   }
@@ -451,7 +451,7 @@ const NavBar = ({ sugCat, cartl, setPoduct, setRes, setPSearch, setbands }, args
       response.data.forEach((e) => ids.push(e.id));
       if (response.data.length > 0) {
         router.push({
-         pathname:`/search/${listby}`,
+          pathname: `/search/${listby}`,
           query: { search: skey, len: response.data.length },
         });
         fectSearchList(ids.join());
@@ -485,8 +485,8 @@ const NavBar = ({ sugCat, cartl, setPoduct, setRes, setPSearch, setbands }, args
         setProKeys(res.product_tags?.flatMap((item, i) => item?.split(',')))
 
 
-        res?.user && res?.user.forEach(val4 => val4?.name != null && brand.push({...val4,'item_title': val4?.name, "type": 'company', "id": val4?.id }))
-        res?.brands.forEach(val3 => brand.push({...val3,'item_title': val3?.name, "type": 'Brand', "id": val3?.id }))
+        res?.user && res?.user.forEach(val4 => val4?.name != null && brand.push({ ...val4, 'item_title': val4?.name, "type": 'company', "id": val4?.id }))
+        res?.brands.forEach(val3 => brand.push({ ...val3, 'item_title': val3?.name, "type": 'Brand', "id": val3?.id }))
 
         setBrandSug(brand)
         setRes(serv)
@@ -522,7 +522,7 @@ const NavBar = ({ sugCat, cartl, setPoduct, setRes, setPSearch, setbands }, args
     document.getElementById("SearchForm")?.reset();
     setSearchKey()
     router.push({
-      pathname:`/search/${searchList}`,
+      pathname: `/search/${searchList}`,
       query: { search: searchKey, len: 0 },
     });
   }
@@ -535,7 +535,7 @@ const NavBar = ({ sugCat, cartl, setPoduct, setRes, setPSearch, setbands }, args
     response.data?.forEach((e) => ids.push(e.id));
     if (response.data?.length > 0) {
       router.push({
-        pathname:`/search/${searchList}`,
+        pathname: `/search/${searchList}`,
         // query: { listing_id: ids.join(), len: response.data.length,searchList: searchList },
         query: { search: searchKey, len: response.data.length },
       });
@@ -547,7 +547,7 @@ const NavBar = ({ sugCat, cartl, setPoduct, setRes, setPSearch, setbands }, args
 
       if (response2.data?.length > 0) {
         router.push({
-          pathname:`/search/${'product'}`,
+          pathname: `/search/${'product'}`,
           query: { search: searchKey, len: response2.data?.length },
           // query: { listing_id: ids.join(), len: response.data.length,searchList: searchList },
         });
@@ -603,7 +603,7 @@ const NavBar = ({ sugCat, cartl, setPoduct, setRes, setPSearch, setbands }, args
           <div className="toggle-nav" onClick={openNav.bind(this)}>
             <i className="fa fa-bars sidebar-bar"></i>
           </div>
-          
+
           <ul
             className="nav-menu d-xl-flex justify-content-between align-items-center"
             style={navClose}
@@ -624,8 +624,8 @@ const NavBar = ({ sugCat, cartl, setPoduct, setRes, setPSearch, setbands }, args
                   {/* <select className="w-25 border-0 ">
                        <option value="Qatar">Qatar</option>
                      </select> */}
-                    <Autocomplete
-                     value={value}
+                  <Autocomplete
+                    value={value}
                     onChange={(event, newValue) => {
                       setValue(newValue);
                     }}
@@ -655,8 +655,8 @@ const NavBar = ({ sugCat, cartl, setPoduct, setRes, setPSearch, setbands }, args
                       // delete params.style;
                       // delete params.className;
                       return <TextField {...params} className="border-0" />;
-                     }}
-                    />
+                    }}
+                  />
                   <form id="SearchForm" className="ps-2" onSubmit={handleSearch}>
                     {/* <input
                        type="text"
@@ -665,7 +665,7 @@ const NavBar = ({ sugCat, cartl, setPoduct, setRes, setPSearch, setbands }, args
                        onChange={(e)=>setSearchKey(e.target.value)}
                        placeholder={t('what are you looking For..')}
                      /> */}
-                    <div className={`search3 ${layoutState == 'en'? 'border-end' : 'border-start' } sfsdssd ps-2  ms-2`}>
+                    <div className={`search3 ${layoutState == 'en' ? 'border-end' : 'border-start'} sfsdssd ps-2  ms-2`}>
                       {/* <AutoComplete
                       field="item_title"
                       value={searchKey}
@@ -677,7 +677,7 @@ const NavBar = ({ sugCat, cartl, setPoduct, setRes, setPSearch, setbands }, args
                       completeMethod={AutoCompleteSearch}
                       onChange={(e) => setSearchKey(e.target.value)}
                     /> */}
-                      <input type="search" className={`${layoutState == 'en'? 'me-4' : '' }`} value={searchKey} onChange={(e) => {
+                      <input type="search" className={`${layoutState == 'en' ? 'me-4' : ''}`} value={searchKey} onChange={(e) => {
                         setSearchKey(e.target.value);
                         setListToggle(true);
                         setptoggle1(false);
@@ -729,12 +729,12 @@ const NavBar = ({ sugCat, cartl, setPoduct, setRes, setPSearch, setbands }, args
                                     <div className="dropdown-item py-2 cursor-pointer" onClick={() => {
                                       if (item?.type == 'Category') {
                                         router.push({
-                                          pathname:`/category/service/${item.category_slug}`,
+                                          pathname: `/category/service/${item.category_slug}`,
                                           // query: { Category: item.category_slug, searchList: searchList },
                                         })
                                       } else if (item?.type == 'Brand') {
                                         router.push({
-                                          pathname:`/brand/product/${item.slug}`,
+                                          pathname: `/brand/product/${item.slug}`,
                                           // query: { brand_id: item.id, searchList: 'product' },
                                         })
                                       } else if (item?.type == 'Product') {
@@ -892,7 +892,7 @@ const NavBar = ({ sugCat, cartl, setPoduct, setRes, setPSearch, setbands }, args
                        onChange={(e)=>setSearchKey(e.target.value)}
                        placeholder={t('what are you looking For..')}
                      /> */}
-                    <div className={`search3 ${layoutState == 'en'? 'border-end' : 'border-start' } sfsdssd ps-2  ms-2`} >
+                    <div className={`search3 ${layoutState == 'en' ? 'border-end' : 'border-start'} sfsdssd ps-2  ms-2`} >
                       {/* <AutoComplete
                       field="item_title"
                       value={searchKey}
@@ -904,7 +904,7 @@ const NavBar = ({ sugCat, cartl, setPoduct, setRes, setPSearch, setbands }, args
                       completeMethod={AutoCompleteSearch}
                       onChange={(e) => setSearchKey(e.target.value)}
                     /> */}
-                      <input type="search" className={`${layoutState == 'en'? 'me-4' : '' }`} value={searchKey} onChange={(e) => {
+                      <input type="search" className={`${layoutState == 'en' ? 'me-4' : ''}`} value={searchKey} onChange={(e) => {
                         setSearchKey(e.target.value);
                         setListToggle(true);
                         setptoggle1(false);
@@ -942,13 +942,13 @@ const NavBar = ({ sugCat, cartl, setPoduct, setRes, setPSearch, setbands }, args
                                     <div className="dropdown-item py-2 cursor-pointer" onClick={() => {
                                       if (item?.type == 'Category') {
                                         router.push({
-                                          pathname:`/category/service/${item.category_slug}`,
+                                          pathname: `/category/service/${item.category_slug}`,
                                           // query: { Category: item.id, searchList: 'service' },
                                           // query: { Category: item.category_slug, searchList: searchList },
                                         })
                                       } else if (item?.type == 'Brand') {
                                         router.push({
-                                          pathname:`/brand/product/${item.slug}`,
+                                          pathname: `/brand/product/${item.slug}`,
                                           // query: { brand_id: item.id, searchList: 'product' },
                                         })
                                       } else if (item?.type == 'Product') {
@@ -1089,7 +1089,7 @@ const NavBar = ({ sugCat, cartl, setPoduct, setRes, setPSearch, setbands }, args
                         src="/assets/images/tatlub-img/nav-13.png"
                         className="img-fluid"
                       />
-                      <p className={router.pathname == '/business/form' ? 'text-color' : "" }>{t("Post Ad")}</p>
+                      <p className={router.pathname == '/business/form' ? 'text-color' : ""}>{t("Post Ad")}</p>
                     </div>
                   </Link>
                 </li>
@@ -1103,7 +1103,7 @@ const NavBar = ({ sugCat, cartl, setPoduct, setRes, setPSearch, setbands }, args
                         src="/assets/images/tatlub-img/nav-14.png"
                         className="img-fluid"
                       />
-                      <p className={router.pathname == '/page/Lead' ? 'text-color' : "" } >{t("Leads")}</p>
+                      <p className={router.pathname == '/page/Lead' ? 'text-color' : ""} >{t("Leads")}</p>
                     </div>
                   </Link>
                 </li>
@@ -1122,7 +1122,7 @@ const NavBar = ({ sugCat, cartl, setPoduct, setRes, setPSearch, setbands }, args
                           {cartl?.length ?? 0}
                         </div>
                       </div>
-                      <p className={router.pathname == '/Cart/MyCart' ? 'text-color' : "" }>{t("My Cart")}</p>
+                      <p className={router.pathname == '/Cart/MyCart' ? 'text-color' : ""}>{t("My Cart")}</p>
                     </div>
                   </Link>
                 </li>
@@ -1148,7 +1148,7 @@ const NavBar = ({ sugCat, cartl, setPoduct, setRes, setPSearch, setbands }, args
                     />
                     <p className="text-capitalize ">{userData?.name ?? 'user'}</p>
                   </div>
-                  
+
                   <ul
                     className="dropdown-menu border-0 shadow rounded-3 px-3"
                     aria-labelledby="dropdownMenuLink"
@@ -1163,7 +1163,7 @@ const NavBar = ({ sugCat, cartl, setPoduct, setRes, setPSearch, setbands }, args
                             src="/assets/images/dropdown-icon/18.png"
                             className="img-fluid "
                           />
-                          <span className={router.pathname == '/page/account/profile' ? 'text-color' : "" }>{t("Edit Profile")}{" "}</span>
+                          <span className={router.pathname == '/page/account/profile' ? 'text-color' : ""}>{t("Edit Profile")}{" "}</span>
                         </a>
                       </li>
                     </Link>
@@ -1175,13 +1175,26 @@ const NavBar = ({ sugCat, cartl, setPoduct, setRes, setPSearch, setbands }, args
                             src="/assets/images/dropdown-icon/16.png"
                             className="img-fluid"
                           />
-                          
-                          <span className={router.pathname == '/business' ? 'text-color' : "" }>{t("My Bussiness")}{" "}</span>
+
+                          <span className={router.pathname == '/business' ? 'text-color' : ""}>{t("My Bussiness")}{" "}</span>
+                        </a>
+                      </li>
+                    </Link>
+                    <Link href="/products">
+                      <li>
+                        {" "}
+                        <a className="cursor-pointer foot-cat  dropdown-item">
+                          <img
+                            src="/assets/images/dropdown-icon/19.png"
+                            className="img-fluid"
+                          />
+
+                          <span className={router.pathname == '/products' ? 'text-color' : ""}>{t("My Products")}{" "}</span>
                         </a>
                       </li>
                     </Link>
                     {/* <Link href={"/page/account/wishlist"}>
-                    <li>
+                    <li>M
                     <a className="cursor-pointer dropdown-item">
                       <img
                         src="/assets/images/dropdown-icon/17.png"
@@ -1198,7 +1211,7 @@ const NavBar = ({ sugCat, cartl, setPoduct, setRes, setPSearch, setbands }, args
                             src="/assets/images/dropdown-icon/27.png"
                             className="img-fluid "
                           />
-                          <span className={router.pathname == '/shop/Booking2' ? 'text-color' : "" }>{t('My Appointments')}{" "}</span>
+                          <span className={router.pathname == '/shop/Booking2' ? 'text-color' : ""}>{t('My Appointments')}{" "}</span>
                         </a>
                       </li>
                     </Link>
@@ -1209,7 +1222,7 @@ const NavBar = ({ sugCat, cartl, setPoduct, setRes, setPSearch, setbands }, args
                             src="/assets/images/tatlub-img/cart/My_bookings.png"
                             className="img-fluid "
                           />
-                          <span className={router.pathname == '/shop/My_bookings' ? 'text-color' : "" }> {t('My Bookings')}{" "}</span>
+                          <span className={router.pathname == '/shop/My_bookings' ? 'text-color' : ""}> {t('My Bookings')}{" "}</span>
                         </a>
                       </li>
                     </Link>
@@ -1220,8 +1233,8 @@ const NavBar = ({ sugCat, cartl, setPoduct, setRes, setPSearch, setbands }, args
                             src="/assets/images/dropdown-icon/26.png"
                             className="img-fluid "
                           />
-                         
-                          <span className={router.pathname == '/page/account/My-Orders' ? 'text-color' : "" }>{t("My Order")}</span>
+
+                          <span className={router.pathname == '/page/account/My-Orders' ? 'text-color' : ""}>{t("My Order")}</span>
                         </a>
                       </li>
                     </Link>
@@ -1232,7 +1245,7 @@ const NavBar = ({ sugCat, cartl, setPoduct, setRes, setPSearch, setbands }, args
                             src="/assets/images/tatlub-img/cart/My_jobs.png"
                             className="img-fluid "
                           />
-                          <span className={router.asPath == '/page/Hiring/JobsApplied?applyJobs=list' ? 'text-color' : "" }>{t("My Jobs")}</span>
+                          <span className={router.asPath == '/page/Hiring/JobsApplied?applyJobs=list' ? 'text-color' : ""}>{t("My Jobs")}</span>
                         </a>
                       </li>
                     </Link>
@@ -1243,7 +1256,7 @@ const NavBar = ({ sugCat, cartl, setPoduct, setRes, setPSearch, setbands }, args
                             src="/assets/images/dropdown-icon/23.png"
                             className="img-fluid "
                           />
-                          <span className={router.pathname == '/Subscription' ? 'text-color' : "" }>{t('My Subscription')}{" "}</span>
+                          <span className={router.pathname == '/Subscription' ? 'text-color' : ""}>{t('My Subscription')}{" "}</span>
                         </a>
                       </li>
                     </Link>
@@ -1254,7 +1267,7 @@ const NavBar = ({ sugCat, cartl, setPoduct, setRes, setPSearch, setbands }, args
                             src="/assets/images/dropdown-icon/21.png"
                             className="img-fluid "
                           />
-                         <span className={router.pathname == '/page/account/Manage-orders' ? 'text-color' : "" }>{t("Manage Order")}</span>
+                          <span className={router.pathname == '/page/account/Manage-orders' ? 'text-color' : ""}>{t("Manage Order")}</span>
                         </a>
                       </li>
                     </Link>
@@ -1266,11 +1279,11 @@ const NavBar = ({ sugCat, cartl, setPoduct, setRes, setPSearch, setbands }, args
                             src="/assets/images/dropdown-icon/28.png"
                             className="img-fluid "
                           />
-                          <span className={router.asPath == '/page/Hiring/JobsApplied' ? 'text-color' : "" }>{t('Manage Jobs')}{" "}</span>
+                          <span className={router.asPath == '/page/Hiring/JobsApplied' ? 'text-color' : ""}>{t('Manage Jobs')}{" "}</span>
                         </a>
                       </li>
                     </Link>
-                    
+
                     {/* <Link href={"/Cart/MyCart"}>
                       <li>
                         <a className="cursor-pointer dropdown-item foot-cat">
@@ -1301,7 +1314,7 @@ const NavBar = ({ sugCat, cartl, setPoduct, setRes, setPSearch, setbands }, args
                             src="/assets/images/dropdown-icon/20.png"
                             className="img-fluid "
                           />
-                         <span className={router.pathname == '/page/Lead' ? 'text-color' : "" }>{t("Leads")}{" "}</span>
+                          <span className={router.pathname == '/page/Lead' ? 'text-color' : ""}>{t("Leads")}{" "}</span>
                         </a>
                       </li>
                     </Link>
@@ -1313,7 +1326,7 @@ const NavBar = ({ sugCat, cartl, setPoduct, setRes, setPSearch, setbands }, args
                             src="/assets/images/dropdown-icon/22.png"
                             className="img-fluid "
                           />
-                          <span className={router.pathname == '/page/Enquiry_manage' ? 'text-color' : "" }> {t("Enquire & Manage Quotes")}{" "}</span>
+                          <span className={router.pathname == '/page/Enquiry_manage' ? 'text-color' : ""}> {t("Enquire & Manage Quotes")}{" "}</span>
                         </a>
                       </li>
                     </Link>
@@ -1425,6 +1438,19 @@ const NavBar = ({ sugCat, cartl, setPoduct, setRes, setPSearch, setbands }, args
               </a>
             </li>
           </Link>
+          <Link href="/products">
+            <li>
+              {" "}
+              <a className="cursor-pointer foot-cat  dropdown-item">
+                <img
+                  src="/assets/images/dropdown-icon/19.png"
+                  className="img-fluid"
+                />
+
+                <span className={router.pathname == '/products' ? 'text-color' : ""}>{t("My Products")}{" "}</span>
+              </a>
+            </li>
+          </Link>
           <Link href={"/page/account/wishlist"}>
             <li className="cursor-pointer">
               <img
@@ -1463,7 +1489,7 @@ const NavBar = ({ sugCat, cartl, setPoduct, setRes, setPSearch, setbands }, args
                   src="/assets/images/dropdown-icon/20.png"
                   className="img-fluid "
                 />
-                <span className={router.pathname == '/page/Lead' ? 'text-color' : "" }>{t("Leads")}{" "}</span>
+                <span className={router.pathname == '/page/Lead' ? 'text-color' : ""}>{t("Leads")}{" "}</span>
               </a>
             </li>
           </Link>
@@ -1474,7 +1500,7 @@ const NavBar = ({ sugCat, cartl, setPoduct, setRes, setPSearch, setbands }, args
                   src="/assets/images/dropdown-icon/21.png"
                   className="img-fluid "
                 />
-                <span className={router.pathname == '/page/account/Manage-orders' ? 'text-color' : "" }>{t("Manage Order")}</span>
+                <span className={router.pathname == '/page/account/Manage-orders' ? 'text-color' : ""}>{t("Manage Order")}</span>
               </a>
             </li>
           </Link>
@@ -1485,7 +1511,7 @@ const NavBar = ({ sugCat, cartl, setPoduct, setRes, setPSearch, setbands }, args
                   src="/assets/images/dropdown-icon/21.png"
                   className="img-fluid "
                 />
-                <span className={router.pathname == '/page/account/My-Orders' ? 'text-color' : "" }>{t("My Order")}</span>
+                <span className={router.pathname == '/page/account/My-Orders' ? 'text-color' : ""}>{t("My Order")}</span>
               </a>
             </li>
           </Link>
@@ -1496,7 +1522,7 @@ const NavBar = ({ sugCat, cartl, setPoduct, setRes, setPSearch, setbands }, args
                   src="/assets/images/dropdown-icon/22.png"
                   className="img-fluid "
                 />
-                <span className={router.pathname == '/page/account/Enquiry-manage' ? 'text-color' : "" }>{t("Enquire & Manage Quotes")}{" "}</span>
+                <span className={router.pathname == '/page/account/Enquiry-manage' ? 'text-color' : ""}>{t("Enquire & Manage Quotes")}{" "}</span>
               </a>
             </li>
           </Link>

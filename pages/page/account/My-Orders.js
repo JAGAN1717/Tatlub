@@ -114,7 +114,7 @@ function My_orders() {
       case '7':
         return 'danger';
       case '8':
-        return 'Canceled';
+        return 'danger';
       default:
         return 'warning';
     }

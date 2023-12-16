@@ -76,7 +76,6 @@ function ManageOrderInfo({ orderD }) {
         getOrderDetails(ids, sId).then(res => {
             // console.log("skdhsgddkskd",res.data)
             setOrderdata(res.data?.order)
-
             const productNull = res.data?.order_detail?.filter(e => e.product != null)
             setproductList(productNull)
             setIsLoading(false)
@@ -113,7 +112,8 @@ function ManageOrderInfo({ orderD }) {
 
     const getSeverity = (product) => {
 
-        switch (product?.product?.product_status ?? 1) {
+        // switch (product?.product?.product_status ?? 1) {
+            switch (product ?? 1) {
             case '1':
                 return 'warning';
             case '2':
@@ -136,7 +136,8 @@ function ManageOrderInfo({ orderD }) {
     };
 
     const getSeverity2 = (product) => {
-        switch (product?.product?.product_status ?? 1) {
+        // switch (product?.product?.product_status ?? 1) {
+            switch (product ?? 1) {
             case '1':
                 return 'Pending';
             case '2':
@@ -180,7 +181,7 @@ function ManageOrderInfo({ orderD }) {
                                             </span>
                                             <div className="w-100 lg:w-auto mx-lg-auto mx-2">
                                                 {/* {getSeverity2(orderData?.delivery_status) ?? 'Order Processing'} */}
-                                                <Tag value={t(getSeverity2(orderData))} severity={getSeverity(orderData)}></Tag>
+                                                <Tag value={t(getSeverity2(productList[0]?.order_status))} severity={getSeverity(productList[0]?.order_status)}></Tag>
                                             </div>
                                         </div>
                                         <div className="d-flex align-items-center">

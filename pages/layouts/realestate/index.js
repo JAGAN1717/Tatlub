@@ -104,7 +104,7 @@ const testvts = () => {
       //   query: { search: searchkey, city: localStorage.getItem('city') },
       // }); 
       toast.info('Please Enter you want Property !', {
-        position: "bottom-center",
+        position: "bottom-right",
         autoClose: 300,
         hideProgressBar: true,
         closeOnClick: false,

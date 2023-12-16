@@ -1047,7 +1047,7 @@ const property = () => {
                         toast.info(
                           "Link copied to clipboard!",
                           {
-                            position: "bottom-center",
+                            position: "bottom-right",
                             autoClose: 500,
                             icon: false,
                             hideProgressBar: true,
