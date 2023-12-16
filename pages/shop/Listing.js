@@ -51,8 +51,8 @@ import CircularProgress from '@mui/material/CircularProgress';
 // import 'react-clock/dist/Clock.css';
 import { GoogleMap, useJsApiLoader,LoadScript , InfoWindowF, MarkerF,Marker } from '@react-google-maps/api';
 import { Editor } from 'primereact/editor';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
+// import ReactQuill from 'react-quill';
+// import 'react-quill/dist/quill.snow.css';
 
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL
