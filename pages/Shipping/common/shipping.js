@@ -143,6 +143,9 @@ export default function Shipping(
                         progress: undefined,
                         theme: "dark",
                     });
+                    setLocation(body);
+                    setActiveIndex(1)
+                    console.log("skhdskljdsd",response.data)
                 } else {
                     toast.error(response?.message + '!', {
                         position: "bottom-right",
@@ -155,7 +158,7 @@ export default function Shipping(
                         theme: "dark",
                     });
                 }
-                fetchAddress()
+                // fetchAddress()
                 resetForm()
             } catch (error) {
                 console.error(error);
@@ -254,15 +257,15 @@ export default function Shipping(
                                     ))
                                 }
 
-                                <div className='shipping_address mb-3'>
+                                <div className={'add' == selectAddress ? 'shipping_address2 mb-3' : 'shipping_address mb-3'} onClick={() => setselectAddress('add')}>
                                     <div className=''>
-                                        <div className='d-flex justify-content-start align-items-center mb-3 d-none'>
+                                        <div className='d-flex justify-content-start align-items-center mb-3'>
                                             <div className="form-check">
-                                                <input className="form-check-input" type="radio" name="address1" id="address1" />
+                                                <input className="form-check-input" checked={'add' == selectAddress ? true : false} type="radio" name="address1" id="address1" />
                                             </div>
                                             <h4 className='complete_1 ms-3 mb-0 pb-0 fw-bold cursor-pointer' for="address13">{t('Add New Address')}</h4>
                                         </div>
-                                        <div className='d-flex justify-content-center align-items-center pt-3'>
+                                        <div className='d-flex justify-content-center align-items-center pt-3 d-none'>
                                             <h4 className='complete_1 ms-3 mb-0 pb-0 fw-bold cursor-pointer' for="address13">{t('Add New Address')}</h4>
                                         </div>
                                         <div className='p-4 pt-2'>
@@ -324,6 +327,7 @@ export default function Shipping(
                                                         <Select
                                                             closeMenuOnSelect={true}
                                                             isSearchable={false}
+                                                            required={true}
                                                             name="country_id"
                                                             placeholder={t('Select Country')}
                                                             onChange={(e) => {
@@ -449,12 +453,12 @@ export default function Shipping(
                                                         )}
                                                     </div>
                                                     {/* <div className='mb-3 col-md-6'>
-                                    <label className='form-labe'>Landmark*</label>
-                                    <input type='text' className='form-control' />
-                                </div> */}
+                                                        <label className='form-labe'>Landmark*</label>
+                                                        <input type='text' className='form-control' />
+                                                    </div> */}
                                                 </div>
-                                                <div className='d-flex justify-content-center  align-items-center'>
-                                                    <button type='submit' className='btn btn_checkOut rounded px-5'>{t('Submit')}</button>
+                                                <div className='d-flex justify-content-center  align-items-center d-none'>
+                                                    <button type='submit' id='cartAddressAdd' className='btn btn_checkOut rounded px-5'>{t('Submit')}</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -464,14 +468,17 @@ export default function Shipping(
 
                         </div>
                         <div className='d-flex justify-content-center '>
-                            <button type='button' disabled={Address?.length == 0 ? true : false} className='btn btn_checkOut px-5 rounded' onClick={() => setActiveIndex(1)}>{t("Continue")}</button>
+                            <button type='button' disabled={selectAddress == 'add'? Object.keys(formik.errors).length > 0 : Address?.length == 0} className='btn btn_checkOut px-5 p-2 rounded' 
+                            onClick={() =>{ 
+                                 selectAddress == 'add' ? document.getElementById('cartAddressAdd')?.click() : setActiveIndex(1);
+                                 } }>{t("Continue")}</button>
                         </div>
                     </div>
 
                     <div className='col-lg-4  mb-3'>
                         {
                             cartData?.data?.length > 0 &&
-                            <div className='Cart_card'>
+                            <div className='Cart_card shadow-none'>
                                 <div className=''>
                                     <h4>{t('Order Summary')}</h4>
                                     {

@@ -162,7 +162,7 @@ import { useTranslation } from "react-i18next";
         <Confirmation orderDetails={orderDetails} setActiveIndex={setActiveIndex} cartData={products} />
     </div>
     </div>
-
+    
     </section>
         }
 

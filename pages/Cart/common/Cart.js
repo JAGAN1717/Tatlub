@@ -199,8 +199,9 @@ export default function Cart() {
     const imageBodyTemplate = (product) => {
 
         return (
-            <div className='d-flex justify-content-start align-items-center position-relative' onClick={() => router.push(`/product-details/${product.product_slug}`)}>
-                <img src={product?.product_image_medium} className="cart_img shadow-2 object-fit-contain cursor-pointer bg-light" onError={(e) => e.currentTarget.src = '/assets/images/tatlub-img/No.jpg'} />
+            // <div className='d-flex justify-content-start align-items-center position-relative' onClick={() => router.push(`/product-details/${product.product_slug}`)}>
+            <div className='d-flex justify-content-start align-items-center position-relative' >
+            <img src={product?.product_image_medium} className="cart_img shadow-2 object-fit-contain cursor-pointer bg-light" onError={(e) => e.currentTarget.src = '/assets/images/tatlub-img/No.jpg'} />
                 <div className='ms-3'>
                     <h4 className='fw-bold complete_2 text-capitalize lh-base fs-5 foot-cat cursor-pointer'>{product?.product_name}</h4>
                     <div className="d-flex justify-content-start"><h4 className='fw-bold fs-5 text-color'>{t("QAR")} {product?.price ?? product?.product_price}.00</h4>

@@ -111,7 +111,7 @@ const header = (
             </div>
 
             <div className='col-lg-3'>
-                <div className='Cart_card h-100'>
+                <div className='Cart_card hadow-none h-100'>
                     {
                     orderDetails &&
                    <div className=''>
