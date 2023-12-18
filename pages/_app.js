@@ -24,6 +24,7 @@ import { IdProvider } from "../IdContext";
 // import { persistStore } from 'redux-persist'
 // import { Provider } from 'react-redux'
 // import { Store } from "../redux/store";
+import CommonLayout from "../components/shop/common-layout";
 
 // https://tatlub.vrikshatech.in/api/?slug=travel_and_tourism
 

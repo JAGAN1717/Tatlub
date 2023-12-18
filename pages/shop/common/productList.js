@@ -1316,7 +1316,7 @@ const ProductList = ({
                   aria-labelledby="QuateModal22Label"
                   aria-hidden="true"
                 >
-                  <div className="modal-dialog modal-dialog-centered">
+                  <div className="modal-dialog modal-dialog-centered modal-fullscreen-sm-down">
                     <div className="modal-content">
                       <div className="pt-4 px-4">
                         <div className="text-center">

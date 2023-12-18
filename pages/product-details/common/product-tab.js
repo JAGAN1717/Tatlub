@@ -403,7 +403,7 @@ const ProductTab = ({ desc, seller, addToCart, Listings }) => {
                                             "/assets/images/tatlub-img/No.jpg")
                                           }
                                         />
-                                        <h6 className="text-color text-capitalize fw-bolder mt-2 cursor-pointer">
+                                        <h6 className="foot-cat text-capitalize fw-bolder mt-2 cursor-pointer">
                                           {data.product_name}
                                         </h6>
                                         <h6>

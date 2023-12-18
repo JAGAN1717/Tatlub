@@ -1507,7 +1507,7 @@ header {
 
   &:before {
     content: "\f107";
-    // font-family: $font-awesome;
+    font-family: $font-awesome;
     position: absolute;
     right: 3px;
   }
@@ -10950,7 +10950,7 @@ footer {
       top: 0;
       right: -3px;
       content: "\f106";
-      // font-family: $font-awesome;
+      font-family: $font-awesome;
       color: lighten($black, 26.5%);
     }
   }

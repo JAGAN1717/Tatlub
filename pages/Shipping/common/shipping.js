@@ -290,7 +290,7 @@ export default function Shipping(
 
                                                     <div className='mb-3 col-md-12'>
                                                         <label className='form-labe'>{t("Address")}*</label>
-                                                        <textarea className='form-control' {...formik.getFieldProps('address')} rows={3} />
+                                                        <textarea className='form-control' {...formik.getFieldProps('address')} rows={3} required />
                                                         {formik.touched.address && formik.errors.address && (
                                                             <div className='fv-plugins-message-container'>
                                                                 <div className='fv-help-block'>
@@ -302,7 +302,7 @@ export default function Shipping(
 
                                                     <div className='mb-3 col-md-6'>
                                                         <label className='form-labe'>{t("Phone")}*</label>
-                                                        <input type='text' className='form-control' maxLength={15} {...formik.getFieldProps('phone')} onChange={(e) => formik.setFieldValue("phone", e.target?.value.replace(/[^0-9]/g, ""))} />
+                                                        <input type='text' className='form-control' maxLength={15} {...formik.getFieldProps('phone')} onChange={(e) => formik.setFieldValue("phone", e.target?.value.replace(/[^0-9]/g, ""))} required />
                                                         {formik.touched.phone && formik.errors.phone && (
                                                             <div className='fv-plugins-message-container'>
                                                                 <div className='fv-help-block'>

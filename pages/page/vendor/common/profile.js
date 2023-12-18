@@ -1540,7 +1540,7 @@ const ProfilePage = (args) => {
                                                   "/assets/images/tatlub-img/No.jpg")
                                                 }
                                               />
-                                              <h6 className="text-color text-capitalize fw-bolder mt-2 cursor-pointer">
+                                              <h6 className="foot-cat text-capitalize fw-bolder mt-2 cursor-pointer">
                                                 {data.product_name}
                                               </h6>
                                               <h6>
@@ -1687,7 +1687,7 @@ const ProfilePage = (args) => {
                                           // query: { item_id: data.id }
                                         }} >
                                           <h6
-                                            className="card-title text-color fs-16 text-capitalize  fw-bolder cursor-pointer"
+                                            className="card-title foot-cat fs-16 text-capitalize  fw-bolder cursor-pointer"
                                           >
                                             {t(data?.item_title)}
                                           </h6>
