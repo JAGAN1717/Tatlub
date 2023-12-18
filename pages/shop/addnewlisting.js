@@ -12,26 +12,60 @@ import { LinkOff } from "@mui/icons-material";
 import { Backdrop } from "@mui/material";
 import { useRouter } from 'next/router';
 import authenticated from "../../components/auth/auth";
+import Select from 'react-select';
+import { getContriesDrop, getStateDrop, getCityDrop } from "../../components/core/shop_requests";
 
 const initialValues = {
   phone_number: "",
   email: "",
   address: "",
   state: "",
+  state_id: "",
   country: "",
+  country_id: "",
   city: "",
+  city_id: "",
   user_id: "",
 };
 
 function Addbranch() {
   const [formValues, setFormValues] = useState([initialValues]);
   const [branchsave, setbranchsave] = useState([]);
-  
+  const [countries, setCountries] = useState([]);
+  const [countriesval, setCountriesval] = useState();
+  const [state, setState] = useState([]);
+  const [stateval, setStateval] = useState([]);
+  const [city, setCity] = useState([]);
+  const [cityval, setCityval] = useState([]);
+
   const fetchBranchsave = async (id) => {
     const responcedata = await savebranch(id)
     setbranch(responcedata.data)
     // console.log("dhuig", responcedata)
   }
+
+  const fetchCountries = async () => {
+    const responce = await getContriesDrop();
+    setCountries(responce.data);
+  };
+
+  const fetchState = async (id) => {
+
+    const responce = await getStateDrop(id);
+    setState(responce.data);
+  };
+
+  const fetchCity = async (id) => {
+    const responce = await getCityDrop(id);
+    setCity(responce.data);
+  };
+
+  useEffect(() => {
+    fetchCountries();
+    // fetchCity();
+    // fetchState();
+  }, []);
+
 
   const router = useRouter();
   const handleClick = () => {
@@ -74,30 +108,28 @@ function Addbranch() {
   const formik = useFormik({
     initialValues,
     validationSchema: branchSchema,
-      onSubmit: async (values, { setStatus, setSubmitting, resetForm }) => {
+    onSubmit: async (values, { setStatus, setSubmitting, resetForm }) => {
       const userId = JSON.parse(sessionStorage.getItem("data"))?.id ?? JSON.parse(localStorage.getItem("data"))?.id;
-      var roleId = "";
-      
       try {
-
         let body = {
           "phone_number": values.phone_number,
           "email": values.email,
           "address": values.address,
           "state": values.state,
+          "state_id": values.state_id,
           "country": values.country,
+          "country_id": values.country_id,
           "city": values.city,
+          "city_id": values.city_id,
           "user_id": userId,
         }
-
-      
         const response = await AddBranchesData(body);
         toast.info("SAVE SUCCESSFULL", {
           position: "bottom-right",
           autoClose: 2000,
           hideProgressBar: false,
           closeOnClick: true,
-          icon:false,
+          icon: false,
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
@@ -105,7 +137,6 @@ function Addbranch() {
         });
         // resetForm()
         handleClick();
-        
       } catch (error) {
         console.error(error);
         toast.error("Server Error!!!", {
@@ -130,12 +161,12 @@ function Addbranch() {
       <section className={"Edit-profile mb-5 mt-5"} >
         <Container>
 
-         <div className='d-flex justify-content-end align-items-center d-none'>
+          <div className='d-flex justify-content-end align-items-center d-none'>
             <Link href='/shop/BrancheList'>
               <button type='button' className='btn btn_header fw-500 mb-3' onClick={handleClick}>Back</button>
             </Link>
           </div>
-          
+
           {/* <div className="mb-3 form_edit_bfranch"> */}
           <div className="mb-3 form_condition_">
             <div className="form-head mb-3 mt-3">
@@ -148,7 +179,7 @@ function Addbranch() {
                 <div className="mb-lg-4 mb-3 col-md-4 col-6">
 
                   <label className="form-label">{t("Email")}</label>
-                  <input type="email" className="form-control" placeholder="" name={`email`} {...formik.getFieldProps(`email`)}/>
+                  <input type="email" className="form-control" placeholder="" name={`email`} {...formik.getFieldProps(`email`)} />
 
                   {formik.touched.email && formik.errors.email && (
                     <div className="fv-plugins-message-container">
@@ -183,7 +214,7 @@ function Addbranch() {
                 <div className="mb-lg-4 mb-3 col-md-4 col-6">
 
                   <label className="form-label">{t("Address")}</label>
-                  <input type="text" className="form-control" placeholder="" name="address" {...formik.getFieldProps('address')}/>
+                  <input type="text" className="form-control" placeholder="" name="address" {...formik.getFieldProps('address')} />
 
                   {formik.touched.address && formik.errors.address && (
                     <div className="fv-plugins-message-container">
@@ -194,13 +225,75 @@ function Addbranch() {
                       </div>
                     </div>
                   )}
+                </div>
+
+                <div className="mb-lg-4 mb-3 col-md-4 col-6">
+
+                  <label className="form-label">{t("Country")}</label>
+                  {/* <input type="text" className="form-control" placeholder="" name="country" {...formik.getFieldProps('country')}/> */}
+                  <Select
+                    closeMenuOnSelect={true}
+                    isSearchable={false}
+                    name="country_id"
+                    placeholder={t('Select Country')}
+                    onChange={(e) => {
+                      formik.setFieldValue(
+                        "country_id",
+                        e.id
+                      );
+                      formik.setFieldValue('country', e.country_name)
+                      setCountriesval(e.id)
+                      fetchState(e.id);
+                    }}
+                    value={countries?.find(e => e.id == countriesval) ?? ''}
+                    options={countries}
+                    getOptionLabel={(option) => `${option.country_name}`}
+                    getOptionValue={(option) => option.id}
+                    className=" w-100"
+                    classNamePrefix="select"
+                    isRequired
+                  />
+                  {formik.touched.country && formik.errors.country && (
+                    <div className="fv-plugins-message-container">
+                      <div className="fv-help-block">
+                        <span role="alert" className="text-danger">
+                          {formik.errors.country}
+                        </span>
+                      </div>
+                    </div>
+                  )}
 
                 </div>
 
                 <div className="mb-lg-4 mb-3 col-md-4 col-6">
 
                   <label className="form-label">{t("State")}</label>
-                  <input type="text" className="form-control" placeholder="" name="state" {...formik.getFieldProps('state')}/>
+                  {/* <input type="text" className="form-control" placeholder="" name="state" {...formik.getFieldProps('state')} /> */}
+                  <Select
+                    closeMenuOnSelect={true}
+                    required={true}
+                    isSearchable={false}
+                    name="state_id"
+                    placeholder={t('Select State')}
+                    onChange={(e) => {
+                      formik.setFieldValue(
+                        "state_id",
+                        e.id
+                      );
+                      formik.setFieldValue(
+                        "state",
+                        e.state_name
+                      );
+                      fetchCity(e.id);
+                      setStateval(e.id);
+                    }}
+                    value={state?.find(e => e.id == stateval)}
+                    options={state}
+                    getOptionLabel={(option) => `${option.state_name}`}
+                    getOptionValue={(option) => option.id}
+                    className=" w-100"
+                    classNamePrefix="select"
+                  />
 
                   {formik.touched.state && formik.errors.state && (
                     <div className="fv-plugins-message-container">
@@ -217,8 +310,33 @@ function Addbranch() {
                 <div className="mb-lg-4 mb-3 col-md-4 col-6">
 
                   <label className="form-label">{t("City")}</label>
-                  <input type="text" className="form-control" placeholder="" name="city" {...formik.getFieldProps('city')}/>
-
+                  {/* <input type="text" className="form-control" placeholder="" name="city" {...formik.getFieldProps('city')} /> */}
+                  <Select
+                    closeMenuOnSelect={true}
+                    required={true}
+                    // isDisabled={!selectIntrovel}
+                    isSearchable={false}
+                    name="city_id"
+                    placeholder={t('Select City')}
+                    onChange={(e) => {
+                      formik.setFieldValue(
+                        "city_id",
+                        e.id
+                      );
+                      formik.setFieldValue(
+                        "city",
+                        e.city_name
+                      );
+                      fetchState(e.id);
+                      setCityval(e.id)
+                    }}
+                    value={city?.find(e => e.id == cityval)}
+                    options={city}
+                    getOptionLabel={(option) => `${option.city_name}`}
+                    getOptionValue={(option) => option.id}
+                    className="w-100"
+                    classNamePrefix="select"
+                  />
                   {formik.touched.city && formik.errors.city && (
                     <div className="fv-plugins-message-container">
                       <div className="fv-help-block">
@@ -231,22 +349,6 @@ function Addbranch() {
 
                 </div>
 
-                <div className="mb-lg-4 mb-3 col-md-4 col-6">
-
-                  <label className="form-label">{t("Country")}</label>
-                  <input type="text" className="form-control" placeholder="" name="country" {...formik.getFieldProps('country')}/>
-                  
-                  {formik.touched.country && formik.errors.country && (
-                    <div className="fv-plugins-message-container">
-                      <div className="fv-help-block">
-                        <span role="alert" className="text-danger">
-                          {formik.errors.country}
-                        </span>
-                      </div>
-                    </div>
-                  )}
-
-                </div>
 
               </div>
 

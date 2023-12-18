@@ -79,7 +79,7 @@ const center = {
 };
 
 
-function MapComponent({ lat, lng, setPosition,handleMarkerDragEnd }) {
+function MapComponent({ lat, lng, setPosition,handleMarkerDragEnd,zoomIn,setZoomin }) {
   const { isLoaded:mapLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: "AIzaSyCOYU6x7yqbUnNRtBuygEfCX9NgWakZRLw"
@@ -95,7 +95,13 @@ function MapComponent({ lat, lng, setPosition,handleMarkerDragEnd }) {
 
   // };
 
-  const [map, setMap] = React.useState(null)
+  const [map, setMap] = React.useState(null) 
+
+  const OPTIONS = {
+    minZoom: 4,
+    maxZoom: 18,
+  }
+
 
   const onLoad = React.useCallback(function callback(map) {
     const bounds = new window.google.maps.LatLngBounds({ lat: lat, lng: lng });
@@ -113,11 +119,11 @@ function MapComponent({ lat, lng, setPosition,handleMarkerDragEnd }) {
         <GoogleMap
           mapContainerStyle={containerStyle}
           center={{ lat: lat, lng: lng }}
-          zoom={8}
+          zoom={10}
           onLoad={onLoad}
           onUnmount={onUnmount}
           onClick={handleMarkerDragEnd}
-          options={{ draggableCursor: 'pointer' }}
+          options={{ draggableCursor: 'pointer',minZoom:8,maxZoom:10 }}
         >
           <Marker
             position={{ lat: lat, lng: lng }}
@@ -275,11 +281,14 @@ function Listing() {
   if (typeof window === "undefined") {
     return null;
   }
-
-  const [position, setPosition] = useState({
+ const pos = JSON.parse(localStorage.getItem('currentLatLng'))
+  const [position, setPosition] = useState( {
     lat: 25.3336984,
     lng: 51.2295295,
-  });
+  }); 
+
+  const [zoomIn, setZoomin] = useState(10) 
+
 
   let initialValues = {
     user_id: "",
@@ -1635,7 +1644,7 @@ function Listing() {
                   </GoogleMapReact> */} 
                 </div>
 
-               <MapComponent lat={position.lat} lng={position.lng} setPosition={setPosition} handleMarkerDragEnd={handleMarkerDragEnd} /> 
+               <MapComponent lat={position.lat} setZoomin={setZoomin} zoomIn={zoomIn} lng={position.lng} setPosition={setPosition} handleMarkerDragEnd={handleMarkerDragEnd} /> 
 
               </div>
               <div className="modal-footer d-flex justify-content-end ">
@@ -1960,7 +1969,7 @@ function Listing() {
                             {t("Branches")}
                           </label>
                           <select
-                            className="form-select"
+                            className="form-select d-none"
                             aria-label="Default select example"
                             {...formik.getFieldProps("branch")}
                           >
@@ -1972,7 +1981,28 @@ function Listing() {
                                 {data?.address}
                               </option>
                             ))}
-                          </select>
+                          </select> 
+
+                          <MulSelect
+                            closeMenuOnSelect={true}
+                            isSearchable={false}
+                            name="branch"
+                            placeholder={t('Select Branch')}
+                            onChange={(e) => {
+                              formik.setFieldValue(
+                                "branch",
+                                e.id
+                              );
+                            }}
+                            value={branches.find(e => e.id == formik.values.branch) ?? ''}
+                            options={branches}
+                            getOptionLabel={(option) => `${option.address}`}
+                            getOptionValue={(option) => option.id}
+                            className=" w-100"
+                            classNamePrefix="select"
+                            isRequired
+                          />
+
                           {formik.touched.branch && formik.errors.branch && (
                             <div className="fv-plugins-message-container">
                               <div className="fv-help-block">
@@ -2244,9 +2274,10 @@ function Listing() {
                               type="button"
                               data-bs-toggle="modal"
                               data-bs-target="#openMapPoint"
-                              className="btn p-2 btn-theme mt-2 rounded btn_open_map"
+                              className="btn p-2 btn-theme mt-2 rounded btn_open_map" 
+                              onClick={()=> setZoomin(8)}
                             >
-                              OPEN MAP
+                              {t("OPEN MAP")}
                             </button>
                           </div>
                         </div>
