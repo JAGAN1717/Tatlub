@@ -1994,7 +1994,7 @@ function Listing() {
                                 e.id
                               );
                             }}
-                            value={branches.find(e => e.id == formik.values.branch) ?? ''}
+                            value={branches?.find(e => e.id == formik.values.branch) ?? ''}
                             options={branches}
                             getOptionLabel={(option) => `${option.address}`}
                             getOptionValue={(option) => option.id}

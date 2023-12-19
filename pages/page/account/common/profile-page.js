@@ -1921,7 +1921,7 @@ const ProfilePage = () => {
                             <option disabled selected>DD</option>
                             {
                               [...Array(31)].map((x, i) => (
-                                <option value={i + 1}>{i + 1}</option>
+                                <option value={i + 1} key={i}>{i + 1}</option>
                               ))
                             }
                           </select>
@@ -1942,7 +1942,7 @@ const ProfilePage = () => {
                             <option disabled selected>MM </option>
                             {
                               [...Array(12)].map((x, i) => (
-                                <option value={i + 1}>{i + 1}</option>
+                                <option value={i + 1} key={i}>{i + 1}</option>
                               ))
                             }
                           </select>
@@ -1963,7 +1963,7 @@ const ProfilePage = () => {
                             <option disabled selected>YYYY </option>
                             {
                               [...Array(70)].map((x, i) => (
-                                <option value={i + 1950}>{i + 1950}</option>
+                                <option value={i + 1950} key={i}>{i + 1950}</option>
                               ))
                             }
                           </select>
