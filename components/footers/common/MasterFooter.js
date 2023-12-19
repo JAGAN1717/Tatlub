@@ -523,7 +523,7 @@ const MasterFooter = ({
                             aria-hidden="true"
                           ></i>
                           {/* <Link href="/page/CustomerCare/CustomerCare-list"> /page/Hiring/Job-list?id=38166 */}
-                          <Link href="/page/Hiring/Job-list?id=38166">
+                          <Link href="/page/Hiring/customer_service">
                             <a className="foot-cat">{t("Customer Care")}</a>
                           </Link>
                         </li>
