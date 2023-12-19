@@ -29,6 +29,7 @@ import axios from "axios";
 // import initialProvider fro../initialvalueContextex';
 import { getBrand, getBanners, getCategory, getSection, getPopular, getRecommended, getTrendingProperty, getRecommendedProperty, getSocialmedia, getCustomerVideo, getSubcategory, getMainCategory } from "../components/core/fashion_request";
 import { getLanguages } from "../components/core/account_request";
+import { getSuggestions } from "../components/headers/core/_request";
 
 
 export const testcontex = createContext(null)
@@ -244,9 +245,10 @@ const Fashion = () => {
 
     await Promise.all[
       fetchMainCategories(),
-      fetchCategory(),
+      // fetchCategory(),
       // fetchBrand(),
       fetchBanners(),
+      fetchSeggetion(),
       fetchBannerSection(),
       fectLanguages(),
       // fetchPopularProduct(),
@@ -279,6 +281,31 @@ const Fashion = () => {
       </div>
     )
   }
+
+  const fetchSeggetion = async () => {
+    const response = await getSuggestions()
+      .then((res) => {
+        let serv = []
+        let pro = []
+        let brand = []
+        let company = []
+
+        res?.data.forEach(val1 => { serv.push({ ...val1, "type": "Listing" }) })
+
+        res?.products && res?.products.forEach(val2 => pro.push({ ...val2, "type": "Product" }))
+
+        res?.user && res?.user.forEach(val4 => val4?.name != null && brand.push({ ...val4, 'item_title': val4?.name, "type": 'company', "id": val4?.id }))
+
+        res?.brands.forEach(val3 => brand.push({ ...val3, 'item_title': val3?.name, "type": 'Brand', "id": val3?.id }))
+
+        setResult(serv)
+        setPro(pro)
+        setBrandSug(brand)
+      })
+      .catch((err) => {
+        console.error("err1", err.message);
+      });
+  };
 
   //   axios.interceptors.request.use(function (config) {
   //     if(config){
@@ -319,13 +346,15 @@ const Fashion = () => {
             <link rel="icon" type="image/x-icon" href={"/assets/images/favicon/27.png"} />
           </Helmet>
           {/* <ModalComponent /> */}
+          {/* <div className="d-none">
           <Suspense fallback={<Loader />}>
             <HeaderOne categoryList={category} setBrandSug={setBrandSug} setResult={setResult} setPro={setPro} setPopularSearch={setPopularSearch} logoName={"logo.png"} topClass="top-header" />
           </Suspense>
+          </div> */}
           <Suspense fallback={<Loader />}>
             <Banner
               popperSearch={popperSearch}
-              category={category}
+              // category={category}
               banners={banners}
               result1={result}
               product1={product}
@@ -340,7 +369,6 @@ const Fashion = () => {
               BannerSection={BannerSection}
               popular={popular}
               recommended={recommended}
-              categories={category}
             />
           </Suspense>
 
@@ -395,7 +423,7 @@ const Fashion = () => {
           {/* <div className="section-b-space">
         <LogoBlock />
       </div> */}
-          <Suspense fallback={<Loader />}>
+          {/* <Suspense fallback={<Loader />}>
             <MasterFooter
               categoryList={category}
               footerClass={`footer-light`}
@@ -406,7 +434,7 @@ const Fashion = () => {
               mediaLink={soacial}
               logoName={"logo.png"}
             />
-          </Suspense>
+          </Suspense> */}
         </>
         // </initialProvider>
       }

@@ -340,8 +340,8 @@ const footer =(
  <div className="foot"> {t('In total there are')} {product ? product.length : 0} {t('products')}</div>
 )
 
-  return (
-    <CommonLayout>
+  return (<>
+    {/* <CommonLayout> */}
         <Seo title={`Products`} description={`''`} />
 
 {/* Delete popup */}
@@ -444,7 +444,8 @@ const footer =(
         </div>
           </div> }
 
-    </CommonLayout>
+    {/* </CommonLayout> */}
+  </>
   );
 }
 

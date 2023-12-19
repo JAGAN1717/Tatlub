@@ -6,11 +6,13 @@ import favicon from "../../public/assets/images/favicon/1.png";
 import MasterFooter from "../footers/common/MasterFooter";
 import { getCategory } from '../core/fashion_request'
 import { useEffect, useState } from "react";
+import { useCategory } from "../auth/catgoryContext";
 
 
-
-const CommonLayout = ({ children, title, parent, subTitle, setCategoryList }) => {
+const CommonLayout = ({ children, title, parent, subTitle }) => {
   const [category, setcategory] = useState([]);
+
+  const {setCategoryList} = useCategory()
 
   const fetchCategory = async () => {
     // setIsLoading(true)

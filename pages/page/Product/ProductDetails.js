@@ -7,12 +7,12 @@ import ProductSection from '../../product-details/common/product_section'
 
 const ProductDetails = () => {
     return(<>
-        <CommonLayout parent="home" title="Job Details">
+        {/* <CommonLayout parent="home" title="Job Details"> */}
             <div className='mt-3'>
             <Details />
            <ProductSection />
             </div>
-        </CommonLayout>
+        {/* </CommonLayout> */}
     </>)
 }
 

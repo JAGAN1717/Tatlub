@@ -331,7 +331,7 @@ const PropertyDetail = ({ args }) => {
 
 
   return (<>
-    <CommonLayout>
+    {/* <CommonLayout> */}
       {/* <div className="card d-flex justify-content-center"> */}
       <Sidebar visible={visible} onHide={() => setVisible(false)} fullScreen>
         <h2 className="mb-3">{t("Gallery Images")}</h2>
@@ -1195,7 +1195,7 @@ const PropertyDetail = ({ args }) => {
           </ModalBody>
         </Modal> */}
       </Container>
-    </CommonLayout>
+    {/* </CommonLayout> */}
   </>)
 }
 

@@ -159,8 +159,8 @@ function ManageOrderInfo({ orderD }) {
         }
     };
 
-    return (
-        <CommonLayout>
+    return (<>
+        {/* <CommonLayout> */}
             <div>
                 <div className='container mx-auto my-4'>
                     {
@@ -472,7 +472,8 @@ function ManageOrderInfo({ orderD }) {
                     }
                 </div>
             </div>
-        </CommonLayout>
+        {/* </CommonLayout> */}
+    </>
     )
 }
 

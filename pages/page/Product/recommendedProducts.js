@@ -26,7 +26,7 @@ export default function RecommendedProducts() {
 
 
   return (<>
-  <CommonLayout parent="home" title="Recommended Products">
+  {/* <CommonLayout parent="home" title="Recommended Products"> */}
   {isLoading ? (
         <div className="loader-wrapper2">
           {url === "Christmas" ? (
@@ -38,7 +38,7 @@ export default function RecommendedProducts() {
       ) :
       <Recommended recommended={recommended} /> }
     
-  </CommonLayout>
+  {/* </CommonLayout> */}
   </>
   )
 }

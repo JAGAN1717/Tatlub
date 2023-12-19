@@ -30,7 +30,7 @@ export default function MyBookings() {
   const router = useRouter()
 
   return (
-    <CommonLayout title="Booking" parent="Doctors">
+    // <CommonLayout title="Booking" parent="Doctors">
       <section className="booking2 mb-3">
         <Container>
           <div className="mb-3">
@@ -75,6 +75,6 @@ export default function MyBookings() {
           </div>
         </Container>
       </section>
-    </CommonLayout>
+    // </CommonLayout>
   );
 }

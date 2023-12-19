@@ -125,8 +125,8 @@ export default function Doctors_list() {
   //   setDoctersData(data?.data)
   // },[data])
 
-  return (
-    <CommonLayout title="collection" parent="home">
+  return (<>
+    {/* <CommonLayout title="collection" parent="home"> */}
       <Seo title={`Doctors`} />
 
       <section className="doctor  mt-4 mb-4">
@@ -518,6 +518,7 @@ export default function Doctors_list() {
         </div>
       </div>
 
-    </CommonLayout>
+    {/* </CommonLayout> */}
+  </>
   );
 }

@@ -292,7 +292,8 @@ export default function Booking() {
 
 
   return (
-    <CommonLayout title="Booking" parent="Doctors">
+    <>
+    {/* <CommonLayout title="Booking" parent="Doctors"> */}
       <section className='booking2 mb-3'>
         <Container>
           <div className="mb-3">
@@ -612,6 +613,7 @@ export default function Booking() {
           </div>
         </Container>
       </section>
-    </CommonLayout>
+    {/* </CommonLayout> */}
+    </>
   )
 }

@@ -61,8 +61,8 @@ const Metro = () => {
     fetchBrandList();
   }, []);
 
-  return (
-    <CommonLayout title="collection" parent="home">
+  return (<>
+    {/* <CommonLayout title="collection" parent="home"> */}
       <section className="mb-4 mt-5">
         <div className="collection-wrapper">
           <Container>
@@ -202,7 +202,8 @@ const Metro = () => {
           </Container>
         </div>
       </section>
-    </CommonLayout>
+    {/* </CommonLayout> */}
+  </>
   );
 };
 

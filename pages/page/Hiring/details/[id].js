@@ -195,8 +195,8 @@ export default function JobDetails({ args }) {
     fetchJobDetails()
   }, [id])
 
-  return (
-    <CommonLayout parent="home" title="Jobs">
+  return (<>
+    {/* <CommonLayout parent="home" title="Jobs"> */}
       <Seo title={`${JobData?.item_title}`} description={`${JobData?.item_description}`} />
       <div className='container mt-lg-5 mt-3 mb-lg-5 mb-3'>
         {
@@ -776,6 +776,7 @@ export default function JobDetails({ args }) {
       </div>
 
 
-    </CommonLayout>
+    {/* </CommonLayout> */}
+  </>
   )
 }

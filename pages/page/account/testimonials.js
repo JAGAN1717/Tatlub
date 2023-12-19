@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import CommonLayout from "../../../components/shop/common-layout";
 import { getTesimonials } from "../../../components/core/seller_request";
 import { useTranslation } from "react-i18next";
-
+import Seo from "../../../seo/seo";
 
 export default function testimonials() {
   const [tesimonial, setTestimonials] = useState([]);
@@ -56,65 +56,67 @@ export default function testimonials() {
     // article.addEventListener('mouseout', handleOut);
   }, []);
 
-  return (
-    <CommonLayout parent="home" title="Testimonials">
-      {isLoading ? (
-        <div className="loader-wrapper2">
-          {url === "Christmas" ? (
-            <div id="preloader"></div>
-          ) : (
-            <div className="loader"></div>
-          )}
-        </div>
-      ) : tesimonial.length > 0 ? (
-        <section className="testimonials_card mb-5 mt-5 container">
-          <div className="row justify-content-center">
-            {tesimonial?.map((data, index) => (
-              <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6 mb-sm-3 mb-5 mt-5 d-flex justify-content-center " key={index}>
-                <article className="h-100">
-                  <figure>
-                    <img
-                      alt="Not_Found"
-                      src={data?.testimonial_image ?? ""}
-                      onError={(e) =>
-                        (e.currentTarget.src =
-                          "/assets/images/tatlub-img/No.jpg")
-                      }
-                    />
-                  </figure>
+  return (<>
+    {/* <CommonLayout parent="home" title="Testimonials"> */}
+    <Seo title={'Tesimonial'} url={'tesimonial'} />
+    {isLoading ? (
+      <div className="loader-wrapper2">
+        {url === "Christmas" ? (
+          <div id="preloader"></div>
+        ) : (
+          <div className="loader"></div>
+        )}
+      </div>
+    ) : tesimonial.length > 0 ? (
+      <section className="testimonials_card mb-5 mt-5 container">
+        <div className="row justify-content-center">
+          {tesimonial?.map((data, index) => (
+            <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6 mb-sm-3 mb-5 mt-5 d-flex justify-content-center " key={index}>
+              <article className="h-100">
+                <figure>
+                  <img
+                    alt="Not_Found"
+                    src={data?.testimonial_image ?? ""}
+                    onError={(e) =>
+                    (e.currentTarget.src =
+                      "/assets/images/tatlub-img/No.jpg")
+                    }
+                  />
+                </figure>
 
-                  <div>
-                    <h1 className="text-dark fw-bold fs-5">{data?.testimonial_name}</h1>
-                    <p className="complete_3 fs-16">
-                      {data?.testimonial_description}
-                    </p>
-                    <p className="text-color fw-bold fs-16">{data?.testimonial_company}</p>
-                  </div>
-                </article>
-              </div>
-            ))}
-          </div>
-        </section>
-      ) : (
-        <section className="contact-page section-b-space container">
-          <div className="card empty-wishlist shadow-sm p-4">
-            <div className="d-flex align-items-center justify-content-between">
-              {/* <h4 className="fw-bold">MY CART</h4>  */}
-              <div className="filer-search-wicon d-none">
-                <div className="search">
-                  <span className="fa fa-search"></span>
-                  <input placeholder={t("Search In This Store")} />
+                <div>
+                  <h1 className="text-dark fw-bold fs-5">{data?.testimonial_name}</h1>
+                  <p className="complete_3 fs-16">
+                    {data?.testimonial_description}
+                  </p>
+                  <p className="text-color fw-bold fs-16">{data?.testimonial_company}</p>
                 </div>
+              </article>
+            </div>
+          ))}
+        </div>
+      </section>
+    ) : (
+      <section className="contact-page section-b-space container">
+        <div className="card empty-wishlist shadow-sm p-4">
+          <div className="d-flex align-items-center justify-content-between">
+            {/* <h4 className="fw-bold">MY CART</h4>  */}
+            <div className="filer-search-wicon d-none">
+              <div className="search">
+                <span className="fa fa-search"></span>
+                <input placeholder={t("Search In This Store")} />
               </div>
             </div>
-
-            <div className="text-center">
-              <img src="/assets/images/tatlub-img/not_Found.png" className="" />
-              <p className="text-muted text-center">{t('Testimonials Is Empty')}</p>
-            </div>
           </div>
-        </section>
-      )}
-    </CommonLayout>
+
+          <div className="text-center">
+            <img src="/assets/images/tatlub-img/not_Found.png" className="" />
+            <p className="text-muted text-center">{t('Testimonials Is Empty')}</p>
+          </div>
+        </div>
+      </section>
+    )}
+    {/* </CommonLayout> */}
+  </>
   );
 }

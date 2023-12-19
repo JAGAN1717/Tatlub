@@ -24,7 +24,8 @@ import { IdProvider } from "../IdContext";
 // import { persistStore } from 'redux-persist'
 // import { Provider } from 'react-redux'
 // import { Store } from "../redux/store";
-// import CommonLayout from "../components/shop/common-layout";
+import CommonLayout from "../components/shop/common-layout";
+import { CategoryProvider } from "../components/auth/catgoryContext";
 
 // https://tatlub.vrikshatech.in/api/?slug=travel_and_tourism
 
@@ -104,6 +105,7 @@ export default function MyApp({ Component, pageProps }) {
               <IdProvider>
                 <Usercontex.Provider value={{ userData, setUserData }}>
                   {/* <Provider store={Store}> */}
+                  <CategoryProvider>
                   <SettingProvider>
                     <itemscontex.Provider value={{ categoryId, setCategoryId, BrandId, setBrandId, MyId, setMyId, ItemsId, setItemsId, productId, setproductId, searchKey, setSearchKey, cart, setCart }} >
                       <CompareContextProvider>
@@ -111,7 +113,9 @@ export default function MyApp({ Component, pageProps }) {
                           <CartContextProvider>
                             <WishlistContextProvider>
                               <FilterProvider>
-                                <Component {...pageProps} />
+                                <CommonLayout >
+                                  <Component {...pageProps} />
+                                </CommonLayout>
                               </FilterProvider>
                             </WishlistContextProvider>
                           </CartContextProvider>
@@ -120,6 +124,7 @@ export default function MyApp({ Component, pageProps }) {
                       </CompareContextProvider>
                     </itemscontex.Provider>
                   </SettingProvider>
+                  </CategoryProvider>
                   {/* </Provider> */}
                 </Usercontex.Provider>
               </IdProvider>

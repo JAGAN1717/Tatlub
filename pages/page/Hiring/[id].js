@@ -120,7 +120,7 @@ const ListJobs = () => {
   return (
     <>
       <button type='button' onClick={() => fetchwantedJobs()} id='clicknOnWantedjobs' className='d-none' />
-      <CommonLayout parent="home" title="Jobs">
+      {/* <CommonLayout parent="home" title="Jobs"> */}
         <Seo title={'Jobs'} url={'Category'} />
         <div className='container mt-lg-5 mt-3 mb-lg-5 mb-3'>
           {
@@ -196,7 +196,7 @@ const ListJobs = () => {
             </div>
           </div>
         </div>
-      </CommonLayout>
+      {/* </CommonLayout> */}
     </>
   )
 }

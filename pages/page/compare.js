@@ -11,7 +11,7 @@ const Compare = () => {
     const compareItem = contextCompare.compareItems;
 
     return (
-        <CommonLayout parent="home" title="compare">
+        // <CommonLayout parent="home" title="compare">
             <section className="compare-padding mt-5">
                 <Container>
                     <Row>
@@ -96,7 +96,7 @@ const Compare = () => {
                     </Row>
                 </Container>
             </section>
-        </CommonLayout>
+        // </CommonLayout>
     )
 }
 

@@ -4,11 +4,13 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import Seo from '../../seo/seo'
 import Select from 'react-select'
+import { useCategory } from '../../components/auth/catgoryContext'
 
 export default function CategoryList() {
 
+    const {CategoryList} = useCategory()
     const router = useRouter()
-    const [CatgoryList, setCategoryList] = useState([])
+    // const [CatgoryList, setCategoryList] = useState([])
     const [filterList, setFilterList] = useState([])
     const [loading, setLoading] = useState(true)
     const [view, setView] = useState(20)
@@ -16,35 +18,35 @@ export default function CategoryList() {
     const [SearchCategory,setSearchCategory] = useState('')
 
     useEffect(() => {
-        if (CatgoryList.length > 0) {
+        if (CategoryList.length > 0) {
             setLoading(false)
         }
         setTimeout
-    }, [CatgoryList]) 
+    }, [CategoryList]) 
 
 
     useEffect(()=> {
         if(SearchCategory){
             let data = []
-            data.push(CatgoryList.filter(e => e?.category_name?.toLowerCase().includes(SearchCategory.toLowerCase())))
-            setFilterList(CatgoryList.filter(e => e?.category_name?.toLowerCase().includes(SearchCategory.toLowerCase())))
+            data.push(CategoryList.filter(e => e?.category_name?.toLowerCase().includes(SearchCategory.toLowerCase())))
+            setFilterList(CategoryList.filter(e => e?.category_name?.toLowerCase().includes(SearchCategory.toLowerCase())))
         }else {
-            setFilterList(CatgoryList)
+            setFilterList(CategoryList)
         }
     },[SearchCategory])
 
 
     useEffect(()=> {
         if(SortA == 1){
-            const sortedArrayAZ = CatgoryList.slice().sort((a, b) => a?.category_name.localeCompare(b?.category_name));
+            const sortedArrayAZ = CategoryList.slice().sort((a, b) => a?.category_name.localeCompare(b?.category_name));
             setFilterList(sortedArrayAZ)
         }else  if(SortA == 0){
-            const sortedArrayZA = CatgoryList.slice().sort((a, b) => b?.category_name.localeCompare(a?.category_name));
+            const sortedArrayZA = CategoryList.slice().sort((a, b) => b?.category_name.localeCompare(a?.category_name));
             setFilterList(sortedArrayZA)
         }else {
-            setFilterList(CatgoryList)
+            setFilterList(CategoryList)
         }
-    },[SortA,CatgoryList])
+    },[SortA,CategoryList])
 
     useEffect(() => {
         const timeOut = setTimeout(() => {
@@ -56,7 +58,7 @@ export default function CategoryList() {
 
     return (<>
        <Seo title={`All Categories`} description={``} />
-        <CommonLayout parent="Home" title="category" setCategoryList={setCategoryList} setLoading={setLoading} >
+        {/* <CommonLayout parent="Home" title="category" setCategoryList={setCategoryList} setLoading={setLoading} > */}
             <div>
                 <div className='container'>
                     <div className='jsx-503117943  d-flex justify-content-between mt-5 mb-3'>
@@ -117,7 +119,7 @@ export default function CategoryList() {
                                         }
                                         {
                                         filterList?.length > 10 &&
-                                        <div className='col-2 h-100  mb-3' onClick={() => setView(CatgoryList?.length)}>
+                                        <div className='col-2 h-100  mb-3' onClick={() => setView(CategoryList?.length)}>
                                             <div className='border h-100 rounded p-2 d-flex justify-content-start align-items-center all_catlist cursor-pointer'>
                                                 <div className=''>
                                                     <img src={''} onError={(e) => e.currentTarget.src = "/assets/images/tatlub-img/no1.png"} className='w-100 rounded object-fit-contain' width='50' height='50' />
@@ -142,6 +144,6 @@ export default function CategoryList() {
                     }
                 </div>
             </div>
-        </CommonLayout>
+        {/* </CommonLayout> */}
     </>)
 }

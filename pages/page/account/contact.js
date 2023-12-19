@@ -3,6 +3,7 @@ import CommonLayout from "../../../components/shop/common-layout";
 import { Container, Row, Col, Media, Form, Label, Input } from "reactstrap";
 import { getContactus } from "../../../components/core/seller_request";
 import { useTranslation } from "react-i18next";
+import Seo from "../../../seo/seo";
 
 
 const Data = [
@@ -72,8 +73,9 @@ const Contact = () => {
   },[])
 
 
-  return (
-    <CommonLayout parent="home" title="Contact">
+  return (<> 
+  <Seo title={`Contact`} />
+     {/* <CommonLayout parent="home" title="Contact"> */}
       <section className="contact-page section-b-space container">
         {/* <Container>
           <Row className="section-b-space">
@@ -206,7 +208,8 @@ const Contact = () => {
         </Container>
 
       </section>
-    </CommonLayout>
+     {/* </CommonLayout> */}
+  </>
   );
 };
 

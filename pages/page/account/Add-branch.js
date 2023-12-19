@@ -98,8 +98,8 @@ export default function Addbranch() {
     },
   });
 
-  return (
-    <CommonLayout parent="home" title="profile">
+  return (<>
+    {/* <CommonLayout parent="home" title="profile"> */}
       <section className={"Edit-profile mb-5 mt-5 "}>
         <Container>
           <div className="mb-3 form_edit_bfranch">
@@ -287,6 +287,7 @@ export default function Addbranch() {
           </div>
         </Container>
       </section>
-    </CommonLayout>
+    {/* </CommonLayout> */}
+  </>
   );
 }

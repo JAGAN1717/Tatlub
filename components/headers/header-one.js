@@ -179,6 +179,7 @@ const HeaderOne = ({
       openmyslide.classList.add("open-side");
     }
   };
+  
   const openSearch = () => {
     document.getElementById("search-overlay").style.display = "block";
   };

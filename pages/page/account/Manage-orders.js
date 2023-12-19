@@ -478,8 +478,8 @@ function Manage_orders() {
 
 
 
-  return (
-    <CommonLayout parent="home" title="Manage Orders">
+  return (<>
+    {/* <CommonLayout parent="home" title="Manage Orders"> */}
       <Seo title={`Manage Orders`} />
       <section className='Mange_order mb-3 '>
         <Container>
@@ -559,7 +559,8 @@ function Manage_orders() {
           </div>
         </Container>
       </section>
-    </CommonLayout>
+    {/* </CommonLayout> */}
+  </>
   )
 }
 

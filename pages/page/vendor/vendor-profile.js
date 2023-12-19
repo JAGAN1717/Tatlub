@@ -21,11 +21,11 @@ const VendorProfile = () => {
     }
 
     return (
-        <CommonLayout parent="home" title="Vendor Profile">
+        // <CommonLayout parent="home" title="Vendor Profile">
          <Suspense fallback={<Loader />}>
             <ProfilePage />
         </Suspense>
-        </CommonLayout>
+        // </CommonLayout>
     )
 }
 

@@ -4,8 +4,8 @@ import BranchesPage from './common/branches-page';
 
 export default function branches() {
   return (
-    <CommonLayout parent="home" title="profile">
+    // <CommonLayout parent="home" title="profile">
     <BranchesPage />
-    </CommonLayout>    
+    // </CommonLayout>    
   )
 }

@@ -157,7 +157,8 @@ function Addbranch() {
   });
 
   return (
-    <CommonLayout parent="home" title="profile">
+    <>
+    {/* <CommonLayout parent="home" title="profile"> */}
       <section className={"Edit-profile mb-5 mt-5"} >
         <Container>
 
@@ -361,7 +362,8 @@ function Addbranch() {
           </div>
         </Container>
       </section>
-    </CommonLayout>
+    {/* </CommonLayout> */}
+    </>
   );
 }
 

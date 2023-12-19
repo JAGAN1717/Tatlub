@@ -8,17 +8,19 @@ import AuthContex from '../../components/auth/AuthContex'
 import moment from "moment";
 import { ToastContainer, toast } from "react-toastify";
 import { useRouter } from "next/router";
-import Seo from '../../seo/seo'
+import Seo from '../../seo/seo';
+import { useCategory } from "../../components/auth/catgoryContext";
 
 
 
 const SubscriptionPlans = () => {
-
+    
     const [selectplans, setselectplans] = useState('')
     const [addonlist, setAddonslist] = useState([])
     const [addontId, setAddondsId] = useState([])
     const { userData } = useContext(AuthContex)
-    const [categoryList, setCategoryList] = useState([])
+    // const [categoryList, setCategoryList] = useState([])
+    const {CategoryList} = useCategory()
     const router = useRouter();
     const [selectedCategory, setSelectedCategory] = useState([]);
 
@@ -74,15 +76,15 @@ const SubscriptionPlans = () => {
     }, [selectedCategory])
 
     return (<>
-        <CommonLayout setCategoryList={setCategoryList}>
+        {/* <CommonLayout setCategoryList={setCategoryList}> */}
             <Seo title={`Subscription`} />
 
             {
                 selectplans ?
-                    <Addons setAddondsId={setAddondsId} categoryList={categoryList} addontId={addontId} addonlist={addonlist} postSubscription={postSubscription} selectplans={selectplans} selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} /> :
+                    <Addons setAddondsId={setAddondsId} categoryList={CategoryList} addontId={addontId} addonlist={addonlist} postSubscription={postSubscription} selectplans={selectplans} selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} /> :
                     <Plans setselectplans={setselectplans} />
             }
-        </CommonLayout>
+        {/* </CommonLayout> */}
     </>
     )
 }

@@ -46,6 +46,7 @@ import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import timezone from 'dayjs/plugin/timezone'
+import Seo from "../../seo/seo.js";
 
 
 dayjs.extend(relativeTime);
@@ -321,8 +322,9 @@ const AboutUs = (args) => {
 
   return (
     <>
-      <CommonLayout parent="home" title="About-us">
+      {/* <CommonLayout parent="home" title="About-us"> */}
         {/* // <!-- about section start --> */}
+        <Seo title={`About`} />
         <section className="about-page section-b-space mt-4">
           <Container>
             <Row>
@@ -1039,7 +1041,7 @@ const AboutUs = (args) => {
             </Row>
           </Container>
         </section>
-      </CommonLayout>
+      {/* </CommonLayout> */}
     </>
   );
 };

@@ -31,6 +31,7 @@ import Select from 'react-select';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import { Editor } from 'primereact/editor';
+import { useCategory } from "../../components/auth/catgoryContext";
 
 const ITEM_HEIGHT = 70;
 const ITEM_PADDING_TOP = 8;
@@ -85,6 +86,9 @@ let initialValues = {
 
 function Addproduct() {
   const [formValues, setFormValues] = useState([initialValues]);
+
+  const {CategoryList,setCategoryList} = useCategory()
+
   const editorRef = useRef(null);
   const [tags, setTags] = useState([])
   const [featimg, setFeatImg] = useState('')
@@ -97,7 +101,7 @@ function Addproduct() {
   const [formvalue, setFormvValue] = useState("");
   const [dragging, setDragging] = useState(false);
   const { t } = useTranslation();
-  const [categoryList, setCategoryList] = useState([])
+  // const [categoryList, setCategoryList] = useState([])
   const [open, setOpen] = React.useState(false);
   const [categorId, setCategoryId] = useState([])
   const [specification, setSpecification] = useState({
@@ -137,8 +141,8 @@ function Addproduct() {
   let options = []
 
   useEffect(() => {
-    categoryList?.map(data => options.push({ 'value': data?.id, 'label': data?.category_name }))
-  }, [categoryList])
+    CategoryList?.map(data => options.push({ 'value': data?.id, 'label': data?.category_name }))
+  }, [CategoryList])
 
 
   const router = useRouter();
@@ -487,7 +491,7 @@ function Addproduct() {
       >
         <CircularProgress color="inherit" />
       </Backdrop>
-    <CommonLayout setCategoryList={setCategoryList}>
+    {/* <CommonLayout setCategoryList={setCategoryList}> */}
       <Seo title={`${formvalue?.product_name ?? 'Product'}`} description={`${formvalue?.product_description ?? ''}`} />
       {isLoading && (
         <div className="loader-wrapper">
@@ -549,7 +553,7 @@ function Addproduct() {
                 name="category_name"
                 placeholder={t('Select Category') + " *"}
                 onChange={handleChange2}
-                options={categoryList}
+                options={CategoryList}
                 getOptionLabel={(option) => `${option.category_name}`}
                 getOptionValue={(option) => option.id}
                 className="fs-5"
@@ -854,7 +858,9 @@ function Addproduct() {
                     <p>{t('Gallery Image')}</p>
                     <p><i className="fa fa-cloud-upload" aria-hidden="true"></i></p>
                   </button>
+                  
                   <input type="file" onChange={(e) => handleMulImg(e)} id="OpenGalleryImageD" className="form-control mb-4 d-none" placeholder="" multiple="multiple" name="image_gallery" />
+
                   <div className="mb-2">
                     <div className="row justify-content-center">
                       {
@@ -911,7 +917,7 @@ function Addproduct() {
         </div>
       }
 
-    </CommonLayout>
+    {/* </CommonLayout> */}
   </>
   );
 }

@@ -44,7 +44,6 @@ const CollectionBanner = ({
   BannerSection,
   popular,
   recommended,
-  categories,
   subCategory,
 }) => {
 
@@ -210,13 +209,13 @@ const CollectionBanner = ({
           </Row>
 
           <Row className="pt-2 pb-lg-4 pb-2">
-            <Col xl="12" className="mb-3 tile d-none">
+            {/* <Col xl="12" className="mb-3 tile d-none">
               <div className="pop_card pop_cat p-4 h-100">
                 <div className="d-flex justify-content-between mb-3">
                   <h3>{t("Popular Categories")}</h3>{" "}
-                  {/* <Link href="/page/Product/popularProducts" className="">
+                  <Link href="/page/Product/popularProducts" className="">
                     <h5 className="theme_color cursor-pointer">{t("View All")}</h5>
-                  </Link>{" "} */}
+                  </Link>{" "}
                 </div>
                 <Row>
                   <Slider
@@ -241,9 +240,7 @@ const CollectionBanner = ({
                                 onClick={() => {
                                   router.push({
                                     pathname:`/category/service/${data.category_slug}`,
-                                    // query: { Category: data.category_slug,searchList: 'service' },
                                   });
-                                  // setCategoryId(i.id)
                                 }}
                               >
                                 <div className="d-flex justify-content-center">
@@ -290,7 +287,7 @@ const CollectionBanner = ({
                     </Col>
                   )}
 
-                  {/* {
+                  {
                    !popular || popular.length == 0  &&  
                    <Col sm="6" className="mb-3" >
                    <div
@@ -329,10 +326,10 @@ const CollectionBanner = ({
                      </Row>
                    </div>
                  </Col>
-                  } */}
+                  }
                 </Row>
               </div>
-            </Col>
+            </Col> */}
 
             {Object.keys(subCategory)
               ?.slice(0, 2)

@@ -28,7 +28,7 @@ const LookBookDot = ({ img, title, price, num, details, classes, link }) => {
 
 const Lookbook = () => {
   return (
-    <CommonLayout parent="home" title="lookbook">
+    // <CommonLayout parent="home" title="lookbook">
       <section className="lookbook section-b-space ratio_square">
         <Container>
           <Row>
@@ -93,7 +93,7 @@ const Lookbook = () => {
           </Row>
         </Container>
       </section>
-    </CommonLayout>
+    // </CommonLayout>
   );
 };
 

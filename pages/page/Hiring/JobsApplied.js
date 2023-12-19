@@ -160,8 +160,8 @@ const SelectCategory = () => {
 
 
 
-    return (
-        <CommonLayout parent="home" title="Select Category">
+    return (<>
+        {/* <CommonLayout parent="home" title="Select Category"> */}
             <Seo title={`Jobs`} />
 
             {applyJobs ?
@@ -419,7 +419,8 @@ const SelectCategory = () => {
                 </div>
             }
 
-        </CommonLayout>
+        {/* </CommonLayout> */}
+    </>
     )
 }
 

@@ -160,7 +160,7 @@ const Register = () => {
     // console.log('rrrrrrr',formik.errors)
 
     return (
-        <CommonLayout parent="home" title="register">
+        // <CommonLayout parent="home" title="register">
             <section className="register-page section-b-space mt-lg-5 mt-3">
                 <Container>
                     <Row>
@@ -292,7 +292,7 @@ const Register = () => {
                     </Row>
                 </Container>
             </section>
-        </CommonLayout>
+        // </CommonLayout>
     )
 }
 

@@ -5,6 +5,7 @@ import { postFeedback } from "../../../components/core/vendor_request";
 import { ToastContainer, toast } from "react-toastify";
 import AuthContex from "../../../components/auth/AuthContex";
 import { useTranslation } from "react-i18next";
+import Seo from "../../../seo/seo";
 
 
 
@@ -55,7 +56,8 @@ const Feedback = () => {
     }
 
     return(<>
-     <CommonLayout parent="home" title="Feedbcak">
+     {/* <CommonLayout parent="home" title="Feedbcak"> */}
+     <Seo title={`Feedback`} />
         <section className="p-0 mb-4 mt-3">
             <Container>
            <div className="">
@@ -183,7 +185,7 @@ const Feedback = () => {
             </div>
             </Container>
         </section>
-     </CommonLayout>
+     {/* </CommonLayout> */}
     </>)
 }
 

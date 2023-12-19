@@ -5,9 +5,9 @@ import CommonLayout from "../../components/shop/common-layout";
 const TrendingProject = () => {
 
     return (
-        <CommonLayout>
+        // <CommonLayout>
             <Projects />
-        </CommonLayout>
+        // </CommonLayout>
     )
     
 }

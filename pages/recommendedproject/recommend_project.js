@@ -5,9 +5,9 @@ import CommonLayout from "../../components/shop/common-layout";
 const RecommendedProject = () => {
 
     return (
-        <CommonLayout>
+        // <CommonLayout>
             <Recommend />
-        </CommonLayout>
+        // </CommonLayout>
     )
     
 }

@@ -36,8 +36,8 @@ export default function Shipping(
         postal_code: "",
         phone: ""
     }
-    const { t } = useTranslation();
 
+    const { t } = useTranslation();
 
     const [Address, setAddress] = useState([])
     const { userData } = useContext(AuthContex)
@@ -65,8 +65,6 @@ export default function Shipping(
             } else {
                 setAddress([])
             }
-
-
             // console.log("gfg",response.data)
         } catch (err) {
             console.error(err)

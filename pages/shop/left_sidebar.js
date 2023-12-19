@@ -77,7 +77,7 @@ const LeftSidebar = () => {
     }
 
     return (<>
-        <CommonLayout title="collection" parent="home" >
+        {/* <CommonLayout title="collection" parent="home" > */}
         <Seo title={`${searchList}s`} />
             <section className="container section-b-space ratio_asos pt-0 mt-4">
             <Suspense fallback={<Loader />}>
@@ -91,7 +91,7 @@ const LeftSidebar = () => {
                 </div>
                         </Suspense>
             </section>
-        </CommonLayout>
+        {/* </CommonLayout> */}
         </>)
 }
 

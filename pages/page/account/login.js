@@ -33,7 +33,6 @@ import { useTranslation } from "react-i18next";
 import jwt_decode from 'jwt-decode'
 // import FacebookLogin from "../../../components/auth/facebooklog";
 
-
 const Login = (args) => {
   const [modal, setModal] = useState(false);
   const [login, setLogin] = useState({});
@@ -48,7 +47,6 @@ const Login = (args) => {
   const {userData,setUserData} = useContext(AuthContex);
   const { t } = useTranslation();
 
-
   const initialValues = {
     email: "",
     otp: ""
@@ -57,7 +55,6 @@ const Login = (args) => {
   // useEffect(() => {
   //   toggle()
   // }, []);
-
 
  const toggle = () => setModal(!modal);
 
@@ -102,9 +99,6 @@ const Login = (args) => {
 
   const handleLogin = (googleData) => {
     const token = googleData?.credential
-    // var tokens = token.split(".")
-    //  const email = JSON.parse(atob(tokens[1]))?.email
-    //  console.log("email",email);
     const data = jwt_decode(token)
      console.log("email",data.email);
      if(data.email){
@@ -142,8 +136,9 @@ const Login = (args) => {
             localStorage.setItem("data", JSON.stringify(response.data));
             document.getElementById("closeLoginPopup")?.click();
             router.push('/')
-          }).catch(err => console.error("err",err))
-        }else{
+          }).catch(err => setLoading(false))
+        }else{ 
+          setLoading(false)
           toast.error("UNABLE TO FETCH OTP", {
             position: "bottom-right",
             autoClose: 2000,
@@ -156,7 +151,7 @@ const Login = (args) => {
             theme: "dark",
           });
         }
-      }).catch(err => console.error('err',err))
+      }).catch(err => setLoading(false))
 
      }else{
       toast.error("UNBALE TO FETCH YOUR MAIL ID", {
@@ -173,13 +168,8 @@ const Login = (args) => {
      }
   };
 
-  // console.log("ejrhurguiwerw", sessionStorage.getItem("data"));
-
-
-
   const handleFailure = (result) => {
     console.log('result',result);
-    // alert("fail");
   };
 
   const loginvalidation = Yup.object().shape({
@@ -188,6 +178,7 @@ const Login = (args) => {
     otp: Yup.string(),
     mobile : Yup.string().min(7, "Phone number must be at least 7 Digits")
   });
+
   const loginvalidationotp = Yup.object().shape({
     email: Yup.string().email("Please Enter Valid Email Id")
     .required("Email is required"),
@@ -205,12 +196,6 @@ const Login = (args) => {
     setUserData(response);
     console.log("facebook",response)
   };
-  
-
-
-
-
-
 
   const formik = useFormik({
     initialValues,
@@ -278,7 +263,6 @@ const Login = (args) => {
         }}
       } catch (error) {
         console.error(error);
-        // alert(error)
         toast.error("Somthing Went Wrong!", {
           position: "bottom-right",
           autoClose: 2000,
@@ -291,7 +275,7 @@ const Login = (args) => {
         });
         setStatus("The details is incorrect");
         setSubmitting(false);
-        // setLoading(false);
+        setLoading(false)
       }
     },
   });

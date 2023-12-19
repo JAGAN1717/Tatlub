@@ -23879,6 +23879,12 @@ body .btn_open_map {
   width: 100%;
 }
 
+@media (max-width:1200px) {
+  .sideFilter {
+   top: 0px;
+  }
+}
+
 .compage_img {
   width: 100px !important;
   height: 100px !important;
@@ -25090,4 +25096,10 @@ input[type="number"]::-webkit-outer-spin-button {
     height: 40px;
     border: 1px solid #cccccc;
   }
+}
+
+@media (min-width:1200px) {
+  .Pl-s {
+    min-height: 200px;
+    }
 }

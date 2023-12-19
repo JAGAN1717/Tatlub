@@ -44,6 +44,7 @@ import { AutoComplete } from "primereact/autocomplete";
 import { Skeleton } from "primereact/skeleton";
 import { setmainId, mainId } from "../../../../IDmain";
 import { useTranslation } from "react-i18next";
+import { useCategory } from "../../../../components/auth/catgoryContext";
 
 
 
@@ -89,7 +90,7 @@ function loadScript(src, position, id) {
 
 const autocompleteService = { current: null };
 
-const Banner = ({ category, banners, brand, mainCategories, result1, product1, popperSearch, brandSug }) => {
+const Banner = ({banners, brand, mainCategories, result1, product1, popperSearch, brandSug }) => {
 
   const { t } = useTranslation();
 
@@ -162,7 +163,7 @@ const Banner = ({ category, banners, brand, mainCategories, result1, product1, p
     return value
   }
 
-  // const [category, setcategory] = useState([]);
+  const [category, setcategory] = useState([]);
   // const [brand, setbrand] = useState([]);
   // const [banners, setBanners] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -187,6 +188,11 @@ const Banner = ({ category, banners, brand, mainCategories, result1, product1, p
   const [ptoggle1, setptoggle1] = useState(false);
   const [categorySug, SetcategorySug] = useState([])
 
+  const {CategoryList} = useCategory();
+
+  useEffect(()=> {
+    setcategory(CategoryList)
+  },[CategoryList])
 
 
 

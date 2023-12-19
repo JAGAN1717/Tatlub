@@ -156,9 +156,6 @@ const ProductList = ({
   //   // Handle an exception.
   // });
 
-
-
-
   useEffect(() => {
     setSContact(Array(items.length)?.fill(true))
   }, [items])
@@ -1875,7 +1872,7 @@ const ProductList = ({
                           <Col xl="4" className="px-2 h-100">
                             {
                               data?.user ?
-                                <div className="bg-gray mt-xl-0 mt-2 h-100" style={{ minHeight: '200px' }}>
+                                <div className="bg-gray mt-xl-0 mt-2 h-100 Pl-s">
                                   <div>
                                     <p className="fw-600 one_line text-capitalize" title={data?.user?.name}>
                                       {data?.user?.name}

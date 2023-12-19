@@ -6,7 +6,7 @@ import CategoryType from '../Hiring/common/categoryType'
 
 export default function CustomerCareDetails() {
   return (
-    <CommonLayout parent="home" title="Customer Care">
+    // <CommonLayout parent="home" title="Customer Care">
     <div className='container mt-lg-5 mt-3 mb-lg-5 mb-3 '>
     <div className='row'>
                 <div className='col-md-9 '>
@@ -17,6 +17,6 @@ export default function CustomerCareDetails() {
                 </div>
             </div>
     </div>
-    </CommonLayout>
+    // </CommonLayout>
   )
 }  

@@ -61,8 +61,8 @@ export default function Enquiry_manage() {
     // fetchBookingList();
   }, []);
 
-  return (
-    <CommonLayout parent="home" title="Manage Orders">
+  return (<>
+    {/* <CommonLayout parent="home" title="Manage Orders"> */}
                 <Seo title={`Enquiry And Manage Quotes`} />
 
       {isLoading ? (
@@ -213,6 +213,7 @@ export default function Enquiry_manage() {
           </Container>
         </section>
       )}
-    </CommonLayout>
+    {/* </CommonLayout> */}
+  </>
   );
 }

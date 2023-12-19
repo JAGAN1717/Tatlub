@@ -6,7 +6,7 @@ import { Container, Row } from 'reactstrap';
 
 const NoSidebar = () => {
     return (
-        <CommonLayout title="collection" parent="home" >
+        // <CommonLayout title="collection" parent="home" >
           <section className="section-b-space ratio_asos">
             <div className="collection-wrapper">
                 <Container>
@@ -16,7 +16,7 @@ const NoSidebar = () => {
                 </Container>
             </div>
         </section>
-        </CommonLayout>
+        // </CommonLayout>
     )
 }
 

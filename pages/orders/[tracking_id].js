@@ -404,7 +404,7 @@ function OdreDetails({ OrderD }, args) {
                 </ModalBody>
             </Modal>
 
-            <CommonLayout parent="home" title="Orders">
+            {/* <CommonLayout parent="home" title="Orders"> */}
                 <Seo title={`Orders`} />
                 <div className='container mx-auto my-4'>
                     {
@@ -870,7 +870,7 @@ function OdreDetails({ OrderD }, args) {
                         </div>
                     </div>
                 </div>
-            </CommonLayout>
+            {/* </CommonLayout> */}
         </div>
     )
 }

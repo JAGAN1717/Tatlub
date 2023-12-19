@@ -101,8 +101,8 @@ export default function search() {
     },[city])
 
 
-  return (
-    <CommonLayout>
+  return (<>
+    {/* <CommonLayout> */}
         <section className='p-0'>
             <div className='container'>
                 <div className='d-flex flex-column justify-content-center align-items-center mb-4'>
@@ -217,6 +217,7 @@ export default function search() {
                 </div>
             </div>
         </section>
-    </CommonLayout>
+    {/* </CommonLayout> */}
+  </>
   )
 }

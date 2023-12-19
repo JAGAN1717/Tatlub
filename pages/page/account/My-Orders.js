@@ -160,8 +160,8 @@ function My_orders() {
   };
 
 
-  return (
-    <CommonLayout parent="home" title="Manage Orders">
+  return (<>
+    {/* <CommonLayout parent="home" title="Manage Orders"> */}
       <Seo title={`My Orders`} />
 
       <section className='Mange_order mb-3'>
@@ -294,7 +294,8 @@ function My_orders() {
           </div>
         </Container>
       </section>
-    </CommonLayout>
+    {/* </CommonLayout> */}
+  </>
   )
 }
 

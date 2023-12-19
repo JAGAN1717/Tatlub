@@ -11,9 +11,9 @@ const Checkout = () => {
     return (
         <>
             {currentUser !== null ?
-                <CommonLayout parent="home" title="checkout">
+                // <CommonLayout parent="home" title="checkout">
                     <CheckoutPage />
-                </CommonLayout>
+                // </CommonLayout>
                 :
                 <Login />
             }

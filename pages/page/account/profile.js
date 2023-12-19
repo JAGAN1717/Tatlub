@@ -5,9 +5,9 @@ import authenticate from '../../../components/auth/auth';
 
 const Profile = () => {
     return (
-        <CommonLayout parent="home" title="profile">
+        // <CommonLayout parent="home" title="profile">
             <ProfilePage />
-        </CommonLayout>        
+        // </CommonLayout>        
     )
 }
 

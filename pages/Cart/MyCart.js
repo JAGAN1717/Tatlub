@@ -6,10 +6,10 @@ import Seo from '../../seo/seo'
 
 function MyCart() {
   return (<>
-    <CommonLayout>
+    {/* <CommonLayout> */}
       <Seo title={`My Cart`} />
       <Cart />
-    </CommonLayout>
+    {/* </CommonLayout> */}
   </>
   )
 }

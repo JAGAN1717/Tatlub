@@ -184,7 +184,7 @@ const CompareItems = ({
 
 const CompareTwo = () => {
   return (
-    <CommonLayout parent="home" title="compare-2">
+    // <CommonLayout parent="home" title="compare-2">
       <section className="compare-section section-b-space ratio_asos">
         <Container>
           <Row>
@@ -212,7 +212,7 @@ const CompareTwo = () => {
           </Row>
         </Container>
       </section>
-    </CommonLayout>
+    // </CommonLayout>
   );
 };
 

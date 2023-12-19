@@ -60,8 +60,8 @@ function Business() {
   }, [])
 
 
-  return (
-    <CommonLayout title="collection" parent="home">
+  return (<>
+    {/* <CommonLayout title="collection" parent="home"> */}
       <Seo title={`My Businesses`} />
 
       {isLoading ? (
@@ -206,7 +206,8 @@ function Business() {
         </section>
       }
 
-    </CommonLayout>
+    {/* </CommonLayout> */}
+  </>
   );
 }
 

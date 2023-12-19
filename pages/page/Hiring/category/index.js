@@ -7,10 +7,10 @@ import Seo from '../../../../seo/seo'
 const SelectCategory = () => {
 
     return(<>
-        <CommonLayout parent="home" title="Select Category">
+        {/* <CommonLayout parent="home" title="Select Category"> */}
        <Seo title={'Job Category'} url={'Category'} />
             <Category/>
-        </CommonLayout>
+        {/* </CommonLayout> */}
     </>
     )
 }

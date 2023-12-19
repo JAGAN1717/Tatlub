@@ -41,7 +41,7 @@ const SubscriptionList = () => {
     }, [])
 
     return (<>
-        <CommonLayout>
+        {/* <CommonLayout> */}
             <Seo title={`My Subscription`} />
             <section>
                 <div className="container">
@@ -230,7 +230,7 @@ const SubscriptionList = () => {
                 </div>
 
             </section>
-        </CommonLayout>
+        {/* </CommonLayout> */}
     </>)
 }
 

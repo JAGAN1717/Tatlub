@@ -153,8 +153,8 @@ const Review = () => {
   );
 
 
-  return (
-    <CommonLayout parent="home" title="Lead">
+  return (<>
+    {/* <CommonLayout parent="home" title="Lead"> */}
       <Seo title={`Leads`} />
       {isLoading ? (
         <div className="container">
@@ -572,7 +572,8 @@ const Review = () => {
           </Container>
         </section>
       )}
-    </CommonLayout>
+    {/* </CommonLayout> */}
+  </>
   );
 };
 

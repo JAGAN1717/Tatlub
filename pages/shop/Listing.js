@@ -53,6 +53,7 @@ import { GoogleMap, useJsApiLoader,LoadScript , InfoWindowF, MarkerF,Marker } fr
 import { Editor } from 'primereact/editor';
 // import ReactQuill from 'react-quill';
 // import 'react-quill/dist/quill.snow.css';
+import { useCategory } from "../../components/auth/catgoryContext";
 
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL
@@ -208,6 +209,9 @@ const Markers = ({ lat, lng, onMarkerDrag }) => {
 
 
 function Listing() { 
+  
+
+  const {CategoryList} = useCategory()
 
 
 
@@ -355,7 +359,7 @@ function Listing() {
   const { t } = useTranslation();
   const { my_id } = router.query;
   const Ref = useRef(this);
-  const [Category, setCategory] = useState([]);
+  const [Category, setCategory] = useState(CategoryList);
   // const [Category, setCategory] = useState('');
   const theme = useTheme();
   const [isLoading, setIsLoading] = useState(false);
@@ -402,6 +406,11 @@ function Listing() {
   const [selectIntrovel, SetSelectIntrovel] = useState(15)
   const [Timevalue, TimeonChange] = useState('10:00');
   const [Editorvalue, setEditorValue] = useState();
+
+
+  useEffect(()=> {
+    setCategory(CategoryList)
+  },[CategoryList])
 
   const Introvels = [
     { time: '15 Minutes', val: 15 },
@@ -663,14 +672,14 @@ function Listing() {
 
   // console.log("oooooo", ExceptionHour);
  
-  const categoryList = async () => {
-    setIsLoading(true)
-    const response = await getCategory();
-    // console.log("C-list ", response.data);
-    setCategory(response.data);
-    setIsLoading(false)
-  };
-
+  // const categoryList = async () => {
+  //   setIsLoading(true)
+  //   const response = await getCategory();
+  //   // console.log("C-list ", response.data);
+  //   setCategory(response.data);
+  //   setIsLoading(false)
+  // };
+  
   const BrandDropDown = async () => {
     getBrand()
       .then((res) => {
@@ -1496,7 +1505,7 @@ function Listing() {
         <CircularProgress color="inherit" />
       </Backdrop>
     </div>
-    <CommonLayout title="collection" parent="home" setCategoryList={setCategory}>
+    {/* <CommonLayout title="collection" parent="home" setCategoryList={setCategory}> */}
       <Seo title={`${formvalue?.item_title ?? 'Listing'}`} description={`${formvalue?.item_description ?? ''}`} />
       <section>
         <div
@@ -3992,7 +4001,7 @@ function Listing() {
         </div>
       </div>
 
-    </CommonLayout>
+    {/* </CommonLayout> */}
   </>
   );
 }

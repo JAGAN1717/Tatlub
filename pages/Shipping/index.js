@@ -121,8 +121,8 @@ import { useTranslation } from "react-i18next";
       
     
 
-  return (
-    <CommonLayout>  
+  return (<>
+    {/* <CommonLayout>   */}
                 <Seo title={`Shipping`}  />
           {isLoading ? (
           <div className="my-3 container">
@@ -166,7 +166,8 @@ import { useTranslation } from "react-i18next";
     </section>
         }
 
-    </CommonLayout>
+    {/* </CommonLayout> */}
+  </>
   )
 }
 

@@ -254,8 +254,8 @@ function BrancheList(args) {
 
 
 
-  return (
-    <CommonLayout >
+  return (<>
+    {/* <CommonLayout > */}
       {isLoading && (
         <div className="loader-wrapper">
           {url === "Christmas" ? (
@@ -499,7 +499,8 @@ function BrancheList(args) {
           </section>
         </section>
       }
-    </CommonLayout>
+    {/* </CommonLayout> */}
+  </>
   );
 }
 

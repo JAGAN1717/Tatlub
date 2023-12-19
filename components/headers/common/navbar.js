@@ -284,6 +284,7 @@ const NavBar = ({ sugCat, cartl, setPoduct, setRes, setPSearch, setbands }, args
   useEffect(() => {
     roleId && setlog(roleId);
   }, [roleId]);
+  
 
   useEffect(() => {
     async function fetchLocation() {

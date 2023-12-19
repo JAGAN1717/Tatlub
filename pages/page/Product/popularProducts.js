@@ -26,7 +26,7 @@ export default function PopularProducts() {
       },[])
 
   return (<>
-  <CommonLayout parent="home" title="Popular Products">
+  {/* <CommonLayout parent="home" title="Popular Products"> */}
   {isLoading ? (
         <div className="loader-wrapper2">
           {url === "Christmas" ? (
@@ -37,7 +37,7 @@ export default function PopularProducts() {
         </div>
       ) :
     <Popular popular={popular}/> }
-    </CommonLayout>
+    {/* </CommonLayout> */}
   </>
   )
 }

@@ -159,7 +159,7 @@ const testvts = () => {
   }
 
   return (<>
-    <CommonLayout>
+    {/* <CommonLayout> */}
       <Seo title={`Real Estate`} />
       {
         Loading ?
@@ -595,7 +595,7 @@ const testvts = () => {
                       </div>
           </div>
       }
-    </CommonLayout>
+    {/* </CommonLayout> */}
   </>
   );
 };

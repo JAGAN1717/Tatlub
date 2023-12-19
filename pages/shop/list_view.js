@@ -7,7 +7,7 @@ import ProductList from './common/productList';
 const ListView = () => {
 
     return (
-        <CommonLayout title="collection" parent="home" >
+        // <CommonLayout title="collection" parent="home" >
               <section className="section-b-space">
                 <Container>
                     <Row>
@@ -15,7 +15,7 @@ const ListView = () => {
                     </Row>
                 </Container>
              </section>
-        </CommonLayout>
+        // </CommonLayout>
     )
 }
 

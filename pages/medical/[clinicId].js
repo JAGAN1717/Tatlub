@@ -310,8 +310,8 @@ export default function DoctorDetails({ args }) {
 
 
 
-  return (
-    <CommonLayout title="collection" parent="home">
+  return (<>
+    {/* <CommonLayout title="collection" parent="home"> */}
       <Seo title={`${DoctorDetails?.item_title}`} description={`${DoctorDetails?.item_description}`} />
 
       {
@@ -1340,6 +1340,7 @@ export default function DoctorDetails({ args }) {
               </div>
             </div>
       }
-    </CommonLayout>
+    {/* </CommonLayout> */}
+  </>
   );
 }

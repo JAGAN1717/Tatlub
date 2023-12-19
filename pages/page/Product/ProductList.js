@@ -10,7 +10,7 @@ const ProductList = () => {
 
 
     return(<>
-         <CommonLayout parent="home" title="Job Details">
+         {/* <CommonLayout parent="home" title="Job Details"> */}
             <div className='container mb-3 mt-3'>
                 <div className='row'>
                     <div className='col-md-3 d-md-block d-none'>
@@ -21,7 +21,7 @@ const ProductList = () => {
                     </div>
                 </div>
             </div>
-        </CommonLayout>
+        {/* </CommonLayout> */}
     </>)
 }
 
