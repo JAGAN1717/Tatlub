@@ -15,7 +15,7 @@ import Seo from '../../../../seo/seo'
 import MulSelect from 'react-select';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
-import ReactPlayer from 'react-player';
+// import ReactPlayer from 'react-player';
 
 let initialValues = {
   name: '',
