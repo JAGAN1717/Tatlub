@@ -90,19 +90,21 @@ const Review = () => {
   }
 
   const fetchLeadList = async (enddate) => {
-    if (startdate > enddate) {
-      toast.info("Must be End date greater than start date", {
-        position: "bottom-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        icon: false,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
-    } else if (enddate) {
+    // if (startdate > enddate) {
+    //   toast.info("Must be End date greater than start date", {
+    //     position: "bottom-right",
+    //     autoClose: 2000,
+    //     hideProgressBar: false,
+    //     closeOnClick: true,
+    //     icon: false,
+    //     pauseOnHover: true,
+    //     draggable: true,
+    //     progress: undefined,
+    //     theme: "dark",
+    //   });
+    // } else
+    
+    if (enddate) {
       setIsLoading(true);
       let id = userData?.id;
       let start = startdate ? dayjs(startdate).format('YYYY-MM-DD') : ''
@@ -440,7 +442,7 @@ const Review = () => {
 
                         <div className="col-sm-6 d-flex flex-sm-row flex-column  align-items-center justify-content-between">
                           <label for="endDate" className="col-sm-2 col-form-label fs-16 fw-normal mx-2">{t("To")}</label>
-                          <DatePicker selected={enddate}  className="p-2 rounded-5" dateFormat="dd/MM/yyyy"  disabled={startdate ? false : true} onChange={(e) => { fetchLeadList(e); setEndDate(e) }} customInput={<ExampleCustomTimeInput />} />
+                          <DatePicker selected={enddate}  className="p-2 rounded-5" minDate={new Date(startdate)}  dateFormat="dd/MM/yyyy"  disabled={startdate ? false : true} onChange={(e) => { fetchLeadList(e); setEndDate(e) }} customInput={<ExampleCustomTimeInput />} />
                           {/* <LocalizationProvider dateAdapter={AdapterDayjs}  >
                             <DatePicker format="DD/MM/YYYY" disabled={startdate ? false : true} value={enddate} onChange={(e) => { fetchLeadList(e); setEndDate(e) }} />
                           </LocalizationProvider> */}

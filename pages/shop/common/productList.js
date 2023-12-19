@@ -2,15 +2,15 @@ import React, { useState, useContext, useEffect } from "react";
 import { Col, Row, Media, Button, Spinner } from "reactstrap";
 import Menu2 from "../../../public/assets/images/mega-menu/2.jpg";
 import { useQuery } from "@apollo/client";
-import { gql } from "@apollo/client";
-import FilterContext from "../../../helpers/filter/FilterContext";
-import ProductItem from "../../../components/common/product-box/ProductBox1";
-import { CurrencyContext } from "../../../helpers/Currency/CurrencyContext";
+// import { gql } from "@apollo/client";
+// import FilterContext from "../../../helpers/filter/FilterContext";
+// import ProductItem from "../../../components/common/product-box/ProductBox1";
+// import { CurrencyContext } from "../../../helpers/Currency/CurrencyContext";
 import { useRouter } from "next/router";
-import PostLoader from "../../../components/common/PostLoader";
-import CartContext from "../../../helpers/cart";
-import { WishlistContext } from "../../../helpers/wishlist/WishlistContext";
-import { CompareContext } from "../../../helpers/Compare/CompareContext";
+// import PostLoader from "../../../components/common/PostLoader";
+// import CartContext from "../../../helpers/cart";
+// import { WishlistContext } from "../../../helpers/wishlist/WishlistContext";
+// import { CompareContext } from "../../../helpers/Compare/CompareContext";
 import Link from "next/link";
 import {
   getAboutUs,
@@ -43,59 +43,60 @@ import CircularProgress from '@mui/material/CircularProgress';
 import moment from "moment";
 import Rating from "@mui/material/Rating";
 import Stack from "@mui/material/Stack";
+// import Jimp from 'jimp'
 
-const GET_PRODUCTS = gql`
-  query products(
-    $type: _CategoryType!
-    $indexFrom: Int!
-    $limit: Int!
-    $color: String!
-    $brand: [String!]!
-    $sortBy: _SortBy!
-    $priceMax: Int!
-    $priceMin: Int!
-  ) {
-    products(
-      type: $type
-      indexFrom: $indexFrom
-      limit: $limit
-      color: $color
-      brand: $brand
-      sortBy: $sortBy
-      priceMax: $priceMax
-      priceMin: $priceMin
-    ) {
-      total
-      hasMore
-      items {
-        id
-        title
-        description
-        type
-        brand
-        category
-        price
-        new
-        sale
-        stock
-        discount
-        variants {
-          id
-          sku
-          size
-          color
-          image_id
-        }
-        images {
-          image_id
-          id
-          alt
-          src
-        }
-      }
-    }
-  }
-`;
+// const GET_PRODUCTS = gql`
+//   query products(
+//     $type: _CategoryType!
+//     $indexFrom: Int!
+//     $limit: Int!
+//     $color: String!
+//     $brand: [String!]!
+//     $sortBy: _SortBy!
+//     $priceMax: Int!
+//     $priceMin: Int!
+//   ) {
+//     products(
+//       type: $type
+//       indexFrom: $indexFrom
+//       limit: $limit
+//       color: $color
+//       brand: $brand
+//       sortBy: $sortBy
+//       priceMax: $priceMax
+//       priceMin: $priceMin
+//     ) {
+//       total
+//       hasMore
+//       items {
+//         id
+//         title
+//         description
+//         type
+//         brand
+//         category
+//         price
+//         new
+//         sale
+//         stock
+//         discount
+//         variants {
+//           id
+//           sku
+//           size
+//           color
+//           image_id
+//         }
+//         images {
+//           image_id
+//           id
+//           alt
+//           src
+//         }
+//       }
+//     }
+//   }
+// `;
 
 const ProductList = ({
   colClassnaclassName,
@@ -109,16 +110,16 @@ const ProductList = ({
   // Category
 }) => {
   const { t } = useTranslation();
-  const cartContext = useContext(CartContext);
+  // const cartContext = useContext(CartContext);
   // const quantity = cartContext.quantity;
   const [quantity, setQuantity] = useState(1);
-  const wishlistContext = useContext(WishlistContext);
-  const compareContext = useContext(CompareContext);
+  // const wishlistContext = useContext(WishlistContext);
+  // const compareContext = useContext(CompareContext);
   const router = useRouter();
   const [limit, setLimit] = useState(8);
-  const curContext = useContext(CurrencyContext);
-  const [grid, setGrid] = useState(colClassnaclassName);
-  const symbol = curContext.state.symbol;
+  // const curContext = useContext(CurrencyContext);
+  // const [grid, setGrid] = useState(colClassnaclassName);
+  // const symbol = curContext.state.symbol;
   // const filterContext = useContext(FilterContext);
   // const selectedBrands = filterContext.selectedBrands;
   // const selectedColor = filterContext.selectedColor;
@@ -145,6 +146,16 @@ const ProductList = ({
   const { userData } = useContext(AuthContex);
   const { setCart } = useContext(itemscontex)
   const [open, setOpen] = React.useState(false);
+
+  // Jimp.read("/assets/images/icons-23/4.png")
+  // .then((image) => {
+  //   // Do stuff with the image.
+  //   console.log("png ,",image)
+  // })
+  // .catch((err) => {
+  //   // Handle an exception.
+  // });
+
 
 
 

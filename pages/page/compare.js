@@ -12,7 +12,7 @@ const Compare = () => {
 
     return (
         <CommonLayout parent="home" title="compare">
-            <section className="compare-padding">
+            <section className="compare-padding mt-5">
                 <Container>
                     <Row>
                         <Col sm="12">
@@ -28,7 +28,6 @@ const Compare = () => {
                                                             <button type="button" className="remove-compare" onClick={() => contextCompare.removeFromComapre(item)}>Remove</button>
                                                         </th>
                                                     )}
-
                                                 </tr>
                                             </thead>
                                             <tbody id="table-compare">

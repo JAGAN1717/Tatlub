@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
 import Link from "next/link";
-import { MENUITEMS } from "../../constant/menu";
+// import { MENUITEMS } from "../../constant/menu";
 // import { useTranslation } from "react-i18next";
 import { t } from "i18next";
 import { useRouter } from "next/router";

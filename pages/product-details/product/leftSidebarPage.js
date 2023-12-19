@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
 import ProductTab from "../common/product-tab";
 import Service from "../common/service";
-import NewProduct from "../../shop/common/newProduct";
-import Slider from "react-slick";
-import { useQuery } from "@apollo/client";
-import { gql } from "@apollo/client";
-import ImageZoom from "../common/image-zoom";
-import DetailsWithPrice from "../common/detail-price";
-import Filter from "../common/filter";
+// import NewProduct from "../../shop/common/newProduct";
+// import Slider from "react-slick";
+// import { useQuery } from "@apollo/client";
+// import { gql } from "@apollo/client";
+// import ImageZoom from "../common/image-zoom";
+// import DetailsWithPrice from "../common/detail-price";
+// import Filter from "../common/filter";
 import { Container, Row, Col, Media } from "reactstrap";
 import {
   getPRoductDetail,
@@ -28,40 +28,40 @@ import itemscontex from "../../initcontext";
 import moment from "moment/moment";
 import { mainId } from "../../../IDmain";
 import Seo from "../../../seo/seo";
-import { getMyBussiness } from "../../../components/core/shop_requests";
+// import { getMyBussiness } from "../../../components/core/shop_requests";
 import Link from "next/link";
 import ProductSection from "../common/product_section";
 
 // import html2canvas from 'html2canvas';
 
-const GET_SINGLE_PRODUCTS = gql`
-  query product($id: Int!) {
-    product(id: $id) {
-      id
-      title
-      description
-      type
-      brand
-      category
-      price
-      new
-      sale
-      discount
-      stock
-      variants {
-        id
-        sku
-        size
-        color
-        image_id
-      }
-      images {
-        alt
-        src
-      }
-    }
-  }
-`;
+// const GET_SINGLE_PRODUCTS = gql`
+//   query product($id: Int!) {
+//     product(id: $id) {
+//       id
+//       title
+//       description
+//       type
+//       brand
+//       category
+//       price
+//       new
+//       sale
+//       discount
+//       stock
+//       variants {
+//         id
+//         sku
+//         size
+//         color
+//         image_id
+//       }
+//       images {
+//         alt
+//         src
+//       }
+//     }
+//   }
+// `;
 
 const LeftSidebarPage = ({ setRecom }) => {
   const router = useRouter();

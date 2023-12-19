@@ -2,16 +2,16 @@ import React, { useState } from 'react';
 import CommonLayout from '../../components/shop/common-layout'
 import { Container, Row, Col, Media, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
 // import { withApollo } from "../../../helpers/apollo/apollo";
-import HeaderEight from "../../components/headers/header-eight";
+// import HeaderEight from "../../components/headers/header-eight";
 // import Banner from "./components/Banner";
-import TopCollection from "../../components/common/Collections/Collection1";
-import SpecialProducts from "../../components/common/Collections/TabCollection4";
-import Instagram from "../../components/common/instagram/instagram1";
-import Blog from "../../components/common/Blog/blog1";
+// import TopCollection from "../../components/common/Collections/Collection1";
+// import SpecialProducts from "../../components/common/Collections/TabCollection4";
+// import Instagram from "../../components/common/instagram/instagram1";
+// import Blog from "../../components/common/Blog/blog1";
 // import { Product4 } from "../../../services/script";
-import ModalComponent from "../../components/common/Modal";
-import Helmet from "react-helmet";
-import MasterFooterTwo from "../../components/footers/common/MasterFooterTwo";
+// import ModalComponent from "../../components/common/Modal";
+// import Helmet from "react-helmet";
+// import MasterFooterTwo from "../../components/footers/common/MasterFooterTwo";
 import Select from 'react-select';
 import Link from "next/link";
 import { getBanner, getProperty, getBuilders } from '../../components/core/realestate_request'

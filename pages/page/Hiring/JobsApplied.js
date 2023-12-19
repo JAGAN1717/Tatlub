@@ -254,7 +254,6 @@ const SelectCategory = () => {
                                             appliedjobs?.map((data, index) => {
                                                 let day = moment(data?.created_at);
                                                 let fromhour = moment.utc(day).local().startOf('seconds').fromNow()
-
                                                 return (
                                                     <div className='col-xl-6 mb-4 ' key={index}>
                                                         <div className='listing_card bg-light d-flex flex-column justify-content-between h-100'>
@@ -328,18 +327,18 @@ const SelectCategory = () => {
                                     </div>
                                 </div>
                             </div> :
-                         appliedjobs?.length == 0 &&                
-                           <div className='container'>
-                            <div className="card empty-wishlist shadow-sm p-4 mb-3">
-                            <div className="d-flex align-items-center justify-content-between mb-4">
+                            appliedjobs?.length == 0 &&
+                            <div className='container'>
+                                <div className="card empty-wishlist shadow-sm p-4 mb-3">
+                                    <div className="d-flex align-items-center justify-content-between mb-4">
                                         <h4 className="fw-bold fs-4">{t("My Job")}</h4>
                                     </div>
-                                <div className="text-center">
-                                    <img src="/assets/images/tatlub-img/not_Found.png" className="" />
-                                    <h3 className="text-center">{t("DATA NOT FOUND")}</h3>
+                                    <div className="text-center">
+                                        <img src="/assets/images/tatlub-img/not_Found.png" className="" />
+                                        <h3 className="text-center">{t("DATA NOT FOUND")}</h3>
+                                    </div>
                                 </div>
                             </div>
-                        </div> 
                     }
                 </div> :
                 <div className='container'>
@@ -366,7 +365,7 @@ const SelectCategory = () => {
                             {/* MuiDataGrid-columnHeaderTitleContainer */}
                             <DataGrid
                                 rowHeight={70}
-                                disableColumnMenu 
+                                disableColumnMenu
                                 sx={{
                                     '& .MuiDataGrid-columnHeader': {
                                         backgroundColor: "#0681ce",

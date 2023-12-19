@@ -20,9 +20,9 @@ import {
   DropdownMenu,
   DropdownItem,
 } from "reactstrap";
-import seventeen from "../../../../public/assets/images/logos/17.png";
-import FilterPage from "../../../shop/common/filter";
-import ProductList from "../../../shop/common/productList";
+// import seventeen from "../../../../public/assets/images/logos/17.png";
+// import FilterPage from "../../../shop/common/filter";
+// import ProductList from "../../../shop/common/productList";
 import { ReactDOM } from "react";
 import axios from "axios";
 // import { constrainPoint } from "@fullcalendar/core/internal";
@@ -557,13 +557,13 @@ const ProfilePage = (args) => {
       <Seo title={`${seller?.name}`} />
       {isLoading ? (
         <div className="container my-4">
-        <div className="loader-wrapper2 rounded-4">
-          {url === "Christmas" ? (
-            <div id="preloader"></div>
-          ) : (
-            <div className="loader"></div>
-          )}
-        </div>
+          <div className="loader-wrapper2 rounded-4">
+            {url === "Christmas" ? (
+              <div id="preloader"></div>
+            ) : (
+              <div className="loader"></div>
+            )}
+          </div>
         </div>
       ) : (
         <div>
@@ -921,7 +921,7 @@ const ProfilePage = (args) => {
                                     src="/assets/images/company/5.png"
                                   />
                                   <a href={`mailto:${seller?.email}`}>
-                                  <h5 className="fs-18 foot-cat" title={seller?.email}>{seller?.email}</h5>
+                                    <h5 className="fs-18 foot-cat" title={seller?.email}>{seller?.email}</h5>
                                   </a>
                                 </div>
                               )}
@@ -1683,7 +1683,7 @@ const ProfilePage = (args) => {
                                           </Link>
                                         </div>
                                         <Link href={{
-                                          pathname: `/services/${data.item_slug}`,  
+                                          pathname: `/services/${data.item_slug}`,
                                           // query: { item_id: data.id }
                                         }} >
                                           <h6

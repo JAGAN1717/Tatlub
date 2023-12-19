@@ -1,17 +1,17 @@
 import React, { useState, useEffect, useContext } from "react";
 import NavBar from "./common/navbar";
-import SideBar from "./common/sidebar";
-import Cart from "../containers/Cart";
-import CartContainer from "../containers/CartContainer";
-import TopBarDark from "./common/topbar-dark";
+// import SideBar from "./common/sidebar";
+// import Cart from "../containers/Cart";
+// import CartContainer from "../containers/CartContainer";
+// import TopBarDark from "./common/topbar-dark";
 import {Button, Container, Row, Col, Modal, Input, ModalHeader, ModalBody, ModalFooter, Dropdown, DropdownToggle, DropdownMenu, DropdownItem} from "reactstrap";
 import LogoImage from "./common/logo";
 import search from "../../public/assets/images/icon/search.png";
 import settings from "../../public/assets/images/icon/setting.png";
 import cart from "../../public/assets/images/icon/cart.png";
-import Currency from "./common/currency";
+// import Currency from "./common/currency";
 import { useRouter } from "next/router";
-import SearchOverlay from "./common/search-overlay";
+// import SearchOverlay from "./common/search-overlay";
 import { getCategory } from "../core/fashion_request";
 import { postRequirement } from "./core/_request";
 import { useTranslation } from "react-i18next";
@@ -268,7 +268,7 @@ const HeaderOne = ({
       <header id="sticky" className={`sticky ${headerClass} header_border`}>
         {/* <div className="mobile-fix-option"></div> */}
         {/*Top Header Component*/}
-        {noTopBar ? "" : <TopBarDark topClassName={topClass} />}
+        {/* {noTopBar ? "" : <TopBarDark topClassName={topClass} />} */}
 
         <Container>
           <Row>
@@ -457,7 +457,7 @@ const HeaderOne = ({
       </header>
       </div>
 
-      <SearchOverlay />
+      {/* <SearchOverlay /> */}
 
       <div
         className="modal fade post_top_model"

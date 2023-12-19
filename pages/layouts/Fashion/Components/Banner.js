@@ -47,6 +47,7 @@ import { useTranslation } from "react-i18next";
 
 
 
+
 const CustomDot = (props) => {
   const { index, onClick, active } = props;
 
@@ -62,7 +63,11 @@ const CustomDot = (props) => {
       <button type="button"></button>
     </div>
   );
-};
+}; 
+
+
+
+
 
 function getLocation() {
   return new Promise((resolve, reject) => {

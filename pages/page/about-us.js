@@ -323,7 +323,7 @@ const AboutUs = (args) => {
     <>
       <CommonLayout parent="home" title="About-us">
         {/* // <!-- about section start --> */}
-        <section className="about-page section-b-space">
+        <section className="about-page section-b-space mt-4">
           <Container>
             <Row>
               <Col lg="12">

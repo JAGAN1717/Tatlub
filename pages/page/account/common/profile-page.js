@@ -15,7 +15,7 @@ import Seo from '../../../../seo/seo'
 import MulSelect from 'react-select';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
-
+import ReactPlayer from 'react-player';
 
 let initialValues = {
   name: '',
@@ -74,6 +74,7 @@ const ProfilePage = () => {
   const [banners, setbannerslist] = useState("/assets/images/2.jpg")
   const [mulimg, setmuImg] = useState([]);
   const [video, setVideo] = useState([]);
+  const [prevideo, setPreVideo] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [url, setUrl] = useState();
   const [sellerData, setSellerData] = useState([]);
@@ -86,6 +87,18 @@ const ProfilePage = () => {
   const [Tagvalue, setTagvalue] = useState([])
   const [open, setOpen] = React.useState(false);
   const [specify, setSpecify] = useState(0)
+
+  console.log("sdhsgdshdsdsd",video)
+
+
+  const filesizes = (bytes, decimals = 2) => {
+    if (bytes === 0) return '0 Bytes';
+    const k = 1024;
+    const dm = decimals < 0 ? 0 : decimals;
+    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+}
 
   const [specification, setSpecification] = useState({
     title: "",
@@ -897,7 +910,8 @@ const ProfilePage = () => {
     const file = e.target.files;
     for (let i = 0; i < e.target.files.length; i++) {
       if (isValidFileUploaded2(file[i])) {
-        setVideo(file);
+        setVideo((p)=>[...p,file]);
+        setPreVideo((p) => [...p, { 'link': URL.createObjectURL(e.target.files[i]), "name": e.target.files[i]?.name,"size":filesizes(e.target.files[i].size) }])
       } else {
         toast.error("video format only accepted!", {
           position: "bottom-right",
@@ -1720,6 +1734,48 @@ const ProfilePage = () => {
                 </button>
               </div>
             </div>
+            {
+              prevideo?.length > 0 &&
+              <div className="">
+                <div className="row align-items-center">
+                  {
+                    prevideo.map((vid, i) => (
+                      <div className="col-md-3 col-sm-6 mb-2" key={i}>
+                        <div className="multi_imgP2 rounded-3 d-flex align-items-center">
+                          {/* <img src={BannerPrev} onError={(e) => e.currentTarget.src = "/assets/images/tatlub-img/No.jpg"} className="rounded-3 object-fit-contain bg-light w-100" style={{ height: '120px' }} /> */}
+                          {/* <video width="400" controls className="rounded-3 object-fit-contain bg-light w-100" >
+                          <source src={prevideo} />
+                        </video> */}
+                          {/* <div>
+                            <ReactPlayer url={vid?.link} width="100%" height="100%" controls className="rounded-3 object-fit-contain bg-light" />
+                          </div> */}
+                          <iframe src={vid?.link}
+                          frameborder='0'
+                          allow='autoplay; encrypted-media'
+                          allowfullscreen
+                          title='video'
+                          width={150}
+                          height={100}
+                          className="rounded-3 object-fit-contain bg-light" 
+                        />
+                          <div className="ms-2">
+                            <h4 className="fw-bold complete_1">{vid?.name}</h4> 
+                            <h5>Size : {vid?.size}</h5>
+                            <h5 onClick={()=> {
+                              const newArr = prevideo.filter((e,j) => j != i ) ;
+                              setPreVideo(newArr)
+                              const remove = video.filter((e,j) => j != i );
+                              setVideo(remove)
+                            }}><a  className="text-danger cursor-pointer">Delete</a></h5>
+                          </div>
+                        </div>
+                      </div>
+                    ))
+                  }
+                </div>
+              </div>
+            }
+
           </div>
 
         </Container>

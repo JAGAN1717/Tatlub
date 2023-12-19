@@ -16,7 +16,7 @@ import {
   NavLink,
 } from "reactstrap";
 import LogoImage from "../../headers/common/logo";
-import CopyRight from "./copyright";
+// import CopyRight from "./copyright";
 import { getCategory } from "../core/_request";
 import { useRouter } from "next/router";
 import { getSocialmedia } from "../../core/fashion_request";

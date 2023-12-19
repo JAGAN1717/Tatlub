@@ -210,9 +210,9 @@ const CartPage = () => {
                       alt=""
                     />
                     <h3>
-                      <strong>{t('Your Cart is Empty')}</strong>
+                      <strong>Your Cart is Empty</strong>
                     </h3>
-                    <h4>{t('Explore more shortlist some items')}.</h4>
+                    <h4>Explore more shortlist some items.</h4>
                   </div>
                 </div>
               </Col>

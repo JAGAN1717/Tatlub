@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Container, Row, Col, Media, Modal, ModalBody } from "reactstrap";
 import { useQuery } from "@apollo/client";
-import { gql } from '@apollo/client';
+// import { gql } from '@apollo/client';
 import { CurrencyContext } from "../../../helpers/Currency/CurrencyContext";
 import CartContext from "../../../helpers/cart";
 import { WishlistContext } from "../../../helpers/wishlist/WishlistContext";
@@ -12,42 +12,42 @@ import { Slider4 } from "../../../services/script";
 import { getRecommended } from '../../../components/core/fashion_request'
 import { addToCart } from "../../../components/core/product_request";
 import { useTranslation } from 'react-i18next';
-import Filter from "../common/filter";
+// import Filter from "../common/filter";
 import AuthContex from '../../../components/auth/AuthContex'
 import { ToastContainer, toast } from "react-toastify";
 
-const GET_PRODUCTS = gql`
-  query products($type: _CategoryType!, $indexFrom: Int!, $limit: Int!) {
-    products(type: $type, indexFrom: $indexFrom, limit: $limit) {
-      items {
-        id
-        title
-        description
-        type
-        brand
-        category
-        price
-        new
-        stock
-        sale
-        discount
-        variants {
-          id
-          sku
-          size
-          color
-          image_id
-        }
-        images {
-          image_id
-          id
-          alt
-          src
-        }
-      }
-    }
-  }
-`;
+// const GET_PRODUCTS = gql`
+//   query products($type: _CategoryType!, $indexFrom: Int!, $limit: Int!) {
+//     products(type: $type, indexFrom: $indexFrom, limit: $limit) {
+//       items {
+//         id
+//         title
+//         description
+//         type
+//         brand
+//         category
+//         price
+//         new
+//         stock
+//         sale
+//         discount
+//         variants {
+//           id
+//           sku
+//           size
+//           color
+//           image_id
+//         }
+//         images {
+//           image_id
+//           id
+//           alt
+//           src
+//         }
+//       }
+//     }
+//   }
+// `;
 
 const ProductSection = ({ recom }) => {
   const router = useRouter();
@@ -144,13 +144,13 @@ const ProductSection = ({ recom }) => {
     customeSlider.current.slickPrev()
   }
 
-  var { loading, data } = useQuery(GET_PRODUCTS, {
-    variables: {
-      type: "fashion",
-      indexFrom: 0,
-      limit: 8,
-    },
-  });
+  // var { loading, data } = useQuery(GET_PRODUCTS, {
+  //   variables: {
+  //     type: "fashion",
+  //     indexFrom: 0,
+  //     limit: 8,
+  //   },
+  // });
 
   // useEffect(()=>{
   //   fetchRecomProduct();

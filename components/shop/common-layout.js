@@ -1,6 +1,6 @@
 import React from "react";
 import HeaderOne from "../headers/header-one";
-import Breadcrubs from "../common/widgets/breadcrubs";
+// import Breadcrubs from "../common/widgets/breadcrubs";
 import Helmet from "react-helmet";
 import favicon from "../../public/assets/images/favicon/1.png";
 import MasterFooter from "../footers/common/MasterFooter";
@@ -36,7 +36,7 @@ const CommonLayout = ({ children, title, parent, subTitle, setCategoryList }) =>
         <link rel="icon" type="image/x-icon" href={favicon ? favicon : ""} />
       </Helmet>*/}
        <HeaderOne categoryList={category} topClass="top-header" logoName="logo.png" />
-       <Breadcrubs title={title} parent={parent} subTitle={subTitle} />
+       {/* <Breadcrubs title={title} parent={parent} subTitle={subTitle} /> */}
        <>{children}</>
        <MasterFooter
          categoryList={category}

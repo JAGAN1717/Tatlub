@@ -1,6 +1,8 @@
 import React from 'react';
 import CommonLayout from '../../components/shop/common-layout';
 import { Container, Row, Col } from 'reactstrap';
+import Link from 'next/link';
+
 
 const Error = () => {
     return (
@@ -12,7 +14,9 @@ const Error = () => {
                             <div className="error-section">
                                 <h1>404</h1>
                                 <h2>page not found</h2>
-                                <a href="/" className="btn btn-solid">back to home</a>
+                                <Link href={'/'}>
+                                <a className="btn btn-solid">back to home</a>
+                                </Link>
                             </div>
                         </Col>
                     </Row>
