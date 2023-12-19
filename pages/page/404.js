@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 const Error = () => {
     return (
-        <CommonLayout parent="home" title="404">
+        // <CommonLayout parent="home" title="404">
             <section className="p-0">
                 <Container>
                     <Row>
@@ -22,7 +22,7 @@ const Error = () => {
                     </Row>
                 </Container>
             </section>
-        </CommonLayout>
+        // </CommonLayout>
     )
 }
 export default Error;

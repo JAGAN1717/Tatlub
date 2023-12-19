@@ -6,7 +6,7 @@ import BlogSidebar from './common/blog-sidebar';
 
 const blogLeftSidebar = () => {
     return (
-        <CommonLayout parent="blog" title="blog left sidebar" >
+        // <CommonLayout parent="blog" title="blog left sidebar" >
             <section className="section-b-space blog-page ratio2_3">
                 <Container>
                     <Row>
@@ -17,7 +17,7 @@ const blogLeftSidebar = () => {
                     </Row>
                 </Container>
             </section>
-        </CommonLayout>
+        // </CommonLayout>
     )
 }
 

@@ -385,7 +385,8 @@ const property = () => {
 
 
   return (
-    <CommonLayout>
+    <>
+    {/* <CommonLayout> */}
 
       <Seo title={`${prop ?? searchKey}`} />
       <Container>
@@ -1592,8 +1593,9 @@ const property = () => {
           </div>
         </div>
       </div>
-    </CommonLayout>
-  );
+    {/* </CommonLayout> */}
+    </>
+  )
 };
 
 export default property;

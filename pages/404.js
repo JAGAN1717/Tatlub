@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 const Page404 = () => {
     return (
-        <CommonLayout parent="home" title="404">
+        // <CommonLayout parent="home" title="404">
             <section className="p-0">
                 <Container>
                     <Row>
@@ -21,7 +21,7 @@ const Page404 = () => {
                     </Row>
                 </Container>
             </section>
-        </CommonLayout>
+        // </CommonLayout>
     )
 }
 export default Page404;

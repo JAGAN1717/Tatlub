@@ -46,6 +46,7 @@ import moment from "moment/moment";
 import MulSelect from 'react-select';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
+import { useCategory } from "../../components/auth/catgoryContext";
 // import TimePicker from 'react-time-picker';
 // import 'react-time-picker/dist/TimePicker.css';
 // import 'react-clock/dist/Clock.css';
@@ -330,6 +331,11 @@ function Listing() {
   const [fromTime, SetfromTime] = useState('')
   const [selectIntrovel, SetSelectIntrovel] = useState(15)
   const [Timevalue, TimeonChange] = useState('10:00');
+  const {CategoryList} = useCategory()
+
+  useEffect(()=> {
+    setCategory(CategoryList)
+  },[CategoryList])
   
   const Introvels = [
     { time: '15 Minutes', val: 15 },
@@ -1407,7 +1413,7 @@ function Listing() {
         <CircularProgress color="inherit" />
       </Backdrop>
     </div>
-    <CommonLayout title="collection" parent="home" setCategoryList={setCategory}>
+    {/* <CommonLayout title="collection" parent="home" setCategoryList={setCategory}> */}
       <Seo title={`${formvalue?.item_title ?? 'Listing'}`} description={`${formvalue?.item_description ?? ''}`} />
       <section>
         <div
@@ -3800,7 +3806,7 @@ function Listing() {
           </div>
         </div>
       </div>
-    </CommonLayout>
+    {/* </CommonLayout> */}
   </>
   );
 }
