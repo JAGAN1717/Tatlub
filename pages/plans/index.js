@@ -7,6 +7,7 @@ import { getAddonslist, buySubscriptio } from "../.././components/core/plans_req
 import AuthContex from '../../components/auth/AuthContex'
 import moment from "moment";
 import { ToastContainer, toast } from "react-toastify";
+import toast1 from 'react-hot-toast';
 import { useRouter } from "next/router";
 import Seo from '../../seo/seo';
 import { useCategory } from "../../components/auth/catgoryContext";
@@ -54,17 +55,18 @@ const SubscriptionPlans = () => {
             "addon_id": addontId
         }
         buySubscriptio(body).then(res => {
-            toast.info("SUCCESSFULL", {
-                position: "bottom-right",
-                autoClose: 2000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
-                icon: false,
-            });
+            // toast.info("SUCCESSFULL", {
+            //     position: "bottom-right",
+            //     autoClose: 2000,
+            //     hideProgressBar: false,
+            //     closeOnClick: true,
+            //     pauseOnHover: true,
+            //     draggable: true,
+            //     progress: undefined,
+            //     theme: "dark",
+            //     icon: false,
+            // });
+            toast1.success('SUCCESSFULL')
             router.push('/Subscription')
         }).catch(err => {
             console.error("err", err.message)

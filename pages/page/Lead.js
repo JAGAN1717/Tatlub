@@ -33,6 +33,7 @@ import moment from "moment";
 import Seo from '../../seo/seo'
 import { useTranslation } from "react-i18next";
 import { ToastContainer, toast } from "react-toastify";
+import toast1 from 'react-hot-toast';
 import "react-toastify/dist/ReactToastify.css";
 import { styled } from '@mui/material/styles';
 import Tooltip from '@mui/material/Tooltip';

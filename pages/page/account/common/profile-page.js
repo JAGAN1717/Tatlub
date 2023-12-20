@@ -5,6 +5,7 @@ import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { useState } from "react";
 import { ToastContainer, toast } from 'react-toastify';
+import toast1 from 'react-hot-toast';
 import Link from "next/link";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
 import { useTranslation } from "react-i18next";
@@ -211,16 +212,17 @@ const ProfilePage = () => {
       const response = await sellerSpec(body)
     } catch (error) {
       console.error("err", error.message)
-      toast.error('Somthing Went Wrong!', {
-        position: "bottom-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
+      // toast.error('Somthing Went Wrong!', {
+      //   position: "bottom-right",
+      //   autoClose: 2000,
+      //   hideProgressBar: false,
+      //   closeOnClick: true,
+      //   pauseOnHover: true,
+      //   draggable: true,
+      //   progress: undefined,
+      //   theme: "dark",
+      // });
+      toast1.error('Somthing Went Wrong!')
     }
   }
 
@@ -257,45 +259,47 @@ const ProfilePage = () => {
       setOpen(false)
       if (response.status == 200) {
         // document.getElementById('closeloaderModal')?.click();
-        toast.info('SAVE SUCCESSFULL', {
-          position: "bottom-right",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          icon: false,
-          progress: undefined,
-          theme: "dark",
-        });
+        // toast.info('SAVE SUCCESSFULL', {
+        //   position: "bottom-right",
+        //   autoClose: 2000,
+        //   hideProgressBar: false,
+        //   closeOnClick: true,
+        //   pauseOnHover: true,
+        //   draggable: true,
+        //   icon: false,
+        //   progress: undefined,
+        //   theme: "dark",
+        // });
+        toast1.error('SAVE SUCCESSFULL')
       } else {
         // document.getElementById('closeloaderModal')?.click();
-        toast.error('Somthing Went Wrong!', {
-          position: "bottom-right",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        });
+        // toast.error('Somthing Went Wrong!', {
+        //   position: "bottom-right",
+        //   autoClose: 2000,
+        //   hideProgressBar: false,
+        //   closeOnClick: true,
+        //   pauseOnHover: true,
+        //   draggable: true,
+        //   progress: undefined,
+        //   theme: "dark",
+        // });
+        toast1.error('Somthing Went Wrong!')
       }
     } catch (error) {
       // document.getElementById('closeloaderModal')?.click();
       setOpen(false)
       console.error("err", error.message)
-      toast.error('Somthing Went Wrong!', {
-        position: "bottom-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
-
+      // toast.error('Somthing Went Wrong!', {
+      //   position: "bottom-right",
+      //   autoClose: 2000,
+      //   hideProgressBar: false,
+      //   closeOnClick: true,
+      //   pauseOnHover: true,
+      //   draggable: true,
+      //   progress: undefined,
+      //   theme: "dark",
+      // });
+      toast1.error('Somthing Went Wrong!')
     }
   }
 
@@ -416,28 +420,32 @@ const ProfilePage = () => {
         // document.getElementById('closeloaderModal')?.click();
         setOpen(false)
         if (response.status == 200) {
-          toast.info('UPDATE SUCCESSFULL', {
-            position: "bottom-right",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            icon: false,
-            progress: undefined,
-            theme: "dark",
-          });
+          // toast.info('UPDATE SUCCESSFULL', {
+          //   position: "bottom-right",
+          //   autoClose: 2000,
+          //   hideProgressBar: false,
+          //   closeOnClick: true,
+          //   pauseOnHover: true,
+          //   draggable: true,
+          //   icon: false,
+          //   progress: undefined,
+          //   theme: "dark",
+          // });
+          toast1.success('UPDATED SUCCESSFULL')
+
         } else {
-          toast.error('Somthing Went Wrong!', {
-            position: "bottom-right",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-          });
+          // toast.error('Somthing Went Wrong!', {
+          //   position: "bottom-right",
+          //   autoClose: 2000,
+          //   hideProgressBar: false,
+          //   closeOnClick: true,
+          //   pauseOnHover: true,
+          //   draggable: true,
+          //   progress: undefined,
+          //   theme: "dark",
+          // });
+          toast1.error('Somthing Went Wrong!')
+
         }
 
       } catch (error) {
@@ -542,28 +550,30 @@ const ProfilePage = () => {
           }
           setUserData(fjgkjdsf)
           localStorage.setItem('data', JSON.stringify(fjgkjdsf))
-          toast.info('UPDATED SUCCESSFULL', {
-            position: "bottom-right",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            icon: false,
-            progress: undefined,
-            theme: "dark",
-          });
+          // toast.info('UPDATED SUCCESSFULL', {
+          //   position: "bottom-right",
+          //   autoClose: 2000,
+          //   hideProgressBar: false,
+          //   closeOnClick: true,
+          //   pauseOnHover: true,
+          //   draggable: true,
+          //   icon: false,
+          //   progress: undefined,
+          //   theme: "dark",
+          // });
+          toast1.success('UPDATED SUCCESSFULL')
         } else {
-          toast.error('Somthing Went Wrong!', {
-            position: "bottom-right",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-          });
+          // toast.error('Somthing Went Wrong!', {
+          //   position: "bottom-right",
+          //   autoClose: 2000,
+          //   hideProgressBar: false,
+          //   closeOnClick: true,
+          //   pauseOnHover: true,
+          //   draggable: true,
+          //   progress: undefined,
+          //   theme: "dark",
+          // });
+          toast1.error('Somthing Went Wrong!')
         }
       } catch (error) {
         console.error(error)
@@ -625,28 +635,31 @@ const ProfilePage = () => {
           }
           setUserData(fjgkjdsf)
           localStorage.setItem('data', JSON.stringify(fjgkjdsf))
-          toast.info('UPDATED SUCCESSFULL', {
-            position: "bottom-right",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            icon: false,
-            progress: undefined,
-            theme: "dark",
-          });
+          // toast.info('UPDATED SUCCESSFULL', {
+          //   position: "bottom-right",
+          //   autoClose: 2000,
+          //   hideProgressBar: false,
+          //   closeOnClick: true,
+          //   pauseOnHover: true,
+          //   draggable: true,
+          //   icon: false,
+          //   progress: undefined,
+          //   theme: "dark",
+          // });
+          toast1.success('UPDATED SUCCESSFULL')
+
         } else {
-          toast.error('Somthing Went Wrong!', {
-            position: "bottom-right",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-          });
+          // toast.error('Somthing Went Wrong!', {
+          //   position: "bottom-right",
+          //   autoClose: 2000,
+          //   hideProgressBar: false,
+          //   closeOnClick: true,
+          //   pauseOnHover: true,
+          //   draggable: true,
+          //   progress: undefined,
+          //   theme: "dark",
+          // });
+          toast1.error('Somthing Went Wrong!')
         }
       } catch (error) {
         console.error(error)
@@ -712,28 +725,30 @@ const ProfilePage = () => {
         // const responce2 =- await UpdateSellerVidoes()
 
         if (response.status == 200) {
-          toast.info('UPDATED SUCCESSFULL', {
-            position: "bottom-right",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            icon: false,
-            progress: undefined,
-            theme: "dark",
-          });
+          // toast.info('UPDATED SUCCESSFULL', {
+          //   position: "bottom-right",
+          //   autoClose: 2000,
+          //   hideProgressBar: false,
+          //   closeOnClick: true,
+          //   pauseOnHover: true,
+          //   draggable: true,
+          //   icon: false,
+          //   progress: undefined,
+          //   theme: "dark",
+          // });
+          toast1.success('UPDATED SUCCESSFULL')
         } else {
-          toast.error('Somthing Went Wrong!', {
-            position: "bottom-right",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-          });
+          // toast.error('Somthing Went Wrong!', {
+          //   position: "bottom-right",
+          //   autoClose: 2000,
+          //   hideProgressBar: false,
+          //   closeOnClick: true,
+          //   pauseOnHover: true,
+          //   draggable: true,
+          //   progress: undefined,
+          //   theme: "dark",
+          // });
+          toast1.error('Somthing Went Wrong!')
         }
       } catch (error) {
         console.error(error)
@@ -765,30 +780,33 @@ const ProfilePage = () => {
       setOpen(false)
       if (responce.status == 200) {
         setuploded(false)
-        toast.info('UPDATED SUCCESSFULL', {
-          position: "bottom-right",
-          autoClose: 2000,
-          icon: false,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        });
+        // toast.info('UPDATED SUCCESSFULL', {
+        //   position: "bottom-right",
+        //   autoClose: 2000,
+        //   icon: false,
+        //   hideProgressBar: false,
+        //   closeOnClick: true,
+        //   pauseOnHover: true,
+        //   draggable: true,
+        //   progress: undefined,
+        //   theme: "dark",
+        // });
+        toast1.success('UPDATED SUCCESSFULL')
+
       } else {
         // document.getElementById('closeloaderModal')?.click();
         setOpen(false)
-        toast.error('Somthing Went Wrong!', {
-          position: "bottom-right",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        });
+        // toast.error('Somthing Went Wrong!', {
+        //   position: "bottom-right",
+        //   autoClose: 2000,
+        //   hideProgressBar: false,
+        //   closeOnClick: true,
+        //   pauseOnHover: true,
+        //   draggable: true,
+        //   progress: undefined,
+        //   theme: "dark",
+        // });
+        toast1.error('Somthing Went Wrong!')
       }
     } catch (err) {
       console.log('err', err.message)
@@ -834,29 +852,31 @@ const ProfilePage = () => {
     setOpen(false)
     if (responce.status == 200) {
       setuploded(false)
-      toast.info(responce?.data ?? 'SUCCESSFULL', {
-        position: "bottom-right",
-        autoClose: 2000,
-        icon: false,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
+      // toast.info(responce?.data ?? 'SUCCESSFULL', {
+      //   position: "bottom-right",
+      //   autoClose: 2000,
+      //   icon: false,
+      //   hideProgressBar: false,
+      //   closeOnClick: true,
+      //   pauseOnHover: true,
+      //   draggable: true,
+      //   progress: undefined,
+      //   theme: "dark",
+      // });
+      toast1.success(responce?.data ?? 'SUCCESSFULL')
       setmuImg('');
     } else {
-      toast.error('Somthing Went Wrong!', {
-        position: "bottom-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
+      // toast.error('Somthing Went Wrong!', {
+      //   position: "bottom-right",
+      //   autoClose: 2000,
+      //   hideProgressBar: false,
+      //   closeOnClick: true,
+      //   pauseOnHover: true,
+      //   draggable: true,
+      //   progress: undefined,
+      //   theme: "dark",
+      // });
+      toast1.error('Somthing Went Wrong!')
     }
   }
 
@@ -875,31 +895,33 @@ const ProfilePage = () => {
   const handleMulimg = (e) => {
     for (let i = 0; i < e.target.files.length; i++) {
       if (e.target.files[i]?.size > 5242880) {
-        toast.error("Maximum 5mb only accepted!", {
-          position: "bottom-right",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        });
+        // toast.error("Maximum 5mb only accepted!", {
+        //   position: "bottom-right",
+        //   autoClose: 2000,
+        //   hideProgressBar: false,
+        //   closeOnClick: true,
+        //   pauseOnHover: true,
+        //   draggable: true,
+        //   progress: undefined,
+        //   theme: "dark",
+        // });
+        toast1.error('Maximum 5mb only accepted!')
       } else {
         const file = e.target.files;
         if (file.length <= 12) {
           setmuImg(file);
         } else {
-          toast.error("Maximum 12 images only accepted!", {
-            position: "bottom-right",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-          });
+          // toast.error("Maximum 12 images only accepted!", {
+          //   position: "bottom-right",
+          //   autoClose: 2000,
+          //   hideProgressBar: false,
+          //   closeOnClick: true,
+          //   pauseOnHover: true,
+          //   draggable: true,
+          //   progress: undefined,
+          //   theme: "dark",
+          // });
+          toast1.error('Maximum 12 images only accepted!')
         }
       }
     }
@@ -913,16 +935,17 @@ const ProfilePage = () => {
         setVideo((p)=>[...p,file]);
         setPreVideo((p) => [...p, { 'link': URL.createObjectURL(e.target.files[i]), "name": e.target.files[i]?.name,"size":filesizes(e.target.files[i].size) }])
       } else {
-        toast.error("video format only accepted!", {
-          position: "bottom-right",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        });
+        // toast.error("video format only accepted!", {
+        //   position: "bottom-right",
+        //   autoClose: 2000,
+        //   hideProgressBar: false,
+        //   closeOnClick: true,
+        //   pauseOnHover: true,
+        //   draggable: true,
+        //   progress: undefined,
+        //   theme: "dark",
+        // });
+        toast1.error('video format only accepted!')
       }
     }
   };
@@ -957,16 +980,17 @@ const ProfilePage = () => {
       if (isValidFileCheck(file)) {
         setbrocher(e.target.files[0])
       } else {
-        toast.error("pdf and doc format only accepted!", {
-          position: "bottom-right",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        });
+        // toast.error("pdf and doc format only accepted!", {
+        //   position: "bottom-right",
+        //   autoClose: 2000,
+        //   hideProgressBar: false,
+        //   closeOnClick: true,
+        //   pauseOnHover: true,
+        //   draggable: true,
+        //   progress: undefined,
+        //   theme: "dark",
+        // });
+        toast1.error('pdf and doc format only accepted!')
       }
       // setPreimage(URL.createObjectURL(e.target.files[0]))
       // console.log('yyyyy',e.target.files[0])

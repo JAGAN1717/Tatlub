@@ -1,6 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import { Container, Row, Form, Input, Label, Col } from "reactstrap";
 import { ToastContainer, toast } from 'react-toastify';
+import toast1 from 'react-hot-toast';
 import {GetBranchesData,UpdateBranchesData} from '../../../../components/core/seller_request';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -150,17 +151,18 @@ function createData(id,email, phone_number,address, state, city,Edit) {
           // if(edit){
           // console.log("jhfjhfjh",body)
           const response = await UpdateBranchesData(edit.id,body)
-          toast.info('UPDATE SUCCESSFULL', {
-            position: "bottom-right",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            icon:false,
-            progress: undefined,
-            theme: "dark",
-            });
+          // toast.info('UPDATE SUCCESSFULL', {
+          //   position: "bottom-right",
+          //   autoClose: 2000,
+          //   hideProgressBar: false,
+          //   closeOnClick: true,
+          //   pauseOnHover: true,
+          //   draggable: true,
+          //   icon:false,
+          //   progress: undefined,
+          //   theme: "dark",
+          //   });
+          toast1.success('Somthing Went Wrong!')
             fetchBracnhes()
           // }else{
 

@@ -7,6 +7,8 @@ import {useFormik} from 'formik';
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
 import { ToastContainer, toast } from 'react-toastify';
+import toast1 from 'react-hot-toast';
+
 
 
 
@@ -61,28 +63,30 @@ export default function Details(args) {
         const response = ''
         // console.log('jljlj',response.data)
         if(response.status == 200){
-        toast.info('SUCCESS', {
-          position: "bottom-right",
-          autoClose: 2000,
-          icon:false,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-          });
+        // toast.info('SUCCESS', {
+        //   position: "bottom-right",
+        //   autoClose: 2000,
+        //   icon:false,
+        //   hideProgressBar: false,
+        //   closeOnClick: true,
+        //   pauseOnHover: true,
+        //   draggable: true,
+        //   progress: undefined,
+        //   theme: "dark",
+        //   }); 
+        toast1.success('SUCCESS')
         }else {
-          toast.error('NOT FOUND', {
-            position: "bottom-right",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-            });
+          // toast.error('NOT FOUND', {
+          //   position: "bottom-right",
+          //   autoClose: 2000,
+          //   hideProgressBar: false,
+          //   closeOnClick: true,
+          //   pauseOnHover: true,
+          //   draggable: true,
+          //   progress: undefined,
+          //   theme: "dark",
+          //   });
+          toast1.error('Somthing Went Wrong!')
         }
 
       }catch(error){

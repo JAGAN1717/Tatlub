@@ -3,6 +3,7 @@ import CommonLayout from "../../../components/shop/common-layout";
 import { Container, Row, Col, Media, Form, Label, Input } from "reactstrap";
 import { postFeedback } from "../../../components/core/vendor_request";
 import { ToastContainer, toast } from "react-toastify";
+import toast1 from 'react-hot-toast';
 import AuthContex from "../../../components/auth/AuthContex";
 import { useTranslation } from "react-i18next";
 import Seo from "../../../seo/seo";
@@ -25,30 +26,32 @@ const Feedback = () => {
         }
         postFeedback(body).then(res => {
             if(res.status == 200){
-                toast.info("SUCCESS", {
-                    position: "bottom-right",
-                    autoClose: 2000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    icon:false,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "dark",
-                  });
+                // toast.info("SUCCESS", {
+                //     position: "bottom-right",
+                //     autoClose: 2000,
+                //     hideProgressBar: false,
+                //     closeOnClick: true,
+                //     icon:false,
+                //     pauseOnHover: true,
+                //     draggable: true,
+                //     progress: undefined,
+                //     theme: "dark",
+                //   });
+                toast1.success('SUCCESS')
                   setFeedback('')
             }else{
-                toast.info(res?.message?.feedback_type[0]+'!' ?? 'somthing went wrong!', {
-                    position: "bottom-right",
-                    autoClose: 2000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    icon:false,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "dark",
-                  });
+                // toast.info(res?.message?.feedback_type[0]+'!' ?? 'somthing went wrong!', {
+                //     position: "bottom-right",
+                //     autoClose: 2000,
+                //     hideProgressBar: false,
+                //     closeOnClick: true,
+                //     icon:false,
+                //     pauseOnHover: true,
+                //     draggable: true,
+                //     progress: undefined,
+                //     theme: "dark",
+                //   });
+                toast1.success(res?.message?.feedback_type[0]+'!' ?? 'somthing went wrong!')
             }
         }).catch(err => {
             console.error('er',err.message)

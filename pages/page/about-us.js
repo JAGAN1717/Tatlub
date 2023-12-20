@@ -33,6 +33,7 @@ import ServiceLayout from "../../components/common/Service/service1.js";
 import { getAboutus } from '../../components/core/vendor_request'
 import { useTranslation } from "react-i18next";
 import { ToastContainer, toast } from "react-toastify";
+import toast1 from 'react-hot-toast';
 import { reviewForItems } from "../../components/core/vendor_request";
 import AuthContex from "../../components/auth/AuthContex";
 import { getTesimonials, getBordOfDirect } from "../../components/core/seller_request";
@@ -241,29 +242,31 @@ const AboutUs = (args) => {
         if (response.status == 200) {
           document.getElementById("closeRevie")?.click();
           setdetail(response)
-          toast.info("SUCCESS", {
-            position: "bottom-right",
-            autoClose: 2000,
-            icon: false,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-          });
+          // toast.info("SUCCESS", {
+          //   position: "bottom-right",
+          //   autoClose: 2000,
+          //   icon: false,
+          //   hideProgressBar: false,
+          //   closeOnClick: true,
+          //   pauseOnHover: true,
+          //   draggable: true,
+          //   progress: undefined,
+          //   theme: "dark",
+          // });
+          toast1.success('SUCCESS')
           fetchReviewData();
         } else {
-          toast.error("NOT FOUND", {
-            position: "bottom-right",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-          });
+          // toast.error("NOT FOUND", {
+          //   position: "bottom-right",
+          //   autoClose: 2000,
+          //   hideProgressBar: false,
+          //   closeOnClick: true,
+          //   pauseOnHover: true,
+          //   draggable: true,
+          //   progress: undefined,
+          //   theme: "dark",
+          // });
+          toast1.error('NOT FOUND')
         }
         resetForm();
       } catch (error) {

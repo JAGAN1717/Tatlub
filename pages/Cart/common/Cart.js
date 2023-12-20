@@ -4,6 +4,7 @@ import { Column } from 'primereact/column';
 import { getMyCart, removeCart, getquantity } from '../../../components/core/cart_request';
 import AuthContex from '../../../components/auth/AuthContex';
 import { ToastContainer, toast } from "react-toastify";
+import toast1 from 'react-hot-toast';
 import Link from 'next/link';
 import itemscontex from '../../initcontext';
 // import {useSelector,useDispatch} from 'react-redux'
@@ -106,17 +107,18 @@ export default function Cart() {
             // setProducts(res.data);
             setCart(res)
             fetchMyCart2()
-            toast.info("REMOVED SUCCESSFULL", {
-                position: "bottom-right",
-                autoClose: 2000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                icon: false,
-                theme: "dark",
-            });
+            // toast.info("REMOVED SUCCESSFULL", {
+            //     position: "bottom-right",
+            //     autoClose: 2000,
+            //     hideProgressBar: false,
+            //     closeOnClick: true,
+            //     pauseOnHover: true,
+            //     draggable: true,
+            //     progress: undefined,
+            //     icon: false,
+            //     theme: "dark",
+            // });
+            toast1.success('REMOVED SUCCESSFULL')
         }).catch(err => {
             console.error('err', err.message)
         })

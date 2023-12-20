@@ -5,6 +5,7 @@ import * as Yup from "yup";
 import AuthContex from '../../../components/auth/AuthContex';
 import { getContriesDrop, getStateDrop, getCityDrop } from '../../../components/core/shop_requests';
 import { ToastContainer, toast } from "react-toastify";
+import toast1 from 'react-hot-toast';
 import itemscontex from '../../initcontext';
 import Link from 'next/link';
 import { useTranslation } from "react-i18next";
@@ -137,31 +138,33 @@ export default function Shipping(
 
                 const response = await PostAddress(id, body)
                 if (response.status == 200) {
-                    toast.info("ADD SUCCESSFULL", {
-                        position: "bottom-right",
-                        autoClose: 2000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        icon: false,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: "dark",
-                    });
+                    // toast.info("ADD SUCCESSFULL", {
+                    //     position: "bottom-right",
+                    //     autoClose: 2000,
+                    //     hideProgressBar: false,
+                    //     closeOnClick: true,
+                    //     icon: false,
+                    //     pauseOnHover: true,
+                    //     draggable: true,
+                    //     progress: undefined,
+                    //     theme: "dark",
+                    // });
+                    toast1.success('ADD SUCCESSFULL')
                     setLocation(body);
                     setActiveIndex(1)
                     console.log("skhdskljdsd", response.data)
                 } else {
-                    toast.error(response?.message + '!', {
-                        position: "bottom-right",
-                        autoClose: 2000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: "dark",
-                    });
+                    // toast.error(response?.message + '!', {
+                    //     position: "bottom-right",
+                    //     autoClose: 2000,
+                    //     hideProgressBar: false,
+                    //     closeOnClick: true,
+                    //     pauseOnHover: true,
+                    //     draggable: true,
+                    //     progress: undefined,
+                    //     theme: "dark",
+                    // });
+                    toast1.error(response?.message + '!')
                 }
                 // fetchAddress()
                 resetForm()
@@ -195,28 +198,31 @@ export default function Shipping(
                 const response = await EditAddress(id, body)
 
                 if (response.status == 200) {
-                    toast.info("Edith SUCCESSFULL", {
-                        position: "bottom-right",
-                        autoClose: 2000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        icon: false,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: "dark",
-                    });
+                    // toast.info("Edith SUCCESSFULL", {
+                    //     position: "bottom-right",
+                    //     autoClose: 2000,
+                    //     hideProgressBar: false,
+                    //     closeOnClick: true,
+                    //     icon: false,
+                    //     pauseOnHover: true,
+                    //     draggable: true,
+                    //     progress: undefined,
+                    //     theme: "dark",
+                    // });
+                    toast1.success('Edit SUCCESSFULL')
                 } else {
-                    toast.error(response?.message + '!', {
-                        position: "bottom-right",
-                        autoClose: 2000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: "dark",
-                    });
+                    // toast.error(response?.message + '!', {
+                    //     position: "bottom-right",
+                    //     autoClose: 2000,
+                    //     hideProgressBar: false,
+                    //     closeOnClick: true,
+                    //     pauseOnHover: true,
+                    //     draggable: true,
+                    //     progress: undefined,
+                    //     theme: "dark",
+                    // });
+                    toast1.error(response?.message + '!')
+
                 }
                 document.getElementById('CloseAddressModal')?.click();
                 fetchAddress()

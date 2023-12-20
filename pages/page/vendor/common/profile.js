@@ -42,6 +42,7 @@ import { postQuotes } from "../../../../components/core/seller_request";
 import { getMyBussiness } from "../../../../components/core/shop_requests";
 import { useRouter } from "next/router";
 import { ToastContainer, toast } from "react-toastify";
+import toast1 from 'react-hot-toast';
 import "react-toastify/dist/ReactToastify.css";
 import { useFormik } from "formik";
 import * as yup from "yup";
@@ -164,17 +165,18 @@ const ProfilePage = (args) => {
       //     cartId:response.data?.id
       //   })
       // )
-      toast.info("Added to cart", {
-        position: "bottom-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        icon: false,
-        progress: undefined,
-        theme: "dark",
-      });
+      // toast.info("Added to cart", {
+      //   position: "bottom-right",
+      //   autoClose: 2000,
+      //   hideProgressBar: false,
+      //   closeOnClick: true,
+      //   pauseOnHover: true,
+      //   draggable: true,
+      //   icon: false,
+      //   progress: undefined,
+      //   theme: "dark",
+      // });
+      toast1.success('Added to cart')
     }
   }
 
@@ -279,28 +281,30 @@ const ProfilePage = (args) => {
 
     const response = await reviewForSeller(formdata);
     if (response.status == 200) {
-      toast.info("SUCCESS", {
-        position: "bottom-right",
-        autoClose: 2000,
-        icon: false,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
+      // toast.info("SUCCESS", {
+      //   position: "bottom-right",
+      //   autoClose: 2000,
+      //   icon: false,
+      //   hideProgressBar: false,
+      //   closeOnClick: true,
+      //   pauseOnHover: true,
+      //   draggable: true,
+      //   progress: undefined,
+      //   theme: "dark",
+      // });
+      toast1.success('SUCCESS')
     } else {
-      toast.error("NOT FOUND", {
-        position: "bottom-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
+      // toast.error("NOT FOUND", {
+      //   position: "bottom-right",
+      //   autoClose: 2000,
+      //   hideProgressBar: false,
+      //   closeOnClick: true,
+      //   pauseOnHover: true,
+      //   draggable: true,
+      //   progress: undefined,
+      //   theme: "dark",
+      // });
+      toast1.error('NOT FOUND')
     }
   };
 
@@ -352,29 +356,31 @@ const ProfilePage = (args) => {
         const response = await postEnquiry(body);
         document.getElementById("closeloaderModal")?.click();
         if (response.status == 200) {
-          toast.info("ENQURY SENDED", {
-            position: "bottom-right",
-            autoClose: 2000,
-            hideProgressBar: false,
-            icon: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-          });
+          // toast.info("ENQURY SENDED", {
+          //   position: "bottom-right",
+          //   autoClose: 2000,
+          //   hideProgressBar: false,
+          //   icon: false,
+          //   closeOnClick: true,
+          //   pauseOnHover: true,
+          //   draggable: true,
+          //   progress: undefined,
+          //   theme: "dark",
+          // });
+          toast1.success('ENQURY SENDED')
           fetchReviewData();
         } else {
-          toast.error("NOT FOUND", {
-            position: "bottom-right",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-          });
+          // toast.error("NOT FOUND", {
+          //   position: "bottom-right",
+          //   autoClose: 2000,
+          //   hideProgressBar: false,
+          //   closeOnClick: true,
+          //   pauseOnHover: true,
+          //   draggable: true,
+          //   progress: undefined,
+          //   theme: "dark",
+          // });
+          toast1.error('Somthing Went Wrong!')
         }
         resetForm();
       } catch (error) {
@@ -421,29 +427,31 @@ const ProfilePage = (args) => {
         const response = await reviewForSeller(formdata);
         if (response.status == 200) {
           document.getElementById("closeRevie")?.click();
-          toast.info("SUCCESS", {
-            position: "bottom-right",
-            autoClose: 2000,
-            hideProgressBar: false,
-            icon: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-          });
+          // toast.info("SUCCESS", {
+          //   position: "bottom-right",
+          //   autoClose: 2000,
+          //   hideProgressBar: false,
+          //   icon: false,
+          //   closeOnClick: true,
+          //   pauseOnHover: true,
+          //   draggable: true,
+          //   progress: undefined,
+          //   theme: "dark",
+          // });
+          toast1.success('SUCCESS')
           fetchReviewData();
         } else {
-          toast.error("NOT FOUND", {
-            position: "bottom-right",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-          });
+          // toast.error("NOT FOUND", {
+          //   position: "bottom-right",
+          //   autoClose: 2000,
+          //   hideProgressBar: false,
+          //   closeOnClick: true,
+          //   pauseOnHover: true,
+          //   draggable: true,
+          //   progress: undefined,
+          //   theme: "dark",
+          // });
+          toast1.error('Somthing Went Wrong!')
         }
         resetForm();
       } catch (error) {
@@ -492,44 +500,47 @@ const ProfilePage = (args) => {
         // document.getElementById("closeloaderModal")?.click();
         if (response.status == 200) {
           document.getElementById("closeQuotesmodal")?.click();
-          toast.info("SAVE SUCCESSFULL", {
-            position: "bottom-right",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-            icon: false,
-          });
+          // toast.info("SAVE SUCCESSFULL", {
+          //   position: "bottom-right",
+          //   autoClose: 2000,
+          //   hideProgressBar: false,
+          //   closeOnClick: true,
+          //   pauseOnHover: true,
+          //   draggable: true,
+          //   progress: undefined,
+          //   theme: "dark",
+          //   icon: false,
+          // });
+        toast1.success('SAVE SUCCESSFULL')
         } else {
-          toast.error("Somthing Went Wrong!", {
-            position: "bottom-right",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-          });
+        toast1.error('Somthing Went Wrong!')
+          // toast.error("Somthing Went Wrong!", {
+          //   position: "bottom-right",
+          //   autoClose: 2000,
+          //   hideProgressBar: false,
+          //   closeOnClick: true,
+          //   pauseOnHover: true,
+          //   draggable: true,
+          //   progress: undefined,
+          //   theme: "dark",
+          // });
         }
       } catch (error) {
         // document.getElementById("closeloaderModal")?.click();
         setOpen(false);
         console.error("err", error.message);
         setStatus("The details is incorrect");
-        toast.error("The details is incorrect!", {
-          position: "bottom-right",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        });
+        // toast.error("The details is incorrect!", {
+        //   position: "bottom-right",
+        //   autoClose: 2000,
+        //   hideProgressBar: false,
+        //   closeOnClick: true,
+        //   pauseOnHover: true,
+        //   draggable: true,
+        //   progress: undefined,
+        //   theme: "dark",
+        // }); 
+        toast1.error('The details is incorrect!')
         setSubmitting(false);
       }
 
@@ -1054,20 +1065,21 @@ const ProfilePage = (args) => {
                                           setTimeout(() => {
                                             setCopied(false);
                                           }, 2000);
-                                          toast.info(
-                                            "Link copied to clipboard!",
-                                            {
-                                              position: "bottom-right",
-                                              autoClose: 500,
-                                              icon: false,
-                                              hideProgressBar: true,
-                                              closeOnClick: true,
-                                              pauseOnHover: true,
-                                              draggable: true,
-                                              progress: undefined,
-                                              theme: "dark",
-                                            }
-                                          );
+                                          // toast.info(
+                                          //   "Link copied to clipboard!",
+                                          //   {
+                                          //     position: "bottom-right",
+                                          //     autoClose: 500,
+                                          //     icon: false,
+                                          //     hideProgressBar: true,
+                                          //     closeOnClick: true,
+                                          //     pauseOnHover: true,
+                                          //     draggable: true,
+                                          //     progress: undefined,
+                                          //     theme: "dark",
+                                          //   }
+                                          // );
+                                          toast1('Link copied to clipboard!')
                                         }}
                                       >
                                         <i className="fa fa-link"></i>

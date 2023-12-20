@@ -33,6 +33,7 @@ import {
   WhatsappShareButton,
 } from "react-share";
 import { ToastContainer, toast } from "react-toastify";
+import toast1 from 'react-hot-toast';
 import SettingContext from "../../../helpers/theme-setting/SettingContext";
 
 
@@ -920,20 +921,21 @@ const MasterFooter = ({
                       setTimeout(() => {
                         setCopied(false);
                       }, 2000);
-                      toast.info(
-                        "Link copied to clipboard!",
-                        {
-                          position: "bottom-right",
-                          autoClose: 500,
-                          icon: false,
-                          hideProgressBar: true,
-                          closeOnClick: true,
-                          pauseOnHover: true,
-                          draggable: true,
-                          progress: undefined,
-                          theme: "dark",
-                        }
-                      );
+                      // toast.info(
+                      //   "Link copied to clipboard!",
+                      //   {
+                      //     position: "bottom-right",
+                      //     autoClose: 500,
+                      //     icon: false,
+                      //     hideProgressBar: true,
+                      //     closeOnClick: true,
+                      //     pauseOnHover: true,
+                      //     draggable: true,
+                      //     progress: undefined,
+                      //     theme: "dark",
+                      //   }
+                      // );
+                      toast1.success('Link copied to clipboard!')
                     }}
                   >
                     <i className="fa fa-link"></i>

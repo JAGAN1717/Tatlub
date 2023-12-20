@@ -24,6 +24,7 @@ import { getTimeSlot, potAppointmet } from '../../components/core/realestate_req
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { ToastContainer, toast } from "react-toastify";
+import toast1 from 'react-hot-toast';
 // import Calendar from 'react-calendar';
 // import 'react-calendar/dist/Calendar.css';
 import { useTranslation } from "react-i18next";
@@ -185,29 +186,31 @@ export default function Booking() {
         setLoading(false)
         // document.getElementById("closeloaderModal")?.click();
         if (response.status == 200) {
-          toast.info("SUCCESSFULL", {
-            position: "bottom-right",
-            autoClose: 2000,
-            hideProgressBar: false,
-            icon: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-          });
+          // toast.info("SUCCESSFULL", {
+          //   position: "bottom-right",
+          //   autoClose: 2000,
+          //   hideProgressBar: false,
+          //   icon: false,
+          //   closeOnClick: true,
+          //   pauseOnHover: true,
+          //   draggable: true,
+          //   progress: undefined,
+          //   theme: "dark",
+          // });
+          toast1.error('SUCCESSFULL') 
           fetchDoctersInfo()
         } else {
-          toast.error("NOT FOUND", {
-            position: "bottom-right",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-          });
+          // toast.error("NOT FOUND", {
+          //   position: "bottom-right",
+          //   autoClose: 2000,
+          //   hideProgressBar: false,
+          //   closeOnClick: true,
+          //   pauseOnHover: true,
+          //   draggable: true,
+          //   progress: undefined,
+          //   theme: "dark",
+          // });
+          toast1.error('NOT FOUND') 
         }
         resetForm();
         setTime();

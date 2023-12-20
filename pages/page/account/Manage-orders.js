@@ -16,6 +16,7 @@ import Seo from '../../../seo/seo';
 import { useTranslation } from "react-i18next";
 import Selection from 'react-select';
 import { ToastContainer, toast } from "react-toastify";
+import toast1 from 'react-hot-toast';
 import 'rc-table/assets/index.css';
 import Table from 'rc-table'
 import moment from 'moment';
@@ -47,17 +48,19 @@ function Manage_orders() {
     }
     UpdateStatus(body).then(res => {
       fetchOrderList()
-      toast.info("STATUS UPDATED", {
-        position: "bottom-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        icon: false,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
+      // toast.info("STATUS UPDATED", {
+      //   position: "bottom-right",
+      //   autoClose: 2000,
+      //   hideProgressBar: false,
+      //   closeOnClick: true,
+      //   pauseOnHover: true,
+      //   icon: false,
+      //   draggable: true,
+      //   progress: undefined,
+      //   theme: "dark",
+      // });
+      toast1.success('STATUS UPDATED')
+
       setIsLoading(false)
     }).catch(err => console.error("err", err.message))
   }

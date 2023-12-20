@@ -22,6 +22,7 @@ import {
 import { AES, enc } from "crypto-js";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import toast1 from 'react-hot-toast';
 // import {useIdContex,IdContex} from '../../../../initialvalueContex'
 import { useFormik } from "formik";
 import itemscontex from "../../../initcontext";
@@ -799,24 +800,23 @@ const Banner = ({banners, brand, mainCategories, result1, product1, popperSearch
         }
       } catch (error) {
         console.error("err", error.message);
-        toast.error(error, {
-          position: "bottom-right",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        });
+        // toast.error(error, {
+        //   position: "bottom-right",
+        //   autoClose: 2000,
+        //   hideProgressBar: false,
+        //   closeOnClick: true,
+        //   pauseOnHover: true,
+        //   draggable: true,
+        //   progress: undefined,
+        //   theme: "dark",
+        // });
+        toast1.error("Somthing Went Wrong!")
         // alert(error);
         setStatus("The details is incorrect");
         setSubmitting(false);
       }
     },
   });
-
-  console.log("filteredresultfilteredresult", filteredresult)
 
   // const fetchSearchList1 = async () => {
   //    try{

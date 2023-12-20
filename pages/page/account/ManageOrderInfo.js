@@ -13,6 +13,7 @@ import Usercontex from '../../../components/auth/AuthContex';
 import authenticated from '../../../components/auth/auth';
 import { UpdateStatus, getOrderStatus, getOrderDetails } from '../../../components/core/Order_request';
 import { ToastContainer, toast } from "react-toastify";
+import toast1 from 'react-hot-toast';
 
 
 
@@ -53,17 +54,18 @@ function ManageOrderInfo({ orderD }) {
         }
         UpdateStatus(body).then(res => {
             FetchOrderDetails()
-            toast.info("STATUS UPDATED", {
-                position: "bottom-right",
-                autoClose: 2000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                icon: false,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
-            });
+            // toast.info("STATUS UPDATED", {
+            //     position: "bottom-right",
+            //     autoClose: 2000,
+            //     hideProgressBar: false,
+            //     closeOnClick: true,
+            //     pauseOnHover: true,
+            //     icon: false,
+            //     draggable: true,
+            //     progress: undefined,
+            //     theme: "dark",
+            // });
+            toast1.success('STATUS UPDATED')
             setIsLoading(false)
         }).catch(err => setIsLoading(false))
     }

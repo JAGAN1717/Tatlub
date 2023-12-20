@@ -3,6 +3,7 @@ import CommonLayout from "../../components/shop/common-layout";
 import { getbranch, deletebranch, updatebranch } from "../../components/core/shop_requests";
 import { Container, Row, Form, Input, Label, Col, Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import { ToastContainer, toast } from 'react-toastify';
+import toast1 from 'react-hot-toast';
 import { useFormik } from "formik";
 import * as Yup from 'yup';
 import Paper from '@mui/material/Paper';
@@ -65,17 +66,18 @@ function BrancheList(args) {
     setDleteId();
     toggle();
     // console.log(" ", responcedata)
-    toast.info('Deleted Successful', {
-      position: "bottom-right",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      icon: false,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-    });
+    // toast.info('Deleted Successful', {
+    //   position: "bottom-right",
+    //   autoClose: 2000,
+    //   hideProgressBar: false,
+    //   closeOnClick: true,
+    //   pauseOnHover: true,
+    //   icon: false,
+    //   draggable: true,
+    //   progress: undefined,
+    //   theme: "dark",
+    // });
+    toast1.success('Deleted Successfull') 
     fetchBracnhes();
   }
 
@@ -228,17 +230,18 @@ function BrancheList(args) {
           "listing_id": ''
         }
         const response = await updatebranch(edit.id, body)
-        toast.info('Update Successful', {
-          position: "bottom-right",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          icon: false,
-          theme: "dark",
-        });
+        // toast.info('Update Successful', {
+        //   position: "bottom-right",
+        //   autoClose: 2000,
+        //   hideProgressBar: false,
+        //   closeOnClick: true,
+        //   pauseOnHover: true,
+        //   draggable: true,
+        //   progress: undefined,
+        //   icon: false,
+        //   theme: "dark",
+        // });
+        toast1.success('Update Successfull') 
         resetForm();
         fetchBracnhes();
         setEdit()

@@ -15,6 +15,8 @@ import { useTranslation } from 'react-i18next';
 // import Filter from "../common/filter";
 import AuthContex from '../../../components/auth/AuthContex'
 import { ToastContainer, toast } from "react-toastify";
+import toast1 from 'react-hot-toast';
+
 
 // const GET_PRODUCTS = gql`
 //   query products($type: _CategoryType!, $indexFrom: Int!, $limit: Int!) {
@@ -95,17 +97,18 @@ const ProductSection = ({ recom }) => {
         setLoading(false)
         if (res.status == 200) {
           // setCart(res)
-          toast.info("ADDED TO CART ", {
-            position: "bottom-right",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            icon: false,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-          });
+          // toast.info("ADDED TO CART ", {
+          //   position: "bottom-right",
+          //   autoClose: 2000,
+          //   hideProgressBar: false,
+          //   closeOnClick: true,
+          //   icon: false,
+          //   pauseOnHover: true,
+          //   draggable: true,
+          //   progress: undefined,
+          //   theme: "dark",
+          // });
+          toast1.success('ADDED TO CART')
         }
       })
       .catch((error) => {

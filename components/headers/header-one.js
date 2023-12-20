@@ -17,6 +17,7 @@ import { postRequirement } from "./core/_request";
 import { useTranslation } from "react-i18next";
 import { useFormik } from "formik";
 import { ToastContainer, toast } from "react-toastify";
+import toast1 from 'react-hot-toast';
 import * as Yup from "yup";
 import AuthContex from "../auth/AuthContex";
 import {getMyCart,removeCart} from '../../components/core/cart_request';
@@ -121,28 +122,30 @@ const HeaderOne = ({
         const response = await postRequirement(body);
         document.getElementById("closeloaderModal")?.click();
         if (response.status == 200) {
-          toast.info("SUCCESSFULL POST", {
-            position: "bottom-right",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            icon:false,
-            progress: undefined,
-            theme: "dark",
-          });
+          // toast.info("SUCCESSFULL POST", {
+          //   position: "bottom-right",
+          //   autoClose: 2000,
+          //   hideProgressBar: false,
+          //   closeOnClick: true,
+          //   pauseOnHover: true,
+          //   draggable: true,
+          //   icon:false,
+          //   progress: undefined,
+          //   theme: "dark",
+          // });
+          toast1.success('SAVE SUCCESSFULL')
         } else {
-          toast.error("Somthing Went Wrong!", {
-            position: "bottom-right",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-          });
+          // toast.error("Somthing Went Wrong!", {
+          //   position: "bottom-right",
+          //   autoClose: 2000,
+          //   hideProgressBar: false,
+          //   closeOnClick: true,
+          //   pauseOnHover: true,
+          //   draggable: true,
+          //   progress: undefined,
+          //   theme: "dark",
+          // });
+          toast1.error("Somthing Went Wrong!")
         }
         resetForm();
       } catch (error) {

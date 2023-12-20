@@ -7,6 +7,7 @@ import moment from 'moment';
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { ToastContainer, toast } from "react-toastify";
+import toast1 from 'react-hot-toast';
 import { potJobs, getappliedJobs } from '../../../../components/core/realestate_request';
 import { useId } from '../../../../IdContext';
 import { setmainId } from '../../../../IDmain';
@@ -86,43 +87,46 @@ const Category = () => {
         const response = await potJobs(formdata);
 
         if (response.status == 200) {
-          toast.info("SAVE SUCCESSFULL", {
-            position: "bottom-right",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            icon: false,
-            progress: undefined,
-            theme: "dark",
-          });
+          // toast.info("SAVE SUCCESSFULL", {
+          //   position: "bottom-right",
+          //   autoClose: 2000,
+          //   hideProgressBar: false,
+          //   closeOnClick: true,
+          //   pauseOnHover: true,
+          //   draggable: true,
+          //   icon: false,
+          //   progress: undefined,
+          //   theme: "dark",
+          // });
+          toast1.success('SAVE SUCCESSFULL')
         } else {
-          toast.error("Somthing Went Wrong!", {
-            position: "bottom-right",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-          });
+          // toast.error("Somthing Went Wrong!", {
+          //   position: "bottom-right",
+          //   autoClose: 2000,
+          //   hideProgressBar: false,
+          //   closeOnClick: true,
+          //   pauseOnHover: true,
+          //   draggable: true,
+          //   progress: undefined,
+          //   theme: "dark",
+          // });
+        toast1.error('Somthing Went Wrong!')
         }
         resetForm()
       } catch (error) {
         console.error("err", error.message);
         setStatus("The details is incorrect");
-        toast.error("The details is incorrect!", {
-          position: "bottom-right",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        });
+        // toast.error("The details is incorrect!", {
+        //   position: "bottom-right",
+        //   autoClose: 2000,
+        //   hideProgressBar: false,
+        //   closeOnClick: true,
+        //   pauseOnHover: true,
+        //   draggable: true,
+        //   progress: undefined,
+        //   theme: "dark",
+        // });
+        toast1.error('The details is incorrect!')
         setSubmitting(false);
       }
     },

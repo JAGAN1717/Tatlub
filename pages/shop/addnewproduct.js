@@ -2,6 +2,7 @@ import React, { useState,useRef, useEffect, useCallback, CSSProperties } from "r
 import { Container, Row, Form, Input, Label, Col } from "reactstrap";
 import CommonLayout from "../../components/shop/common-layout";
 import { ToastContainer, toast } from "react-toastify";
+import toast1 from 'react-hot-toast';
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { AddBranchesData } from "../../components/core/seller_request";
@@ -224,16 +225,17 @@ function Addproduct() {
     const previewImages = [];
     for (let i = 0; i < e.target.files.length; i++) {
       if (e.target.files[i]?.size > 5242880) {
-        toast.error(` Maximum 5mb only accepted!`, {
-          position: "bottom-right",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        });
+        // toast.error(` Maximum 5mb only accepted!`, {
+        //   position: "bottom-right",
+        //   autoClose: 2000,
+        //   hideProgressBar: false,
+        //   closeOnClick: true,
+        //   pauseOnHover: true,
+        //   draggable: true,
+        //   progress: undefined,
+        //   theme: "dark",
+        // });
+        toast1.error('Maximum 5mb only accepted!')
       } else {
         const file = e.target.files;
         if (isValidFileUploaded(file[i])) {
@@ -262,64 +264,67 @@ function Addproduct() {
             reader.readAsDataURL(file2);
           }
         } else {
-          toast.error("image format only accepted!", {
-            position: "bottom-right",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-          });
+          // toast.error("image format only accepted!", {
+          //   position: "bottom-right",
+          //   autoClose: 2000,
+          //   hideProgressBar: false,
+          //   closeOnClick: true,
+          //   pauseOnHover: true,
+          //   draggable: true,
+          //   progress: undefined,
+          //   theme: "dark",
+          // });
+         toast1.error('image format only accepted!')
         }
       }
     }
 
 
     if (e.target.files.length > 12) {
-      toast.error("Maximum 12 images only accepted!", {
-        position: "bottom-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
+      // toast.error("Maximum 12 images only accepted!", {
+      //   position: "bottom-right",
+      //   autoClose: 2000,
+      //   hideProgressBar: false,
+      //   closeOnClick: true,
+      //   pauseOnHover: true,
+      //   draggable: true,
+      //   progress: undefined,
+      //   theme: "dark",
+      // });
+      toast1.error('Maximum 12 images only accepted!')
     }
   }
 
   const handleImg = (e) => {
     if (e.target.files[0].size > 5242880) {
-      toast.error("Maximum 5mb only accepted!", {
-        position: "bottom-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
-
+      // toast.error("Maximum 5mb only accepted!", {
+      //   position: "bottom-right",
+      //   autoClose: 2000,
+      //   hideProgressBar: false,
+      //   closeOnClick: true,
+      //   pauseOnHover: true,
+      //   draggable: true,
+      //   progress: undefined,
+      //   theme: "dark",
+      // });
+      toast1.error('Maximum 5mb only accepted!')
     } else {
       const file = e.target.files[0];
       if (isValidFileUploaded(file)) {
         setPreview(URL.createObjectURL(e.target.files[0]));
         setFeatImg(e.target.files[0])
       } else {
-        toast.error("image format only accepted!", {
-          position: "bottom-right",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        });
+        // toast.error("image format only accepted!", {
+        //   position: "bottom-right",
+        //   autoClose: 2000,
+        //   hideProgressBar: false,
+        //   closeOnClick: true,
+        //   pauseOnHover: true,
+        //   draggable: true,
+        //   progress: undefined,
+        //   theme: "dark",
+        // });
+        toast1.error('image format only accepted!')
       }
     }
   }
@@ -411,30 +416,32 @@ function Addproduct() {
           // document.getElementById('closeloaderModal')?.click();
 
           if (responce.status == 200) {
-            toast.info("UPDATE SUCCESSFULL", {
-              position: "bottom-right",
-              autoClose: 2000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              icon: false,
-              theme: "dark",
-            });
+            // toast.info("UPDATE SUCCESSFULL", {
+            //   position: "bottom-right",
+            //   autoClose: 2000,
+            //   hideProgressBar: false,
+            //   closeOnClick: true,
+            //   pauseOnHover: true,
+            //   draggable: true,
+            //   progress: undefined,
+            //   icon: false,
+            //   theme: "dark",
+            // });
+            toast1.success('UPDATE SUCCESSFULL')
             resetForm()
             router.push('/products')
           } else {
-            toast.error('Somthing Went Wrong!', {
-              position: "bottom-right",
-              autoClose: 2000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "dark",
-            });
+            // toast.error('Somthing Went Wrong!', {
+            //   position: "bottom-right",
+            //   autoClose: 2000,
+            //   hideProgressBar: false,
+            //   closeOnClick: true,
+            //   pauseOnHover: true,
+            //   draggable: true,
+            //   progress: undefined,
+            //   theme: "dark",
+            // });
+            toast1.error('Somthing Went Wrong!')
           }
 
         } else {
@@ -444,30 +451,32 @@ function Addproduct() {
           // document.getElementById('closeloaderModal')?.click();
           setOpen(false)
           if (response.status == 200) {
-            toast.info("CREATE SUCCESSFULL", {
-              position: "bottom-right",
-              autoClose: 2000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              icon: false,
-              progress: undefined,
-              theme: "dark",
-            });
+            // toast.info("CREATE SUCCESSFULL", {
+            //   position: "bottom-right",
+            //   autoClose: 2000,
+            //   hideProgressBar: false,
+            //   closeOnClick: true,
+            //   pauseOnHover: true,
+            //   draggable: true,
+            //   icon: false,
+            //   progress: undefined,
+            //   theme: "dark",
+            // });
+            toast1.success('CREATE SUCCESSFULL')
             resetForm()
             router.push('/products')
           } else {
-            toast.error('Somthing Went Wrong!', {
-              position: "bottom-right",
-              autoClose: 2000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "dark",
-            });
+            // toast.error('Somthing Went Wrong!', {
+            //   position: "bottom-right",
+            //   autoClose: 2000,
+            //   hideProgressBar: false,
+            //   closeOnClick: true,
+            //   pauseOnHover: true,
+            //   draggable: true,
+            //   progress: undefined,
+            //   theme: "dark",
+            // });
+            toast1.error('Somthing Went Wrong!')
           }
         }
         // document.getElementById('closeloaderModal')?.click();

@@ -17,6 +17,7 @@ import { getBanner, getProperty, getBuilders } from '../../../components/core/re
 // import { useQuery } from 'react-query'
 import { useRouter } from 'next/router';
 import { ToastContainer, toast } from "react-toastify";
+import toast1 from 'react-hot-toast';
 import { useEffect } from 'react';
 import Seo from '../../../seo/seo';
 import { useTranslation } from "react-i18next";
@@ -102,16 +103,17 @@ const testvts = () => {
       //   pathname: "/NotFound/search",
       //   query: { search: searchkey, city: localStorage.getItem('city') },
       // }); 
-      toast.info('Please Enter you want Property !', {
-        position: "bottom-right",
-        autoClose: 300,
-        hideProgressBar: true,
-        closeOnClick: false,
-        pauseOnHover: false,
-        draggable: false,
-        progress: undefined,
-        theme: "dark",
-      });
+      // toast.info('Please Enter you want Property !', {
+      //   position: "bottom-right",
+      //   autoClose: 300,
+      //   hideProgressBar: true,
+      //   closeOnClick: false,
+      //   pauseOnHover: false,
+      //   draggable: false,
+      //   progress: undefined,
+      //   theme: "dark",
+      // });
+      toast1.success('Please Enter you want Property!')
     }
   }
 

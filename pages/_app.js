@@ -26,6 +26,8 @@ import { IdProvider } from "../IdContext";
 // import { Store } from "../redux/store";
 import CommonLayout from "../components/shop/common-layout";
 import { CategoryProvider } from "../components/auth/catgoryContext";
+import toast, { Toaster } from 'react-hot-toast';
+
 
 // https://tatlub.vrikshatech.in/api/?slug=travel_and_tourism
 
@@ -131,6 +133,10 @@ export default function MyApp({ Component, pageProps }) {
               {/* </QueryClientProvider> */}
               <ToastContainer />
               <TapTop />
+              <Toaster 
+                position="bottom-center"
+                reverseOrder={false}
+              />
             </div>
           </>
         )}

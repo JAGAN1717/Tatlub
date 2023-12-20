@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import { useFormik } from 'formik';
 import * as Yup from "yup";
 import { ToastContainer, toast } from "react-toastify";
+import toast1 from 'react-hot-toast';
 import {PostNotFondForm} from "../../components/core/vendor_request"
 import { useTranslation } from "react-i18next";
 
@@ -53,44 +54,47 @@ export default function search() {
                 const response = await PostNotFondForm(body)
                document.getElementById('closeloaderModal')?.click();
                 if(response.status == 200){
-                    toast.info("SAVE SUCCESSFULL", {
-                      position: "bottom-right",
-                      autoClose: 2000,
-                      hideProgressBar: false,
-                      closeOnClick: true,
-                      pauseOnHover: true,
-                      draggable: true,
-                      icon:false,
-                      progress: undefined,
-                      theme: "dark",
-                    });
+                    // toast.info("SAVE SUCCESSFULL", {
+                    //   position: "bottom-right",
+                    //   autoClose: 2000,
+                    //   hideProgressBar: false,
+                    //   closeOnClick: true,
+                    //   pauseOnHover: true,
+                    //   draggable: true,
+                    //   icon:false,
+                    //   progress: undefined,
+                    //   theme: "dark",
+                    // });
+                    toast1.success('SAVE SUCCESSFULL')
                     router.push('/')
                 }else{
-                    toast.error('Somthing Went Wrong!', {
-                      position: "bottom-right",
-                      autoClose: 2000,
-                      hideProgressBar: false,
-                      closeOnClick: true,
-                      pauseOnHover: true,
-                      draggable: true,
-                      progress: undefined,
-                      theme: "dark",
-                      });
+                    // toast.error('Somthing Went Wrong!', {
+                    //   position: "bottom-right",
+                    //   autoClose: 2000,
+                    //   hideProgressBar: false,
+                    //   closeOnClick: true,
+                    //   pauseOnHover: true,
+                    //   draggable: true,
+                    //   progress: undefined,
+                    //   theme: "dark",
+                    //   });
+                    toast1.error("Somthing Went Wrong!")
                 }
             } catch (error) {
             document.getElementById('closeloaderModal')?.click();
              console.error("err",error.message)
              setStatus('The details is incorrect');
-             toast.error('The details is incorrect!', {
-                position: "bottom-right",
-                autoClose: 2000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
-                });
+            //  toast.error('The details is incorrect!', {
+            //     position: "bottom-right",
+            //     autoClose: 2000,
+            //     hideProgressBar: false,
+            //     closeOnClick: true,
+            //     pauseOnHover: true,
+            //     draggable: true,
+            //     progress: undefined,
+            //     theme: "dark",
+            //     });
+            toast1.error('The details is incorrect!')
              setSubmitting(false)   
             }
         }

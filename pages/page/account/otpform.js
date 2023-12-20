@@ -4,6 +4,8 @@ import { Container, Row, Form, Label, Input, Col, InputGroup, InputGroupText, Bu
 import OtpInput from 'react-otp-input';
 import { getLogin, postOTPCheck } from "../../../components/core/account_request"
 import { ToastContainer, toast } from 'react-toastify';
+import toast1 from 'react-hot-toast';
+
 
 const Otpform = (props) => {
     const [otp, setOtp] = useState('');
@@ -17,17 +19,18 @@ const Otpform = (props) => {
         const response = await postOTPCheck(body)
         if(response.status == 200) {
             document.getElementById("khfiuheriuehiergkjdnfsd")?.click();
-            toast.info('Loged-in Successfully!', {
-                position: "bottom-right",
-                autoClose: 2000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                icon:false,
-                progress: undefined,
-                theme: "dark",
-                });
+            // toast.info('Loged-in Successfully!', {
+            //     position: "bottom-right",
+            //     autoClose: 2000,
+            //     hideProgressBar: false,
+            //     closeOnClick: true,
+            //     pauseOnHover: true,
+            //     draggable: true,
+            //     icon:false,
+            //     progress: undefined,
+            //     theme: "dark",
+            //     });
+            toast1.success('Loged-in Successfully!')
 
         }
     }
@@ -38,17 +41,18 @@ const Otpform = (props) => {
         } 
         const responcedata = await getLogin(body)
         if(responcedata.status == 200) {
-          toast.info('OTP sent to mobile!', {
-            position: "bottom-right",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            icon:false,
-            progress: undefined,
-            theme: "dark",
-            });
+        //   toast.info('OTP sent to mobile!', {
+        //     position: "bottom-right",
+        //     autoClose: 2000,
+        //     hideProgressBar: false,
+        //     closeOnClick: true,
+        //     pauseOnHover: true,
+        //     draggable: true,
+        //     icon:false,
+        //     progress: undefined,
+        //     theme: "dark",
+        //     });
+        toast1('OTP sent to mobile!!')
           sessionStorage.setItem('otp', responcedata.otp);
         }
       }

@@ -9,6 +9,7 @@ import { postEnquiry } from "../../../components/core/vendor_request";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { ToastContainer, toast } from "react-toastify";
+import toast1 from 'react-hot-toast';
 import AuthContex from "../../../components/auth/AuthContex";
 import { reviewForItems } from "../../../components/core/vendor_request";
 import Rating from "@mui/material/Rating";
@@ -173,28 +174,30 @@ const PropertyDetail = ({ args }) => {
           const response = await postEnquiry(body);
           // document.getElementById("closeloaderModal")?.click();
           if (response.status == 200) {
-            toast.info("ENQURY SENDED", {
-              position: "bottom-right",
-              autoClose: 2000,
-              hideProgressBar: false,
-              icon: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "dark",
-            });
+            // toast.info("ENQURY SENDED", {
+            //   position: "bottom-right",
+            //   autoClose: 2000,
+            //   hideProgressBar: false,
+            //   icon: false,
+            //   closeOnClick: true,
+            //   pauseOnHover: true,
+            //   draggable: true,
+            //   progress: undefined,
+            //   theme: "dark",
+            // });
+            toast1.success('ENQURY SENDED')
           } else {
-            toast.error("NOT FOUND", {
-              position: "bottom-right",
-              autoClose: 2000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "dark",
-            });
+            // toast.error("NOT FOUND", {
+            //   position: "bottom-right",
+            //   autoClose: 2000,
+            //   hideProgressBar: false,
+            //   closeOnClick: true,
+            //   pauseOnHover: true,
+            //   draggable: true,
+            //   progress: undefined,
+            //   theme: "dark",
+            // });
+            toast1.error('NOT FOUND')
           }
           resetForm();
         } else {
@@ -244,29 +247,31 @@ const PropertyDetail = ({ args }) => {
         const response = await reviewForItems(formdata);
         if (response.status == 200) {
           document.getElementById("closeRevie")?.click();
-          toast.info("SUCCESS", {
-            position: "bottom-right",
-            autoClose: 2000,
-            icon: false,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-          });
+          // toast.info("SUCCESS", {
+          //   position: "bottom-right",
+          //   autoClose: 2000,
+          //   icon: false,
+          //   hideProgressBar: false,
+          //   closeOnClick: true,
+          //   pauseOnHover: true,
+          //   draggable: true,
+          //   progress: undefined,
+          //   theme: "dark",
+          // });
+          toast1.success('SUCCESS')
           fetchPropertyDetails()
         } else {
-          toast.error("NOT FOUND", {
-            position: "bottom-right",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-          });
+          // toast.error("NOT FOUND", {
+          //   position: "bottom-right",
+          //   autoClose: 2000,
+          //   hideProgressBar: false,
+          //   closeOnClick: true,
+          //   pauseOnHover: true,
+          //   draggable: true,
+          //   progress: undefined,
+          //   theme: "dark",
+          // });
+          toast1.error('NOT FOUND')
         }
         resetForm();
       } catch (error) {

@@ -35,6 +35,8 @@ import { reviewForItems } from "../../../components/core/vendor_request";
 import { ToastContainer, toast } from "react-toastify";
 import AuthContex from "../../../components/auth/AuthContex";
 import moment from "moment/moment";
+import toast1 from 'react-hot-toast';
+
 
 const initialValues = {
   item_id: "",
@@ -156,28 +158,30 @@ const Service = (
         if (response.status == 200) {
           document.getElementById("closeRevie")?.click();
           setdetail(response)
-          toast.info("SUCCESS", {
-            position: "bottom-right",
-            autoClose: 2000,
-            icon: false,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-          });
+          // toast.info("SUCCESS", {
+          //   position: "bottom-right",
+          //   autoClose: 2000,
+          //   icon: false,
+          //   hideProgressBar: false,
+          //   closeOnClick: true,
+          //   pauseOnHover: true,
+          //   draggable: true,
+          //   progress: undefined,
+          //   theme: "dark",
+          // });
+          toast1.success('SUCCESS')
         } else {
-          toast.error("NOT FOUND", {
-            position: "bottom-right",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-          });
+          // toast.error("NOT FOUND", {
+          //   position: "bottom-right",
+          //   autoClose: 2000,
+          //   hideProgressBar: false,
+          //   closeOnClick: true,
+          //   pauseOnHover: true,
+          //   draggable: true,
+          //   progress: undefined,
+          //   theme: "dark",
+          // });
+          toast1.error('NOT FOUND')
         }
         resetForm();
       } catch (error) {

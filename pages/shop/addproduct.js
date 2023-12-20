@@ -3,6 +3,7 @@ import CommonLayout from "../../components/shop/common-layout";
 import { getbranch, deletebranch, updatebranch, getproduct} from "../../components/core/shop_requests";
 import { Container, Row, Form, Input, Label, Col, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import { ToastContainer, toast } from 'react-toastify';
+import toast1 from 'react-hot-toast';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import authenticate from "../../components/auth/auth";
@@ -233,29 +234,31 @@ const RemoveProduct = async () => {
   const id = produtId
   const responce = await DeleteProduct(id)
   if(responce.status == 200){
-    toast.info("DELETED SUCCESSFULL", {
-      position: "bottom-right",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      icon:false,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-    });
+    // toast.info("DELETED SUCCESSFULL", {
+    //   position: "bottom-right",
+    //   autoClose: 2000,
+    //   hideProgressBar: false,
+    //   closeOnClick: true,
+    //   pauseOnHover: true,
+    //   icon:false,
+    //   draggable: true,
+    //   progress: undefined,
+    //   theme: "dark",
+    // });
+    toast1.error('DELETED SUCCESSFULL') 
     fetchproducts();
   }else {
-    toast.error('Somthing Went Wrong!', {
-      position: "bottom-right",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-      }); 
+    // toast.error('Somthing Went Wrong!', {
+    //   position: "bottom-right",
+    //   autoClose: 2000,
+    //   hideProgressBar: false,
+    //   closeOnClick: true,
+    //   pauseOnHover: true,
+    //   draggable: true,
+    //   progress: undefined,
+    //   theme: "dark",
+    //   });
+    toast1.error('Somthing Went Wrong!') 
   }
 }
 

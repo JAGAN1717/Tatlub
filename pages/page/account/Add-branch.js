@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Container, Row, Form, Input, Label, Col } from "reactstrap";
 import CommonLayout from "../../../components/shop/common-layout";
 import { ToastContainer, toast } from "react-toastify";
+import toast1 from 'react-hot-toast';
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { AddBranchesData } from "../../../components/core/seller_request";
@@ -77,17 +78,18 @@ export default function Addbranch() {
 
         // console.log("jhfjhfjh", body);
         const response = await AddBranchesData(body);
-        toast.info("SAVE SUCCESSFULL", {
-          position: "bottom-right",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          icon:false,
-          progress: undefined,
-          theme: "dark",
-        });
+        // toast.info("SAVE SUCCESSFULL", {
+        //   position: "bottom-right",
+        //   autoClose: 2000,
+        //   hideProgressBar: false,
+        //   closeOnClick: true,
+        //   pauseOnHover: true,
+        //   draggable: true,
+        //   icon:false,
+        //   progress: undefined,
+        //   theme: "dark",
+        // });
+        toast1.success('SAVE SUCCESSFULL')
       } catch (error) {
         console.error(error);
         alert(error);

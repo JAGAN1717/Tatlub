@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Container, Row, Form, Input, Label, Col } from "reactstrap";
 import CommonLayout from "../../components/shop/common-layout";
 import { ToastContainer, toast } from "react-toastify";
+import toast1 from 'react-hot-toast';
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { AddBranchesData } from "../../components/core/seller_request";
@@ -124,31 +125,33 @@ function Addbranch() {
           "user_id": userId,
         }
         const response = await AddBranchesData(body);
-        toast.info("SAVE SUCCESSFULL", {
-          position: "bottom-right",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          icon: false,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        });
+        // toast.info("SAVE SUCCESSFULL", {
+        //   position: "bottom-right",
+        //   autoClose: 2000,
+        //   hideProgressBar: false,
+        //   closeOnClick: true,
+        //   icon: false,
+        //   pauseOnHover: true,
+        //   draggable: true,
+        //   progress: undefined,
+        //   theme: "dark",
+        // });
+        toast1.success('SAVE SUCCESSFUL')
         // resetForm()
         handleClick();
       } catch (error) {
         console.error(error);
-        toast.error("Server Error!!!", {
-          position: "bottom-right",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        });
+        // toast.error("Server Error!!!", {
+        //   position: "bottom-right",
+        //   autoClose: 2000,
+        //   hideProgressBar: false,
+        //   closeOnClick: true,
+        //   pauseOnHover: true,
+        //   draggable: true,
+        //   progress: undefined,
+        //   theme: "dark",
+        // });
+        toast1.error('Somthing Went Wrong!')
         setStatus("The details is incorrect");
         setSubmitting(false);
         setLoading(false);
@@ -161,7 +164,6 @@ function Addbranch() {
     {/* <CommonLayout parent="home" title="profile"> */}
       <section className={"Edit-profile mb-5 mt-5"} >
         <Container>
-
           <div className='d-flex justify-content-end align-items-center d-none'>
             <Link href='/shop/BrancheList'>
               <button type='button' className='btn btn_header fw-500 mb-3' onClick={handleClick}>Back</button>

@@ -5,6 +5,7 @@ import moment from 'moment';
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { ToastContainer, toast } from "react-toastify";
+import toast1 from 'react-hot-toast';
 import { potJobs } from '../../../../components/core/realestate_request';
 import { getItemByLazyload } from '../../../../components/core/shop_requests';
 import { useState } from 'react';
@@ -70,46 +71,49 @@ export default function JobList({ Loading, Jobdata, wantedjobs, setWantedJobs, s
         const response = await potJobs(formdata);
 
         if (response.status == 200) {
-          toast.info("SAVE SUCCESSFULL", {
-            position: "bottom-right",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            icon: false,
-            progress: undefined,
-            theme: "dark",
-          });
+          // toast.info("SAVE SUCCESSFULL", {
+          //   position: "bottom-right",
+          //   autoClose: 2000,
+          //   hideProgressBar: false,
+          //   closeOnClick: true,
+          //   pauseOnHover: true,
+          //   draggable: true,
+          //   icon: false,
+          //   progress: undefined,
+          //   theme: "dark",
+          // });
+          toast1.success('SAVE SUCCESSFULL')
           setWantedJobs(true)
           document.getElementById('clicknOnWantedjobs')?.click()
           document.getElementById('closejhfghdsdwr')?.click()
         } else {
-          toast.error("Somthing Went Wrong!", {
-            position: "bottom-right",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-          });
+          // toast.error("Somthing Went Wrong!", {
+          //   position: "bottom-right",
+          //   autoClose: 2000,
+          //   hideProgressBar: false,
+          //   closeOnClick: true,
+          //   pauseOnHover: true,
+          //   draggable: true,
+          //   progress: undefined,
+          //   theme: "dark",
+          // });
+          toast1.error('Somthing Went Wrong!')
         }
         resetForm()
       } catch (error) {
         console.error("err", error.message);
         setStatus("The details is incorrect");
-        toast.error("The details is incorrect!", {
-          position: "bottom-right",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        });
+        // toast.error("The details is incorrect!", {
+        //   position: "bottom-right",
+        //   autoClose: 2000,
+        //   hideProgressBar: false,
+        //   closeOnClick: true,
+        //   pauseOnHover: true,
+        //   draggable: true,
+        //   progress: undefined,
+        //   theme: "dark",
+        // });
+        toast1.error('The details is incorrect!')
         setSubmitting(false);
       }
     },

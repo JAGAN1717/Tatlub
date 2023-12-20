@@ -18,6 +18,7 @@ import {
 import Otpform from "./otpform";
 import { getLogin, mailLogin, otpLogin, getLanguages, loginWithMobile } from "../../../components/core/account_request";
 import { ToastContainer, toast } from "react-toastify";
+import toast1 from 'react-hot-toast';
 import "react-toastify/dist/ReactToastify.css";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -78,17 +79,18 @@ const Login = (args) => {
       //   theme: "dark",
       //   });
       document.getElementById("khfiuheriuehiergkjdnfsd")?.click();
-      toast.info("LOGIN SUCCESSFULL", {
-        position: "bottom-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        icon:false,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
+      // toast.info("LOGIN SUCCESSFULL", {
+      //   position: "bottom-right",
+      //   autoClose: 2000,
+      //   hideProgressBar: false,
+      //   closeOnClick: true,
+      //   pauseOnHover: true,
+      //   icon:false,
+      //   draggable: true,
+      //   progress: undefined,
+      //   theme: "dark",
+      // });
+      toast1.success('LOGIN SUCCESSFULL')
       // console.log("udata", responcedata.data);
       sessionStorage.setItem("data", JSON.stringify(responcedata.data));
       localStorage.setItem("data", JSON.stringify(responcedata.data));
@@ -119,17 +121,18 @@ const Login = (args) => {
           mailLogin(body).then(response => {
             setLoading(false)
             document.getElementById("khfiuheriuehiergkjdnfsd")?.click();
-            toast.info("LOGIN SUCCESSFULL", {
-              position: "bottom-right",
-              autoClose: 2000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              icon:false,
-              draggable: true,
-              progress: undefined,
-              theme: "dark",
-            });
+            // toast.info("LOGIN SUCCESSFULL", {
+            //   position: "bottom-right",
+            //   autoClose: 2000,
+            //   hideProgressBar: false,
+            //   closeOnClick: true,
+            //   pauseOnHover: true,
+            //   icon:false,
+            //   draggable: true,
+            //   progress: undefined,
+            //   theme: "dark",
+            // });
+            toast1.success('LOGIN SUCCESSFULL')
             // console.log("udata", responcedata.data);
             setUserData(response.data)
             sessionStorage.setItem("data", JSON.stringify(response.data));
@@ -139,32 +142,34 @@ const Login = (args) => {
           }).catch(err => setLoading(false))
         }else{ 
           setLoading(false)
-          toast.error("UNABLE TO FETCH OTP", {
-            position: "bottom-right",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            icon:false,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-          });
+          // toast.error("UNABLE TO FETCH OTP", {
+          //   position: "bottom-right",
+          //   autoClose: 2000,
+          //   hideProgressBar: false,
+          //   closeOnClick: true,
+          //   pauseOnHover: true,
+          //   icon:false,
+          //   draggable: true,
+          //   progress: undefined,
+          //   theme: "dark",
+          // });
+          toast1.error('UNABLE TO FETCH OTP!')
         }
       }).catch(err => setLoading(false))
 
      }else{
-      toast.error("UNBALE TO FETCH YOUR MAIL ID", {
-        position: "bottom-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        icon:false,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
+      // toast.error("UNBALE TO FETCH YOUR MAIL ID", {
+      //   position: "bottom-right",
+      //   autoClose: 2000,
+      //   hideProgressBar: false,
+      //   closeOnClick: true,
+      //   pauseOnHover: true,
+      //   icon:false,
+      //   draggable: true,
+      //   progress: undefined,
+      //   theme: "dark",
+      // });
+      toast1.error('UNBALE TO FETCH YOUR MAIL ID')
      }
   };
 
@@ -214,16 +219,17 @@ const Login = (args) => {
           setLoading(false)
           if (response.status == 200) {
             setField('otp');
-            toast.error("OTP sent to your mail", {
-              position: "bottom-right",
-              autoClose: 2000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "dark",
-            });
+            // toast.error("OTP sent to your mail", {
+            //   position: "bottom-right",
+            //   autoClose: 2000,
+            //   hideProgressBar: false,
+            //   closeOnClick: true,
+            //   pauseOnHover: true,
+            //   draggable: true,
+            //   progress: undefined,
+            //   theme: "dark",
+            // });
+            toast1('OTP sent to your mail')
           }
         } else {
           setLoading(true)
@@ -232,17 +238,18 @@ const Login = (args) => {
         if (responcedata.status == 200) {
           setLogin(responcedata);
           document.getElementById("khfiuheriuehiergkjdnfsd")?.click();
-          toast.info("LOGIN SUCCESSFULL", {
-            position: "bottom-right",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            icon:false,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-          });
+          // toast.info("LOGIN SUCCESSFULL", {
+          //   position: "bottom-right",
+          //   autoClose: 2000,
+          //   hideProgressBar: false,
+          //   closeOnClick: true,
+          //   pauseOnHover: true,
+          //   icon:false,
+          //   draggable: true,
+          //   progress: undefined,
+          //   theme: "dark",
+          // });
+          toast1.success('LOGIN SUCCESSFULL')
           // console.log("udata", responcedata.data);
           setUserData(responcedata.data)
           sessionStorage.setItem("data", JSON.stringify(responcedata.data));
@@ -250,29 +257,31 @@ const Login = (args) => {
           document.getElementById("closeLoginPopup")?.click();
           router.push('/')
         } else {
-          toast.error(responcedata.message + "!", {
-            position: "bottom-right",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-          });
+          // toast.error(responcedata.message + "!", {
+          //   position: "bottom-right",
+          //   autoClose: 2000,
+          //   hideProgressBar: false,
+          //   closeOnClick: true,
+          //   pauseOnHover: true,
+          //   draggable: true,
+          //   progress: undefined,
+          //   theme: "dark",
+          // });
+        toast1.error(responcedata.message + "!")
         }}
       } catch (error) {
         console.error(error);
-        toast.error("Somthing Went Wrong!", {
-          position: "bottom-right",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        });
+        // toast.error("Somthing Went Wrong!", {
+        //   position: "bottom-right",
+        //   autoClose: 2000,
+        //   hideProgressBar: false,
+        //   closeOnClick: true,
+        //   pauseOnHover: true,
+        //   draggable: true,
+        //   progress: undefined,
+        //   theme: "dark",
+        // });
+        toast1.error('Somthing Went Wrong!')
         setStatus("The details is incorrect");
         setSubmitting(false);
         setLoading(false)

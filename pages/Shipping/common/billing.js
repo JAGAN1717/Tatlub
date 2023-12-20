@@ -7,6 +7,7 @@ import AuthContex from '../../../components/auth/AuthContex';
 import { useFormik } from 'formik'
 import * as Yup from "yup";
 import { ToastContainer, toast } from "react-toastify";
+import toast1 from 'react-hot-toast';
 import { useTranslation } from "react-i18next";
 import Select from 'react-select';
 
@@ -95,28 +96,30 @@ export default function billing({ setActiveIndex, cartData, getlocation, placeOr
           setUserData(fjgkjdsf)
           localStorage.setItem('data', JSON.stringify(fjgkjdsf))
           setBillingAddress(response?.data?.address)
-          toast.info("Edith SUCCESSFULL", {
-            position: "bottom-right",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            icon: false,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-          });
+          // toast.info("Edith SUCCESSFULL", {
+          //   position: "bottom-right",
+          //   autoClose: 2000,
+          //   hideProgressBar: false,
+          //   closeOnClick: true,
+          //   icon: false,
+          //   pauseOnHover: true,
+          //   draggable: true,
+          //   progress: undefined,
+          //   theme: "dark",
+          // });
+          toast1.success('Edit SUCCESSFULL')
         } else {
-          toast.error(response?.message + '!', {
-            position: "bottom-right",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-          });
+          // toast.error(response?.message + '!', {
+          //   position: "bottom-right",
+          //   autoClose: 2000,
+          //   hideProgressBar: false,
+          //   closeOnClick: true,
+          //   pauseOnHover: true,
+          //   draggable: true,
+          //   progress: undefined,
+          //   theme: "dark",
+          // });
+          toast1.error(response?.message + '!')
         }
         document.getElementById('CloseAddressModal23')?.click();
         resetForm()

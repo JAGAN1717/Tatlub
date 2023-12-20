@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect, useState, useContext } from "react";
 import { Container, Row, Col } from "reactstrap";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
+import toast1 from 'react-hot-toast';
 import { useRouter } from "next/router";
 import { getProductCategory, getAddToCart } from "../../../../components/core/fashion_request";
 import { getMyCart, removeCart, getquantity } from '../../../../components/core/cart_request';
@@ -67,17 +68,18 @@ const MasterParallaxBanner = ({ trending, Recommended, videoList }) => {
       //     cartId:response.data?.id
       //   })
       // )
-      toast.info("Added to cart", {
-        position: "bottom-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        icon: false,
-        progress: undefined,
-        theme: "dark",
-      });
+      // toast.info("Added to cart", {
+      //   position: "bottom-right",
+      //   autoClose: 2000,
+      //   hideProgressBar: false,
+      //   closeOnClick: true,
+      //   pauseOnHover: true,
+      //   draggable: true,
+      //   icon: false,
+      //   progress: undefined,
+      //   theme: "dark",
+      // });
+      toast1.success('Added to cart')
     }
   }
   const cartFun2 = async (data, index) => {
@@ -107,17 +109,18 @@ const MasterParallaxBanner = ({ trending, Recommended, videoList }) => {
       //     cartId:response.data?.id
       //   })
       // )
-      toast.info("Added to cart", {
-        position: "bottom-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        icon: false,
-        progress: undefined,
-        theme: "dark",
-      });
+      // toast.info("Added to cart", {
+      //   position: "bottom-right",
+      //   autoClose: 2000,
+      //   hideProgressBar: false,
+      //   closeOnClick: true,
+      //   pauseOnHover: true,
+      //   draggable: true,
+      //   icon: false,
+      //   progress: undefined,
+      //   theme: "dark",
+      // });
+      toast1.success('Added to cart')
     }
   }
   const cartFun3 = async (data, index) => {
@@ -147,17 +150,18 @@ const MasterParallaxBanner = ({ trending, Recommended, videoList }) => {
       //     cartId:response.data?.id
       //   })
       // )
-      toast.info("Added to cart", {
-        position: "bottom-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        icon: false,
-        progress: undefined,
-        theme: "dark",
-      });
+      // toast.info("Added to cart", {
+      //   position: "bottom-right",
+      //   autoClose: 2000,
+      //   hideProgressBar: false,
+      //   closeOnClick: true,
+      //   pauseOnHover: true,
+      //   draggable: true,
+      //   icon: false,
+      //   progress: undefined,
+      //   theme: "dark",
+      // });
+      toast1.success('Added to cart')
     }
   }
 

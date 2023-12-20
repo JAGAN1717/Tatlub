@@ -33,6 +33,7 @@ import { Skeleton } from "primereact/skeleton";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { ToastContainer, toast } from "react-toastify";
+import toast1 from 'react-hot-toast';
 import { postQuotes } from "../../../components/core/seller_request";
 import { addToCart } from '../../../components/core/product_request'
 import AuthContex from "../../../components/auth/AuthContex";
@@ -253,17 +254,18 @@ const ProductList = ({
             old[index] = false
             return old
           })
-          toast.info("ADDED TO CART ", {
-            position: "bottom-right",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            icon: false,
-            theme: "dark",
-          });
+          // toast.info("ADDED TO CART ", {
+          //   position: "bottom-right",
+          //   autoClose: 2000,
+          //   hideProgressBar: false,
+          //   closeOnClick: true,
+          //   pauseOnHover: true,
+          //   draggable: true,
+          //   progress: undefined,
+          //   icon: false,
+          //   theme: "dark",
+          // });
+          toast1.success('Added to cart')
         }
       })
       .catch((error) => {
@@ -295,44 +297,47 @@ const ProductList = ({
         // document.getElementById("closeloaderModal")?.click();
         if (response.status == 200) {
           document.getElementById("closeQuotesmodal")?.click();
-          toast.info("SAVE SUCCESSFULL", {
-            position: "bottom-right",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-            icon: false,
-          });
+          // toast.info("SAVE SUCCESSFULL", {
+          //   position: "bottom-right",
+          //   autoClose: 2000,
+          //   hideProgressBar: false,
+          //   closeOnClick: true,
+          //   pauseOnHover: true,
+          //   draggable: true,
+          //   progress: undefined,
+          //   theme: "dark",
+          //   icon: false,
+          // });
+          toast1.success('SAVE SUCCESSFULL')
         } else {
-          toast.error("Somthing Went Wrong!", {
-            position: "bottom-right",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-          });
+          // toast.error("Somthing Went Wrong!", {
+          //   position: "bottom-right",
+          //   autoClose: 2000,
+          //   hideProgressBar: false,
+          //   closeOnClick: true,
+          //   pauseOnHover: true,
+          //   draggable: true,
+          //   progress: undefined,
+          //   theme: "dark",
+          // });
+          toast1.error("Somthing Went Wrong!")
         }
       } catch (error) {
         setOpen(false);
         // document.getElementById("closeloaderModal")?.click();
         console.error("err", error.message);
         setStatus("The details is incorrect");
-        toast.error("The details is incorrect!", {
-          position: "bottom-right",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        });
+        // toast.error("The details is incorrect!", {
+        //   position: "bottom-right",
+        //   autoClose: 2000,
+        //   hideProgressBar: false,
+        //   closeOnClick: true,
+        //   pauseOnHover: true,
+        //   draggable: true,
+        //   progress: undefined,
+        //   theme: "dark",
+        // });
+        toast1.error("The details is incorrect!")
         setSubmitting(false);
       }
 

@@ -23,6 +23,7 @@ import jsPDF from "jspdf";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { ToastContainer, toast } from "react-toastify";
+import toast1 from 'react-hot-toast';
 import AuthContex from "../../../components/auth/AuthContex";
 import itemscontex from "../../initcontext";
 import moment from "moment/moment";
@@ -137,17 +138,18 @@ const LeftSidebarPage = ({ setRecom }) => {
      } else {
       const responce = await PostClaimBussiness(body)
       if(responce.status == 200){
-        toast.success('Successfull!', {
-          position: "top-center",
-          autoClose: 300,
-          hideProgressBar: true,
-          // icon:false,
-          closeOnClick: true,
-          pauseOnHover: false,
-          draggable: false,
-          progress: undefined,
-          theme: "dark",
-          });
+        // toast.success('Successfull!', {
+        //   position: "top-center",
+        //   autoClose: 300,
+        //   hideProgressBar: true,
+        //   // icon:false,
+        //   closeOnClick: true,
+        //   pauseOnHover: false,
+        //   draggable: false,
+        //   progress: undefined,
+        //   theme: "dark",
+        //   });
+        toast1.success('Successfull!')
         document.getElementById('closeOTPmodelsmodal')?.click();
         setErrmsg();
         setMobile();
@@ -175,43 +177,46 @@ const LeftSidebarPage = ({ setRecom }) => {
         document.getElementById("closeloaderModal")?.click();
         if (response.status == 200) {
           document.getElementById("closeQuotesmodal")?.click();
-          toast.info("SAVE SUCCESSFULL", {
-            position: "bottom-right",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-          icon:false,
-            progress: undefined,
-            theme: "dark",
-          });
+          // toast.info("SAVE SUCCESSFULL", {
+          //   position: "bottom-right",
+          //   autoClose: 2000,
+          //   hideProgressBar: false,
+          //   closeOnClick: true,
+          //   pauseOnHover: true,
+          //   draggable: true,
+          //   icon:false,
+          //   progress: undefined,
+          //   theme: "dark",
+          // });
+          toast1.success('SAVE SUCCESSFULL')
         } else {
-          toast.error("Somthing Went Wrong!", {
-            position: "bottom-right",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-          });
+          // toast.error("Somthing Went Wrong!", {
+          //   position: "bottom-right",
+          //   autoClose: 2000,
+          //   hideProgressBar: false,
+          //   closeOnClick: true,
+          //   pauseOnHover: true,
+          //   draggable: true,
+          //   progress: undefined,
+          //   theme: "dark",
+          // });
+          toast1.error('Somthing Went Wrong!')
         }
       } catch (error) {
         document.getElementById("closeloaderModal")?.click();
         console.error("err", error.message);
         setStatus("The details is incorrect");
-        toast.error("The details is incorrect!", {
-          position: "bottom-right",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        });
+        // toast.error("The details is incorrect!", {
+        //   position: "bottom-right",
+        //   autoClose: 2000,
+        //   hideProgressBar: false,
+        //   closeOnClick: true,
+        //   pauseOnHover: true,
+        //   draggable: true,
+        //   progress: undefined,
+        //   theme: "dark",
+        // });
+        toast1.error('The details is incorrect!')
         setSubmitting(false);
       }
     },
@@ -307,17 +312,18 @@ const LeftSidebarPage = ({ setRecom }) => {
         if(res.status == 200){
           setCart(res)
           setLoading(false)
-          toast.info("ADDED TO CART ", {
-            position: "bottom-right",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-          icon:false,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-          });
+          // toast.info("ADDED TO CART ", {
+          //   position: "bottom-right",
+          //   autoClose: 2000,
+          //   hideProgressBar: false,
+          //   closeOnClick: true,
+          //   icon:false,
+          //   pauseOnHover: true,
+          //   draggable: true,
+          //   progress: undefined,
+          //   theme: "dark",
+          // });
+          toast1.success('ADDED TO CART')
         }
       })
       .catch((error) => {
@@ -344,17 +350,18 @@ const LeftSidebarPage = ({ setRecom }) => {
     const response = await addToCart(body)
     if (response.status == 200) {
       setCart(response)
-      toast.info("Added to cart", {
-        position: "bottom-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        icon: false,
-        progress: undefined,
-        theme: "dark",
-      });
+      // toast.info("Added to cart", {
+      //   position: "bottom-right",
+      //   autoClose: 2000,
+      //   hideProgressBar: false,
+      //   closeOnClick: true,
+      //   pauseOnHover: true,
+      //   draggable: true,
+      //   icon: false,
+      //   progress: undefined,
+      //   theme: "dark",
+      // });
+      toast1.success('Added to cart')
     }
   }
 

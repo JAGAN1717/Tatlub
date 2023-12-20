@@ -9,6 +9,7 @@ import { useRouter } from 'next/router';
 import { setmainId, mainId } from '../../../../IDmain';
 import { useTranslation } from "react-i18next";
 import { ToastContainer, toast } from "react-toastify";
+import toast1 from 'react-hot-toast';
 import { useFormik } from "formik";
 import * as yup from "yup";
 import moment from "moment/moment";
@@ -154,29 +155,32 @@ export default function JobDetails({ args }) {
         const response = await reviewForItems(formdata);
         if (response.status == 200) {
           document.getElementById("closeRevie")?.click();
-          toast.info("SUCCESS", {
-            position: "bottom-right",
-            autoClose: 2000,
-            icon: false,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-          });
+          // toast.info("SUCCESS", {
+          //   position: "bottom-right",
+          //   autoClose: 2000,
+          //   icon: false,
+          //   hideProgressBar: false,
+          //   closeOnClick: true,
+          //   pauseOnHover: true,
+          //   draggable: true,
+          //   progress: undefined,
+          //   theme: "dark",
+          // });
+          toast1.success('SUCCESS')
+
           fetchJobDetails()
         } else {
-          toast.error("NOT FOUND", {
-            position: "bottom-right",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-          });
+          // toast.error("NOT FOUND", {
+          //   position: "bottom-right",
+          //   autoClose: 2000,
+          //   hideProgressBar: false,
+          //   closeOnClick: true,
+          //   pauseOnHover: true,
+          //   draggable: true,
+          //   progress: undefined,
+          //   theme: "dark",
+          // });
+          toast1.error('Somthing Went Wrong!')
         }
         resetForm();
       } catch (error) {

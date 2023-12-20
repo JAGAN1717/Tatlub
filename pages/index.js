@@ -1,32 +1,13 @@
 import React, { useState, createContext, useEffect, lazy, Suspense } from "react";
-// import Banner from "./layouts/Fashion/Components/Banner";
 const Banner = lazy(() => import("./layouts/Fashion/Components/Banner"))
-// import CollectionBanner from "./layouts/Fashion/Components/Collection-Banner";
 const CollectionBanner = lazy(() => import("./layouts/Fashion/Components/Collection-Banner"))
 // import TopCollection from "../components/common/Collections/Collection3";
 // const TopCollection = lazy(()=> import("../components/common/Collections/Collection3"));
-// import Parallax from "./layouts/Fashion/Components/Parallax";
 const Parallax = lazy(() => import("./layouts/Fashion/Components/Parallax"));
-// import SpecialProducts from "../components/common/Collections/TabCollection1";
-// const SpecialProducts = lazy(() => import("../components/common/Collections/TabCollection1"));
-// import ServiceLayout from "../components/common/Service/service1";
 const ServiceLayout = lazy(() => import("../components/common/Service/service1"));
-// import Blog from "../components/common/Blog/blog1";
-// const Blog = lazy(() => import("../components/common/Blog/blog1"));
-// import Instagram from "../components/common/instagram/instagram1";
-// const Instagram = lazy(() => import("../components/common/instagram/instagram1"));
-// import LogoBlock from "../components/common/logo-block";
-// import HeaderOne from "../components/headers/header-one";
 const HeaderOne = lazy(() => import("../components/headers/header-one"));
-import { Product4 } from "../services/script";
-// import Paragraph from "../components/common/Paragraph";
-// import ModalComponent from "../components/common/Modal";
 import Helmet from "react-helmet";
-// import MasterFooter from "../components/footers/common/MasterFooter";
 const MasterFooter = lazy(() => import("../components/footers/common/MasterFooter"));
-import axios from "axios";
-// require('dotenv').config()
-// import initialProvider fro../initialvalueContextex';
 import { getBrand, getBanners, getCategory, getSection, getPopular, getRecommended, getTrendingProperty, getRecommendedProperty, getSocialmedia, getCustomerVideo, getSubcategory, getMainCategory } from "../components/core/fashion_request";
 import { getLanguages } from "../components/core/account_request";
 import { getSuggestions } from "../components/headers/core/_request";
@@ -72,7 +53,6 @@ const Fashion = () => {
     sessionStorage.setItem("slectLang", "en");
     localStorage.setItem("lang", JSON.stringify(responce.data));
     // localStorage.setItem("slectLang",'en');
-    // window.location.reload()
   };
 
 
@@ -89,7 +69,6 @@ const Fashion = () => {
     try {
       const response = await getSubcategory();
       //  setSubcategory(response.data)
-
       const categoryList = {}
       response.data?.forEach(res => {
         if (!categoryList[res.parent_category_name]) {
@@ -269,7 +248,6 @@ const Fashion = () => {
   //   return () => {clearTimeout(timer)}
   // }, []);
 
-
   const Loader = () => {
     return (
       <div className="loader-wrapper">
@@ -339,13 +317,11 @@ const Fashion = () => {
           )}
         </div>
       ) :
-        // <initialProvider>
         <>
           <Helmet>
             <meta name="viewport" content="width=device-width, initial-scale=1" />
             <link rel="icon" type="image/x-icon" href={"/assets/images/favicon/27.png"} />
           </Helmet>
-          {/* <ModalComponent /> */}
           {/* <div className="d-none">
           <Suspense fallback={<Loader />}>
             <HeaderOne categoryList={category} setBrandSug={setBrandSug} setResult={setResult} setPro={setPro} setPopularSearch={setPopularSearch} logoName={"logo.png"} topClass="top-header" />
@@ -372,11 +348,7 @@ const Fashion = () => {
             />
           </Suspense>
 
-          {/* <Paragraph
-            // title="title1 section-t-space"
-            inner="title-inner1"
-            hrClass={false}
-          /> */}
+
           {/* <Suspense fallback={<Loader />}>
       <TopCollection
         noTitle="null"
@@ -397,32 +369,11 @@ const Fashion = () => {
               video={videoList}
             />
           </Suspense>
+
           {/* <Suspense fallback={<Loader />}>
-            <SpecialProducts
-              type="fashion"
-              backImage={true}
-              productSlider={Product4}
-              line={true}
-              title="title1 section-t-space"
-              inner="title-inner1"
-              // designClass="section-b-space p-t-0 ratio_asos"
-              noSlider="true"
-              cartClass="cart-info cart-wrap"
-            />
-          </Suspense> */}
-          <Suspense fallback={<Loader />}>
             <ServiceLayout sectionClass="border-section small-section" />
-          </Suspense>
-          {/* <Suspense fallback={<Loader />}>
-            <Blog type="fashion" title="title1" inner="title-inner1" />
-          </Suspense> */}
-          {/* <Suspense fallback={<Loader />}>
-            <Instagram type="fashion" />
           </Suspense> */}
 
-          {/* <div className="section-b-space">
-        <LogoBlock />
-      </div> */}
           {/* <Suspense fallback={<Loader />}>
             <MasterFooter
               categoryList={category}
@@ -436,7 +387,6 @@ const Fashion = () => {
             />
           </Suspense> */}
         </>
-        // </initialProvider>
       }
 
     </>

@@ -31,6 +31,7 @@ import { useFormik } from "formik";
 import { useRouter } from "next/router";
 import * as Yup from "yup";
 import { ToastContainer, toast } from "react-toastify";
+import toast1 from 'react-hot-toast';
 import "react-toastify/dist/ReactToastify.css";
 import GoogleMapReact from "google-map-react";
 import { useTranslation } from "react-i18next";
@@ -670,28 +671,30 @@ function Listing() {
     setOpen(false);
     // document.getElementById("closeloaderModal")?.click();
     if (responce.status == 200) {
-      toast.info("SAVE SUCCESSFULL", {
-        position: "bottom-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        icon: false,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
+      // toast.info("SAVE SUCCESSFULL", {
+      //   position: "bottom-right",
+      //   autoClose: 2000,
+      //   hideProgressBar: false,
+      //   closeOnClick: true,
+      //   pauseOnHover: true,
+      //   icon: false,
+      //   draggable: true,
+      //   progress: undefined,
+      //   theme: "dark",
+      // });
+      toast1.success('SAVE SUCCESSFULL')
     } else {
-      toast.error("Somthing Went Wrong!", {
-        position: "bottom-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
+      // toast.error("Somthing Went Wrong!", {
+      //   position: "bottom-right",
+      //   autoClose: 2000,
+      //   hideProgressBar: false,
+      //   closeOnClick: true,
+      //   pauseOnHover: true,
+      //   draggable: true,
+      //   progress: undefined,
+      //   theme: "dark",
+      // });
+      toast1.error("Somthing Went Wrong!")
     }
   };
 
@@ -711,28 +714,30 @@ function Listing() {
       // document.getElementById("closeloaderModal")?.click();
       setOpen(false);
       if (responce.status == 200) {
-        toast.info("UPDATE SUCCESSFULL", {
-          position: "bottom-right",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          icon: false,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        });
+        // toast.info("UPDATE SUCCESSFULL", {
+        //   position: "bottom-right",
+        //   autoClose: 2000,
+        //   hideProgressBar: false,
+        //   closeOnClick: true,
+        //   pauseOnHover: true,
+        //   icon: false,
+        //   draggable: true,
+        //   progress: undefined,
+        //   theme: "dark",
+        // });
+        toast1.success('CREATED SUCCESSFULL')
       } else {
-        toast.error("Somthing Went Wrong!", {
-          position: "bottom-right",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        });
+        // toast.error("Somthing Went Wrong!", {
+        //   position: "bottom-right",
+        //   autoClose: 2000,
+        //   hideProgressBar: false,
+        //   closeOnClick: true,
+        //   pauseOnHover: true,
+        //   draggable: true,
+        //   progress: undefined,
+        //   theme: "dark",
+        // });
+        toast1.error("Somthing Went Wrong!")
       }
     } catch (error) {
       console.error("error", error.message);
@@ -780,34 +785,36 @@ function Listing() {
         setIsLoading(false);
       } else {
         router.push('/business')
-        toast.error("Internal Server Error", {
-          position: "bottom-right",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          icon: false,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        });
+        // toast.error("Internal Server Error", {
+        //   position: "bottom-right",
+        //   autoClose: 2000,
+        //   hideProgressBar: false,
+        //   closeOnClick: true,
+        //   pauseOnHover: true,
+        //   icon: false,
+        //   draggable: true,
+        //   progress: undefined,
+        //   theme: "dark",
+        // });
+      toast1.error("Somthing Went Wrong!")
       }
 
     } catch (error) {
       console.error("err", error.message);
       setIsLoading(false);
       router.push('/business');
-      toast.error("Internal Server Error", {
-        position: "bottom-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        icon: false,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
+      // toast.error("Internal Server Error", {
+      //   position: "bottom-right",
+      //   autoClose: 2000,
+      //   hideProgressBar: false,
+      //   closeOnClick: true,
+      //   pauseOnHover: true,
+      //   icon: false,
+      //   draggable: true,
+      //   progress: undefined,
+      //   theme: "dark",
+      // }); 
+      toast1.error("Somthing Went Wrong!")
     }
   };
 
@@ -815,17 +822,17 @@ function Listing() {
   const handleUpdate = async () => {
     var formdata = new FormData();
     const response = await UpdateListingdata(id, "");
-    toast.info("UPDATE SUCCESSFULL", {
-      position: "bottom-right",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      icon: false,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-    });
+    // toast.info("UPDATE SUCCESSFULL", {
+    //   position: "bottom-right",
+    //   autoClose: 2000,
+    //   hideProgressBar: false,
+    //   closeOnClick: true,
+    //   pauseOnHover: true,
+    //   icon: false,
+    //   draggable: true,
+    //   progress: undefined,
+    //   theme: "dark",
+    // });
   };
 
   const handleCustom = (event) => {
@@ -971,28 +978,30 @@ function Listing() {
           const response = await updatingHours(body);
           fetchItemsdata()
           document.getElementById('timeCLosePopup')?.click()
-          toast.info("UPDATED", {
-            position: "bottom-right",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            icon: false,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-          });
+          // toast.info("UPDATED", {
+          //   position: "bottom-right",
+          //   autoClose: 2000,
+          //   hideProgressBar: false,
+          //   closeOnClick: true,
+          //   pauseOnHover: true,
+          //   icon: false,
+          //   draggable: true,
+          //   progress: undefined,
+          //   theme: "dark",
+          // });
+          toast1.success('UPDATED')
         } else {
-          toast.error("must be greater then in open hours", {
-            position: "bottom-right",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-          });
+          // toast.error("must be greater then in open hours", {
+          //   position: "bottom-right",
+          //   autoClose: 2000,
+          //   hideProgressBar: false,
+          //   closeOnClick: true,
+          //   pauseOnHover: true,
+          //   draggable: true,
+          //   progress: undefined,
+          //   theme: "dark",
+          // });
+          toast1.error("must be greater then in open hours!")
         }
       } catch (err) {
         console.error(err);
@@ -1175,29 +1184,31 @@ function Listing() {
           const response = await UpdateListingdata(id, formdata);
           setOpen(false);
           if (response.status == 200) {
-            toast.info("UPDATED SUCCESSFULL", {
-              position: "bottom-right",
-              autoClose: 2000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              icon: false,
-              progress: undefined,
-              theme: "dark",
-            });
+            // toast.info("UPDATED SUCCESSFULL", {
+            //   position: "bottom-right",
+            //   autoClose: 2000,
+            //   hideProgressBar: false,
+            //   closeOnClick: true,
+            //   pauseOnHover: true,
+            //   draggable: true,
+            //   icon: false,
+            //   progress: undefined,
+            //   theme: "dark",
+            // });
+            toast1.success('UPDATED SUCCESSFULL')
             router.push("/business");
           } else {
-            toast.error("Somthing Went Wrong!", {
-              position: "bottom-right",
-              autoClose: 2000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "dark",
-            });
+            // toast.error("Somthing Went Wrong!", {
+            //   position: "bottom-right",
+            //   autoClose: 2000,
+            //   hideProgressBar: false,
+            //   closeOnClick: true,
+            //   pauseOnHover: true,
+            //   draggable: true,
+            //   progress: undefined,
+            //   theme: "dark",
+            // });
+            toast1.error("Somthing Went Wrong!")
           }
           // document.getElementById("closeloaderModal")?.click();
         } else {
@@ -1207,44 +1218,47 @@ function Listing() {
           setOpen(false);
           // console.log("listing ", response.data);
           if (response.status == 200) {
-            toast.info("CREATED SUCCESSFULL", {
-              position: "bottom-right",
-              autoClose: 2000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              icon: false,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "dark",
-            });
+            // toast.info("CREATED SUCCESSFULL", {
+            //   position: "bottom-right",
+            //   autoClose: 2000,
+            //   hideProgressBar: false,
+            //   closeOnClick: true,
+            //   icon: false,
+            //   pauseOnHover: true,
+            //   draggable: true,
+            //   progress: undefined,
+            //   theme: "dark",
+            // });
+            toast1.success('CREATED SUCCESSFULL')
             router.push("/business");
           } else {
-            toast.error("Somthing Went Wrong!", {
-              position: "bottom-right",
-              autoClose: 2000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "dark",
-            });
+            // toast.error("Somthing Went Wrong!", {
+            //   position: "bottom-right",
+            //   autoClose: 2000,
+            //   hideProgressBar: false,
+            //   closeOnClick: true,
+            //   pauseOnHover: true,
+            //   draggable: true,
+            //   progress: undefined,
+            //   theme: "dark",
+            // });
+            toast1.error("Somthing Went Wrong!")
           }
           // document.getElementById("closeloaderModal")?.click();
         }
         // document.getElementById("closeloaderModal")?.click();
       } catch (error) {
-        toast.error("Somthing Went Wrong!", {
-          position: "bottom-right",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        });
+        // toast.error("Somthing Went Wrong!", {
+        //   position: "bottom-right",
+        //   autoClose: 2000,
+        //   hideProgressBar: false,
+        //   closeOnClick: true,
+        //   pauseOnHover: true,
+        //   draggable: true,
+        //   progress: undefined,
+        //   theme: "dark",
+        // });
+        toast1.error("Somthing Went Wrong!")
         // document.getElementById("closeloaderModal")?.click();
         console.error(error);
         setStatus("The details is incorrect");
@@ -1277,16 +1291,17 @@ function Listing() {
 
   const handleimg = (e) => {
     if (e.target.files[0].size > 5242880) {
-      toast.error("Maximum 5mb only accepted!", {
-        position: "bottom-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
+      // toast.error("Maximum 5mb only accepted!", {
+      //   position: "bottom-right",
+      //   autoClose: 2000,
+      //   hideProgressBar: false,
+      //   closeOnClick: true,
+      //   pauseOnHover: true,
+      //   draggable: true,
+      //   progress: undefined,
+      //   theme: "dark",
+      // });
+      toast1.error("Maximum 5mb only accepted!")
     } else {
       try {
         const file = e.target.files[0];
@@ -1294,16 +1309,18 @@ function Listing() {
           setPreview(URL.createObjectURL(e.target.files[0]));
           setimg(e.target.files[0]);
         } else {
-          toast.error("image format only accepted!", {
-            position: "bottom-right",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-          });
+          // toast.error("image format only accepted!", {
+          //   position: "bottom-right",
+          //   autoClose: 2000,
+          //   hideProgressBar: false,
+          //   closeOnClick: true,
+          //   pauseOnHover: true,
+          //   draggable: true,
+          //   progress: undefined,
+          //   theme: "dark",
+          // });
+          toast1.error("image format only accepted!")
+
         }
       } catch (err) {
         console.err("err", err.message);
@@ -1317,16 +1334,17 @@ function Listing() {
       if (isValidFileUploaded2(file[i])) {
         setVideo(file);
       } else {
-        toast.error("video format only accepted!", {
-          position: "bottom-right",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        });
+        // toast.error("video format only accepted!", {
+        //   position: "bottom-right",
+        //   autoClose: 2000,
+        //   hideProgressBar: false,
+        //   closeOnClick: true,
+        //   pauseOnHover: true,
+        //   draggable: true,
+        //   progress: undefined,
+        //   theme: "dark",
+        // });
+      toast1.error("video format only accepted!")
       }
     }
   };
@@ -1335,16 +1353,17 @@ function Listing() {
     const previewImages = [];
     for (let i = 0; i < e.target.files.length; i++) {
       if (e.target.files[i]?.size > 5242880) {
-        toast.error("Maximum 5mb only accepted!", {
-          position: "bottom-right",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        });
+        // toast.error("Maximum 5mb only accepted!", {
+        //   position: "bottom-right",
+        //   autoClose: 2000,
+        //   hideProgressBar: false,
+        //   closeOnClick: true,
+        //   pauseOnHover: true,
+        //   draggable: true,
+        //   progress: undefined,
+        //   theme: "dark",
+        // });
+        toast1.error("Maximum 5mb only accepted!")
       } else {
         const file = e.target.files;
         if (isValidFileUploaded3(file[i])) {
@@ -1375,31 +1394,33 @@ function Listing() {
             reader.readAsDataURL(file2);
           }
         } else {
-          toast.error("image format only accepted!", {
-            position: "bottom-right",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-          });
+          // toast.error("image format only accepted!", {
+          //   position: "bottom-right",
+          //   autoClose: 2000,
+          //   hideProgressBar: false,
+          //   closeOnClick: true,
+          //   pauseOnHover: true,
+          //   draggable: true,
+          //   progress: undefined,
+          //   theme: "dark",
+          // });
+          toast1.error("image format only accepted!")
         }
       }
     }
 
     if(e.target.files.length > 12) {  
-      toast.error("Maximum 12 images only accepted!", {
-        position: "bottom-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
+      // toast.error("Maximum 12 images only accepted!", {
+      //   position: "bottom-right",
+      //   autoClose: 2000,
+      //   hideProgressBar: false,
+      //   closeOnClick: true,
+      //   pauseOnHover: true,
+      //   draggable: true,
+      //   progress: undefined,
+      //   theme: "dark",
+      // });
+      toast1.error("Maximum 12 images only accepted!")
     }
   };
 

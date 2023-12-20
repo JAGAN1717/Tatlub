@@ -18,6 +18,7 @@ import { getMyOrderDetails } from '../../components/core/Order_request';
 import { reviewForItems } from '../../components/core/vendor_request';
 import { getOrderStatus } from '../../components/core/Order_request';
 import { ToastContainer, toast } from "react-toastify";
+import toast1 from 'react-hot-toast';
 import { useFormik } from "formik";
 import * as yup from "yup";
 import Rating from "@mui/material/Rating";
@@ -90,7 +91,6 @@ function OdreDetails({ OrderD }, args) {
                 let user_id =
                     JSON.parse(sessionStorage.getItem("data"))?.id ??
                     JSON.parse(localStorage.getItem("data"))?.id;
-
                 const body = {
                     item_id: '' ?? '',
                     product_id: productId ?? '',
@@ -100,37 +100,38 @@ function OdreDetails({ OrderD }, args) {
                     image: reviewImg ?? '',
                 };
                 var formdata = new FormData();
-
                 Object.entries(body).forEach(([key, value]) => {
                     formdata.append(key, value);
                 });
-
                 const response = await reviewForItems(formdata);
+                toggle()
                 if (response.status == 200) {
                     document.getElementById("closeRevie")?.click();
                     setdetail(response)
-                    toast.info("SUCCESS", {
-                        position: "bottom-right",
-                        autoClose: 2000,
-                        icon: false,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: "dark",
-                    });
+                    // toast.info("SUCCESS", {
+                    //     position: "bottom-right",
+                    //     autoClose: 2000,
+                    //     icon: false,
+                    //     hideProgressBar: false,
+                    //     closeOnClick: true,
+                    //     pauseOnHover: true,
+                    //     draggable: true,
+                    //     progress: undefined,
+                    //     theme: "dark",
+                    // });
+                    toast1.success('SUCCESS')
                 } else {
-                    toast.error("NOT FOUND", {
-                        position: "bottom-right",
-                        autoClose: 2000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: "dark",
-                    });
+                    // toast.error("NOT FOUND", {
+                    //     position: "bottom-right",
+                    //     autoClose: 2000,
+                    //     hideProgressBar: false,
+                    //     closeOnClick: true,
+                    //     pauseOnHover: true,
+                    //     draggable: true,
+                    //     progress: undefined,
+                    //     theme: "dark",
+                    // });
+                    toast1.error('NOT FOUND')
                 }
                 resetForm();
             } catch (error) {
