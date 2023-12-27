@@ -291,12 +291,12 @@ const ProductList = ({
           item_lead_message: values.item_lead_message,
         };
         // document.getElementById("openloaderModal")?.click();
+        document.getElementById("closeQuotesmodal")?.click();
         setOpen(true);
         const response = await postQuotes(body);
         setOpen(false);
         // document.getElementById("closeloaderModal")?.click();
         if (response.status == 200) {
-          document.getElementById("closeQuotesmodal")?.click();
           // toast.info("SAVE SUCCESSFULL", {
           //   position: "bottom-right",
           //   autoClose: 2000,
@@ -324,7 +324,7 @@ const ProductList = ({
         }
       } catch (error) {
         setOpen(false);
-        // document.getElementById("closeloaderModal")?.click();
+        // document.getElementById("closeloaderModal")?.click();/
         console.error("err", error.message);
         setStatus("The details is incorrect");
         // toast.error("The details is incorrect!", {
